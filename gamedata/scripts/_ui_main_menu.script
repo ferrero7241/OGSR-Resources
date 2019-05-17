@@ -1,6 +1,6 @@
--- Главное меню для OGSR.
+-- Р“Р»Р°РІРЅРѕРµ РјРµРЅСЋ РґР»СЏ OGSR.
 -- KRodin (c) 2018
--- Исправил утечки памяти из-за неудаления частей меню после его закрытия (см. main_menu:close_and_delete_menu())
+-- РСЃРїСЂР°РІРёР» СѓС‚РµС‡РєРё РїР°РјСЏС‚Рё РёР·-Р·Р° РЅРµСѓРґР°Р»РµРЅРёСЏ С‡Р°СЃС‚РµР№ РјРµРЅСЋ РїРѕСЃР»Рµ РµРіРѕ Р·Р°РєСЂС‹С‚РёСЏ (СЃРј. main_menu:close_and_delete_menu())
 
 ---------------------->> CoP style load mod
 local press_any_key_on_start = false
@@ -56,10 +56,13 @@ function main_menu:InitControls()
 	self.message_box = CUIMessageBoxEx()
 	self:Register(self.message_box, "msg_box")	
 
-	self.xml:InitStatic("ogsm_version",   self):SetText("Mod version: " .. sys_ini:r_string_wq("mod_ver", "mod_ver"))
-	self.xml:InitStatic("static_version", self):SetText("Engine version: " .. _G.main_menu.get_main_menu():GetGSVer())
-	--self.xml:InitStatic("dlc_version", self):SetText("DLC version: " .. _G.main_menu.get_main_menu():GetGSVer())
-	self.xml:InitStatic("dlc_version", self)
+	local _ver = self.xml:InitStatic("static_version",self)
+	local ogse_ver = self.xml:InitStatic("ogsm_version",self)
+	local mm = _G.main_menu.get_main_menu()
+	_ver:SetText("S.T.A.L.K.E.R. v" .. mm:GetGSVer())
+	local mod_ver = sys_ini:r_string_wq("mod_ver", "mod_ver") 
+	mod_ver = mod_ver:gsub("%_", " ")
+	ogse_ver:SetText("OGS Evolution "..mod_ver)
 end
 
 function main_menu:Update()
@@ -212,15 +215,16 @@ function main_menu:OnKeyboard(dik, keyboard_action)
 			end
 		elseif dik == DIK_keys.DIK_N then --personal_test
 			xpcall(function() dofile(getFS():update_path("$game_scripts$", "personal_test.lua")) end, log1)
-		elseif dik == DIK_keys.DIK_S then --Тестовый спавн
+		elseif dik == DIK_keys.DIK_S then --РўРµСЃС‚РѕРІС‹Р№ СЃРїР°РІРЅ
 			xpcall( function() dofile(getFS():update_path("$game_scripts$", "test_spawn.lua")) end, log1)
 			self:close_and_delete_menu()
-		elseif dik == DIK_keys.DIK_F3 then --Показать текущие координаты
+		elseif dik == DIK_keys.DIK_F3 then --РџРѕРєР°Р·Р°С‚СЊ С‚РµРєСѓС‰РёРµ РєРѕРѕСЂРґРёРЅР°С‚С‹
 			if ogse.check_game() then
 				utils2.show_coordinates()
 			end
-		elseif dik == DIK_keys.DIK_W then -- настройка прицела
+		elseif dik == DIK_keys.DIK_W then -- РЅР°СЃС‚СЂРѕР№РєР° РїСЂРёС†РµР»Р°
 			self:setup_wpn_position()
+			self:close_and_delete_menu()
 		elseif dik == DIK_keys.DIK_P then --SDATA
 			if ogse.check_game() then
 				if not _sdata.GlobalEnable then
@@ -228,11 +232,6 @@ function main_menu:OnKeyboard(dik, keyboard_action)
 				else
 					_sdata.unsubscribe()
 				end
-			end
-		elseif dik == DIK_keys.DIK_F1 then
-			if ogse.check_game() then
-			-- if not ogse.is_developer_mode() then return end --KRodin: должно работать только в режиме разработчика.
-				ui_cheat_main.start_menu(self)
 			end
 		end
 	end
@@ -282,11 +281,11 @@ end
 --------------------<< CoP style load mod
 
 
---k01jan: настройка прицела худового оружия (Rastaman_VIP74)
+--k01jan: РЅР°СЃС‚СЂРѕР№РєР° РїСЂРёС†РµР»Р° С…СѓРґРѕРІРѕРіРѕ РѕСЂСѓР¶РёСЏ (Rastaman_VIP74)
 function main_menu:setup_wpn_position()
-	--if not ogse.is_developer_mode() then return end --KRodin: должно работать только в режиме разработчика.
-	--local wchud = get_hud():GetCustomStatic("hud_cross_wpn")
+	local wchud = get_hud():GetCustomStatic("hud_cross_wpn")
 	if get_con_bool("hud_adjust_mode") then
+		--news_manager.send_tip(db.actor, "%c[255,240,155,25]РћРўРљР›СЋС‡Р°РµРј РЅР°СЃС‚СЂРѕР№РєСѓ РїСЂРёС†РµР»РёРІР°РЅРёСЏ", nil, nil, 10000)
 		cmd("hud_adjust_mode 0")
 		cmd("hud_adjust_value 0.0")
 		cmd("bind lstrafe kA")
@@ -298,13 +297,13 @@ function main_menu:setup_wpn_position()
 		cmd("bind jump kSPACE")
 		cmd("bind torch kL")
 		cmd("bind inventory kI")
-		--if wchud then get_hud():RemoveCustomStatic("hud_cross_wpn") end
-		cmd("g_crosshair_dbg", "off")
+		if wchud then
+			get_hud():RemoveCustomStatic("hud_cross_wpn")
+		end
 	else
-		news_manager.send_tip(db.actor, "%c[255,240,155,25]Внимание! Вы включили режим настройки прицеливания (для разработчиков).", nil, nil, 10000)
-		news_manager.send_tip(db.actor, "%c[255,240,155,25]Чтобы вернуться в игровой режим, нажмите клавишу W в главном меню игры.", nil, nil, 10000)
+		--news_manager.send_tip(db.actor, "%c[255,240,155,25]Р’РљР›СЋС‡Р°РµРј РЅР°СЃС‚СЂРѕР№РєСѓ РїСЂРёС†РµР»РёРІР°РЅРёСЏ", nil, nil, 10000)
 		cmd("hud_adjust_mode 1")
-		cmd("hud_adjust_value 0.001")
+		cmd("hud_adjust_value 0.0005")
 		cmd("bind lstrafe kNUMPAD4")
 		cmd("bind rstrafe kNUMPAD6")
 		cmd("bind forward kNUMPAD8")
@@ -314,27 +313,26 @@ function main_menu:setup_wpn_position()
 		cmd("bind jump kNUMPADENTER")
 		cmd("bind torch kMULTIPLY")
 		cmd("bind inventory kDIVIDE")
-		--if wchud then get_hud():RemoveCustomStatic("hud_cross_wpn") end
-		--get_hud():AddCustomStatic("hud_cross_wpn")
-		cmd("g_crosshair_dbg", "on")
+		if wchud then
+			get_hud():RemoveCustomStatic("hud_cross_wpn")
+		end
+		get_hud():AddCustomStatic("hud_cross_wpn")
 	end
-	self:close_and_delete_menu()
 end
 
 
---Для закрытия меню использовать только этот специальный метод!
+--Р”Р»СЏ Р·Р°РєСЂС‹С‚РёСЏ РјРµРЅСЋ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ С‚РѕР»СЊРєРѕ СЌС‚РѕС‚ СЃРїРµС†РёР°Р»СЊРЅС‹Р№ РјРµС‚РѕРґ!
 function main_menu:close_and_delete_menu()
-	-- Удаляем в движке каллбеки, в которых хранятся ссылки на объекты оконных классов (которые добавляются в AddCallback(..., self),
-	-- иначе части меню не удалятся и будут висеть в памяти до перезапуска LUA (до загрузки сейва, например)
-	-- Так же, надо обнулить висячие ссылки (self.*_dlg), иначе сборщик мусора эти объекты не удалит. Да, это странно, но это так.
+	-- РЈРґР°Р»СЏРµРј РІ РґРІРёР¶РєРµ РєР°Р»Р»Р±РµРєРё, РІ РєРѕС‚РѕСЂС‹С… С…СЂР°РЅСЏС‚СЃСЏ СЃСЃС‹Р»РєРё РЅР° РѕР±СЉРµРєС‚С‹ РѕРєРѕРЅРЅС‹С… РєР»Р°СЃСЃРѕРІ (РєРѕС‚РѕСЂС‹Рµ РґРѕР±Р°РІР»СЏСЋС‚СЃСЏ РІ AddCallback(..., self),
+	-- РёРЅР°С‡Рµ С‡Р°СЃС‚Рё РјРµРЅСЋ РЅРµ СѓРґР°Р»СЏС‚СЃСЏ Рё Р±СѓРґСѓС‚ РІРёСЃРµС‚СЊ РІ РїР°РјСЏС‚Рё РґРѕ РїРµСЂРµР·Р°РїСѓСЃРєР° LUA (РґРѕ Р·Р°РіСЂСѓР·РєРё СЃРµР№РІР°, РЅР°РїСЂРёРјРµСЂ)
+	-- РўР°Рє Р¶Рµ, РЅР°РґРѕ РѕР±РЅСѓР»РёС‚СЊ РІРёСЃСЏС‡РёРµ СЃСЃС‹Р»РєРё (self.*_dlg), РёРЅР°С‡Рµ СЃР±РѕСЂС‰РёРє РјСѓСЃРѕСЂР° СЌС‚Рё РѕР±СЉРµРєС‚С‹ РЅРµ СѓРґР°Р»РёС‚. Р”Р°, СЌС‚Рѕ СЃС‚СЂР°РЅРЅРѕ, РЅРѕ СЌС‚Рѕ С‚Р°Рє.
 	if self.save_dlg then self.save_dlg:ClearCallbacks() self.save_dlg = nil end
 	if self.load_dlg then self.load_dlg:ClearCallbacks() self.load_dlg = nil end
 	if self.opt_dlg then
-		if self.opt_dlg.dlg_video_adv then self.opt_dlg.dlg_video_adv = nil end
+		if self.opt_dlg.dlg_video_adv then self.opt_dlg.dlg_video_adv:ClearCallbacks() end
 		self.opt_dlg:ClearCallbacks() self.opt_dlg = nil
 	end
-	if self.spawn_dlg then self.spawn_dlg:ClearCallbacks() self.spawn_dlg = nil end
-	self:ClearCallbacks() --main_menu удаляется движком, но для надёжности и ему каллбеки удалим.
+	self:ClearCallbacks() --main_menu СѓРґР°Р»СЏРµС‚СЃСЏ РґРІРёР¶РєРѕРј, РЅРѕ РґР»СЏ РЅР°РґС‘Р¶РЅРѕСЃС‚Рё Рё РµРјСѓ РєР°Р»Р»Р±РµРєРё СѓРґР°Р»РёРј.
 	--
 	cmd("main_menu off")
 end

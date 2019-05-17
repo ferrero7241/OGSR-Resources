@@ -1249,6 +1249,9 @@ script_spawn_registry = {
 			{sec = "box_amm_4", pos = {-70.08, -5.86, -24.68}, lvid = 132168, gvid = 331},	-- Свалка тоннель	
 		},	
 	},
+	tutorial_wounded_medkit_spawn = {
+		tutorial_wounded_medkit = {sec = "medkit", pos = {-86.27, -4.92, -78.33}, lvid = 177683, gvid = 74}, -- Аптечка Толика
+	},
 }
 
 

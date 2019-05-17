@@ -469,6 +469,25 @@ pervert_song                 = {min_snd = 10, max_snd = 20, rnd = 100, prior = 5
    gop_stop                 = {min_snd = 10, max_snd = 20, rnd = 100, prior = 5, rnd_id = id(), into_id = id(), max_ids = {}},
    potsik_talk                 = {min_snd = 10, max_snd = 20, rnd = 100, prior = 5, rnd_id = id(), into_id = id(), max_ids = {}},
     yan_captain_punch                = {min_snd = 3, max_snd = 5, rnd = 100, prior = 5, rnd_id = id(), into_id = id(), max_ids = {}},
+	patrol_bored                  = {min_snd = 10, max_snd = 20, rnd = 100, prior = 5, rnd_id = id(), into_id = id(), max_ids = {}},
+	car_engine_work                  = {min_snd = 10, max_snd = 20, rnd = 100, prior = 5, rnd_id = id(), into_id = id(), max_ids = {}},
+	kulgband_trader_car_snd                  = {min_snd = 10, max_snd = 20, rnd = 100, prior = 5, rnd_id = id(), into_id = id(), max_ids = {}},
+	bridge_kulgband_shoot                  = {min_snd = 10, max_snd = 20, rnd = 100, prior = 5, rnd_id = id(), into_id = id(), max_ids = {}},
+	bridge_kulgband_glavar_talk1                  = {min_snd = 10, max_snd = 20, rnd = 100, prior = 5, rnd_id = id(), into_id = id(), max_ids = {}},
+	bridge_kulgband_glavar_talk2                  = {min_snd = 10, max_snd = 20, rnd = 100, prior = 5, rnd_id = id(), into_id = id(), max_ids = {}},
+	bridge_kulgband_glavar_talk3                  = {min_snd = 10, max_snd = 20, rnd = 100, prior = 5, rnd_id = id(), into_id = id(), max_ids = {}},
+	bridge_kulgband_speech                  = {min_snd = 10, max_snd = 20, rnd = 100, prior = 5, rnd_id = id(), into_id = id(), max_ids = {}},
+	kulgband_hutor_radio_snd                  = {min_snd = 10, max_snd = 20, rnd = 100, prior = 5, rnd_id = id(), into_id = id(), max_ids = {}},
+	drunk                  = {min_snd = 10, max_snd = 20, rnd = 100, prior = 5, rnd_id = id(), into_id = id(), max_ids = {}},
+	kulgband_hutor_deadman_hello                  = {min_snd = 10, max_snd = 20, rnd = 100, prior = 5, rnd_id = id(), into_id = id(), max_ids = {}},
+	kulgband_scout_hush                  = {min_snd = 10, max_snd = 20, rnd = 100, prior = 5, rnd_id = id(), into_id = id(), max_ids = {}},
+	kulgband_informer_deal1                  = {min_snd = 10, max_snd = 20, rnd = 100, prior = 5, rnd_id = id(), into_id = id(), max_ids = {}},
+	kulgband_informer_deal2                  = {min_snd = 10, max_snd = 20, rnd = 100, prior = 5, rnd_id = id(), into_id = id(), max_ids = {}},
+	bandit_fight                  = {min_snd = 10, max_snd = 20, rnd = 100, prior = 5, rnd_id = id(), into_id = id(), max_ids = {}},
+	bandit_idle					 = {min_snd = 10, max_snd = 20, rnd = 100, prior = 5, rnd_id = id(), into_id = id(), max_ids = {}},
+	cit_kulgband_glavar_klondike_action		= {min_snd = 10, max_snd = 20, rnd = 100, prior = 5, rnd_id = id(), into_id = id(), max_ids = {}},
+	cit_kulgband_glavar_klondike_action2		= {min_snd = 10, max_snd = 20, rnd = 100, prior = 5, rnd_id = id(), into_id = id(), max_ids = {}},
+	
 
 -- УНИКАЛЬНЫЕ ТЕМЫ 
 -- Escape

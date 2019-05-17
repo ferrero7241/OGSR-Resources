@@ -361,13 +361,26 @@ function give_item(actor, npc, p)
     end
 end
 
+--function remove_item(actor, npc, p)
+--    if p[1] and npc:object(p[1]) then
+--		local sobj = alife():object(npc:object(p[1]):id())
+--		if sobj then
+--			alife():release(sobj)
+--		end
+--    end
+--end
+
 function remove_item(actor, npc, p)
-    if p[1] and npc:object(p[1]) then
-		local sobj = alife():object(npc:object(p[1]):id())
-		if sobj then
-			alife():release(sobj)
-		end
-    end
+	if (p and p[1]) == nil then abort("Wrong parameters in function 'remove_item'!!!") end
+	local item = p[1]
+
+	local obj = db.actor:object(item)
+	if obj ~= nil then
+		alife():release(alife():object(obj:id()), true)
+	else
+		abort("Actor has no such item!")
+	end
+	--news_manager.relocate_item(db.actor, "out", item)
 end
 
 function give_items(actor, npc, p)
@@ -399,6 +412,12 @@ function play_particle_on_path(actor, npc, p)
     end   
 end
 
+function give_items_to_actor(actor, npc, p)
+    local pos, lv_id, gv_id, npc_id = db.actor:position(), db.actor:level_vertex_id(), db.actor:game_vertex_id(), db.actor:id()
+	for i, v in pairs(p) do
+        alife():create(v, pos, lv_id, gv_id, npc_id)
+    end
+end
 
 -----------------------------------------------------------------------------
 function monster_berserk(actor, npc)
@@ -638,6 +657,13 @@ function set_community(actor,npc,p)
 end
 
 ------------------------------------------------------------------------------------------------------------------------
+function play_snd_on_me(actor, npc, p)
+ if p[1] then
+  local snd_obj = xr_sound.get_safe_sound_object(p[1])
+  snd_obj:play_no_feedback(npc, sound_object.s3d, 0, npc:position(), 1.0)
+ end
+end
+----------------------------------------------------------------------------------------------------------------
 
 -- постпроцесс и влияние удара в морду
 function actor_punch(npc)
@@ -820,6 +846,10 @@ function del_npc(actor,npc)
 	ogse.kill_living_npc(npc:id())
 end
 
+function get_some_money(actor,npc)
+	npc:give_money(1000000)
+end
+
 --' Escape
 
 function esc_millitary_near_anomaly_start_timer_delete(actor,npc)
@@ -944,6 +974,19 @@ end
 
 function give_rostok_quests(actor, npc)
 	bar_dialogs.rostok_quests()
+end
+
+
+function set_neutral(actor, npc) -- Сделаться нейтральным к ГГ
+	npc:set_relation (game_object.neutral, actor)
+	npc:set_goodwill(8000, actor)
+	npc:set_goodwill(8000, actor)
+end
+
+function actor_friend2(actor, npc)
+	npc:set_relation(game_object.friend, actor)
+	npc:set_goodwill(8000, actor)
+	npc:set_goodwill(8000, actor)
 end
 
 
@@ -3255,7 +3298,15 @@ end
 
 function launch_klondike_ending()
 -- артефакты в награду игроку
-	local num_arts_to_spawn = math.random(7,9)
+	--local num_arts_to_spawn = math.random(7,9)
+	
+	local diff = level.get_game_difficulty()
+	if diff == 0 then num_arts_to_spawn = 7
+		elseif diff == 1 then num_arts_to_spawn = 8
+		elseif diff == 2 then num_arts_to_spawn = 9
+		elseif diff == 3 then num_arts_to_spawn = 10 
+	end
+	
 	local spawned_idxs = {}
 	for i = 1, num_arts_to_spawn do
 		local art_idx = 0
@@ -3269,8 +3320,10 @@ function launch_klondike_ending()
 	ogse.remove_item_from_inventory(db.actor:object("klondaik_key"), db.actor)
 -- завершаем таск
 	db.actor:give_info_portion("klondaik_find")
--- спавн зонбей
-	spawn_zombies()
+-- спавн зомбей
+	if db.actor:dont_has_info("kulgband_deadcity_meet") then
+		spawn_zombies()
+	end
 end
 
 function master_init_dialod()
@@ -3298,3 +3351,874 @@ function release(actor, npc)
 		alife():release(sobj)
 	end
 end
+
+function delme(actor, npc) -- Самоудаление
+ local npc_id = npc:id()
+ if db.creature[npc_id]~=nil then
+  alife():set_switch_online  (npc:id(), false)
+  alife():set_switch_offline (npc:id(), true)
+  level.add_call(function() return level.object_by_id(npc_id)==nil end,
+  function()
+   local sobj = alife():object(npc_id)
+   if sobj then
+    alife():release(sobj, true)
+   end
+  end
+  )
+ else
+  local sobj = alife():object(npc_id)
+  if sobj then
+   alife():release(sobj, true)
+  end
+ end
+end
+
+
+
+
+function add_spot_on_map(obj_id,type,text) --+
+  if obj_id then
+    if text==nil then text=" " end
+    level.map_add_object_spot_ser(obj_id, type, text)
+  end
+end
+
+function remove_spot_from_map(obj_id,type) --+
+  if obj_id and level.map_has_object_spot(obj_id, type)~= 0 then
+    level.map_remove_object_spot(obj_id, type)
+  end
+end
+
+
+function add_self_spot(actor, npc, p)
+ local metka = p[1] or "green_location"
+ local tips = game.translate_string(p[2] or npc:name())
+ add_spot_on_map(npc:id(), metka, tips)
+end
+
+function remowe_self_spot(actor, npc, p)
+ local metka = p[1] or "green_location"
+ local tips = game.translate_string(p[2] or npc:name())
+ remove_spot_from_map(npc:id(), metka, tips)
+end
+
+
+function dar_kulg_band_trader_car_respawn()
+	local sim = alife()
+	local sobj = sim:create("vehicle_gaz66_quest", vector():set (374.16, -4.27, -471.04), 854965, 3149)
+	sim:assign_story_id(sobj.id, story_ids.kulgband_trader_car2)
+	
+	db.actor:set_actor_position(vector():set(376.74, -4.02, -467.89))
+	
+	local st = get_hud():GetCustomStatic("dar_kulg_band_trader_car_think") or get_hud():AddCustomStatic("dar_kulg_band_trader_car_think",true)
+	st.m_endTime = time_global()/1000 + 10
+end
+
+function spawn_kulgband_trader_car_body()
+ local sim = alife()
+ local sobj = sim:create("kulgband_trader_car_body", vector():set (389.06,-3.80,-502.12), 881631, 3149)
+ sobj:on_death()
+ 
+ alife():create("kulgband_trader_car_mob", vector():set (389.06,-3.80,-502.12), 881631, 3149)
+ alife():create("kulgband_trader_car_mob", vector():set (389.06,-3.80,-502.12), 881631, 3149)
+ alife():create("kulgband_trader_car_mob", vector():set (389.06,-3.80,-502.12), 881631, 3149)
+end
+
+
+function val_filin_shron_spawn_in()
+local box = level_object_by_sid(story_ids.val_secret_0006)
+	ogse.spawn_item_in_inv("val_filin_diary", box, 1)
+	ogse.spawn_item_in_inv("medkit", box, 1)
+	ogse.spawn_item_in_inv("vodka", box, 1)
+	ogse.spawn_item_in_inv("conserva", box, 2)
+	ogse.spawn_item_in_inv("ammo_5.45x39_fmj", box, 3)
+end
+
+
+function spawn_dar_farm_assistant()
+	local sim = alife()
+	local sobj = sim:create("dar_farm_assistant", vector():set (-87.55, 0.26, -470.16), 72604, 841)
+	sim:assign_story_id(sobj.id, story_ids.dar_farm_assistant)
+end
+
+
+function release_dar_filin_shron_door()
+	local obj = alife():story_object(story_ids.dar_filin_shron_door)
+	if obj then
+		alife():release(obj, true)
+	end
+end
+
+function release_dar_assistant_friend()
+	local obj = alife():story_object(story_ids.dar_assistant_friend)
+	if obj then
+		alife():release(obj, true)
+	end
+end
+
+function spawn_mil_monolith_man1grenade()
+	local npc = level_object_by_sid(7365)
+	local pos = npc:position()
+	local sim = alife()
+	local sobj1 = sim:create("suicider_grenade", vector():set(pos.x+1, pos.y+1, pos.z), npc:level_vertex_id(), npc:game_vertex_id())
+	sim:assign_story_id(sobj1.id, story_ids.suicider_grenade)
+	
+	local st = get_hud():GetCustomStatic("mil_monolith_grenade_think") or get_hud():AddCustomStatic("mil_monolith_grenade_think",true)
+	st.m_endTime = time_global()/1000 + 7
+end
+
+function spawn_mil_monolith_man2grenade()
+	local npc = level_object_by_sid(7366)
+	local pos = npc:position()
+	local sim = alife()
+	local sobj1 = sim:create("suicider_grenade", vector():set(pos.x+1, pos.y+1, pos.z), npc:level_vertex_id(), npc:game_vertex_id())
+	sim:assign_story_id(sobj1.id, story_ids.suicider_grenade)
+	
+	local st = get_hud():GetCustomStatic("mil_monolith_grenade_think") or get_hud():AddCustomStatic("mil_monolith_grenade_think",true)
+	st.m_endTime = time_global()/1000 + 7
+end
+
+function spawn_mil_monolith_man3grenade()
+	local npc = level_object_by_sid(7367)
+	local pos = npc:position()
+	local sim = alife()
+	local sobj1 = sim:create("suicider_grenade", vector():set(pos.x+1, pos.y+1, pos.z), npc:level_vertex_id(), npc:game_vertex_id())
+	sim:assign_story_id(sobj1.id, story_ids.suicider_grenade)
+	
+	local st = get_hud():GetCustomStatic("mil_monolith_grenade_think") or get_hud():AddCustomStatic("mil_monolith_grenade_think",true)
+	st.m_endTime = time_global()/1000 + 7
+end
+
+
+function spawn_special_medusa_near_door()
+ alife():create("af_medusa_special", vector():set (-130.82,0.65,-473.17), 26902, 842)
+end
+
+
+function actor_gaz66car_evacuation_fix()
+	local car = level_object_by_sid(story_ids.kulgband_trader_car2)
+	if car then
+		local pos = car:position()
+		db.actor:set_actor_position(vector():set(pos.x+4, pos.y, pos.z+4))
+	end
+end
+
+function spawn_dar_deadband_company2()
+	local sim = alife()
+	local sobj1 = sim:create("dar_bridge_kulgband_man1", vector():set (257.45,0.56,565.12), 703501, 2980)
+	sim:assign_story_id(sobj1.id, story_ids.dar_bridge_kulgband_man1)
+	
+	local sobj2 = sim:create("dar_bridge_kulgband_man2", vector():set (258.06,0.49,561.97), 704411, 2980)
+	sim:assign_story_id(sobj2.id, story_ids.dar_bridge_kulgband_man2)
+	
+	local sobj3 = sim:create("dar_bridge_kulgband_man3", vector():set (259.81,0.54,568.31), 706212, 2980)
+	sim:assign_story_id(sobj3.id, story_ids.dar_bridge_kulgband_man3)
+end
+
+
+function dar_bridge_kulgband_man2shoot()
+		local npc1 = level_object_by_sid(story_ids.dar_bridge_kulgband_man2)
+		local npc2 = level_object_by_sid(story_ids.dar_bridge_kulgband_assist1)
+		local bw = rx_utils.get_weapon(npc1)
+		npc1:set_sight(look.fire_point, npc2:position())
+		npc1:set_item(object.fire1, bw, 1, 5000)
+		fx_particle = particles_object("weapons\\generic_weapon01")
+		local pos = bw:position()
+		local dir = bw:direction()
+		pos:add(dir)
+		fx_particle:play_at_pos(pos)
+		npc2:kill(npc2)
+end
+
+function dar_bridge_kulgband_man3shoot()
+		local npc1 = level_object_by_sid(story_ids.dar_bridge_kulgband_man3)
+		local npc2 = level_object_by_sid(story_ids.dar_bridge_kulgband_assist2)
+		local bw = rx_utils.get_weapon(npc1)
+		npc1:set_sight(look.fire_point, npc2:position())
+		npc1:set_item(object.fire1, bw, 1, 5000)
+		fx_particle = particles_object("weapons\\generic_weapon01")
+		local pos = bw:position()
+		local dir = bw:direction()
+		pos:add(dir)
+		fx_particle:play_at_pos(pos)
+		npc2:kill(npc2)
+end
+
+
+
+
+function spawn_kulgband_seif_dead_man()
+	local sim = alife()
+	local sobj = sim:create("kulgband_seif_dead_man", vector():set (210.78,-0.58,657.24), 644922, 3228)
+	sim:assign_story_id(sobj.id, story_ids.kulgband_seif_dead_man)
+	sobj:on_death()
+	local sobj_id = sobj.id
+	text = "Мародёр"
+	level.map_add_object_spot_ser(sobj_id,"blue_location",text)
+	
+	local st = get_hud():GetCustomStatic("kulgband_seif_think") or get_hud():AddCustomStatic("kulgband_seif_think",true)
+	st.m_endTime = time_global()/1000 + 10
+end
+
+
+function delete_kulgband_seif_dead_man()
+	local obj = alife():story_object(story_ids.kulgband_seif_dead_man)
+	if obj then
+		alife():release(obj, true)
+	end
+	ogse.remove_item_from_inventory(db.actor:object("kulgband_hutor_house_seif_key"),actor)
+	
+	local st = get_hud():GetCustomStatic("kulgband_seif_think2") or get_hud():AddCustomStatic("kulgband_seif_think2",true)
+	st.m_endTime = time_global()/1000 + 10
+end
+
+
+function spawn_kulgband_seif_ambush()
+ alife():create("kulgband_seif_ambush_mob1", vector():set (212.47,-1.54,610.96), 647514, 2975)
+ alife():create("kulgband_seif_ambush_mob2", vector():set (212.47,-1.54,610.96), 647514, 2975)
+ alife():create("kulgband_seif_ambush_mob2", vector():set (212.47,-1.54,610.96), 647514, 2975)
+ alife():create("kulgband_seif_ambush_mob2", vector():set (212.47,-1.54,610.96), 647514, 2975)
+ alife():create("kulgband_seif_ambush_mob2", vector():set (212.47,-1.54,610.96), 647514, 2975)
+ alife():create("kulgband_seif_ambush_mob2", vector():set (212.47,-1.54,610.96), 647514, 2975)
+end
+
+
+function start_bridge_kulgband_timer()
+	ogse_st_mgr.start_timer("a03", 15, script_name()..".kulgband_bridge_pda_tip")
+	alife():create("kulgband_bridge_scout", vector():set (240.43,-3.76,570.94), 681268, 2979)
+end
+
+function kulgband_bridge_pda_tip()
+	if has_alife_info("kulgband_actor_name1") then
+		news_manager.send_tip(db.actor, "kulgband_bridge_pda_tip1", nil)
+	elseif has_alife_info("kulgband_actor_name2") then
+		news_manager.send_tip(db.actor, "kulgband_bridge_pda_tip2", nil)
+	elseif has_alife_info("kulgband_actor_name3") then
+		news_manager.send_tip(db.actor, "kulgband_bridge_pda_tip3", nil)
+	end
+end
+
+function kulgband_strelka_task_actor_goback()
+	db.actor:set_actor_position(vector():set(182.46, -1.28, 579.63))
+	level.add_pp_effector("deadcity_wake_old.ppe", 2007, false)
+end
+
+function spawn_vodka_around_glavar()
+alife():create("vodka", vector():set (-184.85,0.50,551.80), 194062, 2950)
+alife():create("vodka", vector():set (-184.79,0.66,554.24), 194064, 2950)
+alife():create("vodka", vector():set (-184.79,0.66,554.24), 194064, 2950)
+end
+
+
+function spawn_kulgband_scout_shron()
+alife():create("kulgband_scout_shron", vector():set (426.78,1.09,413.57), 952265, 2985)
+end
+
+
+
+function delete_dar_kulgband()
+delete_dar_kulgband_glavar()
+delete_dar_kulgband_telohr1()
+delete_dar_kulgband_telohr2()
+delete_dar_kulgband_shesterka()
+delete_dar_kulgband_patruln()
+delete_dar_kulgband_voron()
+end
+
+function delete_dar_kulgband_glavar()
+local obj = alife():story_object(7026)
+	if obj and obj ~= nil then
+		alife():release(obj , true)
+	end
+end
+
+function delete_dar_kulgband_telohr1()
+local obj = alife():story_object(7027)
+	if obj and obj ~= nil then
+		alife():release(obj , true)
+	end
+end
+
+function delete_dar_kulgband_telohr2()
+local obj = alife():story_object(7028)
+	if obj and obj ~= nil then
+		alife():release(obj , true)
+	end
+end
+
+function delete_dar_kulgband_shesterka()
+local obj = alife():story_object(7029)
+	if obj and obj ~= nil then
+		alife():release(obj , true)
+	end
+end
+
+function delete_dar_kulgband_patruln()
+local obj = alife():story_object(7030)
+	if obj and obj ~= nil then
+		alife():release(obj , true)
+	end
+end
+
+function delete_dar_kulgband_voron()
+local obj = alife():story_object(7392)
+	if obj and obj ~= nil then
+		alife():release(obj , true)
+	end
+end
+
+
+
+
+function spawn_city_kulgband()
+	local sim = alife()
+	
+	if db.actor:dont_has_info("ds_glavar_blamed") then
+		local sobj1 = sim:create("city_kulgband_glavar", vector():set (154.77,-2.66,-27.95), 678447, 3484)
+		sim:assign_story_id(sobj1.id, story_ids.city_kulgband_glavar)
+	elseif db.actor:has_info("ds_glavar_blamed") then
+		local sobj1 = sim:create("city_kulgband_glavar2", vector():set (154.77,-2.66,-27.95), 678447, 3484)
+		sim:assign_story_id(sobj1.id, story_ids.city_kulgband_glavar2)
+	end
+	
+	local sobj2 = sim:create("city_kulgband_telohr1", vector():set (152.48,-3.02,-25.71), 675958, 3484)
+	sim:assign_story_id(sobj2.id, story_ids.city_kulgband_telohr1)
+	
+	local sobj3 = sim:create("city_kulgband_telohr2", vector():set (157.06,-3.03,-25.43), 680940, 3484)
+	sim:assign_story_id(sobj3.id, story_ids.city_kulgband_telohr2)
+	
+	if db.actor:dont_has_info("kulgband_hutor_house_seif_task_fail") then
+		local sobj4 = sim:create("city_kulgband_shesterka", vector():set (159.26,-3.12,-24.48), 684242, 3484)
+		sim:assign_story_id(sobj4.id, story_ids.city_kulgband_shesterka)
+	end
+	
+	local sobj5 = sim:create("city_kulgband_patruln", vector():set (150.32,-3.08,-21.39), 673553, 3484)
+	sim:assign_story_id(sobj5.id, story_ids.city_kulgband_patruln)
+	
+	local sobj6 = sim:create("city_kulgband_assist1", vector():set (150.32,-3.08,-21.39), 673553, 3484)
+	sim:assign_story_id(sobj6.id, story_ids.city_kulgband_assist1)
+	
+	local sobj7 = sim:create("city_kulgband_assist2", vector():set (150.32,-3.08,-21.39), 673553, 3484)
+	sim:assign_story_id(sobj7.id, story_ids.city_kulgband_assist2)
+end
+
+
+function kulgband_telohr_glavar_shoot()
+		local npc1 = level_object_by_sid(story_ids.ds_telohr_2)
+		local npc2 = level_object_by_sid(story_ids.ds_glavar)
+		local bw = rx_utils.get_weapon(npc1)
+		npc1:set_sight(look.fire_point, npc2:position())
+		npc1:set_item(object.fire1, bw, 1, 5000)
+		fx_particle = particles_object("weapons\\generic_weapon01")
+		local pos = bw:position()
+		local dir = bw:direction()
+		pos:add(dir)
+		fx_particle:play_at_pos(pos)
+		npc2:kill(npc2)
+end
+
+
+
+function spawn_kulgband_informer_shron1()	-- Атакуем Тролля;
+local sobj = alife():create("kulgband_informer_shron1", vector():set (178.95,0.15,-245.11), 380729, 985)
+	local sobj_id = sobj.id
+	text = "Нычка Тролля"
+	level.map_add_object_spot_ser(sobj_id,"crlc_mdl",text)
+	news_manager.send_tip(db.actor, "kulgband_informer_shron_tip", nil, "default", 9000, nil)
+	
+	alife():create("kulgband_informer_assist3", vector():set (179.25, 0.15, -242.81), 380732, 985)
+end
+
+function spawn_kulgband_informer_shron2()	-- Договариваемся с Троллем;
+local sobj = alife():create("kulgband_informer_shron2", vector():set (178.95,0.15,-245.11), 380729, 985)
+	local sobj_id = sobj.id
+	text = "Нычка Тролля"
+	level.map_add_object_spot_ser(sobj_id,"crlc_mdl",text)
+	
+	alife():create("kulgband_informer_mob", vector():set (179.25, 0.15, -242.81), 380732, 985)
+end
+
+function spawn_kulgband_informer_assist()
+	--alife():create("kulgband_informer_assist3", vector():set (179.25, 0.15, -242.81), 380732, 985)
+	alife():create("kulgband_informer_mob", vector():set (179.25, 0.15, -242.81), 380732, 985)
+end
+
+
+function dar_kulgband_informer_weapons_back()
+ogse.transfer_items_from_box(story_ids.kulgband_informer_seif, false, nil, nil)
+end
+
+
+function kulgband_informer_timer()
+ogse_st_mgr.start_timer("a06", 20, script_name()..".send_kulgband_informer_tip")
+end
+
+function send_kulgband_informer_tip()
+news_manager.send_tip(db.actor, "kulgband_informer_shron_tip", nil, "default", 9000, nil)
+end
+
+function release_all_weapons_around_actor()
+	jekan_work.release_all_weapons_around_actor()
+end
+
+function spawn_cit_kulgband_ambush()
+	alife():create("cit_kulgband_monolit1", vector():set (19.62, 1.24, 28.55), 520206, 3778)
+	alife():create("cit_kulgband_monolit1", vector():set (19.62, 1.24, 28.55), 520206, 3778)
+	alife():create("cit_kulgband_monolit2", vector():set (19.62, 1.24, 28.55), 520206, 3778)
+	alife():create("cit_kulgband_monolit3", vector():set (19.62, 1.24, 28.55), 520206, 3778)
+	
+	alife():create("cit_kulgband_monolit1", vector():set (93.54, 1.03, 58.61), 608043, 3626)
+	alife():create("cit_kulgband_monolit2", vector():set (93.54, 1.03, 58.61), 608043, 3626)
+	alife():create("cit_kulgband_monolit3", vector():set (93.54, 1.03, 58.61), 608043, 3626)
+	alife():create("cit_kulgband_monolit2", vector():set (93.54, 1.03, 58.61), 608043, 3626)
+	
+	alife():create("cit_kulgband_monolit1", vector():set (55.08, 3.78, 92.45), 563134, 3613)
+	alife():create("cit_kulgband_monolit2", vector():set (55.08, 3.78, 92.45), 563134, 3613)
+	alife():create("cit_kulgband_monolit1", vector():set (55.08, 3.78, 92.45), 563134, 3613)
+	alife():create("cit_kulgband_monolit2", vector():set (55.08, 3.78, 92.45), 563134, 3613)
+end
+
+function spawn_cit_kulgband_ambush2()
+	alife():create("cit_kulgband_mob1", vector():set (19.62, 1.24, 28.55), 520206, 3778)
+	alife():create("cit_kulgband_mob2", vector():set (19.62, 1.24, 28.55), 520206, 3778)
+	
+	alife():create("cit_kulgband_mob3", vector():set (93.54, 1.03, 58.61), 608043, 3626)
+	alife():create("cit_kulgband_mob4", vector():set (93.54, 1.03, 58.61), 608043, 3626)
+	alife():create("cit_kulgband_mob4", vector():set (93.54, 1.03, 58.61), 608043, 3626)
+	alife():create("cit_kulgband_mob4", vector():set (93.54, 1.03, 58.61), 608043, 3626)
+	
+	alife():create("cit_kulgband_mob5", vector():set (55.08, 3.78, 92.45), 563134, 3613)
+	alife():create("cit_kulgband_mob5", vector():set (55.08, 3.78, 92.45), 563134, 3613)
+	alife():create("cit_kulgband_mob5", vector():set (55.08, 3.78, 92.45), 563134, 3613)
+	alife():create("cit_kulgband_mob5", vector():set (55.08, 3.78, 92.45), 563134, 3613)
+	alife():create("cit_kulgband_mob5", vector():set (55.08, 3.78, 92.45), 563134, 3613)
+end
+
+function release_cit_culgband_car()
+local obj = alife():story_object(7397)
+	if obj and obj ~= nil then
+		alife():release(obj , true)
+	end
+end
+
+
+function send_kulgband_klondike_cheat_tip()
+if ( db.actor:dont_has_info("city_kulgband_assist1_dead") and 
+	db.actor:dont_has_info("city_kulgband_assist2_dead") and
+		db.actor:dont_has_info("cit_kulgband_patruln_dead") and
+		db.actor:dont_has_info("cit_kulgband_shesterka_dead") and
+		db.actor:dont_has_info("cit_kulgband_telohr1_dead") and	
+		db.actor:dont_has_info("cit_kulgband_telohr2_dead") ) then
+			news_manager.send_tip(db.actor, "send_kulgband_klondike_cheat_tip", nil, "default", 9000, nil)
+end
+end
+
+function spawn_cit_kulgband_car_body()
+if db.actor:dont_has_info("cit_kulgband_task_fail") then
+local car = alife():story_object(story_ids.cit_kulgband_car)
+local pos = car:position()
+if db.actor:has_info("cit_kulgband_car_go") then
+	local sim = alife()
+	local sobj = sim:create("city_kulgband_glavar3", vector():set(pos.x, pos.y, pos.z), car:level_vertex_id(), car:game_vertex_id())
+	sobj:on_death()
+end
+end
+end
+
+function spawn_cit_kulgband_car_body2()
+if db.actor:dont_has_info("cit_kulgband_task_fail") then
+local sim = alife()
+	local sobj = sim:create("city_kulgband_glavar3", vector():set (-18.66, 1.67, -177.25), 464746, 3589)
+	sobj:on_death()
+end
+end
+
+function klondike_arts_give_back()
+if has_alife_info("af_klondike_1_on") then
+	alife():create("af_klondike_1", db.actor:position(), db.actor:level_vertex_id(), db.actor:game_vertex_id(), db.actor:id())
+end
+if has_alife_info("af_klondike_2_on") then
+	alife():create("af_klondike_2", db.actor:position(), db.actor:level_vertex_id(), db.actor:game_vertex_id(), db.actor:id())
+end
+if has_alife_info("af_klondike_3_on") then
+	alife():create("af_klondike_3", db.actor:position(), db.actor:level_vertex_id(), db.actor:game_vertex_id(), db.actor:id())
+end
+if has_alife_info("af_klondike_4_on") then
+	alife():create("af_klondike_4", db.actor:position(), db.actor:level_vertex_id(), db.actor:game_vertex_id(), db.actor:id())
+end
+if has_alife_info("af_klondike_5_on") then
+	alife():create("af_klondike_5", db.actor:position(), db.actor:level_vertex_id(), db.actor:game_vertex_id(), db.actor:id())
+end
+if has_alife_info("af_klondike_6_on") then
+	alife():create("af_klondike_6", db.actor:position(), db.actor:level_vertex_id(), db.actor:game_vertex_id(), db.actor:id())
+end
+if has_alife_info("af_klondike_7_on") then
+	alife():create("af_klondike_7", db.actor:position(), db.actor:level_vertex_id(), db.actor:game_vertex_id(), db.actor:id())
+end
+if has_alife_info("af_klondike_8_on") then
+	alife():create("af_klondike_8", db.actor:position(), db.actor:level_vertex_id(), db.actor:game_vertex_id(), db.actor:id())
+end
+if has_alife_info("af_klondike_9_on") then
+	alife():create("af_klondike_9", db.actor:position(), db.actor:level_vertex_id(), db.actor:game_vertex_id(), db.actor:id())
+end
+if has_alife_info("af_klondike_10_on") then
+	alife():create("af_klondike_10", db.actor:position(), db.actor:level_vertex_id(), db.actor:game_vertex_id(), db.actor:id())
+end
+if has_alife_info("af_klondike_11_on") then
+	alife():create("af_klondike_11", db.actor:position(), db.actor:level_vertex_id(), db.actor:game_vertex_id(), db.actor:id())
+end
+if has_alife_info("af_klondike_12_on") then
+	alife():create("af_klondike_12", db.actor:position(), db.actor:level_vertex_id(), db.actor:game_vertex_id(), db.actor:id())
+end
+if has_alife_info("af_klondike_13_on") then
+	alife():create("af_klondike_13", db.actor:position(), db.actor:level_vertex_id(), db.actor:game_vertex_id(), db.actor:id())
+end
+if has_alife_info("af_klondike_14_on") then
+	alife():create("af_klondike_14", db.actor:position(), db.actor:level_vertex_id(), db.actor:game_vertex_id(), db.actor:id())
+end
+if has_alife_info("af_klondike_15_on") then
+	alife():create("af_klondike_15", db.actor:position(), db.actor:level_vertex_id(), db.actor:game_vertex_id(), db.actor:id())
+end
+if has_alife_info("af_klondike_16_on") then
+	alife():create("af_klondike_16", db.actor:position(), db.actor:level_vertex_id(), db.actor:game_vertex_id(), db.actor:id())
+end
+if has_alife_info("af_klondike_17_on") then
+	alife():create("af_klondike_17", db.actor:position(), db.actor:level_vertex_id(), db.actor:game_vertex_id(), db.actor:id())
+end
+if has_alife_info("af_klondike_18_on") then
+	alife():create("af_klondike_18", db.actor:position(), db.actor:level_vertex_id(), db.actor:game_vertex_id(), db.actor:id())
+end
+if has_alife_info("af_klondike_19_on") then
+	alife():create("af_klondike_19", db.actor:position(), db.actor:level_vertex_id(), db.actor:game_vertex_id(), db.actor:id())
+end
+if has_alife_info("af_klondike_20_on") then
+	alife():create("af_klondike_20", db.actor:position(), db.actor:level_vertex_id(), db.actor:game_vertex_id(), db.actor:id())
+end
+if has_alife_info("af_klondike_21_on") then
+	alife():create("af_klondike_21", db.actor:position(), db.actor:level_vertex_id(), db.actor:game_vertex_id(), db.actor:id())
+end
+if has_alife_info("af_klondike_22_on") then
+	alife():create("af_klondike_22", db.actor:position(), db.actor:level_vertex_id(), db.actor:game_vertex_id(), db.actor:id())
+end
+end
+
+
+function actor_set_klondike_direction()
+local npc = level_object_by_sid(story_ids.city_kulgband_glavar2)
+db.actor:set_actor_position(patrol("city_kulgband_glavar_walk3"):point(0))
+--local dir = patrol("city_kulgband_glavar_walk1"):point(1):sub(patrol("city_kulgband_glavar_walk1"):point(0))
+--db.actor:set_actor_direction(-dir:getH())
+local dir = npc:direction()
+db.actor:set_actor_direction(dir:getH())
+end
+
+function delete_klondike_arts2()
+delete_klondike_art1()
+delete_klondike_art2()
+delete_klondike_art3()
+delete_klondike_art4()
+delete_klondike_art5()
+delete_klondike_art6()
+delete_klondike_art7()
+delete_klondike_art8()
+delete_klondike_art9()
+delete_klondike_art10()
+delete_klondike_art11()
+delete_klondike_art12()
+delete_klondike_art13()
+delete_klondike_art14()
+delete_klondike_art15()
+delete_klondike_art16()
+delete_klondike_art17()
+delete_klondike_art18()
+delete_klondike_art19()
+delete_klondike_art20()
+delete_klondike_art21()
+delete_klondike_art22()
+end
+
+function delete_klondike_art1()
+local sim = alife()
+for i=1,65534 do
+local sobj = sim:object(i)
+	if sobj and sobj:name():find("^af_klondike_1") then
+	sim:release(sobj,true)
+	return
+	end
+end
+end
+
+function delete_klondike_art2()
+local sim = alife()
+for i=1,65534 do
+local sobj = sim:object(i)
+	if sobj and sobj:name():find("^af_klondike_2") then
+	sim:release(sobj,true)
+	return
+	end
+end
+end
+
+function delete_klondike_art3()
+local sim = alife()
+for i=1,65534 do
+local sobj = sim:object(i)
+	if sobj and sobj:name():find("^af_klondike_3") then
+	sim:release(sobj,true)
+	return
+	end
+end
+end
+
+function delete_klondike_art4()
+local sim = alife()
+for i=1,65534 do
+local sobj = sim:object(i)
+	if sobj and sobj:name():find("^af_klondike_4") then
+	sim:release(sobj,true)
+	return
+	end
+end
+end
+
+function delete_klondike_art5()
+local sim = alife()
+for i=1,65534 do
+local sobj = sim:object(i)
+	if sobj and sobj:name():find("^af_klondike_5") then
+	sim:release(sobj,true)
+	return
+	end
+end
+end
+
+function delete_klondike_art6()
+local sim = alife()
+for i=1,65534 do
+local sobj = sim:object(i)
+	if sobj and sobj:name():find("^af_klondike_6") then
+	sim:release(sobj,true)
+	return
+	end
+end
+end
+
+function delete_klondike_art7()
+local sim = alife()
+for i=1,65534 do
+local sobj = sim:object(i)
+	if sobj and sobj:name():find("^af_klondike_7") then
+	sim:release(sobj,true)
+	return
+	end
+end
+end
+
+function delete_klondike_art8()
+local sim = alife()
+for i=1,65534 do
+local sobj = sim:object(i)
+	if sobj and sobj:name():find("^af_klondike_8") then
+	sim:release(sobj,true)
+	return
+	end
+end
+end
+
+function delete_klondike_art9()
+local sim = alife()
+for i=1,65534 do
+local sobj = sim:object(i)
+	if sobj and sobj:name():find("^af_klondike_9") then
+	sim:release(sobj,true)
+	return
+	end
+end
+end
+
+function delete_klondike_art10()
+local sim = alife()
+for i=1,65534 do
+local sobj = sim:object(i)
+	if sobj and sobj:name():find("^af_klondike_10") then
+	sim:release(sobj,true)
+	return
+	end
+end
+end
+
+function delete_klondike_art11()
+local sim = alife()
+for i=1,65534 do
+local sobj = sim:object(i)
+	if sobj and sobj:name():find("^af_klondike_11") then
+	sim:release(sobj,true)
+	return
+	end
+end
+end
+
+function delete_klondike_art12()
+local sim = alife()
+for i=1,65534 do
+local sobj = sim:object(i)
+	if sobj and sobj:name():find("^af_klondike_12") then
+	sim:release(sobj,true)
+	return
+	end
+end
+end
+
+function delete_klondike_art13()
+local sim = alife()
+for i=1,65534 do
+local sobj = sim:object(i)
+	if sobj and sobj:name():find("^af_klondike_13") then
+	sim:release(sobj,true)
+	return
+	end
+end
+end
+
+function delete_klondike_art14()
+local sim = alife()
+for i=1,65534 do
+local sobj = sim:object(i)
+	if sobj and sobj:name():find("^af_klondike_14") then
+	sim:release(sobj,true)
+	return
+	end
+end
+end
+
+function delete_klondike_art15()
+local sim = alife()
+for i=1,65534 do
+local sobj = sim:object(i)
+	if sobj and sobj:name():find("^af_klondike_15") then
+	sim:release(sobj,true)
+	return
+	end
+end
+end
+
+function delete_klondike_art16()
+local sim = alife()
+for i=1,65534 do
+local sobj = sim:object(i)
+	if sobj and sobj:name():find("^af_klondike_16") then
+	sim:release(sobj,true)
+	return
+	end
+end
+end
+
+function delete_klondike_art17()
+local sim = alife()
+for i=1,65534 do
+local sobj = sim:object(i)
+	if sobj and sobj:name():find("^af_klondike_17") then
+	sim:release(sobj,true)
+	return
+	end
+end
+end
+
+function delete_klondike_art18()
+local sim = alife()
+for i=1,65534 do
+local sobj = sim:object(i)
+	if sobj and sobj:name():find("^af_klondike_18") then
+	sim:release(sobj,true)
+	return
+	end
+end
+end
+
+function delete_klondike_art19()
+local sim = alife()
+for i=1,65534 do
+local sobj = sim:object(i)
+	if sobj and sobj:name():find("^af_klondike_19") then
+	sim:release(sobj,true)
+	return
+	end
+end
+end
+
+function delete_klondike_art20()
+local sim = alife()
+for i=1,65534 do
+local sobj = sim:object(i)
+	if sobj and sobj:name():find("^af_klondike_20") then
+	sim:release(sobj,true)
+	return
+	end
+end
+end
+
+function delete_klondike_art21()
+local sim = alife()
+for i=1,65534 do
+local sobj = sim:object(i)
+	if sobj and sobj:name():find("^af_klondike_21") then
+	sim:release(sobj,true)
+	return
+	end
+end
+end
+
+function delete_klondike_art22()
+local sim = alife()
+for i=1,65534 do
+local sobj = sim:object(i)
+	if sobj and sobj:name():find("^af_klondike_22") then
+	sim:release(sobj,true)
+	return
+	end
+end
+end
+
+
+function cit_kulgband_snipershot()
+		local npc1 = level_object_by_sid(story_ids.cit_kulgband_sniper)
+		local npc2 = level_object_by_sid(story_ids.city_kulgband_glavar2)
+		local bw = rx_utils.get_weapon(npc1)
+		npc1:set_sight(look.fire_point, npc2:position())
+		npc1:set_item(object.fire1, bw, 1, 5000)
+		fx_particle = particles_object("weapons\\generic_weapon01")
+		local pos = bw:position()
+		local dir = bw:direction()
+		pos:add(dir)
+		fx_particle:play_at_pos(pos)
+		npc2:kill(npc2)
+end
+
+function klondike_arts_special_spawn()
+-- артефакты в награду игроку
+	
+	local diff = level.get_game_difficulty()
+	if diff == 0 then num_arts_to_spawn = 7
+		elseif diff == 1 then num_arts_to_spawn = 8
+		elseif diff == 2 then num_arts_to_spawn = 9
+		elseif diff == 3 then num_arts_to_spawn = 10 
+	end
+	
+	local spawned_idxs = {}
+	for i = 1, num_arts_to_spawn do
+		local art_idx = 0
+		while art_idx == 0 or (art_idx > 10 and art_idx < 18) or spawned_idxs[art_idx] == true do
+			art_idx = math.random(22)
+		end
+		alife():create("af_klondike_"..tostring(art_idx), db.actor:position(), db.actor:level_vertex_id(), db.actor:game_vertex_id(), db.actor:id())
+		spawned_idxs[art_idx] = true
+	end
+end
+
+
+
+
+
+
+
+

@@ -1,0 +1,240 @@
+--[[ -----------------------------------------------------------------------------------------------
+Спавн
+--]]-----------------------------------------------------------------------------------------------
+-- аптечка для Толика
+--name = esc_medkit position = -86.2782745361328, -4.92963171005249, -78.3331451416016 - убрать из аллспавна - валяется с НИ, спавнить вовремя!
+--удаляем: из ogse_fixes.script (добавлена fix_esc_tutorial_wounded_medkit)
+--спавним по событию: 
+-- в инфо tutorial_wounded_start (info_l01escape.xml) добавлено действие k01jan_order.spawn_tutorial_wounded_medkit
+-- в ogse_spawn_db.script в spawn_registry дописано
+--	tutorial_wounded_medkit_spawn = {
+--		tutorial_wounded_medkit = {sec = "medkit", pos = {-86.27, -4.92, -78.33}, lvid = 177683, gvid = 74}, -- Аптечка Толика
+--	},
+
+local spawn_db = ogse_spawn_db.script_spawn_registry.tutorial_wounded_medkit_spawn
+
+function spawn_tutorial_wounded_medkit()
+	ogse.spawn_object(spawn_db.tutorial_wounded_medkit)
+end
+
+
+--[[ -----------------------------------------------------------------------------------------------
+Диалоги с Оружейником в деревне новичков на Кордоне
+Михаил Анатольевич Цвирня ака "Одессит" (С) Алексей Колентьев
+Советую поменьше читать всякие наркоманские книги (С) SimplyYuri
+--]]-----------------------------------------------------------------------------------------------
+
+--- Разговор с вооружённым ГГ (для апгрейда оружие д/б в руках)
+function is_talkative_npc(npc)
+	local talkative_npc = {
+	["esc_guns_remontnik"] = true,
+	["mil_Svoboda_engineer"] = true,
+	}
+
+--[[ -----------------
+	--local talkative = false
+	--if not npc then return false end
+	--local story
+	--if npc.m_story_id then
+	--	story = npc.m_story_id
+	--else
+	--	story = npc:story_id()
+	--end
+	--if story == 95 	 
+	--then --(esc_guns_remontnik)
+		--log3("[OGSE] SID of talkative_npc [%s]: [%s]", npc:name(), story)
+	--else
+	--end
+--]]------------------
+	--if talkative_npc[npc:name()] or talkative_npc[npc:profile_name()] or string.find(npc:name(), talkative_npc[npc:name()])
+	if talkative_npc[npc:name()]
+	then
+		--log3("[OGSE] is talkative: [%s]", npc:name()) 	--? находит specific_character id 
+		return true
+	end
+	return false
+end
+
+
+-- активные заказы
+function has_order_escape_gunsrepair()
+	local orders = false
+	if has_alife_info("odessit_order_grip1_give") or has_alife_info("odessit_order_pbs1_give") or has_alife_info("odessit_order_X_give")
+	then orders = true
+	end
+	return orders
+end
+
+--' заказ31 верт.ручка -----------------------
+function has_money_odessit_order_grip1(actor, npc)
+	return actor:money() >= 2000
+end
+
+function order_grip1_prepay(actor,npc)
+-----ПРОВЕРЕНО -в диалог пишет правильно, НО $ не забираются у 2Г dialogs.relocate_money(actor, 2000, "out") точнее, забираются НЕ ВСЕГДА
+	---в диалог пишет "ПОЛУЧЕНЫ ДЕНЬГИ: -2000" dialogs.relocate_money(actor, -2000, "in")
+--++-ПРОВЕРЕНО _снимает $ (?отдаёт), но не пишет в диалог db.actor:transfer_money(2000, npc)
+	---тоже снимает db.actor:give_money(-2000)
+---+ПРОВЕРЕНО -в диалог пишет правильно news_manager.relocate_money(db.actor, "out", 2000) но $ не забираются у 2Г
+--+ пишет СМС, а не в диалоге	news_manager.send_tip(db.actor, "order_grip1_money_out", nil, "money", 2000, nil)
+
+--получаем предоплату
+	--кривое db.actor:transfer_money(2000, npc)
+	db.actor:give_money(-2000)
+	news_manager.relocate_money(db.actor, "out", 2000)
+--запускаем таймер ожидания заказа31
+---local time_in_sec = 0 * 24 * 3600 + vars.get_surge_time() * 3600 + 0
+---local time_in_sec = 0 * 24 * 3600 + math.random(12,36) * 3600 + 0
+	local time_in_sec = math.random(3,45) * 60	-- на "пару МИНУТ" math.random(1,3) * 60
+-- ВЫЛЕТАЕТ ogse.start_gtmr("odessit_order_grip1", time_in_sec, script_name()..".on_timer_odessit_order_grip1")
+-- KRodin убрал псевдонимы для удобства вызова:
+-- -start_tmr = ogse_st_mgr.start_timer
+-- -start_gtmr = ogse_st_mgr.start_gtimer
+-- -get_tmr = ogse_st_mgr.get_timer
+-- -tmr_exists = ogse_st_mgr.timer_exists
+	ogse.ogse_st_mgr.start_gtimer("odessit_order_grip1", time_in_sec, script_name()..".on_timer_odessit_order_grip1")
+end
+
+function on_timer_odessit_order_grip1()
+	local snd_obj = xr_sound.get_safe_sound_object([[interface\inv_detach_addon]])
+	snd_obj:play_no_feedback(db.actor, sound_object.s2d, 0, vector(), 1.0)
+	local news_text = "%c[255,160,160,160]Одессит:\\n%c[255,0,255,0]Заказ выполнен."
+	db.actor:give_game_news(news_text, "ui\\ui_iconsTotal", Frect():set(83,470,83,47), 1000, 5000)
+	db.actor:give_info_portion("odessit_order_grip1_ready")
+end
+
+function give_order_grip1(actor,npc)
+--отдаём ГГ заказ1
+	dialogs.relocate_item_section(actor, "wpn_addon_grip", "in")
+--ТЕСТ повышаем уровень благосклонности персонажа к ГГ (до goodwill_friend = 800) obj:set_goodwill(5000, db.actor)
+	--ВЫЛЕТ	npc:set_goodwill(801, db.actor)			--local 'npc' (a nil value)
+---ogse.send_tip("Одессит - ДРУГ")
+end
+
+
+--' заказ32 угл.ручка -----------------------
+function has_money_odessit_order_grip2(actor, npc)
+	return actor:money() >= 4000
+end
+
+--ПРОВЕРКА оплаты
+function order_grip2(actor,npc)
+--получаем предоплату
+	--+кривое db.actor:transfer_money(4000, npc) 				--работает через раз. Непредсказуемо деньги то списываются, то нет.				
+	--+news_manager.relocate_money(db.actor, "out", 4000)
+	--dialogs.relocate_money(actor, 4000, "out")	--ТЕСТ	тоже самое (одно заменяет два) и тоже работает через раз
+	db.actor:give_money(-4000)							--ТЕСТ попробуем всесто transfer_money - у Оружейника $ - бесконечные :)
+	news_manager.relocate_money(db.actor, "out", 4000)
+--отдаём ГГ заказ2 (сразу, без таймера - эта ручка готова к использованию "из коробки")
+	dialogs.relocate_item_section(actor, "wpn_addon_afg", "in")
+--пробовать прерывать диалог?
+end
+
+
+
+---------------------------------------------------
+--' заказ51 МТК-83 -----------------------
+function order_adapter1_enable()
+--запуск таймера доступности заказа51 МТК-83 (+флаг odessit_order_adapter1_enable)
+--запускаем таймер
+	--ТЕСТ на "пару МИНУТ" local time_in_sec = math.random(1,3) * 60	
+	local time_in_sec = math.random(1,48) * 60 * 60	--на "пару ЧАСОВ" math.random(1,9) * 60 * 60
+	ogse.ogse_st_mgr.start_gtimer("odessit_order_adapter1", time_in_sec, script_name()..".on_timer_odessit_order_adapter1")
+	db.actor:give_info_portion("odessit_order_adapter1_inprogress")
+end
+
+function on_timer_odessit_order_adapter1()
+	db.actor:give_info_portion("odessit_order_adapter1_enable")
+ogse.send_tip("Одессит: МТК-83 подвезли!")
+end
+
+function has_money_odessit_order_adapter1(actor, npc)
+	return actor:money() >= 7000
+end
+
+function order_adapter1(actor,npc)
+--получаем предоплату
+	--кривое db.actor:transfer_money(7000, npc)
+	db.actor:give_money(-7000)
+	news_manager.relocate_money(db.actor, "out", 7000)
+--отдаём ГГ заказ51 (сразу, без таймера - переходник готов к использованию "из коробки")
+	dialogs.relocate_item_section(actor, "wpn_addon_mtk83", "in")
+	db.actor:disable_info_portion("odessit_order_adapter1_enable")
+	db.actor:disable_info_portion("odessit_order_adapter1_inprogress")
+end
+
+
+
+--' заказ61 ПБС-1 -----------------------ДОДЕЛАТЬ
+function has_money_odessit_order_pbs1(actor, npc)
+	return actor:money() >= 5000
+end
+
+function order_pbs1_prepay(actor,npc)
+--получаем предоплату
+	--кривое db.actor:transfer_money(5000, npc)
+	db.actor:give_money(-5000)
+	news_manager.relocate_money(db.actor, "out", 5000)
+--запускаем таймер ожидания заказа61
+--запускаем таймер
+	--local time_in_sec = math.random(1,3) * 60	--ТЕСТ на "пару МИНУТ"
+	local time_in_sec = math.random(1,3) * 60 * 60	--на "пару ЧАСОВ"
+	ogse.ogse_st_mgr.start_gtimer("odessit_order_pbs1", time_in_sec, script_name()..".on_timer_odessit_order_pbs1")
+end
+
+function on_timer_odessit_order_pbs1()
+	local snd_obj = xr_sound.get_safe_sound_object([[interface\inv_detach_addon]])
+	snd_obj:play_no_feedback(db.actor, sound_object.s2d, 0, vector(), 1.0)
+	local news_text = "%c[255,160,160,160]Одессит:\\n%c[255,0,255,0]Заказ выполнен."
+	db.actor:give_game_news(news_text, "ui\\ui_iconsTotal", Frect():set(83,470,83,47), 1000, 5000)
+	db.actor:give_info_portion("odessit_order_pbs1_ready")
+end
+
+function give_order_pbs1(actor,npc)
+--отдаём ГГ заказ61
+	dialogs.relocate_item_section(actor, "wpn_addon_sil_762_pbs1", "in")
+end
+
+
+
+
+
+
+
+
+
+
+--' --// ----------------------- TEST
+
+
+
+
+--' --// ----------------------- Not Use (не используются) -----------------------
+
+--[[
+--' Метка на ремонтника на Кордоне
+function locate_esc_guns_remontnik(actor,npc)
+	local sim = alife()
+	if sim == nil then
+		return
+	end
+	local obj = sim:story_object(094)
+	if obj and not has_alife_info("found_esc_gunsrepair_place") then
+		level.map_add_object_spot(obj.id, "crlc_mdl", "esc_guns_remontnik_name")
+	end
+end
+
+--' убрать метку с ремонтника на Кордоне
+function no_locate_esc_guns_remontnik(actor,npc)
+	local sim = alife()
+	if sim == nil then
+		return
+	end
+	local obj = sim:story_object(094)
+	if obj and has_alife_info("has_esc_gunsrepair_place_info") then
+		level.map_remove_object_spot(obj.id, "crlc_mdl", "esc_guns_remontnik_name")
+	end
+end
+]]
+
+--' --// ----------------------- EoF -----------------------

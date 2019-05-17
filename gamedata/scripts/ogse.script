@@ -335,6 +335,48 @@ local quest_profiles = {
 	["hohol"]						=	true,
 	["esc_buharik"]					=	true,
 	["esc_guns_remontnik"]			=	true,
+	
+	["dar_farm_assistant"]			=	true,
+	["kulgband_trader"]			=	true,
+	["kulgband_trader_guard1"]			=	true,
+	["kulgband_trader_guard2"]			=	true,
+	["kulgband_looser"]			=	true,
+	["kulgband_driver"]			=	true,
+	["kulgband_scout"]			=	true,
+	["mil_monolith_man1"]			=	true,
+	["mil_monolith_man2"]			=	true,
+	["mil_monolith_man3"]			=	true,
+	["kulgband_trader2"]			=	true,
+	["val_trader_npc"]			=	true,
+	["rad_kulgband_assistant"]			=	true,
+	["dar_bridge_kulgband_man1"]			=	true,
+	["dar_bridge_kulgband_man2"]			=	true,
+	["dar_bridge_kulgband_man3"]			=	true,
+	["dar_bridge_kulgband_assist1"]			=	true,
+	["dar_bridge_kulgband_assist2"]			=	true,
+	["kulgband_seif_dead_man"]			=	true,
+	["dar_bridge_kulgband_glavar"]			=	true,
+	["city_kulgband_glavar"]			=	true,
+	["city_kulgband_glavar2"]			=	true,
+	["city_kulgband_telohr1"]			=	true,
+	["city_kulgband_telohr2"]			=	true,
+	["city_kulgband_shesterka"]			=	true,
+	["city_kulgband_patruln"]			=	true,
+	["city_kulgband_assist1"]			=	true,
+	["city_kulgband_assist2"]			=	true,
+	["kulgband_bridge_scout"]			=	true,
+	["dar_bridge_kulgband_assist4"]			=	true,
+	["dar_bridge_kulgband_assist5"]			=	true,
+	["dar_bridge_kulgband_assist6"]			=	true,
+	["kulgband_hutor_deadman"]			=	true,
+	["kulgband_informer_assist3"]			=	true,
+	["kulgband_informer"]			=	true,
+	
+	
+	
+	
+	
+	
 }
 
 --- Возвращает true если параметром передан квестовый непись
@@ -1478,6 +1520,33 @@ function transfer_items_from_box(box_sid, remove_quest_items, exclude_sections, 
 			local sect = obj:section()
 			-- передаем предмет
 			box:transfer_item(obj, db.actor)
+		end
+	end
+end
+
+
+function transfer_weapons_to_box(box_sid, remove_quest_items, exclude_sections, exclude_clsids)
+	local box = level_object_by_sid(box_sid)
+	if not box then return end
+	local cnt = db.actor:object_count()
+	for i=0, cnt-1 do
+		local obj = db.actor:object(i)
+		-- есть ли объект
+		if obj then
+		local sect = obj:section()
+		-- фильтр по запрещенным class id
+		if not exclude_clsids or not exclude_clsids[obj:clsid()] then
+		-- фильтр по запрещенным секциям
+		if not exclude_sections or not exclude_sections[sect] then
+		-- фильтр по квестовым вещам
+		if remove_quest_items or not (sys_ini:line_exist(sect, "quest_item") and sys_ini:r_bool(sect, "quest_item")) then
+			-- передаем предмет
+			if isWeapon(obj) or isKnife(obj) then
+				db.actor:transfer_item(obj, box)
+			end
+		end
+		end
+		end
 		end
 	end
 end

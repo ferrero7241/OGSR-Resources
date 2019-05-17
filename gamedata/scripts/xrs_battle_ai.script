@@ -131,6 +131,14 @@ local forbidden_profiles = {    -- запретные профили и имен
   [ "sar_monolith_exo_crystal" ] = true,
   [ "sar_monolith_specnaz"     ] = true,
   [ "sar_monolith_commander"   ] = true,
+  
+  [ "rad_kulgband_assistant"   ] = true,
+  [ "dar_farm_assistant"   ] = true,
+  [ "rad_kulgband_shron_guard1"   ] = true,
+  [ "rad_kulgband_shron_guard2"   ] = true,
+  [ "rad_kulgband_shron_guard3"   ] = true,
+  [ "kulgband_informer_assist3"   ] = true,
+  
 }
 
 local forbidden_by_lname = {
@@ -3735,10 +3743,8 @@ function add_to_binder( object, ini, scheme, section, storage )
     action:add_precondition( world_property( rx_gl.evid_gl_reload, false ) )
   end
 
-  if ogsm_hideout then
-    action:add_precondition( world_property( ogsm_hideout.property_blowout, false ) )
-    action:add_precondition( world_property( ogsm_hideout.property_hideout_lost, false ) )
-  end
+  action:add_precondition( world_property( ogsm_hideout.property_blowout, false ) )
+  action:add_precondition( world_property( ogsm_hideout.property_hideout_lost, false ) )
   
   action:add_precondition(
     world_property( properties.alt_combat_enabled, true )
