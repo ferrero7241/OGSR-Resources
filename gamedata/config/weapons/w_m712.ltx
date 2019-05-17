@@ -1,0 +1,265 @@
+; Mauser C96
+; http://russian7.ru/post/mauzer-pistoletov-komissar/
+;Пистолет-карабин Mauser C96. Модель 712 «Schnellfeuer» обр. 1932 года — автоматический вариант с магазином на 20 патронов. \nМаузер К-96 «Боло»  обр. 1920 года — вариант под патрон 7,63?25 мм с укороченным до 99 мм стволом. Пистолеты имели укороченную рукоятку с ореховыми щечками, имеющими 22 канавки и курок «Small Ring Hammer» с клеймом «NS». Основным отличием модели является качающаяся горизонтально антабка на рукоятке. \nМаузер К-96 обр. 1916 года — вариант под патрон 9?19 мм Парабеллум для германской армии (на рукоятке нанесена красная цифра «9»)
+;
+;кость priklad анимка reload_p
+;
+;--------------------------------------
+[wpn_m712]:identity_immunities,base_wpn_zoom
+GroupControlSection			= spawn_group
+discovery_dependency		= 
+$spawn          			= "weapons\m712"					; option for Level Editor
+$npc						= on		; option for Level Editor
+$prefetch 					= 8
+scheduled       	     	= off              ; option for ALife Simulator
+cform               		= skeleton
+class               		= WP_LR300			
+min_radius          		= 30				
+max_radius          		= 100				
+description					= enc_weapons1_wpn-m712			;enc_weapons1_wpn-apsb_desc
+	
+ef_main_weapon_type			= 2
+ef_weapon_type				= 6
+
+holder_range_modifier		= 1.0		
+holder_fov_modifier			= 0.7            
+
+cost						= 2400				
+weapon_class				= assault_rifle		
+	
+ammo_limit					= 210				
+ammo_elapsed				= 20				
+	
+ammo_mag_size				= 20				
+fire_modes					= 1, 0, -1
+
+ammo_class					= ammo_7.62x25_p, ammo_7.62x25_ps   
+
+hand_dependence				= 1									
+single_handed				= 0
+	
+slot 						= 1									
+animation_slot				= 1									
+
+inv_name	        		= wpn-m712			;wpn-apsb						
+inv_name_short				= wpn-m712_s
+inv_weight					= 2.7								
+
+inv_grid_width     			= 2
+inv_grid_height    			= 1
+inv_grid_x					= 74
+inv_grid_y					= 19
+
+kill_msg_x					= 0
+kill_msg_y					= 123
+kill_msg_width				= 69
+kill_msg_height				= 30
+
+fire_dispersion_base				= 0.257
+control_inertion_factor				= 1.09f
+
+cam_relax_speed         			= 6
+cam_dispersion          			= 0.3		
+cam_dispersion_inc					= 0.20
+cam_dispertion_frac					= 0.9		
+cam_max_angle						= 9.0		
+cam_max_angle_horz					= 30.0		
+cam_step_angle_horz					= 1.25
+
+fire_dispersion_condition_factor 	= 3.8		
+misfire_probability 				= 0.002		
+misfire_condition_k					= 0.05
+condition_shot_dec 					= 0.0003	
+
+fire_point					= 0.0, 0.133, 0.161
+
+flame_particles				= amik\weapons\flame_particles\flame_particles_04
+smoke_particles				= amik\weapons\smoke_particles\p_smoke_particles_02
+grenade_flame_particles		= weapons\generic_shoot_00
+
+shell_point					= 0.0, 0.133, 0.047
+shell_particles	 	= weapons\generic_shells00_right
+
+PDM_disp_base 				= 1.0
+PDM_disp_vel_factor 		= 0.8
+PDM_disp_accel_factor 		= 0.8
+PDM_crouch	 				= 1.0
+PDM_crouch_no_acc 			= 1.0
+
+hit_power               	= 0.53			;0.46
+hit_impulse		 			= 100			;70		
+hit_type 					= fire_wound 	
+;hit_rate			= 1.85
+
+fire_distance            	= 200
+bullet_speed				= 430		
+rpm                      	= 700		
+
+use_aim_bullet				= true		
+time_to_aim					= 1.0	
+
+silencer_hit_power       	= 0.44
+silencer_hit_impulse	 	= 60
+silencer_fire_distance   	= 150
+silencer_bullet_speed	 	= 400
+
+hud                      	= wpn_m712_hud				
+normal                  	= 0, 1, 0
+
+position 					= -0.021, -0.085, 0.0
+orientation 				= 0, 0, 0					
+
+strap_position				= -0.18,-0.45,0.2
+strap_orientation      		= -10,-5,10
+strap_bone0					= bip01_spine2
+strap_bone1					= bip01_spine1
+
+visual              = weapons\mauser\wpn_m712.ogf
+
+light_color					= 0.6,0.5,0.3				
+light_range					= 5							
+light_var_color				= 0.05						
+light_var_range				= 0.5
+light_time 					= 0.2						
+
+ph_mass						= 1							
+
+;Сменные аддоны ОГСЕ
+silencer_status			= 0
+grenade_launcher_status	= 0
+scope_status			= 0
+scope_mount_status		= 0
+grip_status				= 2
+magazine_status			= 0
+script_binding  = ogse_bind_weapon.init
+;скрытые (управляемые) кости: priklad
+managed_bones = priklad
+
+wpn_addon_mauser_buttstock      = wpn_m712_buttstock
+
+zoom_enabled				= true						
+
+scope_name 					= wpn_addon_scope			
+scope_x                     = 52
+scope_y                     = -5
+silencer_name  				= wpn_addon_silencer			
+silencer_x                  = 53
+silencer_y                  = -17					
+
+;ПРОБУЕМ пока один набор на всех прописать напрямую (ВРЕМЕННО, пока KRodin в движок всё перенести не раздуплится)
+highlight_addons = fake_wpn_addon_mauser_buttstock
+
+; ----------------------------== Sounds ==---------------------------------
+snd_draw					= weapons\tt33\draw
+snd_holster					= weapons\tt33\holster
+snd_shoot					= weapons\mauser\mauser_shoot		;weapons\oc33\shoot
+snd_empty					= weapons\tt33\empty				;weapons\oc33\empty, 0.7
+snd_reload					= weapons\mauser\mauser_reload		;weapons\oc33\reload
+snd_silncer_shot			= weapons\tt33\shoot_sil
+
+silencer_smoke_particles 	= amik\weapons\smoke_particles\p_smoke_particles_02
+
+silencer_light_color		= 0.6,0.5,0.3
+silencer_light_range		= 0.01
+silencer_light_var_color	= 0.05
+silencer_light_var_range	= 0.5
+silencer_light_time 		= 0.2
+
+;-----------------------------------------------------------------------------
+;-- HUD DESCRIPTION
+;-----------------------------------------------------------------------------
+[wpn_m712_hud]
+
+allow_inertion			= true
+
+;shell_point			= 0.005000,0.009000,-0.454000
+;sto1en
+shell_point			= 0.0457,-0.018,-0.354
+shell_bone             		= wpn_body
+
+;fire_point			= 0.000000,0.019000,-0.297000
+;sto1en
+fire_point			= 0.023,0.019,-0.422
+fire_bone           = muzzle
+
+;position			= -0.044000,-0.074000,0.220000
+;orientation			= 8.758459,2.572390,0.000000
+;sto1en
+position			= -0.054, -0.077, 0.200
+orientation			= 0.00, -0.5, 0.00
+
+visual              = weapons\mauser\wpn_m712_hud.ogf
+
+anim_idle		= idle
+anim_idle_aim		= aim
+anim_reload		= reload
+anim_draw		= draw
+anim_holster		= holster
+anim_shoot		= shot
+anim_idle_sprint	= sprint
+
+;смещения HUD для режима приближения
+;zoom_offset			= -0.164800,0.038000,-0.160000
+;zoom_rotate_x		= 0.043500
+;zoom_rotate_y		= 0.147600
+;sto1en
+;+приклад+zoom_offset			= -0.122200,0.030000,-0.136000
+zoom_offset			= -0.122200,0.030000,-0.059000
+zoom_rotate_x		= -0.008100
+zoom_rotate_y		= -0.005100
+
+;прячем перекрестие прицела в зуме
+zoom_hide_crosshair		= true
+
+;время поворота HUD (сек)
+zoom_rotate_time			= 0.26
+;zoom_rotate_time			= 0.1
+rotate_time					= 0.1
+
+[wpn_m712_repair]
+tech_complication 			= 400
+repair_compatibility = mauser
+
+
+
+;-----------------------------------------------------------------------------------
+;Сменные аддоны ОГСЕ
+;-----------------------------------------------------------------------------------
+;управляемые В СЕКЦИЯХ АДДОНОВ кости (64=54+5s+3m+2d) АКС74УН3 с привязкой by k01jan:
+;  wpn_silencer			-
+;  priklad				приклад
+;  muzzle				-
+;-----------------------------------------------------------------------------------
+
+;-----------------------------------------------------------------------------------
+; служебные секции описателей аддонов
+
+;приклад
+[m712_buttstock]
+bones = priklad
+;bones_hide = 
+[m712_buttstock_p] ; имитация движкового параметра
+grip_name         = wpn_addon_mauser_buttstock
+grip              = m712_buttstock
+
+fire_distance            	= 500
+;silencer_fire_distance   	= 500
+fire_dispersion_base		= 0.234
+
+
+;-----------------------------------------------------------------------------------
+; секции оружия с аддонами
+;-----------------------------------------------------------------------------------
+;Маузер+кобур-приклад
+[wpn_m712_buttstock]:wpn_m712,m712_buttstock_p
+inv_grid_width     			= 3
+inv_grid_x					= 76
+inv_grid_y					= 19
+grip_removed_section = wpn_m712
+hud = wpn_m712_buttstock_hud
+
+[wpn_m712_buttstock_hud]:wpn_m712_hud
+anim_reload					= reload_p
+zoom_offset			= -0.122200,0.030000,-0.136000
+
+[wpn_m712_buttstock_repair]:wpn_m712_repair

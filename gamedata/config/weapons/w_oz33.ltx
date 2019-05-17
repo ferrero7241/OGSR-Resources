@@ -1,0 +1,204 @@
+;ОЦ-33 «Пернач» — российский опытный автоматический пистолет, разработанный в середине 1990-х годов коллективом конструкторов ЦКИБ СОО (Центральное КБ Спортивного и Охотничьего Оружия) под руководством И. Я. Стечкина для замены пистолета АПС. На этапе разработки оружие имело наименование АП СБЗ-2 («автоматический пистолет конструкции И.Я. Стечкина, А.В. Бальцера, А.В. Зинченко»
+;«Пернач» проходил испытания в Научно-исследовательском институте специальной техники МВД РФ. Определено, что по эффективности огня очередями «Пернач» на 25-30% превосходит автоматический пистолет АПС. По сравнению с пистолетом Стечкина АПС ОЦ-33 имеет значительно более простую конструкцию и меньший темп стрельбы, ОЦ-33 более удобен в обращении. 
+;Некоторое (незначительное) количество ОЦ-33 поступило на вооружение спецподразделений МВД РФ. 
+;Питание пистолета осуществляется из стандартного коробчатого магазина ёмкостью 18 патронов (с двухрядным расположением патронов), габариты которого не выступают за пределы рукоятки пистолета, или из удлинённого магазина ёмкостью 27 патронов.
+;
+;«Пернач» в принципе похож на автоматический пистолет Стечкина АПС, который был снят с производства в конце 1950-х гг. После снятия АПС с вооружения армейских подразделений ему нашлось применение в подразделениях спецслужб. Впоследствии оказалось, что это решение преждевременное, тем более что научным сотрудником ЦНИИТОЧМАШ А. Неугодовым АПС удачно был доработан для бесшумной стрельбы. Пистолет под индексом ГРАУ 6П13 и наименованием АПБ был принят на вооружение в 1972 году. В первой половине 90-х годов прошлого столетия в ЦКИБ СОО была начата разработка автоматического оружия под 9-мм патроны ПМ (57-Н-181С) и высокоимпульсные ПММ (57-Н-181СМ), естественно с учетом накопленного с АПС конструкторского и технологического опыта.
+;В 1993 году, по заказу МВД, была предпринята попытка модернизации АПС. Доработанным пистолетом планировалось заменить опасные в городских условиях 5,45-мм и 7,62-мм автоматы Калашникова. Уже в июле 1995 года пистолет ОЦ-23 "Дротик" планируется доработать под патрон 9х19 "парабеллум". Новая разработка заинтересовала МВД, и к концу того же года ЦКИБСОО получает заказ на разработку 9-мм автоматического пистолета, но под отечественный патрон 9х18 ПМ в штатном и усиленном вариантах. В апреле 1996 года был изготовлен первый образец 9-мм автоматического пистолета, получившего название ОЦ-ЗЗ (Оружие ЦКИБ, 33 - порядковый номер разработки) "Пернач", а в июле 2002 г. он был представлен на международной выставке в Москве.
+;"Пернач" унаследовал от "Дротика" оригинальную схему работы автоматики: для уменьшения влияния отдачи на точность автоматической стрельбы (при схеме со свободным затвором) оба пистолета имеют подвижный ствол. В ОЦ-ЗЗ после выстрела затвор откатывается назад на 70 мм и ударяется в массивный подпружиненный ствол, с которым продолжает движение еще на 5 мм. За счёт ударного присоединения массы ствола к массе затвора значительно снижается скорость последнего. По достижении крайнего заднего положения ствол и затвор под воздействием своих пружин начинают движение вперёд. Через 5 мм ствол останавливается, а затвор продолжает движение и досылает из двухрядного магазина в патронник следующий патрон. Для уменьшения "подбрасывания" при стрельбе "Пернач" имеет газовый компенсатор. При прохождении пули в канале ствола пороховые газы попадают в полость затвора-кожуха и отражаются вверх. Однако это простое и эффективное устройство имеет недостатки: оно не только привело к тому, что увеличилась длина пистолета, но и затрудняет стрельбу из положений, когда оружие располагается близко от стрелка, например, при стрельбе от бедра. Кроме того, при попадании в полость компенсатора какого-либо предмета, скажем, стреляной гильзы, возникает задержка.
+;На ОЦ-ЗЗ отсутствует механизм отсечки очереди по три выстрела, а темп стрельбы снижен с 1800 до 850 выстрелов в минуту. Для повышения устойчивости при стрельбе более мощный "Пернач" получил съёмный приклад (у ОЦ-23 отсутствие приклада было заложено в ТТЗ), но из-за своей малой длины такой приклад подходит, разве что только карликам. При необходимости на пистолете можгут быть установлены лазерный целеуказатель и прибор для бесшумной и беспламенной стрельбы.
+
+
+;--------------------------------------
+[wpn_oz33]:identity_immunities,base_wpn_zoom
+GroupControlSection			= spawn_group
+discovery_dependency		= 
+$spawn          			= "weapons\oz33"					; option for Level Editor
+$npc						= on		; option for Level Editor
+$prefetch 					= 8
+scheduled       	     	= off              ; option for ALife Simulator
+cform               		= skeleton
+class               		= WP_LR300			
+min_radius          		= 30				
+max_radius          		= 100				
+description					= enc_weapons1_wpn-oz33_desc
+	
+ef_main_weapon_type			= 2
+ef_weapon_type				= 6
+
+holder_range_modifier		= 1.0		
+holder_fov_modifier			= 0.7            
+
+cost						= 2400				
+weapon_class				= assault_rifle		
+	
+ammo_limit					= 210				
+ammo_elapsed				= 30				
+	
+ammo_mag_size				= 27				
+fire_modes					= 1, 0, -1
+
+ammo_class					= ammo_9x18_fmj, ammo_9x18_pmm   
+
+hand_dependence				= 1									
+single_handed				= 0
+	
+slot 						= 1									
+animation_slot				= 1									
+
+inv_name	        		= wpn-oz33
+inv_name_short				= wpn-oz33_s
+inv_weight					= 1.15								
+
+inv_grid_width     			= 2
+inv_grid_height    			= 2
+inv_grid_x			= 77
+inv_grid_y			= 26
+
+kill_msg_x					= 0
+kill_msg_y					= 123
+kill_msg_width				= 69
+kill_msg_height				= 30
+
+fire_dispersion_base				= 0.257		;0.25
+control_inertion_factor				= 1.09f
+
+cam_relax_speed         			= 6
+cam_relax_speed_ai      			= 360
+cam_dispersion          			= 0.3		
+cam_dispersion_inc					= 0.20
+cam_dispertion_frac					= 0.9		
+cam_max_angle						= 9.0		
+cam_max_angle_horz					= 30.0		
+cam_step_angle_horz					= 1.25
+
+fire_dispersion_condition_factor 	= 3.8		
+misfire_probability 				= 0.002		
+misfire_condition_k					= 0.05
+condition_shot_dec 					= 0.0003	
+
+fire_point					= 0.0, 0.133, 0.161
+
+flame_particles				= amik\weapons\flame_particles\flame_particles_04
+smoke_particles				= amik\weapons\smoke_particles\p_smoke_particles_02
+grenade_flame_particles		= weapons\generic_shoot_00
+
+shell_point					= 0.0, 0.133, 0.047
+shell_particles	 			= amik\weapons\9x18\9x18_r_00
+
+PDM_disp_base 				= 1.0
+PDM_disp_vel_factor 		= 1.05		;0.8
+PDM_disp_accel_factor 		= 1.1		;0.8
+PDM_crouch	 				= 1.0
+PDM_crouch_no_acc 			= 1.0
+
+hit_power               	= 0.46
+hit_impulse		 			= 70		
+hit_type 					= fire_wound 	
+
+fire_distance            	= 100		
+bullet_speed				= 330		
+rpm                      	= 800		
+
+use_aim_bullet				= true		
+time_to_aim					= 1.0	
+
+silencer_hit_power       	= 0.44
+silencer_hit_impulse	 	= 60
+silencer_fire_distance   	= 80
+silencer_bullet_speed	 	= 330
+
+hud                      	= wpn_oz33_hud				
+normal                  	= 0, 1, 0
+
+position 					= -0.021, -0.085, 0.0
+orientation 				= 0, 0, 0					
+
+strap_position				= -0.18,-0.45,0.2
+strap_orientation      		= -10,-5,10
+strap_bone0					= bip01_spine2
+strap_bone1					= bip01_spine1
+
+visual                  	= weapons\aps\wpn_aps.ogf
+
+light_color					= 0.6,0.5,0.3				
+light_range					= 5							
+light_var_color				= 0.05						
+light_var_range				= 0.5
+light_time 					= 0.2						
+
+ph_mass						= 1							
+
+scope_status				= 0
+silencer_status				= 0
+grenade_launcher_status		= 0
+
+zoom_enabled				= true						
+					
+
+scope_name 					= wpn_addon_scope			
+scope_x                     = 52
+scope_y                     = -5
+silencer_name  				= wpn_addon_silencer			
+silencer_x                  = 53
+silencer_y                  = -17					
+
+snd_draw					= weapons\oc33\draw
+snd_holster					= weapons\oc33\holster
+snd_shoot					= weapons\oc33\shoot
+snd_empty					= weapons\oc33\empty, 0.7
+snd_reload					= weapons\oc33\reload
+snd_silncer_shot			= weapons\oc33\shoot_sil
+
+silencer_smoke_particles 	= amik\weapons\smoke_particles\p_smoke_particles_02
+
+silencer_light_color		= 0.6,0.5,0.3
+silencer_light_range		= 0.01
+silencer_light_var_color	= 0.05
+silencer_light_var_range	= 0.5
+silencer_light_time 		= 0.2
+
+;-----------------------------------------------------------------------------
+;-- HUD DESCRIPTION
+;-----------------------------------------------------------------------------
+[wpn_oz33_hud]
+
+allow_inertion			= true
+
+shell_point					= -0.025000,0.048000,-0.329000
+shell_bone             		= wpn_body
+
+fire_point					= 0.010000,0.030917,-0.269974
+fire_bone               	= wpn_body
+
+position					= -0.031,-0.17,0.0025
+orientation					= -0.5,1.,1.15
+
+visual                  	= weapons\aps\wpn_aps_hud.ogf
+
+anim_idle					= idle
+anim_idle_aim				= idle_aim
+anim_reload					= reload
+anim_draw					= draw
+anim_holster				= holster
+anim_shoot					= shoot
+anim_idle_sprint			= idle_sprint
+;-----------------------------------------------------------------------------
+
+;смещения HUD для режима приближения
+zoom_offset					= -0.087550,0.057900,-0.050000
+zoom_rotate_x				= 0.003000
+zoom_rotate_y				= -0.014400
+;-----------------------------------------------------------------------------
+
+;прячем перекрестие прицела в зуме
+zoom_hide_crosshair		= true
+
+;время поворота HUD (сек)
+zoom_rotate_time			= 0.26
+;zoom_rotate_time			= 0.1
+rotate_time					= 0.1
+
+[wpn_oz33_repair]
+tech_complication 			= 400
+repair_compatibility = oz33

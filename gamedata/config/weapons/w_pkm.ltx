@@ -27,7 +27,7 @@ weapon_class			= assault_rifle		; the type of the box that will be used in buy-m
 
 ammo_elapsed		= 100
 ammo_mag_size		= 100				; clip (magazine) size
-fire_modes		= 15, 30, -1
+fire_modes		= -1
 
 ammo_class				= ammo_7.62x54_7h1, ammo_7.62x54_7h14, ammo_7.62x54_ap   ; name of the ltx-section of used ammo 
 
@@ -52,28 +52,30 @@ kill_msg_y			= 123
 kill_msg_width		= 69
 kill_msg_height		= 30
 
-;запрещение режима Sprint дл€ јктера
-sprint_allowed		= true ;false
+;false - запрещение режима Sprint (дл€ √√)
+sprint_allowed		= true
 
 ;-----------------------------------------------------------------------------------
 ;params of weapon recoil
 fire_dispersion_base = 0.22 ;угол (в градусах) базовой дисперсии оружи€ (оружи€ зажатого в тисках)
-control_inertion_factor			= 1.15f
+;control_inertion_factor			= 1.15f
+control_inertion_factor			= 1.25f
+disp_rate 						= 1.82
 
 ;отдача
-cam_relax_speed          = 6.5 ;скорость возврата в исходное положение
-cam_relax_speed_ai        	= 120.75
-cam_dispersion           = 0.5 ;увеличени€ угла (в градусах) с каждым выстрелом
-cam_dispersion_inc = 0.2 ;увеличениe cam_dispersion с каждым выстрелом
-cam_dispertion_frac = 0.45 ;ствол будет подыматьс€ на cam_dispersion*cam_dispertion_frac +- cam_dispersion*(1-cam_dispertion_frac)
-cam_max_angle = 15.0 ;максимальный угол отдачи
-cam_max_angle_horz = 9.5 ;(degree) maximum shot horizontal degree 
-cam_step_angle_horz = 2.2 ;(degree) size of step camera moved in horizontal position while shooting
+cam_relax_speed          = 4.5	;скорость возврата в исходное положение
+cam_relax_speed_ai       = 120.75
+cam_dispersion           = 0.5	;увеличени€ угла (в градусах) с каждым выстрелом
+cam_dispersion_inc 		= 0.2	;увеличениe cam_dispersion с каждым выстрелом
+cam_dispertion_frac 	= 0.45	;ствол будет подыматьс€ на cam_dispersion*cam_dispertion_frac +- cam_dispersion*(1-cam_dispertion_frac)
+cam_max_angle 			= 15.0	;максимальный угол отдачи
+cam_max_angle_horz 		= 9.5	;(degree) maximum shot horizontal degree 
+cam_step_angle_horz 	= 2.2	;(degree) size of step camera moved in horizontal position while shooting
 
 fire_dispersion_condition_factor = 5.5     ;увеличение дисперсии в процентах при максимальном износе 
-misfire_probability = 0.002 ;веро€тность осечки при максимальном износе 
-misfire_condition_k = 0.05
-condition_shot_dec 	= 0.0003	;увеличение износа при каждом выстреле
+misfire_probability 	= 0.002		;веро€тность осечки при максимальном износе 
+misfire_condition_k 	= 0.05
+condition_shot_dec 		= 0.0003	;увеличение износа при каждом выстреле
 ;-----------------------------------------------------------------------------------
 direction 			= 0, 0, 1
 
@@ -94,9 +96,9 @@ PDM_crouch = 2.5
 PDM_crouch_no_acc = 1.8
 
 ; ttc
-hit_power               = 1.23		;size of damage by bullet
-hit_impulse		 		= 30		;size of physic impulse by bullet	
-hit_type 				= fire_wound 	;[] type of the wound
+hit_power               = 0.95		;ОГСЕ 1.23		;size of damage by bullet
+hit_impulse		 		= 30						;size of physic impulse by bullet	
+hit_type 				= fire_wound 				;[] type of the wound
 
 fire_distance           = 250 ; maximum fire distance that bullet can fly
 bullet_speed            = 870 ; starting bullet speed
@@ -105,7 +107,7 @@ rpm                     = 650 ; max round per minute
 use_aim_bullet			= false
 time_to_aim				= 1.0	
 
-silencer_hit_power      = 1.12
+silencer_hit_power     	= 0.90		;ОГСЕ  1.12
 silencer_hit_impulse	= 30
 silencer_fire_distance  = 200
 silencer_bullet_speed	= 600
@@ -212,20 +214,20 @@ repair_compatibility = pkm
 
 
 
-[wpn_pkm_digger]:wpn_pkm
-$spawn                   	= "weapons\wpn_pkm_digger"	; option for Level Editor
-description			        = wpn_pkm_digger
+;[wpn_pkm_digger]:wpn_pkm
+;$spawn                   	= "weapons\wpn_pkm_digger"	; option for Level Editor
+;description			        = wpn_pkm_digger
 
-cost				= 10400
+;cost				= 10400
 
-ammo_mag_size		 	= 150
+;ammo_mag_size		 	= 150
 
-inv_name			= wpn_pkm_digger_name
-inv_name_short		= wpn_pkm_digger_name
-inv_weight			= 7.1
+;inv_name			= wpn_pkm_digger_name
+;inv_name_short		= wpn_pkm_digger_name
+;inv_weight			= 7.1
 
-inv_grid_x			= 27	 ; position and size are in terms of 64x64 squares
-inv_grid_y			= 34
+;inv_grid_x			= 27	 ; position and size are in terms of 64x64 squares
+;inv_grid_y			= 34
 
-rpm                     = 850
-misfire_probability = 0.001 ;веро€тность осечки при максимальном износе 
+;rpm                     = 850
+;misfire_probability = 0.001 ;веро€тность осечки при максимальном износе 

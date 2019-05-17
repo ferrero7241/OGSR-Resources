@@ -3,22 +3,25 @@
 ;--------------------------------------
 ;
 ;Прицельные приспособления винтовки смонтированы на рукоятке для переноски и состоящие из верхнего коллиматорного прицела и нижнего оптического прицела. Оба они производятся фирмой Hensoldt AG.
-;
 ;комбинированный прицел: оптический прицел Hensoldt HKV 3,5х (?ZF 3x40) +коллиматор Zeiss (?фирмы Hensoldt AG) «красная точка» оснащённвй светонакопительной системой, позволяющей ему работать при дневном освещении без использования источников питания (для работы в ночное время используется принудительная подсветка с питанием от батарейки).
+; Штатные прицельные приспособления G36 состоят из коллиматорного и оптического прицела, смонтированных на сменной рукоятке для переноски. м/б оснащена опциональными цевьем и кронштейном с направляющими типа Picatinny rail
 ;
-;На рукоятку переноски может устанавливаться ночной модуль Hensoldt NSA 80, таким образом, что его оптический выход совмещается с объективом оптического прицела, давая возможность использовать штатную прицельную марку. Крепление NSA-80 выполняется за несколько секунд специальным поворотным зажимом, и не требует пристрелки.
+;Винтовка может комплектоваться «ночным» насадком  Hensoldt NSA 80, используемым совместно со штатным прицелом, магазином Beta C-Mag, подствольным гранатомётом AG36 и сошками.
+;На рукоятку переноски (перед родной оптикой) может устанавливаться ночной модуль Hensoldt NSA 80, таким образом, что его оптический выход совмещается с объективом оптического прицела, давая возможность использовать штатную прицельную марку. Крепление NSA-80 выполняется за несколько секунд специальным поворотным зажимом, и не требует пристрелки.
 ;
 ;На G36 может устанавливаться 40-мм гранатомёт HK AG36 или штык-нож (копия штык ножа автомата АКМ), также имеется возможность стрельбы винтовочными гранатами.
 ;
-;?м/б оснащена опциональными цевьем и кронштейном с направляющими типа Picatinny rail
 ;
 ;G36 может комплектоваться и барабанным магазином Beta C – Mag от ручного пулемёта MG36
+;Также опциональной для G36 является cошка. Она крепится в передней части цевья. В походном положении или при стрельбе с рук, стойки сошки могут складываться, располагаясь под цевьем.
+;От оснащения войск пулемётами MG36 отказались, приняв компромиссное решение: сошка и барабанный магазин стали поставляться к G36 в качестве дополнительных аксессуаров.
 ;
 ;
+;Очень своеобразна затворная задержка G36. С помощью небольшой  задвижки  в  передней части спусковой скобы её можно включать и отключать, в зависимости от желания стрелка. Отключение затворной задержки рекомендуется в плохую погоду, чтобы снизить вероятность попадания грязи внутрь ствольной коробки.
 ;
 ;
 ;----------------------------------------------
-[wpn_g36]:identity_immunities,base_wpn_zoom
+[wpn_g36base]:identity_immunities,base_wpn_zoom
 GroupControlSection			= spawn_group
 discovery_dependency		= 
 $spawn              		= "weapons\g36"		; option for Level Editor
@@ -29,7 +32,6 @@ cform               		= skeleton
 class               		= WP_AK74
 min_radius          		= 15
 max_radius          		= 150
-description			        = enc_weapons1_wpn-g36
 launch_speed				= 0
 ef_main_weapon_type			= 2
 ef_weapon_type				= 6
@@ -44,7 +46,7 @@ weapon_class				= assault_rifle
 
 ammo_elapsed				= 30
 ammo_mag_size				= 30
-ammo_class					= ammo_5.56x45_ss190, ammo_5.56x45_ap
+ammo_class					= ammo_5.56x45_ss190, ammo_5.56x45_ap							;магазины 30/100, НЕ STANAG
 grenade_class		        = ammo_m209
 fire_modes				= 3, 1, 0, -1		;Авто, 3, одиночные, пред (по кругу)
 
@@ -54,14 +56,16 @@ single_handed				= 0
 slot 						= 2	; // secondary
 animation_slot				= 2		; type of the animation that will be used
 
+description			        = enc_weapons1_wpn-g36
+;Рукоятка для переноски с интегрированным прицельным комплексом HKV, состоящим из 3.5х-кратного оптического прицела ZF и коллиматорного RV может быть заменена Sights&Sight Rails - базой для установки прицелов со стандартным для стран НАТО креплением - планкой Пикатинни (Picatinny rail); штатный магазин - увеличенным Beta C-Mag от экспериментального пулемёта MG36.
 inv_name	        		= wpn-g36
-inv_name_short				= wpn-g36
-inv_weight					= 3.6
+inv_name_short				= wpn-g36_s
+inv_weight					= 3.6			;G36 без магазина
 
 inv_grid_width				= 5
 inv_grid_height				= 2
-inv_grid_x					= 0
-inv_grid_y					= 10
+inv_grid_x					= 27	;0
+inv_grid_y					= 16	;10
 
 kill_msg_x					= 157
 kill_msg_y					= 29
@@ -96,14 +100,18 @@ fire_point              			= 0.0, 0.229, 0.700
 ;fire_point2            		=  0.0, 0.21, 0.71
 fire_point2             			= 0.0, 0.190, 0.595
 
-flame_particles				= weapons\generic_weapon05
+;flame_particles				= weapons\generic_weapon05
+flame_particles				= amik\weapons\flame_particles\dtk_flame_particles_4
 smoke_particles				= weapons\generic_shoot_00
-grenade_flame_particles		= weapons\generic_weapon01
-	
-;shell_point		 			= 0.0, 0.21, 0.13
-shell_point            				= 0.010000,0.250000,0.095000
+;grenade_flame_particles		= weapons\generic_weapon01
+grenade_flame_particles		= weapons\rpg_shoot_02
+;grenade_flame_particles		= amik\weapons\grenade_flame_particles\grenade_flame_particles_02
+
+shell_point		 			= 0.0, 0.21, 0.13
+;не видно shell_point            				= 0.010000,0.250000,0.095000
 shell_dir		 			= 0.0, 0.0, 0.4
-shell_particles	 			= weapons\generic_shells
+;shell_particles	 			= weapons\generic_shells
+shell_particles	 		= amik\weapons\5_56x45\5_56x45_r_00
 
 rpm_empty_click 	 		= 200
 
@@ -127,7 +135,7 @@ rpm                      	= 750
 use_aim_bullet			= false		;Поддерживается ли первая суппер пуля
 time_to_aim					= 1.0	
 
-hud                      	= wpn_g36_hud
+hud                      	= wpn_g36base_hud
 normal                   	= 0, 1, 0
 
 ;-----------------------------------------------------------------------------------
@@ -146,7 +154,8 @@ strap_bone0					= bip01_spine2
 strap_bone1					= bip01_spine1
 
 startup_ammo   		        = 90
-visual         		        = weapons\g36\wpn_g36.ogf
+visual         		        = weapons\g36\wpn_g36k.ogf
+;цевьё G36 - 6 щелей, G36K - 4, G36C - 2
 	
 light_color					= 0.6,0.5,0.3
 light_range					= 5
@@ -155,44 +164,41 @@ light_var_range				= 0.5
 light_time 					= 0.2
 
 ;addons
-scope_status 			 = 0	;1 - для второго (ОГСР) режима прицеливания будет использоваться текстура (ПЫС-вариант, скрытый в модели меш привязан к движковой кости wpn_scope); 0 - сквозная оптика (модель)
+script_binding  = ogse_bind_weapon.init
+;скрытые (управляемые) кости: managed_bones = 
+
+scope_status 			 = 0	;1 - для второго (ОГСР) режима прицеливания будет использоваться текстура (ПЫС-вариант, скрытый в модели меш привязан к движковой кости wpn_scope); 0 -  3D оптика ОГСР (сквозная, модель+шейдер)
 silencer_status 		 = 2	;2 в модели есть (кривой)
 grenade_launcher_status  = 2	;40-мм гранатомёт HK AG36
-
+scope_mount_status		= 2
+grip_status				= 0		;2
+magazine_status			= 2
 zoom_enabled			= true												; (on,off)zoom mode (right mouse button)
 
 ;для несъёмного - не наследуется!
 scope_texture			= wpn\scopes\scope_g36
 
 ;******************************************************************************
-;KRodin: Участок модели, на который рендерится зум должен быть идеально ровным и ему должен быть назначен специальный шейдер.
-;оптика wpn\g36\wpn_g36_crosshair БЫЛА с шейдером models\model_aref ХУДовый ЗАМЕНИТЬ на models_lense_scope для 3D
-;коллиматор wpn\upgrades\laser_red_dot с шейдером forward\collimator (в СДК = models\transparent)
-;KRodin: FOV для 3D прицела рассчитывается по формуле: FOV камеры актора * scope_lense_fov_factor
-;Поднесём колиматор поближе к морде актора second_scope_zoom_factor = 3
-;KRodin: scope_lense_fov_factor = 0.2
+;KRodin: Поднесём колиматор поближе к морде актора - и scope_lense_fov_factor ~ scope_zoom_factor
 ;******************************************************************************
 ;через коллиматор наследуется, для встроенной оптики ставить scope_zoom_factor	 	= 3.0	;без 3D
 scope_zoom_factor 					= 1.0	;оптика (для сквозных 3D прицелов = 1.0; обычные текстурные = 3.0)
 second_scope_zoom_factor 			= 1.0	;коллиматор
-;KRodin: scope_lense_fov_factor = 0.2 					;(=2.0 - уменьшает)
-scope_lense_fov_factor = 20					;(уменьшая - увеличиваем кратность)
+;НЕ комментить - ЧЁРНЫЙ scope_lense_fov_factor = 10.0		;в конфиге прицела 16 - КОРРЕКЦИЯ (ПОПРАВЛЕНО KRodin - 
+scope_lense_fov_factor = 10.0		;КОРРЕКЦИЯ (ПОПРАВЛЕНО KRodin - тут работает)
 ;KD: для встроенной оптики ставить ironsight_zoom_factor должен быть равен scope_zoom_factor; избыточен для некоторых типов оружия, но и вреда от него в этом случае тоже не будет
-;НАДО задвинуть линзу вглубь прицела чтобы не обсчитывало зря (когда не целишься)
-;?как теперь рассчитать кратность?
-;ОГСЕ hud_fov 0.45, fov 65. 	Т.е. 0.06*65=3,9 - четырёхкратный. Но юзверь меняет fov 67 и 0.06*67=4,02 - кратность сбивается ??
 ;******************************************************************************
 
 ;Сменные аддоны ОГСЕ д/б: 
 scope_name = wpn_scope
 scope_x 					= 78
-scope_y 					= 0
+scope_y 					= -3
 silencer_name  				= wpn_addon_sil_556_ar
 silencer_x 					= 225			;214	;подогнать
-silencer_y 					= 11			;12		;подогнать
-grenade_launcher_name 		= wpn_addon_grenade_launcher_m203
-grenade_launcher_x 			= 162			;130	;подогнать
-grenade_launcher_y 			= 29			;31		;подогнать
+silencer_y 					= 15			;12		;подогнать
+grenade_launcher_name 		= wpn_addon_grenade_launcher_ag36		;HK AG36	;затычка wpn_addon_grenade_launcher_m203
+grenade_launcher_x 			= 123			;130	;подогнать
+grenade_launcher_y 			= 32			;31		;подогнать
 
 ;настройки для глушителя
 silencer_hit_power       	= 0.63
@@ -209,6 +215,14 @@ silencer_light_var_color	= 0.05
 silencer_light_var_range	= 0.5
 silencer_light_time 		= 0.2
 
+;ПРОБУЕМ пока один набор на всех прописать напрямую (ВРЕМЕННО, пока KRodin в движок всё перенести не раздуплится)
+highlight_addons = fake_wpn_addon_grenade_launcher_ag36
+;при торговле обрабатывает не все аддоны из списка, а только те прицелы, что в секции ствола.
+;С патронами, глушаками и подстволами всё нормально - они же движковые (не имеют фейков).
+;Магазины, прицельные планки и ручки почему-то не обрабатываются. 
+;при закрытии инвентаря фейки превращаются в не фейки, и в торговле поэтому глюки
+;Флаг, позволяющий для всех предметов реагировать на флаг FRuckDefault. Если флаг установлен, хабар будет подбираться в рюкзак, а не в слот по умолчанию.
+default_to_ruck = true
 ;------------------------------ S.T.A.L.K.E.R`s sound remake ----------------
 ;звуки
 snd_draw					= weapons\g36\draw			;ОГСЕ weapons\g36\g36_draw
@@ -222,17 +236,19 @@ snd_reload					= weapons\g36\g36_reload	;ОГСЕ weapons\g36\g36_reload, 0.7, 0.35
 snd_shoot_grenade			= weapons\g36\AG36_shot		;ОГСЕ weapons\m203\M203_grenshoot
 snd_reload_grenade			= weapons\g36\AG36_G36_load	;ОГСЕ weapons\g36\g36_grenload, 1.0, 0.3
 snd_switch					= weapons\g36\switch		;ОГСЕ weapons\m203\M203_switch, 1.0, 0.5
-snd_silncer_shot			= weapons\g36\m16_special_01;ОГСЕ weapons\g36\g36_shot_sil 
-;+
-snd_silncer_shot1				= weapons\g36\m16_special_02 
-snd_silncer_shot2				= weapons\g36\m16_special_03 
+;_нет огг-комментов snd_silncer_shot			= weapons\g36\m16_special_01
+;_нет огг-комментов snd_silncer_shot1			= weapons\g36\m16_special_02 
+;_нет огг-комментов snd_silncer_shot2			= weapons\g36\m16_special_03
+;-ОГСЕ (у всех НАТО) snd_silncer_shot	= weapons\ar15\ar15_silent, 0.5
+;-ОГСЕ 
+snd_silncer_shot	= weapons\g36\g36_shot_sil
 
 ;-----------------------------------------------------------------------------
 
 ;-----------------------------------------------------------------------------
 ;-- HUD DESCRIPTION
 ;-----------------------------------------------------------------------------
-[wpn_g36_hud]
+[wpn_g36base_hud]
 
 allow_inertion			= true
 
@@ -240,24 +256,28 @@ allow_inertion			= true
 shell_point			= 0.019,-0.08,-0.053
 shell_dir			= 0.0, 1.0, 0.0
 
-;fire_point				= -0.000000,0.062000,0.134000
-fire_point			= 0.007000,-0.00040,0.2200090
-;fire_point2 			= 0.30, 0.00, 0.05
-fire_point2			= 0.0060000,-6.929000,-0.297000
+
 fire_bone 			= wpn_body
+;_fire_point				= -0.000000,0.062000,0.134000
+fire_point			= 0.007000,-0.00040,0.2200090
+;_fire_point2 			= 0.30, 0.00, 0.05
+;-fire_point2			= 0.0060000,-6.929000,-0.297000
+fire_point2			= 0.007000,-0.00040,-0.297000
+
 
 ;orientation 			= 5, 0, 0
 orientation         = 2, 3, 0
 ;position 				= 0, 0, 0
 position            = 0.13,-0.01,0.13
-visual 				= weapons\g36\wpn_g3D_hud.ogf
+visual 				= weapons\g36\g36grip_hud.ogf
 
 ;grenade_bone 			= grenade
-;grenade_bone           = wpn_grenade
-grenade_bone       = grenade_shell
+grenade_bone           = wpn_grenade
+;grenade_bone       = grenade_shell
 
 anim_idle			= idle
 anim_idle_aim		= idle_aim					;idle
+anim_reload_speed_k = 1.2			;1,3 звук отстаёт
 anim_reload			= reload
 anim_draw			= draw
 anim_holster		= holster					;shoot
@@ -274,6 +294,8 @@ anim_switch_grenade_on	= switch_on
 anim_switch_grenade_off	= switch_off
 anim_draw_g				= draw_grenade			;switch_on
 anim_holster_g			= holster_grenade		;switch_off
+
+; attached grenade launcher [NORMAL fire mode]
 ;(режим обычной стрельбы)			 
 anim_idle_gl			= idle_w_gl
 anim_idle_gl_aim		= idle_w_gl_aim			;idle_w_gl
@@ -284,13 +306,13 @@ anim_shoot_gl			= shoot_w_gl
 
 
 ;;;;;;;;;;;;;;;;;;;;;;Альтернативное прицеливание ОГСР через встроенный коллиматор 36 (штатный механический прицел)
-;смещения HUD для режима приближения (прицеливание без увеличения)
+;смещения HUD для режима приближения (прицеливание через коллиматор, без увеличения)
 ;ствол без установленного гранатомёта
-second_zoom_offset							= -0.137400,0.028000,-0.426000
+second_zoom_offset							= -0.137900,0.028500,-0.226000
 second_zoom_rotate_x						= 0.060700
 second_zoom_rotate_y						= 0.035080
 ;ствол с установленным гранатомётом в основном режиме (ствол)
-second_grenade_normal_zoom_offset			= -0.137400,0.028000,-0.426000
+second_grenade_normal_zoom_offset			= -0.137900,0.028500,-0.226000	
 second_grenade_normal_zoom_rotate_x		= 0.060700
 second_grenade_normal_zoom_rotate_y		= 0.035080
 ;режим подствольника (положение д/б одинаковым - у подствола свой прицел)
@@ -299,12 +321,13 @@ second_grenade_zoom_rotate_x				= 0.061600
 second_grenade_zoom_rotate_y				= 0.058400
 ;;;;;;;;;;;;;;;;;;;;;;Прицеливание через оптику (перекрывается текстуроЙ)
 ;прицеливание по умолчанию (по-старому, через "оптику" - ТЕКСТУРОЙ), альтернативное ОГСЕ (мех.прицел, МОДЕЛЬЮ) сбрасывается при установке любого аддона, включая ПЫС-подствол)
-zoom_offset			= -0.137400,0.071000,-0.456000
-zoom_rotate_x		= 0.060700
+zoom_offset			= -0.136900,0.061000,-0.402998
+zoom_rotate_x		= 0.052700
 zoom_rotate_y		= 0.034080
+
 ;режим ствола
-grenade_normal_zoom_offset		= -0.137400,0.071000,-0.456000
-grenade_normal_zoom_rotate_x		= 0.060700
+grenade_normal_zoom_offset		= -0.136900,0.061000,-0.402998
+grenade_normal_zoom_rotate_x		= 0.052700
 grenade_normal_zoom_rotate_y		= 0.034080
 ;режим подствольника (положение д/б одинаковым - у подствола свой прицел)
 grenade_zoom_offset				= -0.149000,0.059600,-0.124000 
@@ -318,7 +341,547 @@ zoom_hide_crosshair		= true
 zoom_rotate_time		= 0.4
 rotate_time			= 0.4
 
-[wpn_g36_repair]
+[wpn_g36base_repair]
 tech_complication = 1000
 repair_compatibility = g36
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+;-----------------------------------------------------------------------------------
+;Сменные аддоны ОГСЕ
+;-----------------------------------------------------------------------------------
+;управляемые В СЕКЦИЯХ АДДОНОВ кости (64=54+5s+2m+3d) G36 с привязкой by k01jan:
+;wpn_body				патрон в стволе
+;  mag					- пустая, анимированная
+;  	mag: m1		G36 (30)
+;  	mag: m2		яйца Beta C-Mag (100)					!!!перезарядка ПОДСТВОЛА кривая
+;Магазины выполнены из прозрачной пластмассы для контроля за расходованием боеприпасов, а также имеют специальные крепления, при помощи которых можно объединять магазины парами для ускорения перезарядки. Магазины G36 НЕ СТАНДАРТИЗИРОВАНЫ с натовскими (М16)!!! С магазинами НАТО достаточно условно стандартизирована сама G36 - после замены магазиноприемника на специальный (HK G36 To STANAG 4179 Mag Conversion Mag Well) она может использовать магазины стандарта НАТО, но при этом уже не может использовать свои штатные.
+;  prail		рельса (кронштейн-переходник Picatinny rail вместо ручки G36) 
+;  wpn_scope			- (движковая, д/б пустая)
+;  	s1			ACOG TA31-CH х4
+;  	s2			EOTech  552.A65 х1
+;  	s3			U.S.Optics SR-6 х1.5-6
+;  	s4			увеличитель EOTech Magnifier G33 x3 (с коллиматором EOTech) ОГСР 3D
+;+надо 3D-линзу вторую делать (С и БЕЗ метки) ??на отдельной кости
+;  	s5			ночник (с ACOG, EOTech)
+;На рукоятку переноски может устанавливаться ночной модуль NSA-80, таким образом, что его оптический выход совмещается с объективом оптического прицела, давая возможность использовать штатную прицельную марку.
+;
+;может устанавливаться гранатомёт HK AG36 или штык-нож (копия штык ножа автомата АКМ)
+;
+;
+;
+;KRodin: Участок модели, на который рендерится зум должен быть идеально ровным и ему должен быть назначен специальный шейдер.
+;??? перед линзой не должно быть других линз
+;!!! НАДО задвинуть линзу вглубь прицела чтобы не обсчитывало зря (когда не целишься)
+;оптика wpn\g36\wpn_g36_crosshair БЫЛА с шейдером models\model_aref ХУДовый ЗАМЕНИТЬ на models_lense_scope для 3D
+;коллиматор wpn\upgrades\laser_red_dot с шейдером forward\collimator (в СДК = models\transparent)
+;-selflight непрозрачный
+;
+;
+;ВСС: wpn\upgrades\collimator_linza0, wpn\upgrades\collimator_lens01 с шейдером forward\collimator
+;ВСС: wpn\upgrades\lens_eotech, wpn\upgrades\collimator_metka0 с шейдером hud\reddotsight1
+
+;-----------------------------------------------------------------------------------
+;материал: МИР объект-large_weapon
+;-----------------------------------------------------------------------------------
+;шейдеры:
+;collimator_metka0 первая линза Кобры - прозрачная с меткой (сменная) ХУД hud\reddotsight1 / МИР  (3+1 +12=16 =6+1+9) !!!= models\artefact2
+;collimator_lens01 вторая линза Кобры - полупрозрачная круглая зелёная ХУД модель-transparent / МИР 
+;
+;lens_eotech первая линза EOTech - прозрачная с меткой ХУД худ-reddotsight1 / МИР 
+;collimator_linza0 вторая линза EOTech - полупрозрачная квадратная серая ХУД модель-transparent / МИР
+;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+;-----------------------------------------------------------------------------------
+; служебные секции описателей магазинов
+;+при одетом аддоне показываются только соответствующие bones кости
+
+[g36_g3630]
+;bones = m1
+[g36_g3630_p] ; имитация движкового параметра для магазина G36
+magazine_name            = wpn_addon_mag_g36
+magazine                 = g36_g3630
+ammo_mag_size			= 30
+;inv_weight				= 
+;cost					= 
+;+hud                      = wpn_g36_mag30g36_hud
+;перезарядка магазина G36
+[wpn_g36_mag30g36_hud]:wpn_g36base_hud
+anim_reload					= reload
+anim_reload_gl			= reload_w_gl
+
+;------------------------------------------------------------------------------------
+;Яйца
+[g36_cmag100]
+;bones = m2
+[g36_cmag100_p] ; имитация движкового параметра для магазина Beta C-Mag
+magazine_name            = wpn_addon_mag_cmag100
+magazine                 = g36_cmag100
+ammo_mag_size            = 100
+;inv_weight				= 
+;cost					= 
+;+hud                     = wpn_g36_buben_hud
+;перезарядка магазина Beta C-Mag
+[wpn_g36_buben_hud]:wpn_g36base_hud
+anim_reload					= reload
+anim_reload_gl			= reload_w_gl
+
+;------------------------------------------------------------------------------------
+
+[g36_nomag]
+;bones = 
+[g36_nomag_p] ; имитация движкового параметра для магазинов
+ammo_class               = ammo_5.56x45_dummy, ammo_5.56x45_dummy	;патрон-залушка
+ammo_mag_size            = 0					; не во что заряжать
+rpm                      = 0					; нечем стрелять
+snd_reload               = $no_sound
+snd_empty                = $no_sound
+;+hud                      = wpn_g36_nomag_hud
+;перезарядка G36 без магазина
+[wpn_g36_nomag_hud]:wpn_g36base_hud
+anim_reload					= idle
+anim_reload_gl			= idle_w_gl
+
+
+
+
+
+
+;-----------------------------------------------------------------------------------
+; служебные секции описателей аддонов
+
+;низкопрофильная рукоятка для переноски с Picatinny rail (ставится вместо штатной рукоятки для переноски с двойной оптики)
+[g36_rail]
+;при одетом ПРИЦЕЛЕ кости bones показываются, bones_hide скрываются
+;bones = 
+[g36_rail_p] ; имитация движкового параметра
+scope_mount_name         = wpn_addon_g36rail			;--wpn_addon_mtk83
+scope_mount              = g36_rail
+
+
+
+
+
+
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; служебные секции описателей прицелов
+;+при одетом прицеле кости bones показываются, bones_hide скрываются
+
+; ACOG TA31-CH х4
+[g36_acog]
+;тест мех.прицела, СКВОЗНОЙ 
+force_remove_texture = true
+;bones         = scope1
+;СКВОЗНОЙ ACOG ОГСР 3D (со сдвигом)
+zoom_offset			= -0.138900,0.008500,-0.271999
+zoom_rotation		= 0.050200,0.035080
+
+[g36_acog_p]
+scope_name               = wpn_addon_acog
+scope                    = g36_acog
+;иконка прицела
+scope_x 					= 90	;78
+scope_y 					= -6	;-3
+
+
+
+; EOTech 552.A65 х1
+[g36_eotech]
+force_remove_texture = true
+;bones         = scope2
+;СКВОЗНОЙ EOTech +Magnifier ОГСР 3D (со сдвигом)
+;zoom_offset			= -0.138900,0.008500,-0.271999
+;zoom_rotation		= 0.050200,0.035080
+;СКВОЗНОЙ EOTech (со сдвигом - кривая сетка в модели, надо сдвинуть правее)
+zoom_offset			= -0.135900,0.006500,-0.271999
+zoom_rotation		= 0.050200,0.035080
+
+[g36_eotech_p]
+scope_name               = wpn_addon_scope_eotech
+scope                    = g36_eotech
+;иконка прицела
+scope_x 					= 105	;78
+scope_y 					= -4	;-3
+; второй прицел ОГСР не надо сдвигать, а second_ тут не работают..
+disable_second_scope = true
+
+
+;U.S.Optics SR-6 х1.5-6
+[g36_uso]
+;тест мех.прицела force_remove_texture = true
+;bones         = s3
+;штатный механический прицел
+zoom_offset			= -0.138900,0.008500,-0.271999
+zoom_rotation		= 0.050200,0.035080
+
+[g36_uso_p]
+; движковый прицел
+scope_name               = wpn_addon_scope_long
+scope                    = g36_uso
+;иконка прицела
+scope_x 					= 80	;78
+scope_y 					= -5	;-3
+; второй прицел ОГСР не надо сдвигать, а second_ тут не работают..
+disable_second_scope = true
+;holder_range_modifier		= 2.2
+zoom_enabled				= true
+snd_gyro			= weapons\binoculars_gyro
+snd_zoomin			= weapons\binoculars_zoomin
+snd_zoomout			= weapons\binoculars_zoomout
+snd_close			= weapons\generic_close
+vision_present			= false
+vis_frame_speed			= 4			; скорость, с которой наводится рамка на цель
+vis_frame_color			= 0.7,0.7,0.7,1.0	; цвет рамки RGBA (A) Не учитывается
+found_snd			= detectors\DA-2_beep1
+
+
+
+
+
+
+
+
+
+;***********************************************************************************
+; секции оружия с аддонами
+;***********************************************************************************
+;---------------------------------------------------ручка с оптикой G36
+; оптика, нет магазина
+[wpn_g36_nomag_stok]:wpn_g36base,g36_nomag_p
+inv_grid_x					= 27
+inv_grid_y					= 20
+;планка Пикатинни
+wpn_addon_g36rail          = wpn_g36_nomag_rail
+;магазины
+wpn_addon_mag_g36      = wpn_g36
+wpn_addon_mag_cmag100      = wpn_g36_cmag100_stok
+[wpn_g36_nomag_stok_repair]:wpn_g36base_repair
+
+; оптика, магазин G36
+[wpn_g36]:wpn_g36base,g36_g3630_p
+inv_grid_x					= 27
+inv_grid_y					= 16
+;планка Пикатинни
+;_НЕДОДЕЛАНО wpn_addon_g36rail          = wpn_g36_g3630_rail
+;магазины 
+;_НЕДОДЕЛАНО wpn_addon_mag_cmag100      = wpn_g36_cmag100_stok
+;_НЕДОДЕЛАНО magazine_removed_section = wpn_g36_nomag_stok
+[wpn_g36_repair]:wpn_g36base_repair
+
+; оптика, магазин Beta C-Mag 100	
+[wpn_g36_cmag100_stok]:wpn_g36base,g36_cmag100_p
+inv_grid_x					= 27	;0
+inv_grid_y					= 24	;10
+;планка Пикатинни
+wpn_addon_g36rail          = wpn_g36_cmag100_rail
+;магазины
+wpn_addon_mag_g36      = wpn_g36
+magazine_removed_section = wpn_g36_nomag_stok
+[wpn_g36_cmag100_stok_repair]:wpn_g36base_repair
+
+
+
+
+
+
+
+
+
+
+;---------------------------------------------------ручка с рельсой Пикатинни
+[wpn_g36rail]:wpn_g36base
+scope_status 			 = 2
+hud                      	= wpn_g36rail_hud
+
+[wpn_g36rail_hud]:wpn_g36base_hud
+visual 				= weapons\g36\g36rail_hud.ogf
+
+;смещения HUD для режима приближения (прицеливание через мех.прицел, без увеличения)
+;здесь не работает disable_second_scope = true 					
+;ДАЛЕКО (прицеливание через мушку, без увеличения)
+;ствол без установленного гранатомёта
+second_zoom_offset							= -0.138400,0.051500,-0.271999
+second_zoom_rotate_x						= 0.050200
+second_zoom_rotate_y						= 0.035080
+;ствол с установленным гранатомётом в основном режиме (ствол)
+second_grenade_normal_zoom_offset			= -0.138400,0.051500,-0.271999	
+second_grenade_normal_zoom_rotate_x		= 0.050200
+second_grenade_normal_zoom_rotate_y		= 0.035080
+;режим подствольника (положение д/б одинаковым - у подствола свой прицел)
+second_grenade_zoom_offset					= -0.149000,0.059600,-0.124000
+second_grenade_zoom_rotate_x				= 0.061600
+second_grenade_zoom_rotate_y				= 0.058400
+
+;;;;;;;;;;;;;;;;;;;;;;Прицеливание через оптику (перекрывается текстуроЙ)
+;прицеливание по умолчанию (по-старому, через "оптику" - ТЕКСТУРОЙ), альтернативное ОГСЕ (мех.прицел, МОДЕЛЬЮ) сбрасывается при установке любого аддона, включая ПЫС-подствол)
+;БЛИЗКО zoom_offset			= -0.137400,0.049500,-0.372498
+;БЛИЗКО zoom_rotate_x		= 0.047700
+;БЛИЗКО zoom_rotate_y		= 0.034080
+zoom_offset							= -0.138400,0.051500,-0.271999
+zoom_rotate_x						= 0.050200
+zoom_rotate_y						= 0.035080
+
+;режим ствола
+;БЛИЗКО grenade_normal_zoom_offset		= -0.137400,0.049500,-0.372498
+;БЛИЗКО grenade_normal_zoom_rotate_x		= 0.047700
+;БЛИЗКО grenade_normal_zoom_rotate_y		= 0.034080
+grenade_normal_zoom_offset			= -0.138400,0.051500,-0.271999	
+grenade_normal_zoom_rotate_x		= 0.050200
+grenade_normal_zoom_rotate_y		= 0.035080
+
+;режим подствольника (положение д/б одинаковым - у подствола свой прицел)
+grenade_zoom_offset				= -0.149000,0.059600,-0.124000 
+grenade_zoom_rotate_x			= 0.061600
+grenade_zoom_rotate_y			= 0.058400
+
+[wpn_g36rail_repair]:wpn_g36base_repair
+
+
+
+; рельса, нет магазина
+[wpn_g36_nomag_rail]:wpn_g36rail,g36_rail_p,g36_nomag_p
+inv_grid_x					= 27
+inv_grid_y					= 22
+;прицелы на короткую планку Пикатинни
+wpn_addon_acog				= wpn_g36_nomag_rail_acog
+wpn_addon_scope_eotech   	= wpn_g36_nomag_rail_eotech
+wpn_addon_scope_long   	= wpn_g36_nomag_rail_uso
+;секция при снятой планке Пикатинни 
+scope_mount_removed_section      = wpn_g36_nomag_stok
+;магазины
+wpn_addon_mag_g36      = wpn_g36_g3630_rail
+wpn_addon_mag_cmag100      = wpn_g36_cmag100_rail
+[wpn_g36_nomag_rail_repair]:wpn_g36rail_repair
+
+
+; рельса, магазин G36
+[wpn_g36_g3630_rail]:wpn_g36rail,g36_rail_p,g36_g3630_p
+inv_grid_x					= 27
+inv_grid_y					= 18
+;прицелы на короткую планку Пикатинни
+wpn_addon_acog				= wpn_g36_g3630_rail_acog
+wpn_addon_scope_eotech   	= wpn_g36_g3630_rail_eotech
+wpn_addon_scope_long   	= wpn_g36_g3630_rail_uso
+;секция при снятой планке Пикатинни 
+scope_mount_removed_section      = wpn_g36
+;магазины
+wpn_addon_mag_cmag100      = wpn_g36_cmag100_rail
+magazine_removed_section = wpn_g36_nomag_rail
+[wpn_g36_g3630_rail_repair]:wpn_g36rail_repair
+
+
+; рельса, магазин Beta C-Mag 100
+[wpn_g36_cmag100_rail]:wpn_g36rail,g36_rail_p,g36_cmag100_p
+inv_grid_x					= 27
+inv_grid_y					= 26
+;прицелы на короткую планку Пикатинни
+wpn_addon_acog				= wpn_g36_cmag100_rail_acog
+wpn_addon_scope_eotech   	= wpn_g36_cmag100_rail_eotech
+wpn_addon_scope_long   	= wpn_g36_cmag100_rail_uso
+;секция при снятой планке Пикатинни 
+scope_mount_removed_section      = wpn_g36_cmag100_stok
+;магазины
+wpn_addon_mag_g36      = wpn_g36_g3630_rail
+magazine_removed_section = wpn_g36_nomag_rail
+[wpn_g36_cmag100_rail_repair]:wpn_g36rail_repair
+
+
+
+
+
+
+
+;---------------------------------------------------ручка с рельсой Пикатинни и прицелами
+
+;--------- ACOG (3D)
+; рельса, нет магазина, ACOG
+[wpn_g36_nomag_rail_acog]:wpn_g36rail,g36_acog_p,g36_rail_p,g36_nomag_p
+inv_grid_x					= 27
+inv_grid_y					= 22
+;scope_status 			 = 2
+;прицелы на короткую планку Пикатинни
+wpn_addon_scope_eotech   	= wpn_g36_nomag_rail_eotech
+wpn_addon_scope_long   	= wpn_g36_nomag_rail_uso
+;секция при снятой планке Пикатинни 
+scope_mount_removed_section      = wpn_g36_nomag_stok
+;магазины
+wpn_addon_mag_g36      = wpn_g36_g3630_rail_acog
+wpn_addon_mag_cmag100      = wpn_g36_cmag100_rail_acog
+
+[wpn_g36_nomag_rail_acog_repair]:wpn_g36rail_repair
+
+
+; рельса, магазин G36, ACOG
+[wpn_g36_g3630_rail_acog]:wpn_g36rail,g36_acog_p,g36_rail_p,g36_g3630_p
+inv_grid_x					= 27
+inv_grid_y					= 18
+;scope_status 			 = 2
+;прицелы на короткую планку Пикатинни
+wpn_addon_scope_eotech   	= wpn_g36_g3630_rail_eotech
+wpn_addon_scope_long   	= wpn_g36_g3630_rail_uso
+;секция при снятой планке Пикатинни 
+scope_mount_removed_section      = wpn_g36
+;магазины
+wpn_addon_mag_cmag100      = wpn_g36_cmag100_rail_acog
+magazine_removed_section = wpn_g36_nomag_rail_acog
+
+[wpn_g36_g3630_rail_acog_repair]:wpn_g36rail_repair
+
+
+; рельса, магазин Beta C-Mag, ACOG
+[wpn_g36_cmag100_rail_acog]:wpn_g36rail,g36_acog_p,g36_rail_p,g36_cmag100_p
+inv_grid_x					= 27
+inv_grid_y					= 26
+;scope_status 			 = 2
+;прицелы на короткую планку Пикатинни
+wpn_addon_scope_eotech   	= wpn_g36_cmag100_rail_eotech
+wpn_addon_scope_long   	= wpn_g36_cmag100_rail_uso
+;секция при снятой планке Пикатинни 
+scope_mount_removed_section      = wpn_g36_cmag100_stok
+;магазины
+wpn_addon_mag_g36      = wpn_g36_g3630_rail_acog
+magazine_removed_section = wpn_g36_nomag_rail_acog
+
+[wpn_g36_cmag100_rail_acog_repair]:wpn_g36rail_repair
+
+
+
+
+;---------EOTech
+; рельса, нет магазина, eotech
+[wpn_g36_nomag_rail_eotech]:wpn_g36rail,g36_eotech_p,g36_rail_p,g36_nomag_p
+inv_grid_x					= 27
+inv_grid_y					= 22
+;scope_status 			 = 2
+;прицелы на короткую планку Пикатинни
+wpn_addon_acog   	= wpn_g36_nomag_rail_acog
+wpn_addon_scope_long   	= wpn_g36_nomag_rail_uso
+;секция при снятой планке Пикатинни 
+scope_mount_removed_section      = wpn_g36_nomag_stok
+;магазины
+wpn_addon_mag_g36      = wpn_g36_g3630_rail_eotech
+wpn_addon_mag_cmag100      = wpn_g36_cmag100_rail_eotech
+
+[wpn_g36_nomag_rail_eotech_repair]:wpn_g36rail_repair
+
+
+; рельса, магазин G36, eotech
+[wpn_g36_g3630_rail_eotech]:wpn_g36rail,g36_eotech_p,g36_rail_p,g36_g3630_p
+inv_grid_x					= 27
+inv_grid_y					= 18
+;scope_status 			 = 2
+;прицелы на короткую планку Пикатинни
+wpn_addon_acog   	= wpn_g36_g3630_rail_acog
+wpn_addon_scope_long   	= wpn_g36_g3630_rail_uso
+;секция при снятой планке Пикатинни 
+scope_mount_removed_section      = wpn_g36
+;магазины
+wpn_addon_mag_cmag100      = wpn_g36_cmag100_rail_eotech
+magazine_removed_section = wpn_g36_nomag_rail_eotech
+
+[wpn_g36_g3630_rail_eotech_repair]:wpn_g36rail_repair
+
+
+; рельса, магазин Beta C-Mag, eotech
+[wpn_g36_cmag100_rail_eotech]:wpn_g36rail,g36_eotech_p,g36_rail_p,g36_cmag100_p
+inv_grid_x					= 27
+inv_grid_y					= 26
+;scope_status 			 = 2
+;прицелы на короткую планку Пикатинни
+wpn_addon_acog   	= wpn_g36_cmag100_rail_acog
+wpn_addon_scope_long   	= wpn_g36_cmag100_rail_uso
+;секция при снятой планке Пикатинни 
+scope_mount_removed_section      = wpn_g36_cmag100_stok
+;магазины
+wpn_addon_mag_g36      = wpn_g36_g3630_rail_eotech
+magazine_removed_section = wpn_g36_nomag_rail_eotech
+
+[wpn_g36_cmag100_rail_eotech_repair]:wpn_g36rail_repair
+
+
+;---------U.S.Optics SR-6
+; рельса, нет магазина, USO
+[wpn_g36_nomag_rail_uso]:wpn_g36rail,g36_uso_p,g36_rail_p,g36_nomag_p
+inv_grid_x					= 27
+inv_grid_y					= 22
+;scope_status 			 = 2
+;прицелы на короткую планку Пикатинни
+wpn_addon_acog   	= wpn_g36_nomag_rail_acog
+wpn_addon_scope_eotech   	= wpn_g36_nomag_rail_eotech
+;секция при снятой планке Пикатинни 
+scope_mount_removed_section      = wpn_g36_nomag_stok
+;магазины
+wpn_addon_mag_g36      = wpn_g36_g3630_rail_uso
+wpn_addon_mag_cmag100      = wpn_g36_cmag100_rail_uso
+
+[wpn_g36_nomag_rail_uso_repair]:wpn_g36rail_repair
+
+
+; рельса, магазин G36, USO
+[wpn_g36_g3630_rail_uso]:wpn_g36rail,g36_uso_p,g36_rail_p,g36_g3630_p
+inv_grid_x					= 27
+inv_grid_y					= 18
+;scope_status 			 = 2
+;прицелы на короткую планку Пикатинни
+wpn_addon_acog   	= wpn_g36_g3630_rail_acog
+wpn_addon_scope_eotech   	= wpn_g36_g3630_rail_eotech
+;секция при снятой планке Пикатинни 
+scope_mount_removed_section      = wpn_g36
+;магазины
+wpn_addon_mag_cmag100      = wpn_g36_cmag100_rail_uso
+magazine_removed_section = wpn_g36_nomag_rail_uso
+
+[wpn_g36_g3630_rail_uso_repair]:wpn_g36rail_repair
+
+
+; рельса, магазин Beta C-Mag, USO
+[wpn_g36_cmag100_rail_uso]:wpn_g36rail,g36_uso_p,g36_rail_p,g36_cmag100_p
+inv_grid_x					= 27
+inv_grid_y					= 26
+;scope_status 			 = 2
+;прицелы на короткую планку Пикатинни
+wpn_addon_acog   	= wpn_g36_cmag100_rail_acog
+wpn_addon_scope_eotech   	= wpn_g36_cmag100_rail_eotech
+;секция при снятой планке Пикатинни 
+scope_mount_removed_section      = wpn_g36_cmag100_stok
+;магазины
+wpn_addon_mag_g36      = wpn_g36_g3630_rail_uso
+magazine_removed_section = wpn_g36_nomag_rail_uso
+
+[wpn_g36_cmag100_rail_uso_repair]:wpn_g36rail_repair

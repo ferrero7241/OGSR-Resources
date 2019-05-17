@@ -1,70 +1,55 @@
+;Военные боеприпасы http://gutierrez.3dn.ru/blog/ammo_boxes_1/2016-02-24-49 и http://gutierrez.3dn.ru/blog/ammo_boxes_2/2016-03-19-50
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;7,62х39 мм
 ;Вес пустого магазина АКМ - 330 г (стального ребристого 6Л10) или 250 г (из легкого сплава) или 170 г (реактопласт). Масса патрона 7,62х39 мм около 16,2 г, => вес снаряженного стального магазина - 816 г. 
 ;стальные 40 РПК пустой 0.45 кг (?0,25), 75 РПК 0.8 кг
-
 [wpn_addon_mag_akm30]:wpn_fake_addon_base
 visual          = weapons\upgrade\mag_akm-30.ogf
-
+inv_grid_width		= 1
+inv_grid_height		= 1
+inv_grid_x			= 63						; position and size are in terms of 64x64 squares
+inv_grid_y			= 8		;9 без подписи
 inv_name		= addon_mag_akm30
 inv_name_short	= addon_mag_akm30_s
 description		= enc_addon_mag_akm30
 cost			= 100
-
 inv_weight		= 0.33
-
-inv_grid_width		= 1
-inv_grid_height		= 1
-inv_grid_x			= 60						; position and size are in terms of 64x64 squares
-inv_grid_y			= 8		;9 без подписи
-
 fake_item_section	= fake_wpn_addon_mag_akm30
 is_magazine_addon = true
 always_fake = true
-
 [fake_wpn_addon_mag_akm30]:wpn_addon_mag_akm30
 real_item_section = wpn_addon_mag_akm30
 
 [wpn_addon_mag_rpk40]:wpn_fake_addon_base
 visual          = weapons\upgrade\mag_rpk-40.ogf
-
+inv_grid_width		= 1
+inv_grid_height		= 1
+inv_grid_x			= 64						; position and size are in terms of 64x64 squares
+inv_grid_y			= 8		;9 без подписи
 inv_name		= addon_mag_rpk40
 inv_name_short	= addon_mag_rpk40_s
 description		= enc_addon_mag_rpk40
 cost			= 200
-
 inv_weight		= 0.45
-
-inv_grid_width		= 1
-inv_grid_height		= 1
-inv_grid_x			= 63						; position and size are in terms of 64x64 squares
-inv_grid_y			= 8		;9 без подписи
-
 fake_item_section	= fake_wpn_addon_mag_rpk40
 is_magazine_addon = true
 always_fake = true
-
 [fake_wpn_addon_mag_rpk40]:wpn_addon_mag_rpk40
 real_item_section = wpn_addon_mag_rpk40
 
 [wpn_addon_mag_rpk75]:wpn_fake_addon_base
 visual          = weapons\upgrade\mag_rpk-75.ogf
-
-inv_name		= addon_mag_rpk75
-inv_name_short	= addon_mag_rpk75_s
-description		= enc_addon_mag_rpk75
-cost			= 400
-
-inv_weight		= 0.8
-
 inv_grid_width		= 1
 inv_grid_height		= 1
 inv_grid_x			= 65						; position and size are in terms of 64x64 squares
 inv_grid_y			= 8		;9 без подписи
-
+inv_name		= addon_mag_rpk75
+inv_name_short	= addon_mag_rpk75_s
+description		= enc_addon_mag_rpk75
+cost			= 400
+inv_weight		= 0.8
 fake_item_section	= fake_wpn_addon_mag_rpk75
 is_magazine_addon = true
 always_fake = true
-
 [fake_wpn_addon_mag_rpk75]:wpn_addon_mag_rpk75
 real_item_section = wpn_addon_mag_rpk75
 
@@ -74,95 +59,77 @@ real_item_section = wpn_addon_mag_rpk75
 ;РПК-74 (45, ранние оранжевые 6Л18, из материала АГ-4) снаряженный 0.76 кг (0.3) 
 ;по аналогии с РПК74М у которого магазин 6Л18 из материала АГ-4 (ранние оранжевые) заменили на 6Л26 из нового материала ПС6 (поздние черные), а также у АК74М магазин 6Л20 из материала АГ-4 заменили на 6Л23 из нового материала ПС6. Так и у пулемета РПК203 старый рыжий магазин заменили на новый черный 6Л33, а емкость магазина осталась старая - 40 патронов. Единственное но... в подразделения пулеметы 6П8М поступили со старыми магазинами.
 ;четырехрядный магазин на 60 патронов 5,45х39 для АК74/АК74М/АК105 принят, индекс ГРАУ: 6Л31 - нарушение ручьёв подачи. Авторами данного магазина выступили Широбоков Ю.А., Паранин В.Н. и Безбородов Н.А. - инженеры ОАО "Ижмаш", об чем имеется Патент РФ 2158890 http://gunsforum.com/blog/7/entry-1-magazin-ak-na-60-patronov-6l31/
-
 [wpn_addon_mag_ak7430]:wpn_fake_addon_base
 visual          = weapons\upgrade\mag_ak74-30.ogf
-
-inv_name		= addon_mag_ak7430
-inv_name_short	= addon_mag_ak7430_s
-description		= enc_addon_mag_ak7430
-cost			= 100
-
-inv_weight		= 0.33
-
 inv_grid_width		= 1
 inv_grid_height		= 1
 inv_grid_x			= 66							; position and size are in terms of 64x64 squares
 inv_grid_y			= 8		;9 без подписи
-
+inv_name		= addon_mag_ak7430
+inv_name_short	= addon_mag_ak7430_s
+description		= enc_addon_mag_ak7430
+cost			= 100
+inv_weight		= 0.33
 fake_item_section	= fake_wpn_addon_mag_ak7430
 is_magazine_addon = true
 always_fake = true
-
 [fake_wpn_addon_mag_ak7430]:wpn_addon_mag_ak7430
 real_item_section = wpn_addon_mag_ak7430
 
 ;wpn_addon_mag_rpk45
 [wpn_addon_mag_rpk7445]:wpn_fake_addon_base
 visual          = weapons\upgrade\mag_rpk74-45.ogf
-
-inv_name		= addon_mag_rpk7445
-inv_name_short	= addon_mag_rpk7445_s
-description		= enc_addon_mag_rpk7445
-cost			= 200
-
-inv_weight		= 0.45
-
 inv_grid_width		= 1
 inv_grid_height		= 1
 inv_grid_x			= 70								; position and size are in terms of 64x64 squares
 inv_grid_y			= 8		;9 без подписи
-
+inv_name		= addon_mag_rpk7445
+inv_name_short	= addon_mag_rpk7445_s
+description		= enc_addon_mag_rpk7445
+cost			= 200
+inv_weight		= 0.45
 fake_item_section	= fake_wpn_addon_mag_rpk7445
 is_magazine_addon = true
 always_fake = true
-
 [fake_wpn_addon_mag_rpk7445]:wpn_addon_mag_rpk7445
 real_item_section = wpn_addon_mag_rpk7445
 
 ;wpn_addon_mag_ak60
 [wpn_addon_mag_ak10560]:wpn_fake_addon_base
 visual          = weapons\upgrade\mag_ak105-60.ogf
-inv_name		= addon_mag_ak10560
-inv_name_short	= addon_mag_ak10560_s
-description		= enc_addon_mag_ak10560
-cost			= 400
-
-inv_weight		= 0.8
-
 inv_grid_width		= 1
 inv_grid_height		= 1
 inv_grid_x			= 71								; position and size are in terms of 64x64 squares
 inv_grid_y			= 8		;9 без подписи
-
+inv_name		= addon_mag_ak10560
+inv_name_short	= addon_mag_ak10560_s
+description		= enc_addon_mag_ak10560
+cost			= 400
+inv_weight		= 0.8
 fake_item_section	= fake_wpn_addon_mag_ak10560
 is_magazine_addon = true
 always_fake = true
-
 [fake_wpn_addon_mag_ak10560]:wpn_addon_mag_ak10560
 real_item_section = wpn_addon_mag_ak10560
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;7,62х54 мм
 ;штатный магазин СВД на 10 патронов, вес пустого - 210 г
+;Вес патрона - 22 г; вес пули - 9,6 г; вес заряда - около 3,2 г;
 [wpn_addon_mag_svd10]:wpn_fake_addon_base
 visual          = weapons\upgrade\mag_svd-10.ogf
-inv_name		= addon_mag_svd10
-inv_name_short	= addon_mag_svd10_s
-description		= enc_addon_mag_svd10
-cost			= 150
-
-inv_weight		= 0.21
-
 inv_grid_width		= 1
 inv_grid_height		= 1
 inv_grid_x			= 74				; position and size are in terms of 64x64 squares
 inv_grid_y			= 8		;9 без подписи
-
+inv_name		= addon_mag_svd10
+inv_name_short	= addon_mag_svd10_s
+description		= enc_addon_mag_svd10
+cost			= 150
+inv_weight		= 0.21
 fake_item_section	= fake_wpn_addon_mag_svd10
 is_magazine_addon = true
 always_fake = true
-
 [fake_wpn_addon_mag_svd10]:wpn_addon_mag_svd10
 real_item_section = wpn_addon_mag_svd10
 
@@ -170,127 +137,324 @@ real_item_section = wpn_addon_mag_svd10
 ;неоднократно предпринимались попытки разработать к винтовке Драгунова магазин большей вместимости. В частности, при освоении производства пластмассового магазина к АКМ был создан также пластмассовый магазин к СВД емкостью 18 патронов, а несколько позже появился и 20-зарядный пластмассовый магазин. Оба варианта магазина не выдержали испытания на безотказность функционирования и не были запущены в производство.
 [wpn_addon_mag_svd20]:wpn_fake_addon_base
 visual          = weapons\upgrade\mag_svd-20.ogf
-inv_name		= addon_mag_svd20
-inv_name_short	= addon_mag_svd20_s
-description		= enc_addon_mag_svd20
-cost			= 180
-
-inv_weight		= 0.31
-
 inv_grid_width		= 1
 inv_grid_height		= 1
 inv_grid_x			= 75				; position and size are in terms of 64x64 squares
 inv_grid_y			= 8		;9 без подписи
-
+inv_name		= addon_mag_svd20
+inv_name_short	= addon_mag_svd20_s
+description		= enc_addon_mag_svd20
+cost			= 300
+inv_weight		= 0.31
 fake_item_section	= fake_wpn_addon_mag_svd20
 is_magazine_addon = true
 always_fake = true
-
 [fake_wpn_addon_mag_svd20]:wpn_addon_mag_svd20
 real_item_section = wpn_addon_mag_svd20
 
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;9х39 мм
 ;6Л24 - магазин для винтовки 6П29 (ВСС, 10 патронов), пустой 0,15 снаряженный 0,38, при массе патрона 23,5 г.
+[wpn_addon_mag_vss10]:wpn_fake_addon_base
+visual          = weapons\upgrade\mag_vss-10.ogf
+inv_grid_width		= 1
+inv_grid_height		= 1
+inv_grid_x			= 59	; position and size are in terms of 64x64 squares
+inv_grid_y			= 8		;
+inv_name		= addon_mag_vss10
+inv_name_short	= addon_mag_vss10_s
+description		= enc_addon_mag_vss10
+cost			= 300
+inv_weight		= 0.15
+fake_item_section	= fake_wpn_addon_mag_vss10
+is_magazine_addon = true
+always_fake = true
+[fake_wpn_addon_mag_vss10]:wpn_addon_mag_vss10
+real_item_section = wpn_addon_mag_vss10
+
 ;6Л25 - магазин для автомата 6П30 (ВАЛ, 20 патронов), пустой 0,17 снаряженный 0,64, при массе патрона 23,5 г.
+[wpn_addon_mag_as20]:wpn_fake_addon_base
+visual          = weapons\upgrade\mag_as-20.ogf
+inv_grid_width		= 1
+inv_grid_height		= 1
+inv_grid_x			= 60	; position and size are in terms of 64x64 squares
+inv_grid_y			= 8		;
+inv_name		= addon_mag_as20
+inv_name_short	= addon_mag_as20_s
+description		= enc_addon_mag_as20
+cost			= 400
+inv_weight		= 0.17
+fake_item_section	= fake_wpn_addon_mag_as20
+is_magazine_addon = true
+always_fake = true
+[fake_wpn_addon_mag_as20]:wpn_addon_mag_as20
+real_item_section = wpn_addon_mag_as20
+
+; ... - магазин для 9А91/ВСК94 (20 патронов), пустой 0,2 снаряженный 0,67, при массе патрона 23,5 г.
+[wpn_addon_mag_vsk20]:wpn_fake_addon_base
+visual          = weapons\upgrade\mag_9a91-20.ogf
+inv_grid_width		= 1
+inv_grid_height		= 1
+inv_grid_x			= 62	; position and size are in terms of 64x64 squares
+inv_grid_y			= 8		;
+inv_name		= addon_mag_vsk20
+inv_name_short	= addon_mag_vsk20_s
+description		= enc_addon_mag_vsk20
+cost			= 200
+inv_weight		= 0.2
+fake_item_section	= fake_wpn_addon_mag_vsk20
+is_magazine_addon = true
+always_fake = true
+[fake_wpn_addon_mag_vsk20]:wpn_addon_mag_vsk20
+real_item_section = wpn_addon_mag_vsk20
+
+; ... - магазин для ОЦ-14-4 (20 патронов), пустой 0,2 снаряженный 0,67, при массе патрона 23,5 г.
+[wpn_addon_mag_groza20]:wpn_fake_addon_base
+visual          = weapons\upgrade\mag_groza-20.ogf
+inv_grid_width		= 1
+inv_grid_height		= 1
+inv_grid_x			= 61	; position and size are in terms of 64x64 squares
+inv_grid_y			= 8		;
+inv_name		= addon_mag_groza20
+inv_name_short	= addon_mag_groza20_s
+description		= enc_addon_mag_groza20
+cost			= 200
+inv_weight		= 0.3
+fake_item_section	= fake_wpn_addon_mag_groza20
+is_magazine_addon = true
+always_fake = true
+[fake_wpn_addon_mag_groza20]:wpn_addon_mag_groza20
+real_item_section = wpn_addon_mag_groza20
+
+; ... - магазин для СР-3М (30 патронов), пустой 0,3 снаряженный 0,77, при массе патрона 23,5 г.
+[wpn_addon_mag_sr30]:wpn_fake_addon_base
+visual          = weapons\upgrade\mag_sr-30.ogf
+inv_grid_width		= 1
+inv_grid_height		= 1
+inv_grid_x			= 62	; position and size are in terms of 64x64 squares
+inv_grid_y			= 9		;
+inv_name		= addon_mag_sr3m30
+inv_name_short	= addon_mag_sr3m30_s
+description		= enc_addon_mag_sr3m30
+cost			= 200
+inv_weight		= 0.3
+fake_item_section	= fake_wpn_addon_mag_sr30
+is_magazine_addon = true
+always_fake = true
+[fake_wpn_addon_mag_sr30]:wpn_addon_mag_sr30
+real_item_section = wpn_addon_mag_sr30
+
+
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;9х18 мм
+;Масса патрона 9,2-10,4 г.
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;7,62х25 мм
+;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;9х19 мм
+;Масса патрона 12г.
+[wpn_addon_mag_glock19]:wpn_fake_addon_base
+visual          = weapons\upgrade\mag_glock-19.ogf
+inv_grid_width		= 1
+inv_grid_height		= 1
+inv_grid_x			= 69
+inv_grid_y			= 9
+inv_name		= addon_mag_glock19
+inv_name_short	= addon_mag_glock19_s
+description		= enc_addon_mag_glock19
+cost			= 200
+inv_weight		= 0.04
+fake_item_section	= fake_wpn_addon_mag_glock19
+is_magazine_addon = true
+always_fake = true
+[fake_wpn_addon_mag_glock19]:wpn_addon_mag_glock19
+real_item_section = wpn_addon_mag_glock19
+
+[wpn_addon_mag_glock33]:wpn_fake_addon_base
+visual          = weapons\upgrade\mag_glock-33.ogf
+inv_grid_width		= 1
+inv_grid_height		= 1
+inv_grid_x			= 69
+inv_grid_y			= 8
+inv_name		= addon_mag_glock33
+inv_name_short	= addon_mag_glock33_s
+description		= enc_addon_mag_glock33
+cost			= 600
+inv_weight		= 0.09
+fake_item_section	= fake_wpn_addon_mag_glock33
+is_magazine_addon = true
+always_fake = true
+[fake_wpn_addon_mag_glock33]:wpn_addon_mag_glock33
+real_item_section = wpn_addon_mag_glock33
+
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; .45
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;5,56х45 мм
 ;6Л29 - магазин на 30 патронов 5,56-мм НАТО для АК101/102ук, вес пустого - 230 г
-
 [wpn_addon_mag_ak10230]:wpn_fake_addon_base
 visual          = weapons\upgrade\mag_ak102-30.ogf
-inv_name		= addon_mag_ak10230
-inv_name_short	= addon_mag_ak10230_s
-description		= enc_addon_mag_ak10230
-cost			= 150
-
-inv_weight		= 0.33
-
 inv_grid_width		= 1
 inv_grid_height		= 1
 inv_grid_x			= 72							; position and size are in terms of 64x64 squares
 inv_grid_y			= 8		;9 без подписи
-
+inv_name		= addon_mag_ak10230
+inv_name_short	= addon_mag_ak10230_s
+description		= enc_addon_mag_ak10230
+cost			= 150
+inv_weight		= 0.33
 fake_item_section	= fake_wpn_addon_mag_ak10230
 is_magazine_addon = true
 always_fake = true
-
 [fake_wpn_addon_mag_ak10230]:wpn_addon_mag_ak10230
 real_item_section = wpn_addon_mag_ak10230
 
-
-;Beta C-Mag - двухбарабанный магазин на 100 патронов 5,56-мм НАТО для АК101/102ук, вес пустого - 1000 г (полный 2100 г)
+;Beta C-Mag - двухбарабанный магазин на 100 патронов 5,56-мм NATO STANAG 4179 (для АК101/102ук), вес пустого - 1000 г (полный 2100 г)
 [wpn_addon_mag_cmag100]:wpn_fake_addon_base
 visual          = weapons\upgrade\mag_cmag-100.ogf
-inv_name		= addon_mag_cmag100
-inv_name_short	= addon_mag_cmag100_s
-description		= enc_addon_mag_cmag100
-cost			= 600
-
-inv_weight		= 1.0
-
 inv_grid_width		= 1
 inv_grid_height		= 1
 inv_grid_x			= 73							; position and size are in terms of 64x64 squares
 inv_grid_y			= 8		;9 без подписи
-
+inv_name		= addon_mag_cmag100
+inv_name_short	= addon_mag_cmag100_s
+description		= enc_addon_mag_cmag100
+cost			= 600
+inv_weight		= 1.0
 fake_item_section	= fake_wpn_addon_mag_cmag100
 is_magazine_addon = true
 always_fake = true
-
 [fake_wpn_addon_mag_cmag100]:wpn_addon_mag_cmag100
 real_item_section = wpn_addon_mag_cmag100
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+; - магазин G36 на 30 патронов 5,56-мм НАТО, вес пустого - 140 г (?полный 483 г)
+[wpn_addon_mag_g36]:wpn_fake_addon_base
+visual          = weapons\upgrade\mag_ak102-30.ogf
+inv_grid_width		= 1
+inv_grid_height		= 1
+inv_grid_x		= 31	;72 (102й)					; position and size are in terms of 64x64 squares
+inv_grid_y		= 15	;8 (102й)
+inv_name		= addon_mag_g36
+inv_name_short	= addon_mag_g36_s
+description		= enc_addon_mag_g36
+cost			= 150
+inv_weight		= 0.14
+fake_item_section	= fake_wpn_addon_mag_g36
+is_magazine_addon = true
+always_fake = true
+[fake_wpn_addon_mag_g36]:wpn_addon_mag_g36
+real_item_section = wpn_addon_mag_g36
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;12х70, 12х76 мм (4/5/8/10)
+[wpn_addon_mag_vepr4]:wpn_fake_addon_base
+visual          = weapons\upgrade\mag_vepr-4.ogf
+inv_grid_width		= 1
+inv_grid_height		= 1
+inv_grid_x			= 68							; position and size are in terms of 64x64 squares
+inv_grid_y			= 8		;9 без подписи
+inv_name		= addon_mag_vepr4
+inv_name_short	= addon_mag_vepr4_s
+description		= enc_addon_mag_vepr4
+cost			= 200
+inv_weight		= 0.4
+fake_item_section	= fake_wpn_addon_mag_vepr4
+is_magazine_addon = true
+always_fake = true
+[fake_wpn_addon_mag_vepr4]:wpn_addon_mag_vepr4
+real_item_section = wpn_addon_mag_vepr4
+
+[wpn_addon_mag_vepr8]:wpn_fake_addon_base
+visual          = weapons\upgrade\mag_vepr-8.ogf
+inv_grid_width		= 1
+inv_grid_height		= 1
+inv_grid_x			= 67							; position and size are in terms of 64x64 squares
+inv_grid_y			= 9		;8 - на 8 патронов
+inv_name		= addon_mag_vepr10
+inv_name_short	= addon_mag_vepr10_s
+description		= enc_addon_mag_vepr10
+cost			= 400
+inv_weight		= 0.8
+fake_item_section	= fake_wpn_addon_mag_vepr8
+is_magazine_addon = true
+always_fake = true
+[fake_wpn_addon_mag_vepr8]:wpn_addon_mag_vepr8
+real_item_section = wpn_addon_mag_vepr8
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;Remington 870MCS Kit: ствол 14" +УПМ-2 (3+1, 5+1 или 7+1)
+[wpn_addon_mag_mk6]:wpn_fake_addon_base
+visual          = weapons\upgrade\mk_box.ogf
+inv_grid_width		= 2				;1
+inv_grid_height		= 1
+inv_grid_x			= 68			;76
+inv_grid_y			= 18			;9
+inv_name		= addon_kit_mk6
+inv_name_short	= addon_kit_mk6_s
+description		= enc_addon_kit_mk6
+cost			= 800
+inv_weight		= 0.2
+fake_item_section	= fake_wpn_addon_mag_mk6
+is_magazine_addon = true
+always_fake = true
+[fake_wpn_addon_mag_mk6]:wpn_addon_mag_mk6
+real_item_section = wpn_addon_mag_mk6
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;Remington 870MCS Kit: ствол 14" +УПМ-2 (3+1, 5+1 или 7+1)
+[wpn_addon_mag_murka]:wpn_fake_addon_base
+;visual          = weapons\upgrade\mk_box.ogf
+visual          = weapons\upgrade\mag_murka-8.ogf
+inv_grid_width		= 2				;1
+inv_grid_height		= 1
+inv_grid_x			= 75			;68 ящик
+inv_grid_y			= 38			;18 ящик
+inv_name		= addon_kit_murka
+inv_name_short	= addon_kit_murka_s
+description		= enc_addon_kit_murka
+cost			= 800
+inv_weight		= 0.2
+fake_item_section	= fake_wpn_addon_mag_murka
+is_magazine_addon = true
+always_fake = true
+[fake_wpn_addon_mag_murka]:wpn_addon_mag_murka
+real_item_section = wpn_addon_mag_murka
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;HK Conversion Kit (смена калибра USP)
 ;.45 (11.43x23 мм)
 [wpn_addon_mag_usp8]:wpn_fake_addon_base
-visual          = weapons\upgrade\mag_ak102-30.ogf
-inv_name		= addon_usp_ck45
-inv_name_short	= addon_usp_ck45_s
-description		= enc_addon_usp_ck
-cost			= 1500
-
-inv_weight		= 0.2
-
+visual          = weapons\upgrade\hk_box.ogf
 inv_grid_width		= 1
 inv_grid_height		= 1
 inv_grid_x			= 76				; position and size are in terms of 64x64 squares
 inv_grid_y			= 8
-
+inv_name		= addon_usp_ck45
+inv_name_short	= addon_usp_ck45_s
+description		= enc_addon_usp_ck
+cost			= 1500
+inv_weight		= 0.2
 fake_item_section	= fake_wpn_addon_mag_usp8
 is_magazine_addon = true
 always_fake = true
-
 [fake_wpn_addon_mag_usp8]:wpn_addon_mag_usp8
 real_item_section = wpn_addon_mag_usp8
 
-
 ;9х19 мм
 [wpn_addon_mag_usp15]:wpn_fake_addon_base
-visual          = weapons\upgrade\mag_cmag-100.ogf
-inv_name		= addon_usp_ck9
-inv_name_short	= addon_usp_ck9_s
-description		= enc_addon_usp_ck
-cost			= 1500
-
-inv_weight		= 0.2
-
+visual          = weapons\upgrade\hk_box.ogf
 inv_grid_width		= 1
 inv_grid_height		= 1
 inv_grid_x			= 77				; position and size are in terms of 64x64 squares
 inv_grid_y			= 8
-
+inv_name		= addon_usp_ck9
+inv_name_short	= addon_usp_ck9_s
+description		= enc_addon_usp_ck
+cost			= 1500
+inv_weight		= 0.2
 fake_item_section	= fake_wpn_addon_mag_usp15
 is_magazine_addon = true
 always_fake = true
-
 [fake_wpn_addon_mag_usp15]:wpn_addon_mag_usp15
 real_item_section = wpn_addon_mag_usp15
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

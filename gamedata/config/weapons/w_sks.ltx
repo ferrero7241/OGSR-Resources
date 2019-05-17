@@ -1,0 +1,266 @@
+[wpn_sks]:identity_immunities,base_wpn_zoom
+GroupControlSection				= spawn_group
+discovery_dependency 				= 
+$spawn                  			= "weapons\sks"	
+$npc			 			= on
+$prefetch 		 			= 8
+scheduled               			= off 
+cform                   			= skeleton
+class                   			= WP_SVU
+min_radius              			= 0
+max_radius              			= 100
+description					= enc_weapons1_wpn-sks
+
+ef_main_weapon_type		 		= 3
+ef_weapon_type			 		= 7
+
+;--- scope weapons -----------------------------------------------------------------
+holder_range_modifier				= 1.0
+holder_fov_modifier				= 1.0
+;-----------------------------------------------------------------------------------
+
+cost						= 3500
+weapon_class					= assault_rifle
+
+ammo_limit		 			= 60
+ammo_current					= 10
+ammo_elapsed		 			= 0
+startup_ammo            			= 10
+
+ammo_mag_size		 	= 10
+ammo_class				= ammo_7.62x39_fmj, ammo_7.62x39_ap
+
+sprint_allowed					= true
+;-----------------------------------------------------------------------------------
+fire_dispersion_base				= 0.075		;угол (в градусах) базовой дисперсии оружия (оружия зажатого в тисках)
+control_inertion_factor				= 1.4f
+cam_relax_speed         			= 5		;скорость возврата в исходное положение
+cam_dispersion          			= 0.10		;увеличения угла (в градусах) с каждым выстрелом
+cam_dispersion_inc				= 0.4		;увеличениe cam_dispersion с каждым выстрелом
+cam_dispertion_frac				= 0.9		;ствол будет подыматься на cam_dispersion*cam_dispertion_frac +- cam_dispersion*(1-cam_dispertion_frac)
+cam_max_angle					= 10.0	    	;максимальный угол отдачи
+cam_max_angle_horz				= 20.0		;(degree) maximum shot horizontal degree 
+cam_step_angle_horz				= 1.1		;(degree) size of step camera moved in horizontal position while shooting
+
+fire_dispersion_condition_factor 		= 1.5		;увеличение дисперсии в процентах при максимальном износе 
+misfire_probability 				= 0.001		;вероятность осечки при максимальном износе 
+misfire_condition_k				= 0.01
+condition_shot_dec 				= 0.0001 	;увеличение износа при каждом выстреле
+;-----------------------------------------------------------------------------------
+
+hand_dependence 				= 1
+single_handed					= 0
+
+slot 						= 2									
+animation_slot				= 9		
+
+inv_name		 			= wpn-sks
+inv_name_short		 		= wpn-sks_s
+inv_weight		 			= 3.75
+
+inv_grid_width     				= 5
+inv_grid_height    				= 2
+
+inv_grid_x			= 65
+inv_grid_y			= 29			;без ПУ
+
+kill_msg_x					= 0
+kill_msg_y					= 59
+kill_msg_width					= 80
+kill_msg_height					= 26
+
+direction                			= 0, 0, 1
+
+fire_point              			=  0.0, 0.188, 0.392        
+fire_point2             			=  0,0.161,0.583        
+
+flame_particles					= amik\weapons\flame_particles\dtk_flame_particles_2
+smoke_particles					= amik\weapons\smoke_particles\smoke_particles_01
+grenade_flame_particles				= amik\weapons\grenade_flame_particles\grenade_flame_particles_02
+	
+shell_point		 			= 0, 0.129, 0.192
+shell_dir		 			= 0.0, 0.0, 0.4
+shell_particles	 				= amik\weapons\7.62x39_shells_r
+
+rpm_empty_click 	 			= 200
+
+PDM_disp_base 					= 1.0
+PDM_disp_vel_factor 				= 0.8
+PDM_disp_accel_factor 				= 0.8
+PDM_crouch	 				= 0.5
+PDM_crouch_no_acc 				= 0.2
+
+; ttc
+hit_power          				= 0.74
+hit_impulse	       				= 30
+hit_type 		   			= fire_wound
+hit_rate			= 1.95
+
+fire_distance           			= 600
+bullet_speed					= 735
+rpm                     			= 280
+; end ttc
+
+use_aim_bullet					= true
+time_to_aim					= 1.0	
+
+hud                     			= wpn_sks_hud
+normal                   			= 0, 1, 0
+position               				=-0.023, -0.1, 0.01
+orientation      	        		= 0,0,0	
+
+;--STRAP PARAMETERS-----------------------------------------------------------------
+strap_position 					= -0.15, -0.15, 0.45
+strap_orientation				= -25, -189, 65
+strap_bone0					= bip01_spine2
+strap_bone1					= bip01_spine1
+
+visual                  			= weapons\sks\wpn_sks.ogf
+
+light_disabled					= true
+
+ph_mass			 			= 3
+
+;addons
+scope_status 			 	= 0
+silencer_status				= 2
+grenade_launcher_status		= 0
+
+scope_name 					= wpn_addon_scope_pu
+;Сменные аддоны ОГСЕ д/б: scope_name = wpn_scope
+scope_x 					= 60
+scope_y 					= 6
+
+zoom_enabled				= true
+
+silencer_name  				= wpn_addon_sil_762_tgp-v
+silencer_x 					= 223
+silencer_y 					= 20
+
+;silencer_flame_particles 			= weapons\generic_weapon01
+silencer_smoke_particles 			= amik\weapons\smoke_particles\p_smoke_particles_02
+
+silencer_light_color				= 1.0, 0.1, 0.0
+silencer_light_range				= 0.01
+silencer_light_var_color			= 0.05
+silencer_light_var_range			= 0.5
+silencer_light_time 				= 0.2
+
+silencer_hit_power       	= 0.63
+silencer_hit_impulse	 	= 25
+silencer_fire_distance   	= 200
+silencer_bullet_speed	 	= 650
+
+snd_draw					= weapons\sks\sks_draw
+snd_holster					= weapons\sks\sks_holster
+snd_shoot					= weapons\sks\sks_shoot
+snd_empty					= weapons\ak_empty, 0.5
+snd_reload					= weapons\sks\sks_reload
+snd_close					= weapons\generic_close
+snd_silncer_shot				= weapons\sks\sks_shot_sil
+ 
+
+[wpn_sks_hud]
+shell_point          				= 0.00, -0.025, -0.790
+shell_dir		      			= 0.0, 0.0, 0.0
+
+fire_point              			= 0.030, -0.015, -0.670
+fire_bone               			= muzzle
+
+orientation             			= 0, 0, 0
+;position = (x,y,z) = ( x move right -x move left, y move up -y move down, z move forward -z move backwards)
+position                			= 0.05, -0.14, 0.1
+
+visual                   			= weapons\sks\wpn_sks_hud.ogf
+
+anim_idle					= idle
+anim_idle_aim					= aim
+anim_reload					= reload
+anim_draw					= draw
+anim_holster					= holster
+anim_shoot					= shoot
+anim_idle_sprint				= sprint
+anim_idle_moving				= move
+
+zoom_hide_crosshair				= true
+zoom_rotate_time				= 0.30
+
+;W.A.S.P. далеко zoom_offset					= -0.130700,0.081250,-0.065000
+zoom_offset					= -0.130700,0.081250,-0.257000
+zoom_rotate_x				= 0.003700
+zoom_rotate_y				= 0.000200
+
+
+;------------------------------------------------------------------------------------
+[wpn_sks_repair]
+tech_complication = 500
+repair_compatibility = sks
+
+
+
+
+
+;------------------------------------------------------------------------------------
+;ОГСЕ - "Громобой" Повара Свободы (с несъёмным ПУ)
+[wpn_svu_m1]:wpn_sks
+$spawn             	= "weapons\uniq\wpn_svu_m1"	
+visual = weapons\sks\wpn_sks_m1.ogf
+description					= enc_weapons1_wpn-sks_m1
+inv_name		 			= wpn-sks_m1
+inv_name_short		 		= wpn-sks_m1_s
+inv_grid_x			= 65
+inv_grid_y			= 31				;снайперка с несъёмным ПУ
+inv_weight		 			= 4.0		;3.75 +0.27 ПУ
+
+;-ammo_mag_size		= 8		;-анимки обоймы семёрки
+ammo_class			= ammo_9x39_ap, ammo_9x39_pab9
+hit_power			= 0.81
+hit_impulse			= 35
+fire_distance	= 300   ;ОГСЕ 600 КОЭФФИЦИЕНТ максимальной дистанции  полета пули (затем она падает на землю и исчезает), реальная 200-400 м (баллистическая кривая должна быть более кривая, 1хрен дистанция остаётся больше А-Лайфа - в ОГСЕ switch_distance 150). Логично прописать значение эффективного огня(пистолеты-пулеметы 50-200м, пистолеты 50м, дробовики 30м и нож полметра)
+bullet_speed		= 400	;300
+silencer_hit_power       	= 0.70
+silencer_bullet_speed	 	= 350
+
+fire_dispersion_base		= 0.15		;0.075 угол (в градусах) базовой дисперсии оружия (оружия зажатого в тисках)
+
+snd_shoot			= weapons\svu\svu_shot1
+snd_shoot1			= weapons\svu\svu_shot2
+snd_shoot2			= weapons\svu\svu_shot3
+snd_silncer_shot				= weapons\val\val_9x39_shotbullet_0
+snd_silncer_shot1				= weapons\val\val_9x39_shotbullet_1
+snd_silncer_shot2				= weapons\val\val_9x39_shotbullet_2
+snd_silncer_shot3				= weapons\val\val_9x39_shotbullet_3
+
+scope_status 			 = 0			;1 - для второго (ОГСР) режима прицеливания будет использоваться текстура (ПЫС-вариант); 0 -  3D оптика ОГСР (сквозная, модель+шейдер)
+;для несъёмного - не наследуется! 
+scope_texture				= wpn\scopes\crosshair_pu
+;наследуется разрешить ПНВ nightvision_lock	= true
+;******************************************************************************
+;KRodin: Поднесём 3D-линзу поближе к морде актора - и scope_lense_fov_factor ~ scope_zoom_factor
+;******************************************************************************
+;для ПЫС-оптики (без 3D) ставить scope_zoom_factor = 3.5
+scope_zoom_factor 					= 1.0	;ставить для 3D-прицелов
+;НЕ комментить - ЧЁРНЫЙ scope_lense_fov_factor = 13.0		;в конфиге прицела 13 - КОРРЕКЦИЯ (ПОПРАВЛЕНО KRodin - тут работает)
+scope_lense_fov_factor = 8.0		;14 КОРРЕКЦИЯ 13 (ПОПРАВЛЕНО KRodin - тут работает)
+;******************************************************************************
+hud                     			= wpn_svu_m1_hud
+
+
+[wpn_svu_m1_hud]:wpn_sks_hud
+visual = weapons\sks\wpn_sks_m1_hud.ogf
+;;;;;;;;;;;;;;;;;;;;;;Прицеливание через оптику (перекрывается текстуроЙ)
+;прицеливание по умолчанию (по-старому, через "оптику" - ТЕКСТУРОЙ), альтернативное ОГСЕ (мех.прицел, МОДЕЛЬЮ) сбрасывается при установке любого аддона, включая ПЫС-подствол)
+zoom_offset			= -0.130700,0.054250,-0.230000
+zoom_rotate_x		= 0.002200
+zoom_rotate_y		= 0.000900
+;;;;;;;;;;;;;;;;;;;;;;Альтернативное прицеливание ОГСР через штатный механический прицел
+;смещения HUD для режима приближения (прицеливание без увеличения)
+second_zoom_offset					= -0.130700,0.081250,-0.257000
+second_zoom_rotate_x				= 0.003700
+second_zoom_rotate_y				= 0.000500
+
+
+
+[wpn_svu_m1_repair]
+tech_complication = 500
+repair_compatibility = sks

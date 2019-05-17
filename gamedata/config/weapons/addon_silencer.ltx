@@ -6,33 +6,18 @@ cform           = skeleton
 $prefetch 		= 32
 inv_weight		= 0.2
 
-[wpn_addon_sil_556_ar]:wpn_sil
-$spawn			= "weapons\upgrade\sil_556_ar" ; option for Level Editor
-visual          = weapons\upgrade\sil_556_ar.ogf
-description		= enc_arsenal_sil_556_ar
 
-cost			= 750
 
-inv_name		= ars-sil_556_ar
-inv_name_short	= ars-sil_556_ar
-inv_grid_width	= 2
-inv_grid_height	= 1
-inv_grid_x		= 35
-inv_grid_y		= 37
+;;;;;;;;;;;;;;;;;;;Кустарный глушитель
+[wpn_addon_silencer]:wpn_sil
+$spawn			= "weapons\addons\silencer" ; option for Level Editor
+visual          = weapons\upgrade\wpn_silencer.ogf
+description		= enc_weapons_wpn-addon-silencer_custom
 
-bullet_hit_power_k	= 0.8
-bullet_speed_k	 	= 0.8
-fire_dispersion_base_k = 1.25
-cam_dispersion_k	= 0.8
+cost			= 1500
 
-[wpn_9mm_nato_silencer]:wpn_sil
-$spawn			= "weapons\addons\9mm_nato_silencer" 
-visual         	= weapons\upgrade\wpn_silencer_9mm_nato.ogf
-description		= enc_weapons1_wpn-9mm_nato-silencer
-cost			= 450
-
-inv_name		= wpn-9mm_nato-silencer
-inv_name_short	= wpn-9mm_nato-silencer
+inv_name		= wpn-addon-silencer_custom
+inv_name_short	= wpn-addon-silencer_custom_s
 inv_grid_width	= 1
 inv_grid_height	= 1
 inv_grid_x		= 18
@@ -40,36 +25,15 @@ inv_grid_y		= 1
 
 bullet_hit_power_k	= 0.8
 bullet_speed_k	 	= 0.8
-fire_dispersion_base_k = 1.25
-cam_dispersion_k	= 0.8
-
-
-
-
-
-
-[wpn_addon_silencer]:wpn_sil
-$spawn			= "weapons\addons\silencer" ; option for Level Editor
-visual          = weapons\upgrade\wpn_silencer.ogf
-description		= enc_weapons1_wpn-addon-silencer
-
-cost			= 1700
-
-inv_name		= wpn-addon-silencer
-inv_name_short	= wpn-addon-silencer
-inv_grid_width	= 2
-inv_grid_height	= 1
-inv_grid_x		= 76	;18
-inv_grid_y		= 7		;1
-
-bullet_hit_power_k	= 0.8
-bullet_speed_k	 	= 0.8
 fire_dispersion_base_k = 1.4
 cam_dispersion_k	= 0.8
 
 
+
+
+
 ;;;;;;;;;;;;;;;;;;;
-;;; АКМ АДДОН-ТЕСТ
+;;; АКМ АДДОН
 ;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;Прибор беззвучной и беспламенной стрельбы ПБС-1 (6Ч12)
 [wpn_addon_sil_762_pbs1]:wpn_sil
@@ -114,8 +78,7 @@ bullet_speed_k	 	= 0.8
 fire_dispersion_base_k = 1.25
 cam_dispersion_k	= 0.8
 
-;;;;;;;;;;;;;;;;;;;Прибор малошумной стрельбы "Глушитель-пламягаситель тактический" ТГП-А 
-;варианты под 5 и 7
+;;;;;;;;;;;;;;;;;;;Прибор малошумной стрельбы "Глушитель-пламягаситель тактический" ТГП-А (пятёрка)
 [wpn_addon_sil_545_tgp-a]:wpn_sil
 $spawn			= "weapons\addons\sil_545_tgp-a" ; option for Level Editor
 visual          = weapons\upgrade\tgp-a.ogf
@@ -137,7 +100,7 @@ fire_dispersion_base_k = 1.25
 cam_dispersion_k	= 0.8
 
 ;;;;;;;;;;;;;;;;;;;Прибор малошумной стрельбы "Глушитель-пламягаситель тактический" ТГП-В 
-;для СВД
+;для СВД (+Мосина)
 [wpn_addon_sil_762_tgp-v]:wpn_sil
 $spawn			= "weapons\addons\sil_762_tgp-v" ; option for Level Editor
 visual          = weapons\upgrade\tgp-v.ogf
@@ -158,9 +121,29 @@ bullet_speed_k	 	= 0.8
 fire_dispersion_base_k = 1.25
 cam_dispersion_k	= 0.8
 
-;;;;;;;;;;;;;;;;;;;Прибор малошумной стрельбы "Глушитель тактический автоматный" АТГ 
-;?универсал (под 5,7 и 5 НАТО)
-;(при использовании обтюратора 6Ч7, возможно ведение беззвучной и беспламенной стрельбы 7,62-мм патронами «УС»)
+;;;;;;;;;;;;;;;;;;;Комплексное дульное устройство СВУ 
+[wpn_addon_sil_762_svu]:wpn_sil
+$spawn			= "weapons\addons\sil_762_svu" ; option for Level Editor
+visual          = weapons\upgrade\svu_silencer.ogf
+description		= enc_weapons_wpn-addon-silencer_svu
+
+cost			= 800
+inv_weight		= 0.5
+
+inv_name		= wpn-addon-silencer_svu
+inv_name_short	= wpn-addon-silencer_svu_s
+inv_grid_width	= 1
+inv_grid_height	= 1
+inv_grid_x				= 59
+inv_grid_y				= 22
+
+bullet_hit_power_k	= 0.8
+bullet_speed_k	 	= 0.8
+fire_dispersion_base_k = 1.25
+cam_dispersion_k	= 0.8
+
+;;;;;;;;;;;;;;;;;;;Прибор малошумной стрельбы "Глушитель тактический автоматный" АТГ (НАТО)
+;?универсал, при использовании обтюратора 6Ч7, возможно использование 7,62-мм УС
 [wpn_addon_sil_545_atg]:wpn_sil
 $spawn			= "weapons\addons\sil_545_atg" ; option for Level Editor
 visual          = weapons\upgrade\atg.ogf
@@ -181,21 +164,130 @@ bullet_speed_k	 	= 0.8
 fire_dispersion_base_k = 1.25
 cam_dispersion_k	= 0.8
 
-
-;;;;;;;;;;;;;;;;;;;Прибор малошумной стрельбы для 45 калибра
+;;;;;;;;;;;;;;;;;;;Прибор малошумной стрельбы для 45 калибра (Кольт, Кох, Мак)
 [wpn_addon_sil_1143_p]:wpn_sil
 $spawn			= "weapons\upgrade\sil_1143_p" ; option for Level Editor
 visual          = weapons\upgrade\sil_1143_p.ogf
 description		= enc_arsenal_sil_1143_p
 
 cost			= 750
-
+inv_weight		= 0.7
 inv_name		= ars-sil_1143_p
 inv_name_short	= ars-sil_1143_p
 inv_grid_width	= 1
 inv_grid_height	= 1
 inv_grid_x		= 32
 inv_grid_y		= 37
+
+bullet_hit_power_k	= 0.8
+bullet_speed_k	 	= 0.8
+fire_dispersion_base_k = 1.25
+cam_dispersion_k	= 0.8
+
+;;;;;;;;;;;;;;;;;;;Устройство БраМит для Нагана (+Люгер)
+[wpn_addon_sil_m1895]:wpn_sil
+$spawn			= "weapons\upgrade\sil_m1895_p" ; option for Level Editor
+visual          = weapons\upgrade\bramit-n_silencer.ogf
+description		= enc_weapons_wpn-addon-silencer_bramit-n
+
+cost			= 800
+inv_weight		= 0.3
+inv_name		= wpn-addon-silencer_bramit-n
+inv_name_short	= wpn-addon-silencer_bramit-n_s
+inv_grid_width	= 1
+inv_grid_height	= 1
+inv_grid_x			= 78
+inv_grid_y			= 17
+
+bullet_hit_power_k	= 0.8
+bullet_speed_k	 	= 0.8
+fire_dispersion_base_k = 1.25
+cam_dispersion_k	= 0.8
+
+;;;;;;;;;;;;;;;;;;;насадок ПБ
+[wpn_addon_sil_pb]:wpn_sil
+$spawn			= "weapons\upgrade\sil_pb" ; option for Level Editor
+visual          = weapons\upgrade\pb_silencer.ogf
+description		= enc_weapons_wpn-addon-silencer_pb
+
+cost			= 800
+inv_weight		= 0.3
+inv_name		= wpn-addon-silencer_pb
+inv_name_short	= wpn-addon-silencer_pb_s
+inv_grid_width	= 1
+inv_grid_height	= 1
+inv_grid_x					= 20
+inv_grid_y					= 6
+
+bullet_hit_power_k	= 0.8
+bullet_speed_k	 	= 0.8
+fire_dispersion_base_k = 1.25
+cam_dispersion_k	= 0.8
+
+;;;;;;;;;;;;;;;;;;;GEMTECH MultiMount 9mm +компенсатор-адаптер
+;Глок, МР-5
+;в моделях, отключен конфигом: Беретта
+[wpn_9mm_nato_silencer]:wpn_sil
+$spawn			= "weapons\addons\9mm_nato_silencer" 
+;visual         	= weapons\upgrade\wpn_silencer_9mm_nato.ogf
+visual          = weapons\upgrade\gm_silencer.ogf
+description		= enc_weapons_wpn-addon-silencer_gm-9		;enc_weapons1_wpn-9mm_nato-silencer
+
+cost			= 1000
+;inv_weight		= 0.19
+
+inv_name		= wpn-addon-silencer_gm-9					;wpn-9mm_nato-silencer
+inv_name_short	= wpn-addon-silencer_gm-9_s					;wpn-9mm_nato-silencer
+inv_grid_width	= 1
+inv_grid_height	= 1
+inv_grid_x		= 78	;18
+inv_grid_y		= 23	;1		;+4
+
+bullet_hit_power_k	= 0.8
+bullet_speed_k	 	= 0.8
+fire_dispersion_base_k = 1.25
+cam_dispersion_k	= 0.8
+
+;;;;;;;;;;;;;;;;;;;GEMTECH G5 5,56mm NATO +адаптер MultiMount
+;Эмка, 
+;заменить в моделях: HK G36, Enfield L85, FN F2000 (и потом - на ШтурмГевер)
+[wpn_addon_sil_556_ar]:wpn_sil
+;$spawn			= "weapons\addons\sil_556_ar" ; option for Level Editor
+$spawn			= "weapons\upgrade\sil_556_ar" ; option for Level Editor
+;visual          = weapons\addons\sil_556_ar.ogf
+;visual          = weapons\upgrade\sil_556_ar.ogf
+visual          = weapons\upgrade\g5_silenser.ogf
+description		= enc_weapons_wpn-addon-silencer_gm-5
+
+cost			= 750
+
+inv_name		= wpn-addon-silencer_gm-5
+inv_name_short	= wpn-addon-silencer_gm-5_s
+inv_grid_width	= 2
+inv_grid_height	= 1
+inv_grid_x		= 35
+inv_grid_y		= 37
+
+bullet_hit_power_k	= 0.8
+bullet_speed_k	 	= 0.8
+fire_dispersion_base_k = 1.25
+cam_dispersion_k	= 0.8
+
+;;;;;;;;;;;;;;;;;;;Прибор малошумной стрельбы ВСК94 (9А91)
+[wpn_addon_sil_939]:wpn_sil
+$spawn			= "weapons\addons\sil_545_tgp-a" ; option for Level Editor
+visual          = weapons\upgrade\vsk94_silencer.ogf
+description		= enc_weapons_wpn-addon-silencer_939
+
+cost			= 750
+inv_weight		= 0.7
+
+inv_name		= wpn-addon-silencer_939
+inv_name_short	= wpn-addon-silencer_939_s
+inv_grid_width	= 2
+inv_grid_height	= 1
+inv_grid_x				= 36
+inv_grid_y				= 8
 
 bullet_hit_power_k	= 0.8
 bullet_speed_k	 	= 0.8

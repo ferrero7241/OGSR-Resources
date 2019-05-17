@@ -1,8 +1,18 @@
-;Пистолет-пулемет ЕРМА MП40
+;Пистолет-пулемет ЕРМАМP.40 (сокр. от нем. Maschinenpistole) калибра 9х19 мм Парабеллум фирмы Erfurter Maschinenfabrik (ERMA), разработанный Генрихом Фольмером. Изначально предназначался для вооружения десантников и экипажей боевых машин, однако в дальнейшем поступал на вооружение и в пехотные подразделения Вермахта и СС. Также MP.40 активно использовался и бойцами Украинской повстанческой армии. Множество МР.40 до сих пор лежат в старых схронах времён ВОВ.
+;-(правлено SR)-------------------------------------
+; калибр 				9х19 мм Парабеллум
+; длина ствола 				248 мм
+; магазин				32
+; вес					4,03 кг
+; эффективная дальность стрельбы	120 м 
+; прицельная дальность			150 м
+; дульная скорость пули			380 м/с
+; темп стрельбы				500 в/м 
+;---------------------------------------------------
 [wpn_mp40]:identity_immunities,base_wpn_zoom
 GroupControlSection		= spawn_group
 discovery_dependency 	= 
-$spawn                  = "weapons\mp40"					; option for Level Editor
+$spawn                  = "weapons\mp40"	; option for Level Editor
 $npc			 		= on				; option for Level Editor
 $prefetch 		 		= 8
 scheduled               = off              ; option for ALife Simulator
@@ -26,8 +36,9 @@ cost					= 3100
 
 ammo_elapsed			= 32
 ammo_mag_size		 	= 32
+;27 для набивки магазина патронами в полном объёме использовалось специальное устройство, состоящее из металлического корпуса, который крепился на горловине магазина.
 ammo_class		 		= ammo_9x19_fmj, ammo_9x19_pbp 
-fire_modes				= 1, -1
+fire_modes				= 0, -1
 
 hand_dependence		 	= 1
 single_handed			= 0
@@ -35,6 +46,8 @@ single_handed			= 0
 inv_name				= ars-mp40
 inv_name_short			= ars-mp40
 inv_weight				= 4.1
+; 4,7 кг с патронами
+;Масса патрона 12г.(12,0*32=384.0г.)
 
 inv_grid_width			= 4
 inv_grid_height			= 2
@@ -51,40 +64,47 @@ animation_slot			= 8
 
 ;-----------------------------------------------------------------------------------
 ;params of weapon recoil
-fire_dispersion_base	= 0.22		;угол (в градусах) базовой дисперсии оружия (оружия зажатого в тисках)
+fire_dispersion_base	= 0.234		;0.248		;0.22 угол (в градусах) базовой дисперсии оружия (оружия зажатого в тисках)
 control_inertion_factor	= 1.25f
 disp_rate 			    = 1.75
 
-PDM_disp_base 			= 1.3
-PDM_disp_vel_factor 	= 0.8
-PDM_disp_accel_factor 	= 0.8
-PDM_crouch	 		    = 1.0
-PDM_crouch_no_acc 		= 1.0
-
-;отдача
+;--отдача
 cam_relax_speed         = 5.5		;скорость возврата в исходное положение
 cam_relax_speed_ai      = 120.75
-cam_dispersion          = 0.15		;увеличения угла (в градусах) с каждым выстрелом
-cam_dispersion_inc		= 0.06		;увеличениe cam_dispersion с каждым выстрелом
+cam_dispersion          = 0.13		;увеличения угла (в градусах) с каждым выстрелом
+cam_dispersion_inc		= 0.04		;увеличениe cam_dispersion с каждым выстрелом
 cam_dispertion_frac		= 0.9		;ствол будет подыматься на cam_dispersion*cam_dispertion_frac +- cam_dispersion*(1-cam_dispertion_frac)
 cam_max_angle			= 10.0	    	;максимальный угол отдачи
-cam_max_angle_horz		= 11.0		;(degree) maximum shot horizontal degree 
+cam_max_angle_horz		= 12.0		;(degree) maximum shot horizontal degree 
 cam_step_angle_horz		= 1.1		;(degree) size of step camera moved in horizontal position while shooting
 
-fire_dispersion_condition_factor 	= 5	    	;увеличение дисперсии в процентах при максимальном износе 
-misfire_probability 	= 0.003	;вероятность осечки при максимальном износе 
+fire_dispersion_condition_factor 	= 7	    	;увеличение дисперсии в процентах при максимальном износе 
+misfire_probability 	= 0.004	;вероятность осечки при максимальном износе 
 misfire_condition_k		= 0.05
 condition_shot_dec 		= 0.0003	;увеличение износа при каждом выстреле
 ;-----------------------------------------------------------------------------------
 
-;direction              = 0, 0, 1
-fire_point             	= 0,0.0992,0.988
-flame_particles			= weapons\generic_weapon05
-smoke_particles         = weapons\generic_shoot_00
+;параметры качания ствола в руках ГГ при движении в режиме прицеливания (стрельба навскидку)
+PDM_disp_base 			= 1.15		;множитель, на который умножается базовая дисперсия оружия, когда ГГ стоит на месте в полный рост 
+PDM_disp_vel_factor 	= 0.98		;множитель, на который умножается базовая дисперсия оружия, когда ГГ крутит оружием или бежит
+PDM_disp_accel_factor 	= 0.9		;множитель, на который умножается базовая дисперсия оружия, когда ГГ бежит в спринте
+PDM_crouch	 			= 1.01		;множитель, на который умножается базовая дисперсия оружия, когда ГГ идет пригнувшись
+PDM_crouch_no_acc 		= 1.23		;множитель, на который умножается базовая дисперсия оружия, когда ГГ стоит на месте, пригнувшись
 
-shell_point		 		= 0.0, 0.17, 0.075
+;direction              = 0, 0, 1
+;fire_point             	= 0,0.0992,0.988
+fire_point             		= 0.0, 0.288, 0.55
+
+;flame_particles			= weapons\generic_weapon05
+flame_particles				= amik\weapons\flame_particles\pistol\p_flame_particles_3
+;smoke_particles         = weapons\generic_shoot_00
+smoke_particles         	= amik\weapons\smoke_particles\p_smoke_particles_02
+
+;shell_point		 		= 0.0, 0.17, 0.075
+shell_point		 			= 0,0.216,0.174
 shell_dir		 		= 0.0, 1.0, 0.0
-shell_particles	 		= weapons\arsenal_shells1
+;shell_particles	 		= weapons\arsenal_shells1
+shell_particles	 			= amik\weapons\9x19_shells_r
 
 ;rpm_empty_click 	 	= 200
 
@@ -94,7 +114,8 @@ hit_type 			    = fire_wound
 
 fire_distance          	= 150
 bullet_speed			= 400 ;начальная скорость пули
-rpm                     = 500
+rpm                     = 500 ;скорострельность 540-600 (в различных версиях может составлять 750,900 ?) выс/мин
+
 
 use_aim_bullet			= false		;Поддерживается ли первая суппер пуля
 time_to_aim				= 1.0
@@ -106,7 +127,8 @@ silencer_bullet_speed	= 340
 
 hud                     = wpn_mp40_hud
 ;normal                 = 0, 1, 0
-position         	    = -0.023,-0.023,-0.39
+;position         	    = -0.023,-0.023,-0.39
+position         	    	= -0.026,-0.172,0
 orientation             = 0, 0, 0
 
 ;--STRAP PARAMETERS-----------------------------------------------------------------
@@ -124,11 +146,11 @@ light_var_color		 	= 0.05
 light_var_range		 	= 0.1
 light_time 		 		= 0.2
 
-scope_status			= 2
-silencer_status			= 2
+scope_status			= 0	;2
+silencer_status			= 0	;2 Насколько известно, глушители к пистолетам-пулемётам MP38/40 официально на вооружение не принимались, однако в 1942 г. было разработано и испытано два типа глушителей. Первый разработала и изготовила фирма Арадо из Бранденбурга, он обозначался Hub L41, другой, Hub L42, предложило берлинское товарищество конструкторов и предпринимателей Опель-Шнейдер. Длина глушителя Hub L41 составляла 295 мм, диаметр 43 мм, масса 0,7 кг. Глушитель предполагал использование специальных боеприпасов nahpatrone 08 (патрон ближнего боя) с уменьшенным зарядом и более тяжёлой, чем у штатного патрона, пулей. Глушитель Hub L42 весил 0,6 кг при диаметре 45 мм и длине 350 мм. Данный глушитель также требовал использования nahpatrone 08. Согласно документам, датированным апрелем 1944 г., было изготовлено порядка 1000—1500 глушителей, 500 Hub L41 и 500 Hub L42. 
 grenade_launcher_status	= 0
 
-scope_name 				= wpn_zf4
+scope_name 				= wpn_scope
 scope_x 				= 79
 scope_y 				= -5
 
@@ -149,25 +171,47 @@ zoom_enabled			= true
 
 ;------------------------------ O.G.S.E. sound remake -----------------------
 ;звуки
-snd_draw			   = weapons\mp40\mp40_draw
-snd_holster			   = weapons\generic_avtomat_holster
-snd_shoot			   = weapons\mp40\mp40_shoot
-snd_empty			   = weapons\gen_empty, 0.5
-snd_reload			   = weapons\mp40\mp40_reload, 1.0, 0.75
-snd_silncer_shot	   = weapons\ak47\ak47_silent
+;snd_draw			   = weapons\mp40\mp40_draw
+;snd_holster			   = weapons\generic_avtomat_holster
+;snd_shoot			   = weapons\mp40\mp40_shoot
+;snd_empty			   = weapons\gen_empty, 0.5
+;snd_reload			   = weapons\mp40\mp40_reload, 1.0, 0.75
+;snd_silncer_shot	   = weapons\ak47\ak47_silent
 ;-----------------------------------------------------------------------------
+snd_draw					= weapons\mp40\mp40_draw
+snd_holster					= weapons\mp40\mp40_holster
+snd_shoot			   = weapons\mp40\mp40_shoot			;+ОГСЕ+
+;snd_shoot					= weapons\mp40\mp40y0
+;snd_shoot1					= weapons\mp40\mp40y3
+;snd_shoot2					= weapons\mp40\mp40y1
+;snd_shoot3					= weapons\mp40\mp40x2
+;snd_shoot4					= weapons\mp40\mp40y2
+;snd_shoot5					= weapons\mp40\mp40x1
+;snd_shoot6					= weapons\mp40\mp40x3
+;snd_shoot7					= weapons\mp40\mp40x0
+snd_empty					= weapons\mp40\mp40_empty
+snd_reload					= weapons\mp40\mp40_reload
+snd_silncer_shot			= weapons\mp40\mp40_shot_sil
+snd_close		      		= weapons\generic_holster
 
 ;-----------------------------------------------------------------------------
 ;-- HUD DESCRIPTION
 ;----------------------------------------------------------------------------- 
 [wpn_mp40_hud]
-shell_point         = 0.00, 0.00, 0.00
+;shell_point         = 0.00, 0.00, 0.00
+shell_point          		= 0.00, 0.02, -0.90
 shell_dir		    = 0.0, 0.0, 0.0
 
-fire_point          = -0.06,0.020,0.0  ;1-вперёд/назад  2- вверх/вниз 3-влево/вправо
-fire_bone           = wpn_body
-orientation         = 0, 0, 0
-position            = 0.08,-0.20,0.07 ; первая влево\вправо ; вторая вверх\вниз ;третья fov 0, 0, 0
+;fire_point          = -0.06,0.020,0.0  ;1-вперёд/назад  2- вверх/вниз 3-влево/вправо
+fire_point              	= 0.000000, 0.00000, -0.30000
+;fire_bone           = wpn_body
+fire_bone           = wpn_muzzle
+;position            = 0.08,-0.20,0.07 ; первая влево\вправо ; вторая вверх\вниз ;третья fov
+;высоко position       	= 0.11, -0.065, -0.16
+position             = 0.11, -0.12, -0.16
+;orientation         = 0, 0, 0
+orientation             	= 2, 3.5, 0	
+
 visual              = weapons\mp40\wpn_mp40_hud.ogf
 
 anim_idle			= idle
@@ -179,9 +223,18 @@ anim_shoot			= shoot
 anim_idle_sprint	= idle_sprint
 
 ;смещения HUD для режима приближения
-zoom_offset		    = -0.076,0.061,-0.15
-zoom_rotate_x		= 0.000
-zoom_rotate_y		= 0.000
+;zoom_offset		    = -0.076,0.061,-0.15
+;zoom_offset					= -0.103600,0.056500,0.000000
+;zoom_rotate_x		= 0.000
+;zoom_rotate_x				= 0.061600
+;zoom_rotate_y		= 0.000
+;zoom_rotate_y				= 0.034800
+zoom_offset			= -0.103600,0.103500,0.000000
+zoom_rotate_x		= 0.050600
+zoom_rotate_y		= 0.034800
+
+zoom_rotate_time			= 0.15
+rotate_time					= 0.15
 
 ;-----------------------------------------------------------------------------------
 [wpn_mp40_repair]

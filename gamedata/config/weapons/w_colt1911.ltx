@@ -19,7 +19,7 @@ cform                    	= skeleton
 class                    	= WP_PM
 min_radius               	= 5
 max_radius                  = 30
-description					= enc_weapons1_wpn-colt1911
+description					= enc_weapons1_wpn-colt1911a1
 
 ef_weapon_type				= 5
 
@@ -40,8 +40,8 @@ single_handed				= 1
 slot 				 		= 1		; // primary
 animation_slot		 		= 1		; type of the animation that will be used
 
-inv_name					= wpn-colt1911
-inv_name_short				= wpn-colt1911_s
+inv_name					= wpn-colt1911a1
+inv_name_short				= wpn-colt1911a1_s
 inv_weight					= 1.1
 
 inv_grid_width				= 2
@@ -56,7 +56,7 @@ kill_msg_height		= 24
 
 ;-----------------------------------------------------------------------------------
 ;базовая дисперсия
-fire_dispersion_base		= 0.21	;угол (в градусах) базовой дисперсии оружия (оружия зажатого в тисках)
+fire_dispersion_base		= 0.24	;0.20	;угол (в градусах) базовой дисперсии оружия (оружия зажатого в тисках)
 ;control_inertion_factor		= 1.10f
 
 ;отдача
@@ -109,7 +109,7 @@ time_to_aim					= 1.0
 
 silencer_hit_power       	= 0.50
 silencer_hit_impulse	 	= 100
-silencer_fire_distance   	= 40
+silencer_fire_distance   	= 50
 silencer_bullet_speed	 	= 280
 
 hud                      	= wpn_colt1911_hud
@@ -127,17 +127,21 @@ light_time 		 			= 0.2
 
 ;addons
 scope_status				= 0
-silencer_status				= 2
+silencer_status				= 0		;2
 grenade_launcher_status		= 0
 
 zoom_enabled				= true
 
-snd_draw					= weapons\usp\draw
-snd_holster					= weapons\usp\holster
+;snd_draw					= weapons\usp\draw
+snd_draw					= weapons\pm\draw							;достал
+;snd_holster					= weapons\usp\holster
+snd_holster					= weapons\pm\holster						;убрал
 snd_shoot					= weapons\usp\shoot
-snd_empty					= weapons\usp\empty
+;snd_empty					= weapons\usp\empty
+snd_empty					= weapons\tt33\empty
 snd_reload					= weapons\usp\reload
-snd_close					= weapons\usp\close
+;snd_close					= weapons\usp\close
+snd_close					= weapons\pm\close
 snd_silncer_shot			= weapons\usp\shoot_sil 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -146,7 +150,7 @@ snd_silncer_shot			= weapons\usp\shoot_sil
 
 silencer_name  				= wpn_addon_sil_1143_p		; section name for the attachable silencer
 silencer_x 					= 62						; offset in inventory icon
-silencer_y 					= -15					
+silencer_y 					= -12		;-15					
 
 ;params when silencer is attached 
 ;similar to corresponding params without prefix silencer_
@@ -207,5 +211,30 @@ zoom_rotate_y		= -0.006900
 zoom_hide_crosshair			= true
 
 [wpn_colt1911_repair]
+tech_complication 			= 400
+repair_compatibility = colt1911
+
+
+
+;---------------------------------------------------;Модифицированный кольт (с глушителем) «Хитмэн» AMT Hardballer (в серии известен, как Silverballer) - фирменное оружие Агента 47 и его "визитная карточка"
+[wpn_colt_m1]:wpn_colt1911
+$spawn             				= "weapons\uniq\wpn_colt_m1"
+visual                   	= weapons\colt1911\wpn_colt1911_m1.ogf
+description						= enc_weapons1_wpn-colt1911m1
+inv_name						= wpn-colt1911m1
+inv_name_short					= wpn-colt1911m1_s
+silencer_status					= 2
+condition_shot_dec 				= 0.0009
+cost					 	    = 6500
+inv_grid_x						= 18
+inv_grid_y						= 19						;20 с глушмтелем
+smoke_particles 				= weapons\generic_shoot_00
+flame_particles					= 
+light_disabled					= true
+hud                      	= wpn_colt1911_m1_hud
+[wpn_colt1911_m1_hud]:wpn_colt1911_hud
+visual                   	= weapons\colt1911\wpn_colt1911_m1_hud.ogf
+
+[wpn_colt_m1_repair]
 tech_complication 			= 400
 repair_compatibility = colt1911

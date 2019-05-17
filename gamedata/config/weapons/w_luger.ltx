@@ -1,0 +1,233 @@
+;Люгер/Парабеллум P08 (Borchardt-Luger)
+;http://www.bratishka.ru/archiv/2006/8/2006_8_13.php
+;коробчатый магазин ёмкостью 8 патронов (или барабанный на 32 патрона)
+;??приклад
+;???брамит
+;
+;Вариант М.1904 стал первым массовым вариантом пистолета «Люгер». Первая закупка этого оружия произошла после того, как германским флотом был принят на вооружение «9-мм Зельбстладепистоле 1904» с длиной ствола 147.32 мм, впоследствии известный как «морская модель».
+;В вариант М.1904 были внесены определённые нововведения, которые затем стали стандартными для всех пистолетов «Люгер». Обычный пружинный выбрасыватель был заменён выбрасывателем нового типа с вертикальным зубом. Выбрасыватель совмещен с указателем наличия патрона в патроннике. Находящийся в патроннике патрон поднимает выбрасыватель вверх. Данная модель имеет перекидной прицел на дистанции 100 и 200 м. Внизу тыльной части рукоятки сделан паз для крепления кобуры-приклада[4]. Калибр 9 мм, длина 262 мм, длина ствола 147 мм, вес 915 г, начальная скорость пули 350 м/с.
+;С 1905 г. по 1918 г. фирмой DWM было изготовлено 81250 пистолетов Модели 1904 г. для военно-морских сил Германии.
+;
+;«Парабеллум новой модели» М.1906 впервые были внесены серьёзные изменения. Изменена конструкция предохранителя; сам он был перемещён вниз и стал запирать шептало. Верхняя часть затвора теперь стала иметь полукруглую форму, захваты шарнира выполнялись с плоской, рифлёной в форму ромба поверхностью, а скоба для предотвращения отскоков была удалена.
+;
+;Пистолет Люгера образца 1908 года отличается от М.1906 тем, что автоматический предохранитель был удалён и остался только флажковый. М.1908 чаще всего назывался просто «Пистолет 08», или P08. Подобно пистолету образца 1906 года, он имеет витую возвратную пружину цилиндрической формы и экстрактор, который совмещён с указателем наличия патрона в патроннике. Со всеми изменениями новая «морская модель» 1904 года выпускалась с прежним названием. Всего до 1918 года оружейной компанией DWM было выпущено 908 275 P08 для вооружения армии и 1500 пистолетов для гражданских целей. В Эрфурте с 1911 до 1918 года их произвели 663 600 единиц.
+;
+;Так называемая «Артиллерийская модель» — вариант 9 мм пистолета Люгера, получивший название Lange Р08 (LP 08), был принят 3 июня 1913 года на вооружение частей Пруссии, Саксонии и Вюртемберга. Это пистолет-карабин, имеющий следующие характеристики:
+;длина ствола 203 мм, длина 317 мм, вес 1,070 кг, начальная скорость пули 370 м/c. Рассчитан на стрельбу до 800 м с приставной деревянной кобурой-прикладом. Пистолет предназначен для вооружения расчетов орудий полевой артиллерии и унтер-офицеров пулеметных команд. LP 08 с диском и прикладом.
+;Новая модель явилась своеобразным завершением линии пистолетов-карабинов. В 1917 году, инженером Леером, к нему был разработан 32-патронный дисковый магазин (Trommelmagazin 08). Впоследствии этот магазин использовался в пистолете-пулемёте MP-18.
+;
+;---------------------------------------------------
+[wpn_luger]:identity_immunities,base_wpn_zoom
+GroupControlSection			= spawn_group
+discovery_dependency 		= 
+$spawn                   	= "weapons\luger"					; option for Level Editor
+$npc			 			= on				; option for Level Editor
+$prefetch 					= 8
+scheduled            		= off              ; option for ALife Simulator
+cform                    	= skeleton
+class                    	= WP_PM
+min_radius               	= 5
+max_radius               	= 30
+description					= enc_weapons1_wpn-luger08
+
+ef_weapon_type				= 5
+
+;-----------------------------------------------------------------------------------
+holder_range_modifier	= 0.7
+holder_fov_modifier		= 1.5
+;-----------------------------------------------------------------------------------
+
+cost					 	= 350
+
+ammo_elapsed		 		= 8
+ammo_mag_size		 		= 8
+ammo_class		 			= ammo_9x19_fmj, ammo_9x19_pbp
+
+
+hand_dependence		 		= 1
+single_handed				= 1
+
+slot 				 		= 1		; // primary
+animation_slot		 		= 1		; type of the animation that will be used
+
+
+inv_name					= wpn-luger08
+inv_name_short				= wpn-luger08
+inv_weight					= 0.88
+
+inv_grid_width				= 2
+inv_grid_height				= 1
+inv_grid_x			= 77
+inv_grid_y			= 24
+
+kill_msg_x					= 104
+kill_msg_y					= 178
+kill_msg_width				= 28
+kill_msg_height				= 21
+
+;-----------------------------------------------------------------------------------
+;базовая дисперсия
+fire_dispersion_base		= 0.23  ;угол (в градусах) базовой дисперсии оружия (оружия зажатого в тисках)
+control_inertion_factor		= 1.10f
+
+;отдача
+cam_relax_speed         	= 10;	;скорость возврата в исходное положение
+cam_relax_speed_ai        	= 120.75
+cam_dispersion          	= 1.5	;увеличения угла (в градусах) с каждым выстрелом
+cam_dispersion_inc		= 0.3	;увеличениe cam_dispersion с каждым выстрелом
+cam_dispertion_frac		= 1.0	;ствол будет подыматься на cam_dispersion*cam_dispertion_frac +- cam_dispersion*(1-cam_dispertion_frac)
+cam_max_angle			= 8.0	;13.0 максимальный угол отдачи
+cam_max_angle_horz		= 4.0	;(degree) maximum shot horizontal degree 
+cam_step_angle_horz		= 0.5	;0.7 (degree) size of step camera moved in horizontal position while shooting
+
+fire_dispersion_condition_factor = 3	;увеличение дисперсии в процентах при максимальном износе 
+misfire_probability 		= 0.001	;вероятность осечки при максимальном износе
+misfire_condition_k					= 0.05 
+condition_shot_dec 			= 0.0009 ;увеличение износа при каждом выстреле
+;-----------------------------------------------------------------------------------
+
+direction                	= 0, 0, 1
+fire_point					= 0.000000,0.150000,0.150000
+
+flame_particles				= amik\weapons\flame_particles\flame_particles_04
+smoke_particles				= amik\weapons\smoke_particles\p_smoke_particles_02
+rpm_empty_click 	 		= 200
+
+shell_point		 			= 0.05, 0.148, 0.053
+shell_dir		 			= 0.0, 0.0, 0.4
+shell_particles	 			= amik\weapons\9x19_shells_r
+
+PDM_disp_base 				= 1.0
+PDM_disp_vel_factor 		= 0.6
+PDM_disp_accel_factor 		= 0.6
+PDM_crouch	 				= 1.0
+PDM_crouch_no_acc 			= 1.0
+
+; ttc
+hit_power               = 0.47
+hit_impulse		 	= 15
+hit_type 					= fire_wound
+hit_rate			= 1.85
+
+fire_distance       		= 50 
+bullet_speed		= 360	;начальная скорость пули
+rpm                 		= 300
+; end ttc
+
+use_aim_bullet				= false		;Поддерживается ли первая суппер пуля
+time_to_aim					= 1.0	
+
+silencer_hit_power       	= 0.32
+silencer_hit_impulse	 	= 90
+silencer_fire_distance   	= 50
+silencer_bullet_speed	 	= 220
+
+hud                      	= wpn_luger_hud
+normal                   	= 0, 1, 0
+position                 	= -0.021, -0.10, 0.0
+orientation              	= 0, 0, 0
+
+startup_ammo             	= 90
+
+visual                   	= weapons\luger\wpn_luger_p08.ogf
+
+light_color		 			= 0.6,0.5,0.3
+light_range		 			= 3.0
+light_var_color		 		= 0.05
+light_var_range		 		= 0.5
+light_time 		 			= 0.2
+
+;addons
+scope_status				= 0
+silencer_status				= 2
+grenade_launcher_status		= 0
+
+zoom_enabled				= true
+
+;звуки
+snd_draw					= weapons\fort17\fort_draw
+;snd_draw					= weapons\pm\draw							;достал
+;snd_holster					= weapons\generic_holster
+snd_holster					= weapons\pb\holster						;убрал
+snd_shoot					= weapons\fort17\fort_shoot
+;snd_empty					= weapons\fort17\fort_empty
+snd_empty					= weapons\pb\empty, 0.7
+;-snd_reload					= weapons\fort17\fort_reload
+snd_reload					= weapons\aps\reload
+;snd_close					= weapons\fort17\fort_close
+snd_close					= weapons\pb\generic_holster
+snd_silncer_shot			= weapons\fort17\fort_shot_sil
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; silencer
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+silencer_name  				= wpn_addon_sil_m1895
+silencer_x                  = 51
+silencer_y                  = -14				
+
+;params when silencer is attached 
+;similar to corresponding params without prefix silencer_
+
+;silencer_flame_particles 	= weapons\generic_weapon01
+silencer_smoke_particles 	= weapons\generic_shoot_00
+
+silencer_light_color		= 0.6,0.5,0.3
+silencer_light_range		= 0.01
+silencer_light_var_color	= 0.05
+silencer_light_var_range	= 0.5
+silencer_light_time 		= 0.2
+
+[wpn_luger_hud]
+
+allow_inertion		= true
+
+shell_point     	   	 	= 0,0,0 
+shell_dir			     	= 0.0, 1.0, 0
+;shell_bone              	= gilza
+
+fire_point			= 0.010000,0.010000,0.000000
+fire_bone = wpn_body
+
+
+;position						= -0.045000,-0.16500,-0.102500 надо выше и правей
+;position					= -0.045000,-0.11,-0.102500
+
+position			= 0.120000,-0.095000,0.167000
+orientation			= 0.000000,2.000000,0.000000
+
+visual                   	= weapons\luger\wpn_luger_p08_hud.ogf
+
+;в модели
+anim_holster				= luger_holster
+anim_holster_empty			= luger_holster
+anim_idle				= luger_idle
+anim_empty				= luger_aim
+anim_reload				= luger_reload
+anim_reload_speed_k = 1.3
+anim_reload_empty			= luger_reload
+anim_reload_misfire			= luger_reload
+anim_draw				= luger_draw
+anim_draw_empty				= luger_draw
+anim_shoot				= luger_shot
+anim_shot_last				= luger_shot
+anim_close				= luger_holster
+anim_idle_aim				= luger_aim
+anim_idle_sprint			= luger_sprint
+anim_idle_sprint_empty		        = luger_sprint
+
+;смещения HUD для режима приближения
+zoom_offset			= -0.120200,0.052000,-0.012000
+zoom_rotate_x		= 0.021400
+zoom_rotate_y		= 0.000600
+
+;прячем перекрестие прицела в зуме
+zoom_hide_crosshair		= true
+
+;время поворота HUD (сек)
+zoom_rotate_time		= 0.1
+rotate_time			= 0.1
+
+[wpn_luger_repair]
+tech_complication = 400
+repair_compatibility = luger

@@ -1,9 +1,18 @@
-;‘орт-12
+;Ёкспериментальный Fort-17
+;
+;gameplay\
+;+character_desc_kishka
+;+character_desc_military
+;-encyclopedia_weapons
+;
+;+\misc\death_generic патроны
+;
+;
 ;---------------------------------------------------
-[wpn_fort]:identity_immunities,base_wpn_zoom
+[wpn_fort_m1]:identity_immunities,base_wpn_zoom
 GroupControlSection			= spawn_group
 discovery_dependency 		= 
-$spawn                   	= "weapons\fort"					; option for Level Editor
+$spawn              		= "weapons\uniq\wpn_fort_m1"		; option for Level Editor
 $npc			 			= on				; option for Level Editor
 $prefetch 					= 8
 scheduled            		= off              ; option for ALife Simulator
@@ -11,7 +20,7 @@ cform                    	= skeleton
 class                    	= WP_PM
 min_radius               	= 5
 max_radius               	= 30
-description					= enc_weapons1_wpn-fort
+description					= enc_weapons1_wpn-fort_desc		;enc_weapons1_wpn-fort_m1
 
 ef_weapon_type				= 5
 
@@ -20,10 +29,10 @@ holder_range_modifier	= 0.7
 holder_fov_modifier		= 1.5
 ;-----------------------------------------------------------------------------------
 
-cost					 	= 350
+cost					 	= 3000		;350
 
-ammo_elapsed		 		= 12
-ammo_mag_size		 		= 12
+ammo_elapsed		 		= 13
+ammo_mag_size		 		= 13
 ammo_class		 			= ammo_9x18_fmj, ammo_9x18_pmm
 
 
@@ -33,15 +42,14 @@ single_handed				= 1
 slot 				 		= 1		; // primary
 animation_slot		 		= 1		; type of the animation that will be used
 
-
-inv_name					= wpn-fort
-inv_name_short				= wpn-fort
-inv_weight					= 0.83
+inv_name					= wpn-fort						;wpn-fort_m
+inv_name_short				= wpn-fort_s					;wpn-fort_m
+inv_weight					= 0.68			;0.83
 
 inv_grid_width				= 1
 inv_grid_height				= 1
 inv_grid_x					= 10
-inv_grid_y					= 8
+inv_grid_y					= 8				;21 (_m1)
 
 kill_msg_x					= 104
 kill_msg_y					= 178
@@ -102,10 +110,10 @@ time_to_aim					= 1.0
 
 silencer_hit_power       	= 0.38
 silencer_hit_impulse	 	= 40
-silencer_fire_distance   	= 100
+silencer_fire_distance   	= 50
 silencer_bullet_speed	 	= 220
 
-hud                      	= wpn_fort_hud
+hud                      	= wpn_fort_m1_hud
 normal                   	= 0, 1, 0
 position                 	= -0.021, -0.10, 0.0
 orientation              	= 0, 0, 0
@@ -129,7 +137,8 @@ zoom_enabled				= true
 
 ;звуки
 snd_draw					= weapons\fort17\fort_draw
-snd_holster					= weapons\generic_holster
+;snd_holster					= weapons\generic_holster
+snd_holster					= weapons\pm\holster						;убрал
 snd_shoot					= weapons\fort17\fort_shoot
 snd_empty					= weapons\fort17\fort_empty
 snd_reload					= weapons\fort17\fort_reload
@@ -159,7 +168,7 @@ silencer_light_time 		= 0.2
 ;-----------------------------------------------------------------------------
 ;-- HUD DESCRIPTION
 ;----------------------------------------------------------------------------- 
-[wpn_fort_hud]
+[wpn_fort_m1_hud]
 
 allow_inertion		= true
 
@@ -208,6 +217,6 @@ zoom_hide_crosshair		= true
 zoom_rotate_time		= 0.1
 rotate_time			= 0.1
 
-[wpn_fort_repair]
+[wpn_fort_m1_repair]
 tech_complication = 400
 repair_compatibility = fort

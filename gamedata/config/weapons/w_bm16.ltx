@@ -12,7 +12,7 @@ cform                    	= skeleton
 class                    	= WP_BM16
 min_radius               	= 0
 max_radius               	= 20
-description					= enc_weapons1_wpn-bm16
+description					= enc_weapons1_wpn-bm-16
 
 ef_main_weapon_type	= 1
 ef_weapon_type		= 7 ;4
@@ -28,10 +28,10 @@ weapon_class			 	= shotgun
 ammo_elapsed			= 2
 ammo_mag_size			= 2
 ammo_class			= ammo_12x70_kart, ammo_12x76_zhekan
-
+;fire_modes					= 0, 1
 ;-----------------------------------------------------------------------------------
 ;базовая дисперсия
-fire_dispersion_base		= 0.44 	;угол (в градусах) базовой дисперсии оружия (оружия зажатого в тисках)
+fire_dispersion_base		= 0.456 	;0.46 	;+0.44 угол (в градусах) базовой дисперсии оружия (оружия зажатого в тисках)
 control_inertion_factor		= 1.2f
 disp_rate 			= 1.3
 
@@ -57,8 +57,8 @@ single_handed				= 0
 slot 					= 1		; // secondary
 animation_slot				= 3 		; type of the animation that will be used
 
-inv_name				= wpn-bm16
-inv_name_short				= wpn-bm16
+inv_name				= wpn-bm-16
+inv_name_short				= wpn-bm-16_s
 inv_weight					= 1.9
 
 inv_grid_width				= 3
@@ -86,7 +86,7 @@ hit_impulse      	= 20
 hit_type 			= fire_wound
 hit_rate			= 1.85
 
-fire_distance       = 100
+fire_distance       = 50	;100
 bullet_speed		= 300	;начальная скорость пули
 rpm                 = 500
 ; end ttc
@@ -129,15 +129,23 @@ zoom_enabled				= false
 
 ;------------------------------ O.G.S.E. sound remake -----------------------
 ;звуки
-snd_draw					= weapons\bm16\bm16_draw
-snd_holster					= weapons\generic_shotgun_holster
-snd_shoot					= weapons\bm16\bm16_shoot
-snd_empty					= weapons\bm16\bm16_empty
-snd_reload					= weapons\bm16\bm16_reload		;reload both
-snd_shoot_duplet			= weapons\bm16\bm16_shoot_both
-snd_shoot_1					= weapons\bm16\bm16_shoot
-snd_reload_1				= weapons\bm16\bm16_reload_one		;reload left
+;snd_draw					= weapons\bm16\bm16_draw
+;snd_holster					= weapons\generic_shotgun_holster
+;snd_shoot					= weapons\bm16\bm16_shoot
+;snd_empty					= weapons\bm16\bm16_empty
+;snd_reload					= weapons\bm16\bm16_reload		;reload both
+;snd_shoot_duplet			= weapons\bm16\bm16_shoot_both
+;snd_shoot_1					= weapons\bm16\bm16_shoot
+;snd_reload_1				= weapons\bm16\bm16_reload_one		;reload left
 ;-----------------------------------------------------------------------------
+snd_draw					= weapons\generic_draw
+snd_holster					= weapons\generic_holster
+snd_shoot					= weapons\bm16\bm16_shoot
+snd_empty					= weapons\gen_empty
+snd_reload					= weapons\bm16\bm16_reload_lr
+snd_shoot_duplet			= weapons\bm16\bm16_shoot
+snd_shoot_1					= weapons\bm16\bm16_shoot
+snd_reload_1				= weapons\bm16\bm16_reload_l
 ;-----------------------------------------------------------------------------
 ;-- HUD DESCRIPTION
 ;-----------------------------------------------------------------------------
@@ -146,42 +154,59 @@ snd_reload_1				= weapons\bm16\bm16_reload_one		;reload left
 allow_inertion		= true
 
 shell_point		 	= 0.0, 0.0, 0.0
+;fire_point 			= -0.276400,0.000000,0.040000
+;fire_point2 		= -0.276400,0.000000,0.040000
+;fire_bone 			= wpn_barrel_0
+fire_point               	= 0,0,-0.4
+fire_point2              	= 0,0,0
+fire_bone                	= muzzle
 
-fire_point 			= -0.276400,0.000000,0.040000
-fire_point2 		= -0.276400,0.000000,0.040000
-fire_bone 			= wpn_barrel_0
-orientation			= 0, 0, 0
-position			= 0, 0, 0
+;orientation			= 0, 0, 0
+;position			= 0, 0, 0
+position					= 0.06,-0.11,0.05
+orientation					= 2,2,0
+
 visual 				= weapons\bm_16\wpn_bm-16_hud.ogf
 
-anim_idle			= idle
-anim_reload			= reload ;reload both
-anim_draw			= draw
-anim_holster		= holster
-anim_shoot			= shoot_left ;shot left
-anim_shoot_both 	= shoot
-anim_idle_aim		= idle_aim
-anim_idle_sprint	= idle_sprint
+anim_idle					= idle_both
+anim_idle_1					= idle_one
+anim_idle_2					= idle
+anim_idle_aim				= aim_both
+anim_zoomed_idle_1			= aim_one
+anim_zoomedidle_2			= aim
+anim_idle_sprint			= sprint
 
-anim_reload_1		= reload_left ;reload left
-anim_shoot_1		= shoot_right ;shot right
+anim_draw					= draw
+anim_draw_speed_k    = 2.3			;достал
+;-anim_draw_1					= draw
+;-anim_draw_2					= draw
+;длинное anim_draw_speed_k    = 1.6			;достал
 
-anim_idle_1			= idle_cock
-anim_idle_2			= idle_cocks
+anim_holster				= holster
+anim_holster_speed_k = 3.2			;убрал
+;-anim_holster_1				= holster
+;-anim_holster_2				= holster
+;длинное anim_holster_speed_k = 2.8			;убрал
 
-anim_zoomed_idle_1	= idle_cock_aim
-anim_zoomedidle_2	= idle_cocks_aim
+anim_shoot					= shoot_one
+anim_shoot_1				= shoot_one
+anim_shoot_both 			= shoot_both
+
+anim_reload					= reload_both
+anim_reload_speed_k = 1.4			;звук отстаёт
+anim_reload_1				= reload_one
+anim_reload_1_speed_k = 1.8			;звук отстаёт
 
 ;смещения HUD для режима приближения
-zoom_offset			= -0.167900,0.066560,0.000000
-zoom_rotate_x		= -0.028000
-zoom_rotate_y		= -0.003900
+zoom_offset					= -0.138,0.085,0.075
+zoom_rotate_x				= 0.02
+zoom_rotate_y				= 0.0385
 
 ;прячем перекрестие прицела в зуме
 zoom_hide_crosshair		= true
 
-zoom_rotate_time		= 0.2
-rotate_time			= 0.2
+zoom_rotate_time	= 0.15	;0.2
+rotate_time			= 0.15	;0.2
 
 [wpn_bm16_repair]
 tech_complication = 100
@@ -192,7 +217,7 @@ repair_compatibility = bm16
 ;--------------------------------------
 [wpn_bm16_full]:wpn_bm16
 $spawn				= "weapons\bm16_full"	; option for Level Editor
-description			= enc_weapons1_wpn-bm16_full
+description			= enc_weapons1_wpn-bm-16_full
 min_radius               	= 10
 max_radius               	= 70
 holder_range_modifier	= 1.0
@@ -207,8 +232,8 @@ cam_max_angle_horz	= 12.0	;(degree) maximum shot horizontal degree
 fire_dispersion_condition_factor = 7
 condition_shot_dec 		= 0.0015
 slot 				= 2
-inv_name			= wpn-bm16_full
-inv_name_short			= wpn-bm16_full
+inv_name			= wpn-bm-16_full
+inv_name_short			= wpn-bm-16_full_s
 inv_weight			= 2.9
 inv_grid_width			= 6
 inv_grid_height		= 2
@@ -226,7 +251,8 @@ PDM_disp_accel_factor 		= 1.6
 PDM_crouch	 		= 1.0
 PDM_crouch_no_acc 		= 1.0
 
-hit_power        	= 0.95
+fire_distance       = 150	;100
+hit_power        	= 0.81	;0.95
 hit_impulse      		= 30
 bullet_speed			= 330	;начальная скорость пули
 rpm                 	= 500
@@ -237,21 +263,31 @@ zoom_enabled				= true
 
 
 [wpn_bm-16_full_hud]:wpn_bm16_hud
+;fire_point               	= 0.0,0.000000,0.040000
+;fire_point2              	= 0.0,0.000000,0.040000
+fire_point               	= 0,0,-0.4
+fire_point2              	= 0,0,0
+fire_bone                	= muzzle
+position					= 0.06,-0.11,0.05
+orientation					= 2,2,0
 
-fire_point               	= 0.0,0.000000,0.040000
-fire_point2              	= 0.0,0.000000,0.040000
 visual                   	= weapons\bm_16\wpn_bm-16_full_hud.ogf
 
-;zoom_offset		= -0.119,0.01,0.1
-;zoom_rotate_x		= -0.005
-;zoom_rotate_y		= -0.053
+anim_draw_speed_k    = 1.6			;достал
+anim_holster_speed_k = 2.8			;убрал
 
-zoom_offset			= -0.17,0.094,-0.29
-zoom_rotate_x		= 0.0
+zoom_offset					= -0.138,0.085,0.075
+zoom_rotate_x				= 0.02
+zoom_rotate_y				= 0.0385
 
-zoom_rotate_time		= 0.5
-rotate_time			= 0.5
+zoom_rotate_time	= 0.25	;0.5
+rotate_time			= 0.25	;0.5
+
 
 [wpn_bm16_full_repair]
 tech_complication = 100
 repair_compatibility = bm16
+
+
+[wpn_bm16_arena]:wpn_bm16
+$spawn             		= "weapons\arena\wpn_bm16_arena"

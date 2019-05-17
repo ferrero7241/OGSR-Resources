@@ -17,13 +17,20 @@ inv_grid_height	= 1
 inv_grid_x		= 13
 inv_grid_y		= 9
 
-k_dist			= 0.75
-k_disp			= 6.0
-k_hit			= 0.52
-k_impulse		= 1.5
-k_pierce		= 1.12
-buck_shot		= 15
-wm_size         = 0.04
+k_dist			= 0.75					;0.75
+k_disp			= 6.66					;6.0
+k_hit			= 0.666					;0.52
+k_impulse		= 1.3					;1.5
+buck_shot		= 15					;+13		
+;дробь "00" - 4,5	мм		;"000" - 4,75 мм
+;картечь I (No.000) - 9 мм, 8 шт		;картечь II (No.00) - 8,5 мм		;
+;картечь №3 (No.0) 8мм - 9 шт в патроне 12 калибра. К этому боеприпасу склоняются в первую очередь армейские инструктора, по большей мере из США. Именно выстрел этим патроном (в котором 9 картечин) приравнивают к очереди из пистолета-пулемета. Условно, конечно. Реальная мощность картечин уступает кинетической энергии того же 9х19.
+;Самая мелкая дробь 11, ее размер 1,5 мм, далее размер дроби увеличивается с каждым номером на 0,25 мм и достигает 5 мм в диаметре у дроби с номером 0000.
+impair			= 1.05
+wm_size         = 0.06					;0.04
+;tracer			= off
+;explosive		= off
+
 
 ;------------------------------
 [ammo_12x76_zhekan]:ammo_base
@@ -45,13 +52,26 @@ inv_grid_x		= 11
 inv_grid_y		= 10
 
 k_dist			= 1.5
-k_disp			= 1.0
-k_hit			= 2.7
-k_impulse		= 1.6
+k_disp			= 1.3
+k_hit			= 3.0		;2.9	;2.7
+k_impulse		= 2.5		;1.6
+k_pierce		= 1.13		;проламывает
 impair			= 1.15
 wm_size         = 0.08
-tracer			= on
-explosive		= on
+;tracer			= on
+;explosive		= on
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;фейк-боеприпас для оружия без магазина 
+[ammo_12x70_dummy]:ammo_12x70_kart
+;$spawn			= "weapons\ammo\ammo_wpn_dummy" ; option for Level Editor
+;visual          = physics\equipment_cache\equipment_box_01_case.ogf
+cost			= 0
+box_size		= 0
+inv_weight		= 0.001
+inv_name		= ammo-12x70-dummy
+inv_name_short	= ammo-12x70-dummy_s
+description		= enc_weapons_ammo-12x70-dummy
 
 [mag_8_12x76_zhekan]:ammo_12x76_zhekan
 box_size	= 1

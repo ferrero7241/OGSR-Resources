@@ -15,10 +15,8 @@
 
 ;;;;; Автоматы, ПП ;;;;;
 #include "w_groza.ltx"
-#include "w_val.ltx"
 #include "w_fn2000.ltx"
 #include "w_g36.ltx"
-#include "w_m16a1_sk1.ltx"
 #include "w_sig550.ltx"
 #include "w_mac10.ltx"
 #include "w_mp5.ltx"
@@ -33,15 +31,12 @@
 #include "w_awm.ltx"
 
 ;;;;; Пулеметы ;;;;;
-#include "w_rpk74_sk1.ltx"
 #include "w_pkm.ltx"
 #include "w_m_134.ltx"
 
 ;;;;; Дробовики ;;;;;
 #include "w_bm16.ltx"
 #include "w_toz34.ltx"
-#include "w_sayga12k_sk1.ltx"
-#include "w_sayga12c.ltx"
 #include "w_spas12.ltx"
 #include "w_wincheaster1300.ltx"
 
@@ -89,6 +84,40 @@
 #include "w_ak102.ltx"
 #include "w_swd.ltx"
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; новое (ввести)
+#include "w_oz33.ltx"
+#include "w_apb.ltx"
+#include "w_luger.ltx"
+#include "w_m712.ltx"
+#include "w_m1895.ltx"
+#include "w_mp443.ltx"
+#include "w_gsh18.ltx"
+
+#include "w_aek.ltx"
+#include "w_rpk74p.ltx"
+#include "w_masterkey.ltx"
+#include "w_vepr12tor.ltx"
+#include "w_mosin.ltx"
+#include "w_mp153.ltx"			--заменяет wpn_spas12_m1
+#include "w_sr3m.ltx"	; СР-3М на базе АС
+#include "w_vsk94.ltx"	; 9А-91 (+апгрейд до ВСК-94)
+
+#include "w_kedr.ltx"		; 
+#include "w_pp2000.ltx"		; 
+#include "w_sks.ltx"		; 
+#include "w_l85.ltx"		; 
+#include "w_pkp.ltx"		;
+#include "w_dshkm.ltx"		;
+#include "w_m16a1_sk1.ltx"		;xm16e1
+
+;;;;; вырезан в ОГС-Р, вернул
+#include "w_gravigun.ltx"
+
+
+
+
+
+
 ;------------------------------
 ; Огнестрельное оружие
 ;------------------------------
@@ -103,13 +132,19 @@ tracer_length_min				= 2		;0.2
 hit_probability_max_dist		= 10;
 
 gravity_const					= 9.81
-;сопротивление воздуха, процент, который отнимается от скорости полета пули
-air_resistance_k				= 0.25 ;0.3
 
-;размер шага времени (в милисекундах), по которому проигрываются 
-time_step						= 33
+;сопротивление воздуха, процент, который отнимается от скорости полета пули (АМК Снайпер 1.82; ОГСЕ 0.25) Оригинал ?
+air_resistance_k				= 0.25
+
+;размер шага времени (в милисекундах), по которому проигрываются (АМК Снайпер было 1 а в ОГСЕ почему-то 33) Оригинал ?
+time_step						= 10
+
 ;минимальная скорость (м/с), на которой пуля еще считается и показывается
 min_bullet_speed				= 3.0
+
+;"фирменный" рикошет ОГСЕ не настраиваемый, это все в движке. Считается по уравнению в котором учтены скорость пули, пробиваемость поверхности и угол столкновения.
+;попадания дают фонтанчик партиклов из земли в течение трех секунд - сильно упала скорость пуль и они из-за этого не рикошетят и время контакта с землей у них стало намного выше
+
 ;cколько процентов энергии потеряет пуля при столкновении с материалом (при падении под прямым углом)
 collision_energy_min			= 0.80 ;0.75; 0.90
 ;сколько процентов энергии останется у пули при любом столкновении
@@ -137,17 +172,16 @@ color_4 = 0.0, 0.0, 0.1 ; blue
 ; k_impulse = коэффициент "толчка" при попадании. Походу работает только на "неживых" 
 
 ; k_pierce = коэффициент бронебойности. hit_power оружия на бронебойность влияния не оказывает.
-; 1.1  - не пробивается забор и жесть.
-; 1.12 - пробивается забор и застревает в первой стенке халупы.
-; 1.15 - пробивается забор и застревает в первой стенке халупы.
-; 1.2  - пробивается забор и застревает в первой стенке халупы.
-; 1.25 - ствол толстого дерева не пробивается. пробивается забор и первая стенка, застревает во второй стенке халупы.
-; 1.35 - ствол толстого дерева не пробивается.
-; 1.4  - ствол толстого дерева не пробивается.
-; 1.45 - ствол толстого дерева пробивается
-; 1.5  - ствол толстого дерева пробивается
-; бетон не пробивается никогда 
- 
+	; 1.1  - не пробивается забор и жесть.
+	; 1.12 - пробивается забор и застревает в первой стенке халупы.
+	; 1.15 - пробивается забор и застревает в первой стенке халупы.
+	; 1.2  - пробивается забор и застревает в первой стенке халупы.
+	; 1.25 - ствол толстого дерева не пробивается. пробивается забор и первая стенка, застревает во второй стенке халупы.
+	; 1.35 - ствол толстого дерева не пробивается.
+	; 1.4  - ствол толстого дерева не пробивается.
+	; 1.45 - ствол толстого дерева пробивается
+	; 1.5  - ствол толстого дерева пробивается
+	; бетон не пробивается никогда 
 ; impair = коэффициент износа ствола от пули 
 
 ; buck_shot = кол-во составляющих в пуле (напр картечь - 4, пуля - 1) 
@@ -166,7 +200,7 @@ $prefetch 		= 64
 belt			= true
 impair			= 1
 buck_shot		= 1
-tracer			= off
+tracer			= off		;абсолютно некрасивый текстурный трассер, ещё более ненатурально через оптику выглядит
 explosive		= off
 k_dist			= 1
 k_disp			= 1
@@ -176,13 +210,13 @@ k_pierce		= 1
 wm_size         = 0.05
 
 ;------------------------------
-;фейк-боеприпас для бинокля
+;фейк-боеприпас для бинокля ТЧ
 [ammo_binoc_01_dummy]:ammo_base
-$spawn			= "weapons\ammo\ammo_binoc_dummy" ; option for Level Editor
+$spawn			= "weapons\ammo\ammo_binoc_02_dummy" ; option for Level Editor
 description		= binocular
 
 cost			= 0
-box_size		= 1
+box_size		= 0
 
 inv_name		= addon_bino
 inv_name_short	= addon_bino_s
@@ -190,19 +224,27 @@ inv_weight		= 0.1
 
 inv_grid_width	= 2
 inv_grid_height	= 1
-inv_grid_x		= 74
-inv_grid_y		= 10
+inv_grid_x		= 74	;16
+inv_grid_y		= 10	;8
 
 wm_size         = 0.01
 
+[ammo_binoc_02_dummy]:ammo_binoc_01_dummy
+;$spawn			= "weapons\ammo\ammo_binoc_02_dummy" ; option for Level Editor
+inv_grid_x		= 16
+inv_grid_y		= 8
+inv_name		= addon_bino_nv
+inv_name_short	= addon_bino_nv_s
+
+;фейк-боеприпас для ножа
 [ammo_knife_dummy]:ammo_base
-$spawn			= "weapons\ammo\ammo_binoc_dummy" ; option for Level Editor
-description		= binocular
+$spawn			= "weapons\ammo\ammo_knife_dummy" ; option for Level Editor
+description		= enc_addon_knife
 
 cost			= 0
-box_size		= 1
-inv_name		= addon_bino
-inv_name_short	= addon_bino_s
+box_size		= 0
+inv_name		= addon_knife
+inv_name_short	= addon_knife_s
 inv_weight		= 0.1
 
 inv_grid_width	= 2
@@ -210,20 +252,13 @@ inv_grid_height	= 1
 inv_grid_x		= 11
 inv_grid_y		= 12
 
-[ammo_binoc_02_dummy]:ammo_binoc_01_dummy
-inv_grid_x		= 16
-inv_grid_y		= 8
-inv_name		= addon_bino_nv
-inv_name_short	= addon_bino_nv_s
+[ammo_knife1_dummy]:ammo_knife_dummy
+$spawn			= "weapons\ammo\ammo_knife1_dummy" ; option for Level Editor
 
-;фейк-боеприпас для бинокля ТЧ
-;[ammo_binocular_dummy]:ammo_binoc_dummy
-;$spawn			= "weapons\ammo\ammo_binocular_dummy" ; option for Level Editor
-;inv_grid_x					= 16
-;inv_grid_y					= 8
+
 ;------------------------------
 
-;Магазинное питания оружия
+;Магазинное питания оружия #include "ammo\magazines.ltx"
 #include "ammo\9x18.ltx"
 #include "ammo\9x19.ltx"
 #include "ammo\9x39.ltx"
@@ -233,11 +268,11 @@ inv_name_short	= addon_bino_nv_s
 #include "ammo\556x45.ltx"
 #include "ammo\762x25.ltx"
 #include "ammo\762x39.ltx"
+#include "ammo\86x70.ltx"
 #include "ammo\762x54.ltx"
 #include "ammo\1143x23.ltx"
 #include "ammo\gauss_ammo.ltx"
-#include "ammo\magazines.ltx"
-#include "ammo\86x70.ltx"
+#include "ammo\1270x108.ltx"
 
 
 ;Остатки ОГСЕ
@@ -249,15 +284,15 @@ $spawn			= "weapons\ammo\ammo_arbolt" ; option for Level Editor
 visual          = weapons\crossbow\strela.ogf
 cost			= 150
 box_size		= 5
-inv_name		= ammo-arbolt
-inv_name_short	= ammo-arbolt
-description 	= enc_weapons1_ammo_ammo-arbolt
+inv_name		= ammo-bolt
+inv_name_short	= ammo-bolt_s
+description 	= enc_weapons_ammo-bolt
 inv_weight		= 0.25
 
-inv_grid_width	= 1
-inv_grid_height	= 3
-inv_grid_x		= 17
-inv_grid_y		= 34
+inv_grid_width	= 3
+inv_grid_height	= 1
+inv_grid_x		= 14	;в 17
+inv_grid_y		= 36	;в 34
 
 k_dist			= 1.7
 k_hit			= 2
@@ -273,9 +308,9 @@ $spawn			= "weapons\ammo\ammo_arbolt_spec" ; option for Level Editor
 visual          = weapons\crossbow\strela.ogf
 cost			= 50
 box_size		= 1
-inv_name		= ammo-arbolt_spec
-inv_name_short	= ammo-arbolt_spec
-description 	= enc_weapons1_ammo_ammo-arbolt_spec
+inv_name		= ammo-bolt_spec
+inv_name_short	= ammo-bolt_spec_s
+description 	= enc_weapons_ammo-bolt_spec
 inv_weight		= 0.25
 
 inv_grid_width	= 1
@@ -303,8 +338,8 @@ inv_weight 		= 10.5
 
 inv_grid_width 	= 2
 inv_grid_height = 1
-inv_grid_x 		= 6
-inv_grid_y 		= 38
+inv_grid_x 		= 6		;75	;6
+inv_grid_y 		= 36	;37	;38
 
 k_disp 			= 3
 k_hit 			= 2.0

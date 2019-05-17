@@ -1,5 +1,4 @@
-; Штык-нож  6Х4
-;Анимации: Ларин Александр aka Anim_rouge (SWMT)
+; Штык-нож АКМ 6Х4 (прямой хват; Раста, Васян)
 ;--------------------------------------
 [wpn_knife]:identity_immunities
 GroupControlSection			= spawn_group
@@ -9,24 +8,25 @@ $npc                		= off
 $prefetch 		    		= 8
 scheduled           		= off
 cform						= skeleton
-description					= enc_weapons1_wpn-knife
-min_radius 			= 0
-max_radius 			= 2
+description					= enc_weapons1_knife_arena
+min_radius 					= 0
+max_radius 					= 2
 
-ef_main_weapon_type		= 0
+ef_main_weapon_type			= 0
 ef_weapon_type				= 1
 
 class						= WP_KNIFE
 
-visual				= weapons\swmt\knife\wpn_knife_world.ogf
-inv_name					= st_knife
+visual						= weapons\knife\wpn_knife_6x4.ogf	;штык-нож АКМ
 
-inv_name_short				= st_knife
-inv_weight		= 0.2
-inv_grid_width				= 3
+inv_name					= wpn-knife_arena
+inv_name_short				= wpn-knife_arena_s
+
+inv_weight					= 0.25
+inv_grid_width				= 2
 inv_grid_height				= 1
-inv_grid_x					= 18
-inv_grid_y					= 8
+inv_grid_x					= 77
+inv_grid_y					= 12
 
 kill_msg_x					= 197
 kill_msg_y					= 177
@@ -86,10 +86,10 @@ rpm                      	= 1000;600; end ttc
 normal                   	= 0, 1, 0
 
 ;ОПРЕДЕЛЕНИЕ РАСПОЛОЖЕНИЯ В ПРОСТРАНСТВЕ ОТНОСИТЕЛЬНО РУКИ ПРИ ВЗГЛЯДЕ СО СТОРОНЫ
-position                 	= -0.031, -0.078, 0.030
+position                 	= -0.013, -0.084, 0.026 
 
 ;НА СКОЛЬКО ПОВЕРНУТ САМ ОБЪЕКТ ПРИ ВЗГЛЯДЕ СО СТОРОНЫ
-orientation              	= 0,90,0
+orientation              	= -50,90,0
 
 startup_ammo             	= 1000
 wm_size                  	= 0.10
@@ -113,77 +113,59 @@ snd_shoot					= weapons\knife\knife_1
 snd_shoot1					= weapons\knife\knife_2
 snd_shoot2					= weapons\knife\knife_3
 ;-----------------------------------------------------------------------------
-;fake_item_section			= fake_wpn_knife
 
 ;-----------------------------------------------------------------------------
 ;-- HUD DESCRIPTION
 ;----------------------------------------------------------------------------- 
 [wpn_knife_hud]
 shell_point					= 0.0, 0.0, 0.0
-fire_point          		= 0.05, 0.0, 0.1
-fire_bone           		= wpn_body
+fire_point          		= 0.05, -0.03, 0.1
+fire_bone           		= knife
 
+position            		= 0.033,-0.155,0.18
 orientation         		= 0,0,0
-position            		= 0,0,0
-visual              		= weapons\swmt\knife\wpn_knife_hud.ogf
 
+visual              		= weapons\knife\wpn_knife1_6x4_hud.ogf
 anim_idle					= idle
 anim_draw					= draw
-anim_hide					= holster
-anim_shoot1_start			= attack1_1_start
-anim_shoot2_start			= attack2_1_start
-anim_shoot1_end				= attack1_2_end
-anim_shoot2_end				= attack2_2_end
-anim_idle_sprint			= idle
+
+anim_hide					= holster			;2 hide
+anim_shoot1_start			= kick1_start		;2 shoot1_start
+anim_shoot2_start			= kick2_start		;2 shoot2_start
+anim_shoot1_end				= kick1_end			;2 shoot1_end
+anim_shoot2_end				= kick2_end			;2 shoot2_end
+anim_idle_sprint			= sprint			;2 idle_sprint
+
+;anim_hide					= hide				;1 holster
+;anim_shoot1_start			= shoot1_start		;1 kick1_start
+;anim_shoot2_start			= shoot2_start		;1 kick2_start
+;anim_shoot1_end				= shoot1_end		;1 kick_end
+;anim_shoot2_end				= shoot2_end		;1 kick2_end
+;anim_idle_sprint			= idle_sprint			;1 sprint
 
 
-[fake_wpn_knife]:identity_immunities
-GroupControlSection	= spawn_group
-discovery_dependency =
-$spawn 			= 
-$prefetch 		= 32
-class			= II_ANTIR
-cform           = skeleton
-visual          = weapons\knife\wpn_knife.ogf
-description					= enc_weapons1_wpn-knife
-inv_name					= st_knife
-inv_name_short				= st_knife
-inv_weight			= 0.2
-
-inv_grid_width				= 3
-inv_grid_height				= 1
-inv_grid_x					= 18
-inv_grid_y					= 8
-cost				= 70
-
-; eatable item
-eat_health = 0
-eat_satiety = 0
-eat_power = 0
-eat_radiation = 0
-wounds_heal_perc = 0
-eat_portions_num = 1
-
-; food item
-animation_slot		= 4
-
-;hud item
-hud = wpn_vodka_hud
-
-real_item_section = wpn_knife
-
-
-
+[wpn_knife_m9]:wpn_knife
+visual              		= weapons\knife\wpn_knife_m9.ogf
+description			= enc_weapons1_knife_m9
+inv_name			= wpn-knife_m9
+inv_name_short		= wpn-knife_m9_s
+inv_weight			= 0.37
+inv_grid_x					= 21
+inv_grid_y					= 3
+hud				= wpn_knife_m9_hud
+[wpn_knife_m9_hud]:wpn_knife_hud
+visual              		= weapons\knife\wpn_knife1_m9_hud.ogf
+;-----------------------------------------------------------------------------
 ;монтировка Фримена
 [wpn_montirovka]:wpn_knife
 $spawn 				= "devices\quest_items\wpn_montirovka"
 visual				= weapons\montirovka\wpn_montirovka.ogf
 quest_item			= false
 
-description			= enc_montirovka
+description			= enc_weapons1_montirovka
 
-inv_name			= montirovka
-inv_name_short		= montirovka
+inv_name			= wpn-montirovka
+inv_name_short		= wpn-montirovka_s
 inv_weight			= 1.5
 
 inv_grid_width		= 3
@@ -202,8 +184,6 @@ hit_type_2				 	= strike
 
 fire_distance            	= 3.2
 
-;fake_item_section			= fake_wpn_montirovka
-
 ;-----------------------------------------------------------------------------
 ;-- HUD DESCRIPTION
 ;----------------------------------------------------------------------------- 
@@ -220,45 +200,28 @@ anim_idle			= idle
 anim_draw			= draw
 anim_hide			= holster
 anim_shoot1_start	= attack1_1_start
+anim_shoot1_start_speed_k = 1.4
 anim_shoot2_start	= attack1_1_start
 anim_shoot1_end		= attack1_2_end
+anim_shoot1_end_speed_k = 1.9
 anim_shoot2_end		= attack1_2_end
 anim_idle_sprint	= idle
 
 
-[fake_wpn_montirovka]:fake_wpn_knife
-$spawn 			= 
-visual				= weapons\montirovka\wpn_montirovka.ogf
-description			= enc_montirovka
-inv_name			= montirovka
-inv_name_short		= montirovka
-inv_weight			= 1.5
-inv_grid_width		= 3
-inv_grid_height		= 1
-inv_grid_x			= 7
-inv_grid_y			= 40
-
-real_item_section = wpn_montirovka
-
-
-
 ;--------------------------------------;труба
 [wpn_montirovka_weak]:wpn_montirovka
-;KRodin: жалуются, что толку от трубы никакого нет.
-;hit_power                	= 0.001
-;hit_power_2                	= 0.001
-fire_distance            	= 5
+hit_power                	= 0.001
+hit_power_2                	= 0.001
+fire_distance            	= 5.0
 visual				= weapons\knife_crowbar_weak\wpn_crowbar_weak.ogf
 
-description			= enc_montirovka_weak
+description			= enc_weapons1_pipe		;enc_montirovka_weak
 
-inv_name			= montirovka_weak
-inv_name_short		= montirovka_weak
+inv_name			= wpn-pipe				;montirovka_weak
+inv_name_short		= wpn-pipe_s			;montirovka_weak_s
 
 inv_grid_x			= 11
 inv_grid_y			= 40
-
-fire_distance            	= 5.0
 
 hud				    = wpn_montirovka_weak_hud
 
@@ -279,7 +242,9 @@ anim_idle			= idle
 anim_draw			= draw
 anim_hide			= holster
 anim_shoot1_start	= attack_1_start
+;anim_shoot1_start_speed_k = 1.5
 anim_shoot2_start	= attack_1_start
+;anim_shoot2_start_speed_k = 1.5
 anim_shoot1_end		= attack_2_end
 anim_shoot2_end		= attack_2_end
 ;anim_idle_sprint	= idle_sprint
@@ -288,7 +253,7 @@ anim_shoot2_end		= attack_2_end
 
 
 ;--------------------------------------;--------------------------------------
-;нож Сереги Маньяка
+;«нож Сереги Маньяка»
 ;Раста +я («Super SOG Bowie» нож 5-группы Спецназа США. Разработан и использовался во время Вьетнамской войны в секретных операциях. Для диверсантов Флота - Морских Котиков  существует нержавеющий аналог - Trident. Типичный боевой нож. Слишком тяжел для туристских целей, лезвие слишком толстое для приготовления еды. Идеален для нанесения колющих и режущих ранений.)
 ;«Ka-Bar»
 ;--------------------------------------;--------------------------------------
@@ -300,7 +265,7 @@ $npc                		= off
 $prefetch 		    		= 8
 scheduled           		= off
 cform						= skeleton
-description         = knife_m1_desc
+description         = enc_weapons1_knife_m1
 
 min_radius 			= 0
 max_radius 			= 2
@@ -310,13 +275,14 @@ ef_weapon_type				= 1
 
 class						= WP_KNIFE
 visual				= weapons\knife\wpn_knife_m1.ogf
-inv_name			= st_knife_m1
-inv_name_short		= st_knife_m1
+inv_name			= wpn-knife_m1
+inv_name_short		= wpn-knife_m1_s
 inv_weight		= 0.2
-inv_grid_width				= 3
+inv_grid_width				= 2
 inv_grid_height				= 1
-inv_grid_x			= 21
-inv_grid_y			= 3
+inv_grid_x					= 77
+inv_grid_y					= 11
+
 
 kill_msg_x					= 197
 kill_msg_y					= 177
@@ -403,8 +369,6 @@ snd_shoot1					= weapons\knife\knife_2
 snd_shoot2					= weapons\knife\knife_3
 ;-----------------------------------------------------------------------------
 
-;fake_item_section			= fake_wpn_knife_m1
-
 ;-----------------------------------------------------------------------------
 ;-- HUD DESCRIPTION
 ;----------------------------------------------------------------------------- 
@@ -431,27 +395,182 @@ anim_shoot1_end 			= shoot1_end
 anim_shoot2_end 			= shoot1_end_1
 anim_idle_sprint 			= idle
 
-;fake_item_section			= fake_wpn_knife_m1
 
 
-[fake_wpn_knife_m1]:fake_wpn_knife
-$spawn 			= 
-visual				= weapons\knife\wpn_knife_m1.ogf
-description         = knife_m1_desc
-inv_name			= st_knife_m1
-inv_name_short		= st_knife_m1
-inv_grid_x			= 21
-inv_grid_y			= 3
+;штык АК 6x2 ОГСЕ
+[wpn_knife_6x2]:wpn_knife_m1
+$spawn = "weapons\uniq\wpn_knife_m1"
+visual				= weapons\knife\wpn_knife.ogf		;штык АК 6x2 ОГСЕ
+description        		= enc_weapons1_knife
+inv_name				= wpn-knife
+inv_name_short			= wpn-knife_s
+inv_grid_width				= 2
+inv_grid_height				= 1
+inv_grid_x			= 77
+inv_grid_y			= 10
+inv_weight		= 0.28
+hud				    = wpn_knife_6x2_hud
+hit_power                	= 1.7
+hit_impulse		         	= 10
+hit_type				 	= wound
+hit_power_2                	= 1.7
+hit_impulse_2	         	= 5
+hit_type_2				 	= wound
+;-----------------------------------------------------------------------------------
+[wpn_knife_6x2_hud]:wpn_knife_m1_hud
+visual              = weapons\knife\wpn_knife_6x2_hud.ogf
+fire_bone           	= r_hand_link		;guide_rhlink
+anim_idle					= idle
+anim_draw					= draw
+anim_hide					= hide
+anim_shoot1_start			= shoot1_start
+anim_shoot1_start_speed_k = 2.0
+anim_shoot2_start			= shoot1_start_1
+anim_shoot1_end				= shoot1_end
+anim_shoot1_end_speed_k = 2.0
+anim_shoot2_end				= shoot1_end_1
+anim_idle_sprint			= idle
 
-real_item_section = wpn_knife_m1
 
 
-[wpn_knife_arena]:wpn_knife  ;квестовый аренный нож, выдается только в 1 эпизоде.
+; Штык-нож АКМ 6Х4 Revers (обратный хват ЗП)
+;Анимации: ЛаринГит aka Anim_rouge (SWMT)
+;Анимации: Ларин Александр aka Anim_rouge (SWMT)
+[wpn_knife_arena]:identity_immunities ;квестовый аренный нож, выдается только в 1 эпизоде.
 GroupControlSection			= spawn_group
-hit_power                	= 1.0
-hit_power_2                	= 1.1
-;fire_distance            	= 1.3
-;fake_item_section			= fake_wpn_knife_arena
+discovery_dependency 		= 
+$spawn              		= "weapons\knife"
+$npc                		= off
+$prefetch 		    		= 8
+scheduled           		= off
+cform						= skeleton
 
-[fake_wpn_knife_arena]:fake_wpn_knife
-real_item_section = wpn_knife_arena
+min_radius 					= 0
+max_radius 					= 2
+
+ef_main_weapon_type			= 0
+ef_weapon_type				= 1
+
+class						= WP_KNIFE
+
+;visual				= weapons\swmt\knife\wpn_knife_world.ogf
+visual						= weapons\knife\wpn_knife_6x4.ogf	;штык-нож АКМ
+description					= enc_weapons1_knife_arena
+inv_name					= wpn-knife_arena
+inv_name_short				= wpn-knife_arena_s
+inv_weight					= 0.25
+inv_grid_width				= 2
+inv_grid_height				= 1
+inv_grid_x					= 77
+inv_grid_y					= 12
+
+kill_msg_x					= 197
+kill_msg_y					= 177
+kill_msg_width				= 53
+kill_msg_height				= 16
+
+show_ammo					= false
+
+slot						= 0
+animation_slot				= 5
+single_handed				= 1
+
+hud				= wpn_knife_arena_hud
+	
+cost						= 70
+
+hand_dependence		     	= 1
+
+cam_relax_speed          	= 5.0
+cam_dispersion           	= 0.9
+cam_max_angle		     	= 7
+cam_max_angle_horz			= 5.0
+cam_step_angle_horz			= 0.5
+
+fire_dispersion          	= 0.5
+fire_dispersion_add      	= 5.3
+fire_dispersion_relax    	= 0.6
+fire_dispersion_base	 	= 0.5
+disp_vel_factor		     	= 0.9
+disp_crouch_factor	     	= 0.75
+disp_jump_factor	     	= 7
+fire_dispersion_condition_factor = 0.0
+misfire_probability 		= 0.0
+condition_shot_dec 			= 0.0
+
+direction                	= 0, 0, 1
+shell_point		         	= 0.0, 0.0, 0.0
+fire_point               	= 0.0, 0.1, 0.4
+
+flame_particles			 	= 
+
+rpm_empty_click 	     	= 200
+
+; ttc	
+hit_power                	= 1.0
+hit_impulse		         	= 10
+hit_type				 	= wound
+
+hit_power_2                	= 1.1
+hit_impulse_2	         	= 5
+hit_type_2				 	= wound
+
+fire_distance            	= 2
+;fire_distance            	= 1.3
+bullet_speed			 	= 1000;500			;начальная скорость пули
+rpm                      	= 1000;600; end ttc
+
+normal                   	= 0, 1, 0
+
+;ОПРЕДЕЛЕНИЕ РАСПОЛОЖЕНИЯ В ПРОСТРАНСТВЕ ОТНОСИТЕЛЬНО РУКИ ПРИ ВЗГЛЯДЕ СО СТОРОНЫ
+position                 	= -0.031, -0.078, 0.030
+
+;НА СКОЛЬКО ПОВЕРНУТ САМ ОБЪЕКТ ПРИ ВЗГЛЯДЕ СО СТОРОНЫ
+orientation              	= 0,90,0
+
+startup_ammo             	= 1000
+wm_size                  	= 0.10
+
+light_disabled				= true
+
+ammo_elapsed                = 0
+ammo_current		     	= 0
+ammo_mag_size		     	= 0
+ammo_class				 	= ammo_9x18_fmj
+	
+scope_status				= 0
+silencer_status				= 0
+grenade_launcher_status		= 0
+zoom_enabled				= false
+
+weapon_remove_time			= 5000	;время уничтожения оружия (с учетом TimeFactor) для мультиплеера
+
+;------------------------------ O.G.S.E. sound remake -----------------------
+snd_shoot					= weapons\knife\knife_1
+snd_shoot1					= weapons\knife\knife_2
+snd_shoot2					= weapons\knife\knife_3
+;-----------------------------------------------------------------------------
+;fake_item_section			= fake_wpn_knife_6x4r
+
+;-----------------------------------------------------------------------------
+;-- HUD DESCRIPTION
+;----------------------------------------------------------------------------- 
+[wpn_knife_arena_hud]
+shell_point					= 0.0, 0.0, 0.0
+fire_point          		= 0.05, 0.0, 0.1
+fire_bone           		= wpn_body
+
+orientation         		= 0,0,0
+position            		= 0,0,0
+visual              		= weapons\swmt\knife\wpn_knife_hud.ogf
+
+anim_idle					= idle
+anim_draw					= draw
+anim_hide					= holster
+anim_shoot1_start			= attack1_1_start
+anim_shoot2_start			= attack2_1_start
+anim_shoot1_end				= attack1_2_end
+anim_shoot2_end				= attack2_2_end
+anim_idle_sprint			= idle
+
+;-----------------------------------------------------------------------------------

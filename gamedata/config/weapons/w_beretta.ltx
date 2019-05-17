@@ -19,7 +19,7 @@ cform                    	= skeleton
 class                    	= WP_PM
 min_radius               	= 0
 max_radius               	= 25
-description					= enc_weapons1_wpn-beretta
+description					= enc_weapons1_wpn-beretta92fs
 
 ef_main_weapon_type = 0
 ef_weapon_type				= 5
@@ -35,6 +35,8 @@ ammo_elapsed		 		= 15
 ammo_mag_size		 		= 15
 ammo_class		 			= ammo_9x19_fmj, ammo_9x19_pbp 
 
+;fire_modes					= 0, 1
+
 hand_dependence		 		= 1
 single_handed				= 1
 
@@ -42,8 +44,8 @@ slot 			 			= 1
 animation_slot				= 1									; type of the animation that will be used
 
 
-inv_name					= wpn-beretta
-inv_name_short				= wpn-beretta
+inv_name					= wpn-beretta92fs
+inv_name_short				= wpn-beretta92fs_s
 inv_weight					= 1.0
 
 inv_grid_width				= 2
@@ -135,23 +137,16 @@ grenade_launcher_status		= 0
 
 zoom_enabled				= true
 
-;------------------------------ O.G.S.E. sound remake -----------------------
-;звуки
-;snd_draw					= weapons\walther_draw
-;snd_holster					= weapons\generic_holster
-;snd_shoot					= weapons\t_beretta_shot   ;walther_p99_shoot
-;snd_empty					= weapons\pistol_empty
-;snd_reload					= weapons\pm\pm_reload, 0.8
-;snd_close					= weapons\generic_close
-;snd_silncer_shot			= weapons\p_silent2 
-;-----------------------------------------------------------------------------
-
-snd_draw					= weapons\usp\draw
-snd_holster					= weapons\usp\holster
+;snd_draw					= weapons\usp\draw
+snd_draw					= weapons\pm\draw							;достал
+;snd_holster					= weapons\usp\holster
+snd_holster					= weapons\pm\holster						;убрал
 snd_shoot					= weapons\beretta\shoot
-snd_empty					= weapons\usp\empty
+;snd_empty					= weapons\usp\empty
+snd_empty					= weapons\fort17\fort_empty
 snd_reload					= weapons\usp\reload
-snd_close					= weapons\usp\close
+;snd_close					= weapons\usp\close
+snd_close					= weapons\fort17\fort_close
 snd_silncer_shot			= weapons\usp\shoot_sil 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

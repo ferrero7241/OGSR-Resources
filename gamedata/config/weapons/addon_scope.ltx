@@ -5,45 +5,15 @@ class			= WP_SCOPE
 cform           = skeleton
 $prefetch 		= 32
 
+;запретить ПНВ 
+nightvision_lock	= true
+inv_weight		= 0.001
+;_пробуем наследовать отсюда:
+;-scope_texture		= wpn\scopes\scope_test.dds	;прозрачный фон (удобно для подгонки положения), потом откорректируется прицелом, а тонкая подстройка - в секции ствола
+;-scope_zoom_factor		= 1.0					;ставить для 3D-прицелов, должен быть равен ironsight_zoom_factor (НАСЛЕДУЕТСЯ =1) 
+;-scope_lense_fov_factor 	= 1.0					;пробуем для сменных 3D-прицелов (потом откорректируется прицелом, а тонкая подстройка - в секции ствола)
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; остатки ОГСЕ
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;Оптический прицел ZF-4 х4 (одевается на МП40)
-[wpn_zf4]:wpn_scope
-$spawn 			= 
-visual          = weapons\upgrade\zf4.ogf
-description		= enc_addon_scope_zf4
-cost			= 1000
-holder_range_modifier	= 1.5
-holder_fov_modifier		= 0.8
-inv_name		= addon_scope_zf4
-inv_name_short	= addon_scope_zf4
-inv_weight		= 0.2
-inv_grid_width		= 1
-inv_grid_height		= 1
-inv_grid_x			= 38
-inv_grid_y			= 36
-scope_texture		= wpn\scopes\scope_zf4
-scope_zoom_factor	= 4.0
-fake_item_section	= fake_wpn_zf4
 
-[fake_wpn_zf4]:wpn_fake_addon_base
-$spawn 			= 
-visual          = weapons\upgrade\zf4.ogf
-description		= enc_addon_scope_zf4
-inv_name		= addon_scope_zf4
-inv_name_short	= addon_scope_zf4
-cost			= 200
-inv_weight		= 0.2
-inv_grid_width		= 1
-inv_grid_height		= 1
-inv_grid_x			= 38
-inv_grid_y			= 36
-real_item_section = wpn_zf4
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; правленые под систему АДДОНов
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;Оптический прицел ПСО-1
 [wpn_addon_scope]:wpn_scope
@@ -62,7 +32,7 @@ holder_range_modifier	= 1.5
 holder_fov_modifier		= 0.8
 inv_name		= addon_scope_pso1
 inv_name_short	= addon_scope_pso1_s
-inv_weight		= 0.62  				;ПСО-3 0.75
+inv_weight		= 0.6  				;ПСО-3 0.75
 inv_grid_width		= 2
 inv_grid_height		= 1
 inv_grid_x			= 74
@@ -74,7 +44,6 @@ scope_zoom_factor	= 4.0
 scope_sights_lighting	= true
 ;тест оттенка оптики (линза с желтоватым оттенком)
 scope_color_sect = 1,1,0,0.1
-
 fake_item_section	= fake_wpn_addon_scope
 
 ;фейк-Оптический прицел ПСО-1
@@ -84,7 +53,7 @@ visual          = weapons\upgrade\wpn_scope.ogf
 description		= enc_addon_scope_pso1
 inv_name		= addon_scope_pso1
 inv_name_short	= addon_scope_pso1_s
-inv_weight		= 0.62  ;ПСО-3 0.75
+inv_weight		= 0.6  ;ПСО-3 0.75
 inv_grid_width		= 2
 inv_grid_height		= 1
 inv_grid_x			= 74
@@ -94,7 +63,7 @@ real_item_section = wpn_addon_scope
 
 
 
-;ACOG 3,5х
+;ACOG 3,5х без бленды (3D НАТО)
 [wpn_addon_acog]:wpn_scope
 $spawn 			= 
 ;visual          = weapons\addons\acog.ogf
@@ -111,18 +80,49 @@ holder_range_modifier	= 1.5
 holder_fov_modifier		= 0.8
 inv_name		= addon_scope_acog
 inv_name_short	= addon_scope_acog_s
-inv_weight		= 0.39
+inv_weight		= 0.7
 inv_grid_width		= 1
 inv_grid_height		= 1
 inv_grid_x			= 64
 inv_grid_y			= 10
-;+ОГСЕ открытый scope_texture		= wpn\scopes\scope_acog
-scope_texture		= wpn\scopes\crosshair_acog
-scope_zoom_factor	= 3.5 ; 32
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;тест механического прицела
-;scope_texture		= wpn\scopes\scope_test.dds 
+;scope_texture		= wpn\scopes\crosshair_acog		;открытый, красная подсветка
+scope_texture		= wpn\scopes\scope_acog			;открытый, жёлтая подсветка
+;******************************************************************************
+;KRodin: Участок модели, на который рендерится зум - должен быть идеально ровным и ему должен быть назначен специальный шейдер models_lense_scope
+;-ТЕСТ ВСС: lens_acog.dds назначить шейдер models_lense_scope вместо forward\collimator --- потому, что КРИВАЯ
+;KRodin: FOV для 3D прицела рассчитывается по формуле: FOV камеры актора * scope_lense_fov_factor
+;Поднесём колиматор поближе к морде актора - и second_scope_zoom_factor = 3
+;ПЫС fov 67,5		больше значение - оружие будет ближе
+;ПЫС hud_fov 0.45 	Угол обзора игрока. Меньшеше значение (например 0.45) - оружие будет ближе. Если стоит значение 0.65,то оружие при игре будет казаться дальше.
+;+++++для ОГСR оптимально fov 70, hud_fov 0.405 (долбаные плечи Калашей)
+;?как теперь рассчитать кратность?
+;ОГСЕ hud_fov 0.45, fov почему-то 65 (а не 67,5 ПЫС). 	Т.е. 0.057*65=3,7. Но юзверь меняет fov 67,5 и 0.057*67=3,84 - кратность сбивается ??
+;+fov 70 и scope_lense_fov_factor = 0.057 (0.057*70=3,99 - правильная кратность, ~4-кратный)
+;fov 75 и 0.057*75=4,275
+;fov 80 и 0.057*80=4,56
+;--ДОЛЖНО БЫТЬ В СЕКЦИИ СТВОЛА (или сменного прицела)!!! scope_lense_fov_factor = 0.06					;(уменьшая - увеличиваем кратность) 
+;ПОПРАВЛЕНО:
+;когда прицел очень близко, практически на уровне камеры актора, можно делать практически аналогично scope_zoom_factor.
+;если прицел расположен далеко от камеры актора - тут уже надо крутить кратность экспериментально.
+;++теперь scope_lense_fov_factor наследуется отсюда
+;НАДО задвинуть линзу вглубь прицела чтобы не обсчитывало зря (когда не целишься)
+;scope_zoom_factor СТВОЛА ПЕРЕКРЫВАЕТСЯ ПРИЦЕЛОМ	
+scope_zoom_factor	= 1.0		;для 3D-оптики (увеличение - в линзе, определяется scope_lense_fov_factor)	;для старой текстурной оптики ОГСЕ д/б 3.5
+;-ТЕСТ сквозного ACOG: сетка2 transparent\lightplanes метка1
+;-для худовой внешние (тонирование) lens_acog forward\collimator переднюю срезать
+;-вторая линза-сетка grid_acog - models\transparent (только чёрный, при стрельбе смещается)
+;-для худовой +первая от глаз текстура mark_acog - models\lightplanes метка (цветная, при стрельбе смещается)
+;-для мировой collimator_lens02 -transparent
+;-УБРАТЬ wpn\upgrades\lens_3D
+;!!!Д/Б ЕДИНСТВЕННАЯ ИДЕАЛЬНО РОВНАЯ СПЕЦЛИНЗА С НУЖНОЙ ТЕКСТУРОЙ и шейдером models_lense_scope
+;******************************************************************************
+;ПОПРАВЛЕНО KRodin - НАСЛЕДУЕТСЯ от прицела (отсюда)
+scope_lense_fov_factor = 16.0		
+;4 ~ 1х, 9 ~ 2х
+;KRodin: Поднесём колиматор поближе к морде актора - и scope_lense_fov_factor ~ scope_zoom_factor
+;******************************************************************************
 ;разрешить ПНВ (тест открытой сетки)
-;nightvision_lock	= false
+nightvision_lock	= false
 ;---тест оттенка ОТКРЫТОЙ оптики (несовместим с nightvision_lock)
 fake_item_section	= fake_wpn_addon_acog
 
@@ -132,7 +132,7 @@ visual          = weapons\upgrade\acog.ogf
 description		= enc_addon_scope_acog
 inv_name		= addon_scope_acog
 inv_name_short	= addon_scope_acog_s
-inv_weight		= 0.39
+inv_weight		= 0.7
 inv_grid_width		= 1
 inv_grid_height		= 1
 inv_grid_x			= 64
@@ -142,7 +142,12 @@ real_item_section = wpn_addon_acog
 
 
 
-;SUSAT
+;SUSAT L9A1 4х с блендой (2D НАТО)
+;!!!НЕ ВСТАНЕТ на планки стандарта NATO!
+;нтегрированное крепление предполагает установку исключительно на планку L85. Впрочем, с оружием, которое принималось в Великобритании всегда были какие-то «чудеса», непонятные всему остальному миру.
+;съемные откидывающаяся мушка и диоптрический целик на дистанции 200 и 300 метров хранятся в пистолетной рукоятке.
+;также мог устанавливаться четырехкратный прицел ночного видения KITE (Common Weapon Sight night vision scope)
+;с 2008 года в армии Великобритании SUSAT заменяется ACOG, что требует дополнительной установки г-образной планки Пикатини на L85. Причём это - временное решение - планируется переход на ELCAN Specter OS 4X (по программе UK MoD FIST с 2009, но в Афганистан к воякам БРА попал только в конце 2012 года). Соответственно под новый прицел, нужна новая рис-планка.. В общем, Англия действительно очень «туманная».
 [wpn_addon_scope_susat]:wpn_scope
 $spawn 			= 
 visual          = weapons\upgrade\wpn_scope_susat.ogf
@@ -152,7 +157,7 @@ holder_range_modifier	= 1.5
 holder_fov_modifier		= 0.8
 inv_name		= addon_scope_susat
 inv_name_short	= addon_scope_susat_s
-inv_weight		    = 0.41
+inv_weight		    = 0.4
 inv_grid_width		= 1
 inv_grid_height		= 1
 inv_grid_x			= 65
@@ -170,7 +175,7 @@ visual          = weapons\upgrade\wpn_scope_susat.ogf
 description		= enc_addon_scope_susat
 inv_name		= addon_scope_susat
 inv_name_short	= addon_scope_susat_s
-inv_weight		    = 0.41
+inv_weight		    = 0.4
 inv_grid_width		= 1
 inv_grid_height		= 1
 inv_grid_x			= 65
@@ -180,9 +185,127 @@ real_item_section = wpn_addon_scope_susat
 
 
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; АКМ АДДОН-ТЕСТ
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;+ПО 4х34 (Грозы)
+;Изначально им комплектовались образцы ЦКИБ - штурмовые снайперские винтовки спецподразделений СВ-99, бесшумная снайперская винтовка ВСС "Винторез", штурмовой стрелково-гранатомётный комплекс ОЦ-14"Гроза". Прицельная сетка - пенёк и две горизонтальные (выравнивающие) линии (у ФСО).
+;На гражданском варианте прицела стоит сетка типа Дуплекс (крест) или Немецкая №1 (пенек и две горизонтальные линии).
+;-ZF-4 х4 в ОГСЕ одевался на MP40 (квестовй - не переименовывать)
+[wpn_zf4]:wpn_scope
+$spawn 			= 
+;visual          = weapons\addons\zf4.ogf
+visual          = weapons\upgrade\scope_po4x34.ogf
+description		= enc_addon_scope_po
+cost			= 1000
+holder_range_modifier	= 1.5
+holder_fov_modifier		= 0.8
+inv_name		= addon_scope_po
+inv_name_short	= addon_scope_po_s
+inv_weight		= 0.9
+inv_grid_width		= 2
+inv_grid_height		= 1
+inv_grid_x			= 77
+inv_grid_y			= 38
+
+scope_texture		= wpn\scopes\crosshair_pu
+scope_zoom_factor	= 4.0
+;разрешить ПНВ nightvision_lock	= false
+fake_item_section	= fake_wpn_zf4
+
+[fake_wpn_zf4]:wpn_fake_addon_base
+$spawn 			= 
+;visual          = weapons\addons\zf4.ogf
+visual          = weapons\upgrade\scope_po4x34.ogf
+
+description		= enc_addon_scope_po
+inv_name		= addon_scope_po
+inv_name_short	= addon_scope_po_s
+cost			= 200
+inv_weight		= 0.9
+inv_grid_width		= 2
+inv_grid_height		= 1
+inv_grid_x			= 77
+inv_grid_y			= 38
+real_item_section = wpn_zf4
+
+
+
+;Оптический прицел ПУ х3,5 без бленды (3D)
+[wpn_addon_scope_pu]:wpn_scope
+$spawn 			= 
+visual          = weapons\upgrade\scope_pu.ogf
+description		= enc_addon_scope_pu
+cost			= 1000
+holder_range_modifier	= 1.5
+holder_fov_modifier		= 0.8
+inv_name		= addon_scope_pu
+inv_name_short	= addon_scope_pu_s
+inv_weight		= 0.27
+inv_grid_width		= 1
+inv_grid_height		= 1
+inv_grid_x			= 37	;38
+inv_grid_y			= 36
+
+scope_texture		= wpn\scopes\crosshair_pu
+scope_lense_fov_factor = 13.0
+;4 ~ 1х, 9 ~ 2х, 16 ~ 4х
+;разрешить ПНВ (тест открытой сетки)
+nightvision_lock	= false
+fake_item_section	= fake_wpn_addon_scope_pu
+
+[fake_wpn_addon_scope_pu]:wpn_fake_addon_base
+$spawn 			= 
+visual          = weapons\upgrade\scope_pu.ogf
+
+description		= enc_addon_scope_pu
+inv_name		= addon_scope_pu
+inv_name_short	= addon_scope_pu_s
+cost			= 200
+inv_weight		= 0.27
+inv_grid_width		= 1
+inv_grid_height		= 1
+inv_grid_x			= 37	;38
+inv_grid_y			= 36
+real_item_section = wpn_addon_scope_pu
+
+
+
+;Оптический прицел ПГО-7 х2,7
+[wpn_addon_scope_pgo7]:wpn_scope
+$spawn 			= 
+visual          = weapons\upgrade\scope_pgo7.ogf
+description		= enc_addon_scope_pgo7
+cost			= 1000
+holder_range_modifier	= 1.5
+holder_fov_modifier		= 0.8
+inv_name		= addon_scope_pgo7
+inv_name_short	= addon_scope_pgo7_s
+inv_weight		= 0.57
+inv_grid_width		= 1
+inv_grid_height		= 1
+inv_grid_x			= 70
+inv_grid_y			= 11
+scope_texture		= wpn\scopes\scope_pgo-7
+scope_zoom_factor	= 7.0						;подбираем "под сетку"
+;8.0 - на дистанции 100м грудь ростовой фигуры будет около 200 по сетке (1,35м)
+;4.0 - на дистанции 100м грудь ростовой фигуры будет около 400 по сетке (1,35м)
+;разрешить ПНВ nightvision_lock	= false
+fake_item_section	= fake_wpn_addon_scope_pgo7
+
+[fake_wpn_addon_scope_pgo7]:wpn_fake_addon_base
+$spawn 			= 
+visual          = weapons\upgrade\scope_pgo7.ogf
+description		= enc_addon_scope_pgo7
+inv_name		= addon_scope_pgo7
+inv_name_short	= addon_scope_pgo7_s
+cost			= 200
+inv_weight		= 0.57
+inv_grid_width		= 1
+inv_grid_height		= 1
+inv_grid_x			= 70
+inv_grid_y			= 11
+real_item_section = wpn_addon_scope_pgo7
+
+
+
 ;УСП-1 "Тюльпан" (1П29) х4
 [wpn_addon_scope_1p29]:wpn_scope
 $spawn 			= 
@@ -202,7 +325,7 @@ scope_texture		= wpn\scopes\crosshair_1p29
 scope_zoom_factor	= 4.0
 ;тест оттенка оптики (линза с зеленоватым оттенком)
 scope_color_sect = 0,1,0,0.05
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;тест механического прицела
+;тест механического прицела
 ;scope_texture		= wpn\scopes\scope_test.dds
 fake_item_section	= fake_wpn_addon_scope_1p29
 
@@ -238,7 +361,7 @@ inv_grid_width		= 1
 inv_grid_height		= 1
 inv_grid_x			= 59
 inv_grid_y			= 10
-scope_texture		= wpn\scopes\scope_test.dds
+scope_texture		= wpn\scopes\scope_test
 ;scope_zoom_factor	= 1.0
 ;разрешить ПНВ
 nightvision_lock	= false
@@ -313,7 +436,7 @@ inv_grid_width		= 1
 inv_grid_height		= 1
 inv_grid_x			= 63
 inv_grid_y			= 10
-scope_texture		= wpn\scopes\scope_test.dds
+scope_texture		= wpn\scopes\scope_test
 ;разрешить ПНВ
 nightvision_lock	= false
 fake_item_section	= fake_wpn_addon_scope_eotech
@@ -332,16 +455,17 @@ inv_grid_y			= 10
 cost			= 1000
 real_item_section = wpn_addon_scope_eotech
 
-; ТЕСТ подсветки прицельной сетки (затычка для скрипта, чисто для количества)
+; ВСС/Вал (бывш.ТЕСТ подсветки прицельной сетки - затычка для скрипта, чисто для количества)
 [wpn_addon_scope_pso1m21]:wpn_addon_scope
 $spawn 			=
 visual          = weapons\upgrade\pso11.ogf
 ;Расположение кронштейна прицела на винтовке, в так называемом крайнем заднем положении (в отличии от крайне переднего у ПСО). Традиционно и аналогично с ПСО, присутствует смещёние влево
 description		= enc_addon_scope_pso1-1
 ;ПСО-1М2 СВД/СВДС, ПСО-1М2-1 ВСС/АС встроенный светофильтр
+;Новосибирский ПО4х24 - сетка "пенек" (полукрест) ;Посадочные места ПО 4х24 и ПО 4х24-1 отличаются высотой и местом расположения упора. ;ПО4х24 - на карабины типа "Тигр/СВД"; ПО4х24-1 - на карабины типа "Сайга/АК"; На карабины типа "Вепрь" прицел подбирается в зависимости от планки на оружии   http://www.npzoptics.ru/catalog/dnevnye_pricely/po4h24_1/
 inv_name		= addon_scope_pso1-1
 inv_name_short	= addon_scope_pso1-1
-inv_weight		= 0.62  				;ПСО-3 0.75
+inv_weight		= 0.6  				;ПСО-3 0.75
 inv_grid_width		= 2
 inv_grid_height		= 1
 inv_grid_x			= 66
@@ -364,7 +488,7 @@ visual          = weapons\upgrade\pso11.ogf
 description		= enc_addon_scope_pso1-1
 inv_name		= addon_scope_pso1-1
 inv_name_short	= addon_scope_pso1-1_s
-inv_weight		= 0.62  				;ПСО-3 0.75
+inv_weight		= 0.6  				;ПСО-3 0.75
 inv_grid_width		= 2
 inv_grid_height		= 1
 inv_grid_x			= 66
@@ -374,11 +498,9 @@ real_item_section = wpn_addon_scope_pso1m21
 
 
 
-
-
-
 ; ТЕСТ "гордости Российской военной оптической индустрии" 1П59 «Гиперон» для 7,62-мм винтовок СВД (6В1) и СВДС (6В3), принят на вооружение в 2001 году.
 ;Увеличение – переменное от 3х до 10х, поле зрения – от 7,8 град до 2,5 град. Обеспечивает автоматический ввод угла прицеливания в процессе измерения дальности до цели.
+;переменная кратность НЕСПВМЕСТИМА с авторежимом огня
 ; http://forum.guns.ru/forum/10/196896.html
 [wpn_addon_scope_1p59]:wpn_addon_scope
 $spawn 			=
@@ -397,13 +519,14 @@ cost			= 4000
 scope_texture		= wpn\scopes\crosshair_1p59
 ;Картинка прицела, при сравнению с военными ПСО-1М2 и ПО6х36М, заметно светлее, а линии прицельной сетки на порядок тоньше и чётче. Граница изображения по краю видимой части, чёткая. Сравнивая с сеткой ПО6х36М, сетка 1П59, тоньше почти в 3раза! Причём сам основной прицельный знак, чётко острый, в отличии от немного скруглённых у ПСО и ПО.
 ;сетка ПСО-1 wpn\scopes\sights_pso-1
+;Увеличение – переменное от 3х до 10х
 scope_zoom_factor	= 10.0
+scope_dynamic_zoom = true
 ;тест ОТКЛючения подсветки прицельной сетки 
 scope_sights_lighting	= false
 ;тест оттенка оптики (линза с янтарным оттенком)
 scope_color_sect = 1,0.5,0,0.025
 fake_item_section	= fake_wpn_addon_scope_1p59
-scope_dynamic_zoom = true
 
 [fake_wpn_addon_scope_1p59]:wpn_fake_addon_base
 $spawn 			=
@@ -418,3 +541,260 @@ inv_grid_x		= 72
 inv_grid_y		= 11
 cost			= 4000
 real_item_section = wpn_addon_scope_1p59
+
+
+
+; ТЕСТ длинного НАТО U.S.Optics SR-6 х1.5-6 без бленды (2D ZOOM)
+;Особенностью U.S.Optics является изготовление прицела под заказ. Клиент может выбирать корпус, тип сетки и другие опции и аксессуары.
+;+переменная кратность НЕСОВМЕСТИМА с авторежимом огня - исправлено в ОГСР !!!
+;-переменная кратность НЕСОВМЕСТИМА с 3D
+[wpn_addon_scope_long]:wpn_addon_scope
+$spawn 			=
+visual          = weapons\upgrade\scope_long.ogf
+description		= enc_addon_scope_long
+inv_name		= addon_scope_long
+inv_name_short	= addon_scope_long_s
+inv_weight		= 0.7
+inv_grid_width		= 2
+inv_grid_height		= 1
+inv_grid_x			= 77
+inv_grid_y			= 21
+cost			= 4000
+scope_texture		= wpn\scopes\crosshair_variable
+;SR-6 Увеличение – переменное от 1.5х до 6х				
+scope_zoom_factor	= 6.0
+scope_dynamic_zoom = true
+;тест ОТКЛючения подсветки прицельной сетки 
+scope_sights_lighting	= false
+;тест оттенка оптики (линза с янтарным оттенком) 
+scope_color_sect = 1,0.5,0,0.025
+;разрешить ПНВ nightvision_lock	= false
+fake_item_section	= fake_wpn_addon_scope_long
+
+[fake_wpn_addon_scope_long]:wpn_fake_addon_base
+$spawn 			=
+visual          = weapons\upgrade\scope_long.ogf
+description		= enc_addon_scope_long
+inv_name		= addon_scope_long
+inv_name_short	= addon_scope_long_s
+inv_weight		= 0.7
+inv_grid_width		= 2
+inv_grid_height		= 1
+inv_grid_x			= 77
+inv_grid_y			= 21
+cost			= 4000
+real_item_section = wpn_addon_scope_long
+
+
+
+;---------------------------------------original Colt 3X20 AR15/M16 scope без бленды (3D ZOOM)--------
+;на ручку AR15/M16 (Carry Handle Scope Mount)
+;+переменная кратность НЕСОВМЕСТИМА с авторежимом огня - исправлено в ОГСР !!!
+;-переменная кратность НЕСОВМЕСТИМА с 3D
+[wpn_addon_scope_colt3]:wpn_scope
+$spawn 			= 
+visual          = weapons\upgrade\scope_colt.ogf
+description		= enc_addon_scope_colt3
+cost			= 1400
+holder_range_modifier	= 1.5
+holder_fov_modifier		= 0.8
+inv_name		= addon_scope_colt3
+inv_name_short	= addon_scope_colt3_s
+inv_weight		    = 0.4
+inv_grid_width		= 1
+inv_grid_height		= 1
+inv_grid_x			= 77
+inv_grid_y			= 37
+;-scope_texture		= wpn\scopes\crosshair_md-2
+scope_texture		= wpn\scopes\scope_ps
+;scope_zoom_factor	= 3.0
+scope_zoom_factor	= 1.0		;для 3D-оптики (увеличение - в линзе, определяется scope_lense_fov_factor)	;для старой текстурной оптики ОГСЕ д/б 3.0
+;ПОПРАВЛЕНО KRodin - НАСЛЕДУЕТСЯ от прицела (отсюда)
+scope_lense_fov_factor = 12.0
+;4 ~ 1х, 9 ~ 2х, 13 ~ 3,5х, 16 ~ 4х
+;-Увеличение – переменное от 2х до 4х				
+;-ТЕСТ 3D-Zoom'а
+scope_dynamic_zoom = true
+;тест оттенка оптики (линза с синим оттенком)
+scope_color_sect = 0,0,1,0.75
+;разрешить ПНВ -nightvision_lock	= false
+;_ТЕСТ 3D-ПНВ
+nightvision_sect	= effector_nightvision
+fake_item_section	= fake_wpn_addon_scope_colt3
+
+[fake_wpn_addon_scope_colt3]:wpn_fake_addon_base
+$spawn 			= 
+visual          = weapons\upgrade\scope_colt.ogf
+description		= enc_addon_scope_colt3
+inv_name		= addon_scope_colt3
+inv_name_short	= addon_scope_colt3_s
+inv_weight		    = 0.4
+inv_grid_width		= 1
+inv_grid_height		= 1
+inv_grid_x			= 77
+inv_grid_y			= 37
+cost			= 1400
+real_item_section = wpn_addon_scope_colt3
+
+
+
+;штатный оптический прицельный модуль FN F2000 х1,6 без бленды (3D)
+[wpn_addon_scope_fn2000]:wpn_scope
+$spawn 			= 
+visual          = weapons\upgrade\fn2000_scope.ogf
+description		= enc_addon_scope_f2000
+cost			= 1400
+holder_range_modifier	= 1.5
+holder_fov_modifier		= 0.8
+inv_name		= addon_scope_f2000
+inv_name_short	= addon_scope_f2000_s
+inv_weight		    = 0.3
+inv_grid_width		= 2
+inv_grid_height		= 1
+inv_grid_x		= 38
+inv_grid_y		= 15
+scope_texture		= wpn\scopes\scope_ps
+scope_zoom_factor	= 1.0		;для 3D-оптики (увеличение - в линзе, определяется scope_lense_fov_factor)	;для старой текстурной оптики ОГСЕ д/б 1.6
+;ПОПРАВЛЕНО KRodin - НАСЛЕДУЕТСЯ от прицела (отсюда)
+scope_lense_fov_factor = 10.0
+;разрешить ПНВ 
+nightvision_lock	= false
+fake_item_section	= fake_wpn_addon_scope_fn2000
+
+[fake_wpn_addon_scope_fn2000]:wpn_fake_addon_base
+$spawn 			= 
+visual          = weapons\upgrade\fn2000_scope.ogf
+description		= enc_addon_scope_f2000
+inv_name		= addon_scope_f2000
+inv_name_short	= addon_scope_f2000_s
+inv_weight		    = 0.3
+inv_grid_width		= 2
+inv_grid_height		= 1
+inv_grid_x		= 38
+inv_grid_y		= 15
+cost			= 1400
+real_item_section = wpn_addon_scope_fn2000
+
+
+
+
+; ТЕСТ короткого НАТО ("пистолетный" коллиматор) Aimpoint Micro H-1
+[wpn_addon_scope_aimpoint]:wpn_scope
+$spawn 			= 
+visual          = weapons\upgrade\aimpoint.ogf
+description		= enc_addon_scope_aimpoint
+cost			= 1000
+holder_range_modifier	= 1.5
+holder_fov_modifier		= 0.8
+inv_name		= addon_scope_aimpoint
+inv_name_short	= addon_scope_aimpoint_s
+inv_weight		= 0.09
+inv_grid_width		= 1
+inv_grid_height		= 1
+inv_grid_x			= 59	;77
+inv_grid_y			= 21	;20
+scope_texture		= wpn\scopes\scope_test
+;разрешить ПНВ
+nightvision_lock	= false
+fake_item_section	= fake_wpn_addon_scope_aimpoint
+
+[fake_wpn_addon_scope_aimpoint]:wpn_fake_addon_base
+$spawn 			= 
+visual          = weapons\upgrade\aimpoint.ogf
+description		= enc_addon_scope_aimpoint
+inv_name		= addon_scope_aimpoint
+inv_name_short	= addon_scope_aimpoint_s
+inv_weight		= 0.09
+inv_grid_width		= 1
+inv_grid_height		= 1
+inv_grid_x			= 77	;+59	;77
+inv_grid_y			= 20	;+21	;20
+cost			= 1000
+real_item_section = wpn_addon_scope_aimpoint
+
+
+
+; ТЕСТ ПНВ НАТО PVS-14
+[wpn_addon_scope_pvs]:wpn_scope
+$spawn 			= 
+visual          = weapons\upgrade\pvs.ogf
+description		= enc_addon_scope_pvs
+cost			= 2000
+holder_range_modifier	= 1.5
+holder_fov_modifier		= 0.8
+inv_name		= addon_scope_pvs
+inv_name_short	= addon_scope_pvs_s
+inv_weight		= 0.4
+inv_grid_width		= 1			;крупный 2
+inv_grid_height		= 1
+inv_grid_x			= 78		;крупный 77
+inv_grid_y			= 22		;крупный 14
+;scope_texture		= wpn\scopes\crosshair_cross_10-2
+scope_texture		= wpn\scopes\crosshair_0
+scope_lense_fov_factor = 5.0
+;встроенный ПНВ +nightvision_sect	= effector_nightvision
+;---тест nightvision_sect	= effector_nightvision_scope
+nightvision_sect	= effector_nightvision
+;НВ в 3D
+night_vision_enabled = true
+;тест оттенка оптики (линза с зеленоватым оттенком) 
+scope_color_sect = 0,1,0,0.05
+fake_item_section	= fake_wpn_addon_scope_pvs
+
+[fake_wpn_addon_scope_pvs]:wpn_fake_addon_base
+$spawn 			= 
+visual          = weapons\upgrade\pvs.ogf
+description		= enc_addon_scope_pvs
+inv_name		= addon_scope_pvs
+inv_name_short	= addon_scope_pvs_s
+inv_weight		= 0.4
+inv_grid_width		= 1			;крупный 2
+inv_grid_height		= 1
+inv_grid_x			= 78		;крупный 77
+inv_grid_y			= 22		;крупный 14
+cost			= 2000
+real_item_section = wpn_addon_scope_pvs
+
+
+
+;---------------------------------------------------------------------
+; ТЕСТ ИК-насадки НЕ пашет термовизор (на классе артефакта - съёдается)
+[wpn_addon_scope_irnv]:wpn_scope
+$spawn 			= 
+visual          = weapons\upgrade\irnv.ogf
+description		= enc_addon_scope_irnv
+cost			= 2000
+holder_range_modifier	= 1.5
+holder_fov_modifier		= 0.8
+inv_name		= addon_scope_irnv
+inv_name_short	= addon_scope_irnv_s
+inv_weight		= 0.8
+inv_grid_width		= 1			;2 иконка 3Д
+inv_grid_height		= 1
+inv_grid_x			= 70		;14 иконка 3Д
+inv_grid_y			= 18		;24 иконка 3Д
+scope_texture		= wpn\scopes\crosshair_0
+scope_lense_fov_factor = 5.0		
+;разрешить ПНВ (тест открытой сетки) nightvision_lock	= false
+;встроенный ПНВ 
+nightvision_sect	= thermal
+;ИК в 3D
+thermo_vision_enabled = true
+
+fake_item_section	= fake_wpn_addon_scope_irnv
+
+[fake_wpn_addon_scope_irnv]:wpn_fake_addon_base
+$spawn 			= 
+visual          = weapons\upgrade\irnv.ogf
+description		= enc_addon_scope_irnv
+inv_name		= addon_scope_irnv
+inv_name_short	= addon_scope_irnv_s
+inv_weight		= 0.8
+inv_grid_width		= 1			;2 иконка 3Д
+inv_grid_height		= 1
+inv_grid_x			= 70		;14 иконка 3Д
+inv_grid_y			= 18		;24 иконка 3Д
+cost			= 2000
+real_item_section = wpn_addon_scope_irnv
+
+

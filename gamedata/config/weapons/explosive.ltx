@@ -393,3 +393,73 @@ telepatic_immunity		= 0.0
 chemical_burn_immunity	= 1.0
 explosion_immunity		= 0.0
 fire_wound_immunity		= 0.0
+
+
+
+
+[suicider_grenade]:explosive
+$spawn 				= "weapons\explosive\dinamit"
+visual		 		= weapons\grenade\wpn_f1.ogf
+inv_name			= grenade-f_1
+inv_name_short		= grenade-f_1_s
+inv_weight			= 1.0
+
+;вещь невозможно подобрать
+can_take			= false
+
+cost				= 50
+
+blast				= 2.00
+blast_r				= 5
+blast_impulse		= 150; 250
+;delete
+blast_impulse_factor = 1
+
+
+frags				= 5
+frags_r				= 8
+frag_hit			= 0.55
+frag_hit_impulse	= 150
+
+hit_type_blast		= explosion
+hit_type_frag		= explosion
+
+up_throw_factor		= 1.0
+
+wm_size                  = 0.1
+
+explode_particles		 = nc\grenade_full
+
+light_color		         = 1.9,1.3,0.5
+light_range		         = 30.0
+light_time 		         = 1.5
+
+;трассы от осколков
+fragment_speed				= 100
+
+explode_duration		 = 5		;подолжительность взрыва (с)
+
+;------------------------------ O.G.S.E. sound remake ------------------------------
+;звуки
+snd_explode = weapons\explo\t_f1_explosion
+;-----------------------------------------------------------------------------------
+immunities_sect			= suicider_grenade_sect
+;condition_to_explode   =0.f
+;wallmarks
+wallmark_section		= explosion_marks
+
+[suicider_grenade_sect]
+;коэффициенты для попаданий различными типами хитов
+burn_immunity			= 0.0
+strike_immunity			= 0.0
+shock_immunity			= 0.0
+wound_immunity			= 1.0
+radiation_immunity		= 0.0
+telepatic_immunity		= 0.0
+chemical_burn_immunity	= 0.0
+explosion_immunity		= 0.0
+fire_wound_immunity		= 0.0
+
+
+
+

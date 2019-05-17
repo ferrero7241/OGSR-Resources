@@ -1,5 +1,14 @@
-; Пистолет-пулемет Шпагина (ППШ-41)
-;--------------------------------------
+;7,62х25 мм пистолет-пулемет Г.С. Шпагина образца 1941 года. ППШ стал своеобразным символом советского солдата времён Великой Отечественной войны. Ранние ППШ комплектовались барабанными магазинами на 71 патрон, однако они были сложны и дороги в производстве, а также требовали индивидуальной пригонки под оружие, поэтому в 1942 году были разработаны коробчатые (рожковые) магазины на 35 патронов. Во время ВОВ ППШ активно использовался и немецкими войсками частью в оригинальном исполнении - под инжексом MP717(r), частью после переработки под патроны 9х19 мм Парабеллум и магазины от МП-40 - MP41(r). В СССР был снят с вооружения в 1951 году и заменён автоматом Калашникова, но после этого ещё длительное время использовался различными армиями или вооружёнными формированиями по всему миру, например в войнах в Корее и во Вьетнаме, а из недавних конфликтов — на обеих афганских и войне в Ираке. Множество ППШ-41 до сих пор лежат на складах стратегического резерва и в старых схронах времён ВОВ.
+;-(правлено SR)-------------------------------------
+; калибр 				7,62х25 мм ТТ
+; длина ствола 				269 мм
+; магазин				71
+; вес					3,6 без патронов (5,45 кг с барабаном на 71 патрон; 4,3 кг с рожком на 35 патронов)
+; эффективная дальность стрельбы	100 м 
+; прицельная дальность			200 м
+; дульная скорость пули			490 м/с
+; темп стрельбы				900 в/м (боевая)
+;---------------------------------------------------
 [wpn_ppsh41]:identity_immunities,base_wpn_zoom
 GroupControlSection		= spawn_group
 discovery_dependency 	        = 
@@ -29,7 +38,7 @@ cost				= 3700
 ammo_elapsed			= 71
 ammo_mag_size		 	= 71
 ammo_class		 	= ammo_7.62x25_p, ammo_7.62x25_ps
-fire_modes			= 1, -1
+fire_modes			= 0, -1
 
 launch_speed			= 0
 
@@ -38,7 +47,13 @@ single_handed			= 0
 
 inv_name			= wpn-ppsh41
 inv_name_short			= wpn-ppsh41
-inv_weight			= 3.9
+inv_weight			= 4.78
+;Масса без патронов: 3,63 кг.
+;Масса со снаряженным барабанным71 магазином: 5,45 кг.
+;Масса барабанного магазина без патронов: 1,15 кг.
+;Масса патрона 10,2г.(10,2*71=724.2г.)
+;Масса снаряженного барабанного магазина: 1,94 кг.
+;Масса со снаряженным коробчатым35 магазином: 4,3 кг.
 
 inv_grid_width			= 5
 inv_grid_height			= 2
@@ -55,7 +70,7 @@ animation_slot			= 2		; type of the animation that will be used
 
 ;-----------------------------------------------------------------------------------
 ;базовая дисперсия
-fire_dispersion_base		= 0.19 	;угол (в градусах) базовой дисперсии оружия (оружия зажатого в тисках)
+fire_dispersion_base		= 0.23 	;0.25 	;0.28 угол (в градусах) базовой дисперсии оружия (оружия зажатого в тисках)
 control_inertion_factor		= 1.07f
 
 ;отдача
@@ -77,9 +92,15 @@ condition_shot_dec 		= 0.0001 ;увеличение износа при каждом выстреле
 direction                       = 0, 0, 1
 
 fire_point             	        = 0,0.24,0.524
-flame_particles		        = weapons\generic_weapon05
-smoke_particles                 = weapons\generic_shoot_00
-shell_particles	 		= weapons\arsenal_shells1
+;flame_particles		        = weapons\generic_weapon05
+;smoke_particles                 = weapons\generic_shoot_00
+;shell_particles	 		= weapons\arsenal_shells1
+;flame_particles				= amik\weapons\flame_particles\flame_particles_04
+flame_particles				= amik\weapons\flame_particles\pistol\p_flame_particles_3
+
+smoke_particles				= amik\weapons\smoke_particles\smoke_particles_02
+;shell_particles	 			= amik\weapons\7.62x25_shells_01
+shell_particles	 			= amik\weapons\7.62x25_shells_ppsh
 
 shell_point		 	= 0,0.256,0.192
 shell_dir		 	= 0.0, 1.0, 0.0
@@ -97,7 +118,7 @@ hit_power        	= 0.53
 hit_impulse		 	= 15
 hit_type 			= fire_wound
 
-fire_distance          	= 250
+fire_distance          	= 200
 bullet_speed			= 480 ;начальная скорость пули
 rpm                     = 900
 ; end ttc
@@ -116,12 +137,16 @@ position         	        = -0.026,-0.172,0
 orientation                 = 0, 0, 0
 
 ;--STRAP PARAMETERS-----------------------------------------------------------------
-strap_position         		= -0.16,-0.36,0.15			; position (offset) and orientation of the weapon when it is strapped
-strap_orientation      		= -10,-5,10					; (3rd person view in degrees)
+;+B+strap_position         		= -0.16,-0.36,0.15			; position (offset) and orientation of the weapon when it is strapped
+;+B+strap_orientation      		= -10,-5,10					; (3rd person view in degrees)
+
+strap_position         		= -0.1,-0.45,0.2			
+strap_orientation      		= 1.57,0,0					
+
 strap_bone0			= bip01_spine2
 strap_bone1			= bip01_spine1
 
-startup_ammo        = 100
+startup_ammo        = 142
 visual              = weapons\ppsh41\wpn_ppsh41.ogf
 
 light_color		 	= 0.6,0.5,0.3
@@ -131,11 +156,12 @@ light_var_range		= 0.1
 light_time 		 	= 0.2
 
 ;addons
-scope_status			= 0 ;2
+scope_status			= 0
 silencer_status			= 0
 grenade_launcher_status	        = 0
 
-scope_name 			= wpn_addon_scope_susat			; section name for the attachable scope
+;Сменные аддоны ОГСЕ д/б: 
+scope_name = wpn_scope						; section name for the attachable scope
 scope_x 			= 42					; offset in inventory icon
 scope_y 			= 3
 
@@ -144,7 +170,8 @@ silencer_x 			= 218
 silencer_y 			= 13
 
 ;silencer_flame_particles 	= weapons\generic_weapon01
-silencer_smoke_particles 	= weapons\generic_shoot_00
+;silencer_smoke_particles 	= weapons\generic_shoot_00
+silencer_smoke_particles 	= amik\weapons\smoke_particles\p_smoke_particles_02
 
 silencer_light_color		= 1.0, 0.1, 0.0
 silencer_light_range		= 0.01
@@ -156,43 +183,93 @@ zoom_enabled			    = true
 
 ;------------------------------ O.G.S.E. sound remake -----------------------
 ;звуки
-snd_draw			= weapons\ppsh41\ppsh_draw
-snd_holster			= weapons\generic_avtomat_holster
-snd_shoot			= weapons\ppsh41\ppsh41_shot
-snd_shoot1			= weapons\ppsh41\ppsh41_shot1
-snd_shoot2			= weapons\ppsh41\ppsh41_shot2
-snd_shoot3			= weapons\ppsh41\ppsh41_shot3
-snd_empty			= weapons\gen_empty, 0.5
-snd_reload			= weapons\ppsh41\ppsh41_reload, 1.0, 0.75
-snd_close			= weapons\generic_holster
-snd_silncer_shot	= weapons\smg_silent1
+;snd_draw			= weapons\ppsh41\ppsh_draw
+;snd_holster			= weapons\generic_avtomat_holster
+;snd_shoot			= weapons\ppsh41\ppsh41_shot
+;snd_shoot1			= weapons\ppsh41\ppsh41_shot1
+;snd_shoot2			= weapons\ppsh41\ppsh41_shot2
+;snd_shoot3			= weapons\ppsh41\ppsh41_shot3
+;snd_empty			= weapons\gen_empty, 0.5
+;snd_reload			= weapons\ppsh41\ppsh41_reload, 1.0, 0.75
+;snd_close			= weapons\generic_holster
+;snd_silncer_shot	= weapons\smg_silent1
+
+;Васян
+;snd_draw			= weapons\ppsh41\ppsh_draw
+;snd_holster			= weapons\generic_avtomat_holster
+;snd_shoot			= weapons\ppsh\shoot
+;snd_empty			= weapons\gen_empty, 0.5
+;snd_reload			= weapons\ppsh41\ppsh41_reload, 1.0, 0.75
+;snd_close			= weapons\generic_holster
+;snd_silncer_shot	= weapons\smg_silent1
+
+snd_draw					= weapons\ppsh\close
+snd_holster					= weapons\ppsh\holster
+snd_shoot					= weapons\ppsh\ppsh41_shot
+snd_shoot1					= weapons\ppsh\ppsh41_shot1
+snd_shoot2					= weapons\ppsh\ppsh41_shot2
+snd_shoot3					= weapons\ppsh\ppsh41_shot3
+snd_empty					= weapons\ppsh\empty
+snd_reload		    		= weapons\ppsh\reload
+snd_close					= weapons\ppsh\holster
+snd_silncer_shot			= weapons\ppsh\shot_sil
 ;-----------------------------------------------------------------------------
 
 ;-----------------------------------------------------------------------------
 ;-- HUD DESCRIPTION
 ;----------------------------------------------------------------------------- 
 [wpn_ppsh41_hud]
-shell_point          	= 0.00, 0.00, 0.00
+;shell_point          	= 0.00, 0.00, 0.00
+;Раста
+shell_point          		= 0.00, 0.00, -0.6
+;+B+shell_point          	= 0.00, 0.00, 0.00
 shell_dir		        = 0.0, 0.0, 0.0
 
-fire_point              = 0.00,0.0,0.0  ;1-вперёд/назад  2- вверх/вниз 3-влево/вправо
-fire_bone               = wpn_body
-orientation             = 0, 0, 0
-position            	= 0.10,-0.10,0.25 ; первая влево\вправо ; вторая вверх\вниз ;третья fov 0, 0, 0
+;fire_point              = 0.00,0.0,0.0  ;1-вперёд/назад  2- вверх/вниз 3-влево/вправо
+;fire_bone               = wpn_body
+;Раста 
+fire_point               	= 0,0,-0.5
+;+B+fire_point              = 0.00,0.0,0.0  ;1-вперёд/назад  2- вверх/вниз 3-влево/вправо
+fire_bone                	= muzzle
+
+;position            	= 0.10,-0.10,0.25 ; первая влево\вправо ; вторая вверх\вниз ;третья fov 0, 0, 0
+;Раста position            		= 0.10,-0.06,0.05
+;Раста orientation             = 0, 0, 0
+
+; первая влево\вправо ; вторая вверх\вниз ;третья fov 0, 0, 0
+;+B+position			= -0.037000,-0.190000,0.207000
+;+B+orientation			= 4.118189,4.004172,0.000000
+
+orientation              	= 0, 0, 0
+position            		= -0.11,-0.13,0.05
+
 visual                  = weapons\ppsh41\wpn_ppsh41_hud.ogf
 
 anim_idle		        = idle
-anim_idle_aim		    = idle_aim
+anim_idle_aim		    = aim			;Раста idle_aim
 anim_reload		        = reload
 anim_draw		        = draw
 anim_holster		    = holster
 anim_shoot		        = shoot
-anim_idle_sprint	    = idle_sprint
+anim_idle_sprint	    = sprint		;Раста idle_sprint
+;+Раста 
+anim_idle_moving			= moving
 
 ;смещения HUD для режима приближения
-zoom_offset		    	= -0.1,0.053,-0.25
-zoom_rotate_x		    = 0.0
-zoom_rotate_y		    = 0.0
+;zoom_offset		    	= -0.1,0.053,-0.25
+;zoom_rotate_x		    = 0.0
+;zoom_rotate_y		    = 0.0
+;Раста 
+zoom_offset					= -0.116400,0.026100,-0.050000
+zoom_rotate_x				= -0.000700
+zoom_rotate_y				= 0.000100
+scope_zoom_offset			= -0.114400,-0.000600,-0.050000
+scope_zoom_rotate_x			= -0.008700
+scope_zoom_rotate_y			= -0.001300
+
+;+B+zoom_offset			= -0.117900,0.079000,-0.103000
+;+B+zoom_rotate_x		= 0.067000
+;+B+zoom_rotate_y		= 0.071100
 
 zoom_hide_crosshair	    = true						;to hide crosshair in zoom 
 zoom_rotate_time		= 0.2

@@ -1,4 +1,8 @@
-; Пистолет FN Browning Hi-Power SA 1935
+; Пистолет FN Browning Hi-Power 1935 «Трофейный»
+; Пистолет базируется на разработанной Дж. М.Браунингом в 1926 году схеме запирания со сцепленным затвором и коротким ходом ствола, позже модифицированной бельгийским конструктором Дидье Сэвом. Смерть помешала Дж. Браунингу лично передать в производство модель своего бесспорно лучшего пистолета. В начале 30-х гг. XX в. это оружие, после некоторой доработки, все же начали выпускать в Бельгии на заводах фирмы «Фабрик Насьональ» под названием «Браунинг обр. 1935 г.». Позже этот 9-мм пистолет получил собственное имя «Хай Пауэр». До настоящего времени состоит на вооружении во многих странах. Отличается простотой и надёжностью в эксплуатации, которые предопределили столь длительное его производство и применение по всему миру.
+; Версия пистолета с секторным прицелом комплектовалась кобурой-прикладом, который представлял собой «доску-приклад», к которой была прикреплена традиционная кобура, выполненная из кожи. Такая же использовалась вместе с пистолетом Люгер P.08. В боевом положении кобура-приклад крепилась к рукоятке пистолета, существенным образом повышая устойчивость оружия при стрельбе, что повышало точность.
+; HP-SA идентичен лучшенному варианту Mk. III (изменённые накладки на рукоятке из пластика и двусторонний предохранитель) но дополнительно имеет автоматический предохранитель. HP заслуженно считается одним из лучших пистолетов ХХ века, наравне с другим творением Джона Браунинга – Кольтом М1911.
+; После оккупации немцами Бельгии (1940 г.) заводы фирмы «Фабрик Насьональ» начали выпускать пистолеты «Хай Пауэр» под маркой Р-640 (б). За годы Второй мировой войны части Вермахта и СС получили более 300 тыс. единиц этого пистолета. В союзнической Румынии было произведено еще около 100 тыс. Интересен тот факт, что пистолеты Браунинг обр. 1935 г. в годы Второй мировой войны можно бьшо встретить на вооружении армий многих противоборствующих государств. Так, например, производство этого оружия было организовано в Канаде (которая являлась участницей антигитлеровской коалиции) на заводах фирмы «Джон Инглис». Канадские «Хай Пауэр» официально поступали на вооружение армий Греции, Великобритании и Китая. 
 ;-(правлено SR)-------------------------------------
 ; калибр 					9х19 мм
 ; длина ствола 				118 мм
@@ -20,7 +24,7 @@ cform                    	= skeleton
 class                    	= WP_HPSA
 min_radius               	= 0
 max_radius               	= 25
-description					= enc_weapons1_wpn-hpsa
+description					= enc_weapons1_wpn-b1935
 
 ef_main_weapon_type = 0
 ef_weapon_type				= 5
@@ -43,8 +47,8 @@ single_handed				= 1
 slot 			 			= 1		; // primary
 animation_slot				= 1		; type of the animation that will be used
 
-inv_name					= wpn_hpsa
-inv_name_short				= wpn_hpsa
+inv_name					= wpn_b1935
+inv_name_short				= wpn_b1935_s
 inv_weight					= 0.88
 
 inv_grid_width				= 2
@@ -135,12 +139,16 @@ grenade_launcher_status		= 0
 zoom_enabled				= true
 
 ;звуки
-snd_draw					= weapons\fort17\fort_draw
-snd_holster					= weapons\generic_holster
+;snd_draw					= weapons\fort17\fort_draw
+snd_draw					= weapons\pm\draw							;достал
+;snd_holster					= weapons\generic_holster
+snd_holster					= weapons\pm\holster						;убрал
 snd_shoot					= weapons\hpsa\shoot
-snd_empty					= weapons\pistol_empty
+;snd_empty					= weapons\pistol_empty
+snd_empty					= weapons\tt33\empty
 snd_reload					= weapons\fort17\fort_reload
-snd_close					= weapons\generic_close
+;snd_close					= weapons\generic_close
+snd_close					= weapons\pm\close
 snd_silncer_shot			= weapons\fort17\fort_shot_sil
 
 
@@ -148,9 +156,9 @@ snd_silncer_shot			= weapons\fort17\fort_shot_sil
 ;; silencer
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-silencer_name  				= wpn_9mm_nato_silencer		; section name for the attachable silencer
-silencer_x 					= 54						; offset in inventory icon
-silencer_y 					= -16
+silencer_name  				= wpn_addon_silencer		; section name for the attachable silencer
+silencer_x 					= 59						; offset in inventory icon
+silencer_y 					= -19
 
 ;params when silencer is attached 
 ;similar to corresponding params without prefix silencer_
@@ -204,9 +212,13 @@ anim_idle_sprint			= idle_sprint
 ;zoom_rotate_y				= -0.007400
 
 ;sto1en
-zoom_offset			= -0.105800,0.041300,-0.028000
-zoom_rotate_x		= 0.004200
-zoom_rotate_y		= -0.007000
+;zoom_offset			= -0.105800,0.041300,-0.028000
+;zoom_rotate_x		= 0.004200
+;zoom_rotate_y		= -0.007000
+
+zoom_offset			= -0.104300,0.035800,-0.028000
+zoom_rotate_x		= -0.013300
+zoom_rotate_y		= -0.009000
 
 [wpn_hpsa_repair]
 tech_complication = 400

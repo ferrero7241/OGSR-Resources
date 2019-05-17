@@ -50,7 +50,7 @@ script_binding  = ogse_bind_weapon.init
 ;нет (апгрейд ремонтника?) боковой прицельной планки "ласточкин хвост" - d2 надо ВСЕГДА скрывать
 managed_bones = d2, d1, s1, s2, s3, s4, s5, m1, m2, m3
 ;не надо своего описания description = "АКМ БАЗА"
-cost					= 4000
+;cost					= 4000
 hud = wpn_akm_base_hud
 
 [wpn_akm_base_hud]:wpn_akm_hud
@@ -65,7 +65,7 @@ managed_bones = d1, s1, s2, s3, s4, s5, m1, m2, m3
 description				= enc_weapons1_wpn-akmsn3
 inv_name	        	= wpn-akmsn3
 inv_name_short			= wpn-akmsn3_s
-cost					= 5000
+;cost					= 5000
 hud = wpn_akm_base1_hud
 
 [wpn_akm_base1_hud]:wpn_akm_base_hud
@@ -166,6 +166,9 @@ zoom_rotation		= 0.038600,0.029480
 [akm_kobra_p]
 scope_name               = wpn_addon_scope_kobra
 scope                    = akm_kobra
+; второй прицел ОГСР не надо сдвигать, а second_ тут не работают..
+disable_second_scope = true
+
 
 ; 1ПН51 (НСПУ-3 "Казуар") х3,46 +ДТК АКМЛ (надо скрывать muzzle!)
 [akm_1pn51]
@@ -196,22 +199,35 @@ smoke_particles   		= amik\weapons\smoke_particles\smoke_particles_04
 ;-работает для секции (даже если НЕ одет прицел!) hud = wpn_akm_gl_scope_hud
 
 
-
 ; ACOG TA31-CH х4
 [akm_acog]
-;тест мех.прицела force_remove_texture = true
+;тест мех.прицела +3D 
+force_remove_texture = true
 bones         = s4
 ;штатный механический прицел ACOG (не настроен)
 ;zoom_offset			= -0.112840,0.027250,0.128000
 ;zoom_rotation		= 0.064800,0.043280
-
 ; тест sto1en
-zoom_offset			= -0.168900,0.068050,-0.247100
+; zoom_offset			= -0.168900,0.068050,-0.247100
+; zoom_rotation		= 0.043400,0.030280
+; тест 3D
+zoom_offset			= -0.168900,0.020050,-0.247100
 zoom_rotation		= 0.043400,0.030280
 
 [akm_acog_p]
 scope_name               = wpn_addon_acog
 scope                    = akm_acog
+;-через дыру с мушкой
+;-second_zoom_offset			= -0.168900,0.035050,-0.247100
+;-second_zoom_rotate_x		= 0.016400
+;-second_zoom_rotate_y		= 0.030280
+;-через дыру
+;_second_zoom_offset			= -0.168900,0.051050,-0.247100
+;_second_zoom_rotate_x		= 0.043400
+;_second_zoom_rotate_y		= 0.030280
+;_второй прицел ОГСР не надо сдвигать, а second_ тут не работают.. 
+disable_second_scope = true
+;_поднимать планку
 
 ; EOTech 552.A65 х1
 [akm_eotech]
@@ -228,6 +244,9 @@ zoom_rotation		= 0.033600,0.029580
 [akm_eotech_p]
 scope_name               = wpn_addon_scope_eotech
 scope                    = akm_eotech
+; второй прицел ОГСР не надо сдвигать, а second_ тут не работают..
+disable_second_scope = true
+
 
 ;-----------------------------------------------------------------------------------
 ; служебные секции описателей магазинов
@@ -242,8 +261,8 @@ magazine                 = akm_akm30
 ammo_mag_size			= 30
 inv_grid_x			= 59
 inv_grid_y			= 0
-inv_weight				= 3.63		;АКМ 3.48 = 3.15 + 0.33 ;АКМС (+0,15) 3,63=3,3+0,33
-cost					= 5100
+;inv_weight				= 3.63		;АКМ 3.48 = 3.15 + 0.33 ;АКМС (+0,15) 3,63=3,3+0,33
+;cost					= 5100
 
 [akm_rpk40]
 bones = m2
@@ -253,8 +272,8 @@ magazine                 = akm_rpk40
 ammo_mag_size            = 40
 inv_grid_x			= 59
 inv_grid_y			= 2
-inv_weight				= 3.75		;АКМ 3.5 = 3.15 + 0.45 ;АКМС (+0,15) 3,75=3,3+0,45
-cost					= 5200
+;inv_weight				= 3.75		;АКМ 3.5 = 3.15 + 0.45 ;АКМС (+0,15) 3,75=3,3+0,45
+;cost					= 5200
 
 [akm_rpk75]
 bones = m3
@@ -264,8 +283,8 @@ magazine                 = akm_rpk75
 ammo_mag_size            = 75
 inv_grid_x			= 59 			;(след.=64+5ячеек)
 inv_grid_y			= 4
-inv_weight				= 4.1		;АКМ 3.95 = 3.15 + 0.8 ;АКМС (+0,15) 4.1=3,3+0,8
-cost					= 5400
+;inv_weight				= 4.1		;АКМ 3.95 = 3.15 + 0.8 ;АКМС (+0,15) 4.1=3,3+0,8
+;cost					= 5400
 hud                     = wpn_akm_buben_hud
 
 [akm_nomag]

@@ -1,6 +1,7 @@
-; Штурмовая винтовка (автомат) FN Herstal F2000
+; 5,56-мм модульный стрелково-гранатомётный комплекс Fabrique Nationale Herstal F2000
+;Mari для NLC7, модели и текстуры DICE, анимации Anim_rouge, пересобрал для ОГСЕ k01jan
 ;--------------------------------------
-[wpn_fn2000]:identity_immunities
+[wpn_fn2000base]:identity_immunities,base_wpn_zoom
 GroupControlSection	= spawn_group
 discovery_dependency = 
 $spawn                   = "weapons\fn-2000"
@@ -32,20 +33,21 @@ single_handed		     = 0
 
 ammo_class		     = ammo_5.56x45_ss190, ammo_5.56x45_ap
 grenade_class		 = ammo_m209, ammo_m208a
-fire_modes		     = 1, 3, -1
+fire_modes		     = 1, 0, -1
 launch_speed			= 0
 
 slot 			         = 2		; // secondary
 animation_slot			 = 8		; type of the animation that will be used
 
 inv_name		         = wpn-fn2000
-inv_name_short		     = wpn-fn2000
-inv_weight		         = 4.6
+inv_name_short		     = wpn-fn2000_s
+inv_weight		         = 3.6
+;Вес без патронов, кг	3.6 (4.6 с 40-мм гранатометом подствольным гранатомётом FN GL1)
 
-inv_grid_width				= 4
-inv_grid_height				= 2
-inv_grid_x					= 5
-inv_grid_y					= 9
+inv_grid_width			= 4
+inv_grid_height			= 2
+inv_grid_x				= 16		;16	баллистический
+inv_grid_y				= 24		;22	модуль
 
 kill_msg_x					= 131
 kill_msg_y					= 123
@@ -55,9 +57,9 @@ kill_msg_height				= 30
 ;-----------------------------------------------------------------------------------
 ;базовая дисперсия
 dispersion_start		= 2
-fire_dispersion_base		= 0.13 	;угол (в градусах) базовой дисперсии оружия (оружия зажатого в тисках)
+fire_dispersion_base		= 0.15 	;0.14	;угол (в градусах) базовой дисперсии оружия (оружия зажатого в тисках)
 control_inertion_factor		= 1.15f
-disp_rate 			= 1.8
+disp_rate 			= 1.85
 
 ;отдача
 cam_relax_speed         	= 5.6		;скорость возврата в исходное положение
@@ -75,18 +77,20 @@ misfire_condition_k			= 0.05
 condition_shot_dec 			= 0.00025 ;увеличение износа при каждом выстреле
 ;-----------------------------------------------------------------------------------
 
-direction                = 0, 0, 1
+;direction                = 0, 0, 1
 
-;fire_point			= 0.01,0.166,0.475
-fire_point			= 0.01,0.21,0.37
+fire_point             		=  0,0.216,0.638			; position (3rd person view) for particles of fire 
+fire_point2            		=  0,0.216,0.730			; position (3rd person view) for particles of fire (when shooting with secondary fire)
 
-flame_particles			 = weapons\generic_weapon05
+;flame_particles			 = weapons\generic_weapon05
+flame_particles				= amik\weapons\flame_particles\dtk_flame_particles_4_1
 smoke_particles			 = weapons\generic_shoot_00
 grenade_flame_particles	= weapons\generic_weapon01
 
-shell_point			= -0.020000,0.186000,0.200000
-shell_dir		 		= 0.0, 1.0, 0.0
-shell_particles	 		= weapons\generic_shells
+shell_point		 			= 0,0.216,0.174				; position (3rd person view) for shell to throw out
+;shell_dir		 		= 0.0, 1.0, 0.0
+;shell_particles	 		= weapons\generic_shells
+shell_particles	 		= amik\weapons\5_56x45\5_56x45_r_00
 rpm_empty_click 	     = 425
 
 PDM_disp_base 			= 1.2
@@ -109,9 +113,9 @@ rpm                      	= 850
 use_aim_bullet			= false			;Поддерживается ли первая суппер пуля
 time_to_aim				= 0.01	
 
-hud                      = wpn_fn2000_hud
+hud                      = wpn_fn2000base_hud
 normal                   = 0, 1, 0
-position                 = -0.005, -0.12, 0.0
+position                 = -0.026, -0.132, 0.0
 orientation              = 0, 0, 0
 
 ;--STRAP PARAMETERS-----------------------------------------------------------------
@@ -120,7 +124,7 @@ strap_orientation      		= -10,-3,10					; (3rd person view in degrees))
 strap_bone0					= bip01_spine2
 strap_bone1					= bip01_spine1
 
-visual                   = weapons\fn2000\wpn_fn2000_old.ogf
+visual                   = weapons\fn2000\wpn_fn2000_new.ogf
 
 light_color		         = 0.6,0.5,0.3
 light_range		         = 4
@@ -128,25 +132,30 @@ light_var_color		     = 0.05
 light_var_range		     = 0.1
 light_time 		         = 0.2
 
-;addons
-scope_status				= 1
-silencer_status				= 0
-grenade_launcher_status		= 1
+script_binding			= ogse_bind_weapon.init
+;скрытые (управляемые) кости: managed_bones = muzzle
+managed_bones = wpn_silencer
 
-scope_texture		= wpn\scopes\scope_fn2000_old
-lens_texture		= wpn\wpn_crosshair_g36_lens
-lens_texture_x		= 183
-lens_texture_y		= 75
-lens_texture_w		= 648
-lens_texture_h		= 648
+;addons
+scope_status				= 2
+silencer_status				= 2			;+2
+grenade_launcher_status		= 2
+
+scope_mount_status		= 0
+grip_status				= 0
+magazine_status			= 0
+
+;Сменные аддоны ОГСЕ д/б: 
+scope_name = wpn_scope
+scope_x 					= 50
+scope_y 					= 10
+zoom_enabled			= true
+;прицелы на штатную планку
+wpn_addon_scope_fn2000    	= wpn_fn2000
 
 silencer_name  				= wpn_addon_sil_556_ar
-silencer_x 					= 152						; offset in inventory icon
-silencer_y 					= 10
-zoom_enabled			= true
-scope_zoom_factor	 	= 1.6 	; FN F2000 1.6x		; fov for zoom mode
-ironsight_zoom_factor		= 1.0
-
+silencer_x 					= 152
+silencer_y 					= 13
 
 ;params when silencer is attached 
 ;similar to corresponding params without prefix silencer_
@@ -160,92 +169,230 @@ silencer_light_var_color	= 0.05
 silencer_light_var_range	= 0.5
 silencer_light_time 		= 0.2
 
-grenade_vel					= 76
+grenade_launcher_name	= wpn_addon_grenade_launcher_fn2000
+grenade_launcher_x 		= 95
+grenade_launcher_y 		= 40
+;grenade_vel					= 76
 
-;------------------------------ O.G.S.E. sound remake ------------------------
-;звуки
-snd_draw			= weapons\fn2000\fn2000_draw
-snd_holster			= weapons\generic_avtomat_holster
-snd_shoot			= weapons\fn2000\fn2000_shoot
-snd_shoot1			= weapons\fn2000\fn2000_shoot1   
-snd_shoot2			= weapons\fn2000\fn2000_shoot2   
-snd_shoot3			= weapons\fn2000\fn2000_shoot3       
-snd_empty			= weapons\fn2000\fn2000_empty, 0.8
-snd_reload			= weapons\fn2000\fn2000_reload, 0.8, 0.3
-snd_shoot_grenade	= weapons\M203\M203_grenshoot
-snd_reload_grenade	= weapons\fn2000\fn2000_grenload, 1.0, 0.5
-snd_switch			= weapons\M203\M203_switch, 1.0, 0.5
-snd_silncer_shot	= weapons\fn2000\fn2000_shot_sil 
+;ПРОБУЕМ пока один набор на всех прописать напрямую (ВРЕМЕННО, пока KRodin в движок всё перенести не раздуплится)
+highlight_addons = fake_wpn_addon_grenade_launcher_fn2000, fake_wpn_addon_scope_fn2000
+;при торговле обрабатывает не все аддоны из списка, а только те прицелы, что в секции ствола.
+;С патронами, глушаками и подстволами всё нормально - они же движковые (не имеют фейков).
+;Магазины, прицельные планки и ручки почему-то не обрабатываются. 
+;при закрытии инвентаря фейки превращаются в не фейки, и в торговле поэтому глюки
+;Флаг, позволяющий для всех предметов реагировать на флаг FRuckDefault. Если флаг установлен, хабар будет подбираться в рюкзак, а не в слот по умолчанию.
+default_to_ruck = true
 ;-----------------------------------------------------------------------------
+snd_draw			= weapons\fn2000\fn2000_draw
+snd_holster			= weapons\fn2000\fn2000_holster
+snd_shoot			= weapons\fn2000\fn2000_shoot
+snd_shoot1			= weapons\fn2000\fn2000_shoot1  
+snd_shoot2			= weapons\fn2000\fn2000_shoot2  
+snd_shoot3			= weapons\fn2000\fn2000_shoot3        
+snd_empty			= weapons\fn2000\fn2000_empty
+snd_reload			= weapons\fn2000\fn2000_reload_v2
+snd_shoot_grenade	= weapons\fn2000\m203_grenshoot
+snd_reload_grenade	= weapons\fn2000\fn2000_grenload
+snd_switch			= weapons\fn2000\fn2000_switch
+;_нет огг-комментов snd_silncer_shot			= weapons\l85\m16_special_01
+;_нет огг-комментов snd_silncer_shot1			= weapons\l85\m16_special_02
+;_нет огг-комментов snd_silncer_shot2			= weapons\l85\m16_special_03
+;-ОГСЕ snd_silncer_shot			= weapons\w_ak74_shot1
+;-ОГСЕ 
+snd_silncer_shot	= weapons\ar15\ar15_silent, 0.5
 ;-----------------------------------------------------------------------------
 ;-- HUD DESCRIPTION
 ;-----------------------------------------------------------------------------
-[wpn_fn2000_hud]
+[wpn_fn2000base_hud]
 
 allow_inertion			= true
 
-shell_point			= 0.110000, -0.060000, 0.010000
-shell_dir		 	= 0.0, 1.0, 0.0
+shell_point			= 0.035000,0.000000,0.005000
+shell_dir			     	= 0.0, 1.0, 0.0
+fire_point			= 0.000000,0.018000,-0.028000
+fire_point2			= 0.030000,-0.460000,0.951999
+fire_bone               	= wpn_body
 
-;fire_point			= -0.080000,0.030000,-0.060000
-fire_point			= 0.0,0.0,-0.05
-fire_bone 			= wpn_body
+position			= 0.102000,0.004000,-0.045000
+orientation			= 0.000000,0.000000,0.000000
 
-;orientation			= 2, 1, 0
-orientation			= 0, 0, 0
-position			= 0, 0, 0
-visual 				= weapons\fn2000\wpn_fn2000_old_hud.ogf
+visual 				= weapons\fn2000\wpn_fn2000_new_hud.ogf
 
-grenade_bone 		= grenade
+grenade_bone            	= wpn_grenade
 
-anim_idle 			= idle
-anim_idle_aim 		= idle
-anim_reload 		= reload
-anim_draw 			= draw
-anim_holster 		= holster
-anim_shoot 			= shoot
-anim_idle_sprint	= idle_sprint
+anim_idle 		= idle
+anim_idle_aim 	= idle_aim
+anim_reload 	= reload_v2		;взвод по окончании		;reload	с задержкой - не совпадает звук
+anim_draw 		= draw
+anim_draw_speed_k    = 1.4
+anim_holster 	= holster
+anim_holster_speed_k    = 2.3
+anim_shoot 		= shoot
 
-anim_idle_g			= idle_g
-anim_idle_g_aim 	= idle_g
-anim_reload_g		= reload_g
-anim_shoot_g			= shoot_g
+anim_idle_g				= idle_grenade
+anim_idle_g_aim         = idle_grenade_aim
+anim_reload_g			= reload_grenade
+anim_shoot_g			= shoot_grenade
 anim_switch_grenade_on	= switch_on
 anim_switch_grenade_off	= switch_off
-anim_draw_g			= draw_g
-anim_holster_g		= holster
+anim_draw_g				= draw_grenade
+anim_draw_g_speed_k    = 1.2
+anim_holster_g			= holster_grenade
+anim_draw_g_speed_k    = 2.1
 
 ; attached grenade launcher [NORMAL fire mode]
-anim_idle_gl			= idle
-anim_idle_gl_aim		= idle
-anim_reload_gl			= reload
-anim_draw_gl			= draw
-anim_holster_gl			= holster
-anim_shoot_gl			= shoot
+anim_idle_gl				= idle_w_gl
+anim_idle_gl_aim			= idle_w_gl_aim
+anim_reload_gl				= reload_v2_w_gl
+anim_draw_gl				= draw_w_gl
+anim_holster_gl				= holster_w_gl
+anim_shoot_gl				= shoot_w_gl
+anim_idle_sprint			= idle_sprint_w_gl
+
+;Нет отдачи, практически. Подброс и увод ствола, минимален. Почти у всех, СТП уходила вправо поначалу, т.к. спуск тугой. Но привыкли все быстро. 
 
 ;смещения HUD для режима приближения
-;zoom_offset			= -0.030000, -0.010000, -0.050000
-zoom_offset			    = -0.131,-0.08,0.0
-;zoom_rotate_x			= 0.017200
-;zoom_rotate_y			= 0.034400
-zoom_rotate_x			= 0.000000
-zoom_rotate_y			= 0.000000
+;HUD offset in zoom mode (to all)
+;(use CONSOLE: hud_adjust_mode 0,1,2, then keys WSADQE and P to show current value in console)
+;модуль
+;zoom_offset			= -0.102610,-0.012500,-0.221500
+;zoom_rotate_x		= -0.009500
+;zoom_rotate_y		= 0.000600
+;second_zoom_offset		= -0.102500,-0.048000,-0.207500
+;second_zoom_rotate_x		= -0.009500
+;second_zoom_rotate_y		= 0.000600
+;рельса
+zoom_offset			= -0.101910,0.013100,-0.221500
+zoom_rotate_x		= 0.003500
+zoom_rotate_y		= 0.000600
+second_zoom_offset			= -0.101910,0.013100,-0.221500
+second_zoom_rotate_x		= 0.003500
+second_zoom_rotate_y		= 0.000600
 
-;тоже самое, но для подствольника
-;grenade_zoom_offset	= -0.137300, -0.127600, 0.000000
-grenade_zoom_offset		= -0.146,-0.127600,0.000000
-;grenade_zoom_rotate_x	= -0.186500
-;grenade_zoom_rotate_y	= 0.069400
-grenade_zoom_rotate_x	= -0.203700
-grenade_zoom_rotate_y	= 0.035000
+;подствольник, режим обычной стрельбы
+;модуль
+;grenade_normal_zoom_offset			= -0.102610,-0.012500,-0.221500
+;grenade_normal_zoom_rotate_x		= -0.009500
+;grenade_normal_zoom_rotate_y		= 0.000600
+;second_grenade_normal_zoom_offset		= -0.102500,-0.048000,-0.207500
+;second_grenade_normal_zoom_rotate_x		= -0.009500
+;second_grenade_normal_zoom_rotate_y		= 0.000600
+;рельса
+grenade_normal_zoom_offset			= -0.101910,0.013100,-0.221500
+grenade_normal_zoom_rotate_x		= 0.003500
+grenade_normal_zoom_rotate_y		= 0.000600
+second_grenade_normal_zoom_offset			= -0.101910,0.013100,-0.221500
+second_grenade_normal_zoom_rotate_x		= 0.003500
+second_grenade_normal_zoom_rotate_y		= 0.000600
+
+; режим подствольника (общий для всех)
+grenade_zoom_offset			= -0.160800,-0.152501,0.070000
+grenade_zoom_rotate_x		= -0.145301
+grenade_zoom_rotate_y		= 0.001600
+second_grenade_zoom_offset			= -0.160800,-0.152501,0.070000
+second_grenade_zoom_rotate_x		= -0.145301
+second_renade_zoom_rotate_y		= 0.001600
 
 ;прячем перекрестие прицела в зуме
 zoom_hide_crosshair		= true
 
 ;время поворота HUD (сек)
-zoom_rotate_time		= 0.5
-rotate_time			= 0.5
+zoom_rotate_time		= 0.3
+rotate_time			= 0.3
 
-[wpn_fn2000_repair]
+[wpn_fn2000base_repair]
 tech_complication = 1000
 repair_compatibility = fn2000
+
+
+
+;-----------------------------------------------------------------------------------
+;Сменные аддоны ОГСЕ
+;-----------------------------------------------------------------------------------
+;управляемые В СЕКЦИЯХ АДДОНОВ кости (64=57+7s) с привязкой by k01jan:
+;  wpn_body					FN F2000
+;  cevie					цевьё FN F2000 (убирается анимкой, когда одет подствол, на мировой ВИДНА)
+;  lock						фиксатор магазина
+;  mag						маг 30
+;  	ammo					2 патрона в магазине
+;  muzzle					мех.прицел (съёмная мушка +откидной целик)
+;  slide					рукоять взведения (разобщена с затвором)
+;  trigger					спуск ствола
+;  wpn_grenade_launcher		подствольный гранатомёт FN GL1
+;  	launcher_sight1			прицел подствола
+;  	launcher_sight2			прицел подствола
+;  	launcher_slide			ствол подствола
+;  	wpn_grenade				m433
+;  	grenade_shell			гильза m433
+;  	launcher_trigger		спуск подствола 
+;  wpn_scope				- (движковая, д/б пустая)
+		;-1  scope1			штатный прицельный модуль (3D)
+		;-2  scope2			ACOG TA31-CH х4 (3D)
+		;-3  scope3			EOTech  552.A65 х1
+		;-4  scope4			- ? увеличитель				(костыль: фейк-ручка)
+		;-5  scope5			- ? НВ						(костыль: фейк-ручка)
+		;-6  scope3			- ? ИК
+		;-7  scope4			- ? длинный ЗУМ
+;  wpn_silencer				глушак GEMTECH G5 5,56mm NATO +адаптер MultiMount
+
+;? или цевья сменные лучше сделать вместо костыльных насадков?
+;- фонарь/лцу можно на подствол сбоку прицепить - тоже через костыли?
+
+
+
+
+
+;-------------------------------------------------------------------------------------------
+; служебные секции описателей аддонов
+;при установленном аддоне кости bones показываются, bones_hide скрываются
+;-----------------------------------------------------------------------------------
+; штатный оптический прицельный модуль FN F2000 х1,6
+[f2000_scope]
+;тест мех.прицела +3D
+force_remove_texture = true
+bones			= wpn_scope
+bones_hide = muzzle
+;штатный оптический прицельный модуль, 3D
+zoom_offset			= -0.102610,-0.012500,-0.221500
+zoom_rotation		= -0.009500,0.000600
+[f2000_scope_p]
+; движковый прицел
+scope_name               = wpn_addon_scope_fn2000
+scope                    = f2000_scope
+
+
+
+
+
+;---------------------------------;со штатным оптическим модулем
+[wpn_fn2000]:wpn_fn2000base,f2000_scope_p
+;-----затычка (не готовы аддоны на рельсу)
+scope_status				= 1
+scope_lense_fov_factor = 10.0
+inv_grid_x				= 5		;прицельный
+inv_grid_y				= 9		;модуль
+;-----
+;секция при снятом прицеле 
+scope_removed_section	 = wpn_fn2000base
+hud = wpn_fn2000_hud
+[wpn_fn2000_hud]:wpn_fn2000base_hud
+;модуль
+zoom_offset			= -0.102610,-0.012500,-0.221500
+zoom_rotate_x		= -0.009500
+zoom_rotate_y		= 0.000600
+second_zoom_offset		= -0.102500,-0.048000,-0.207500
+second_zoom_rotate_x		= -0.009500
+second_zoom_rotate_y		= 0.000600
+grenade_normal_zoom_offset			= -0.102610,-0.012500,-0.221500
+grenade_normal_zoom_rotate_x		= -0.009500
+grenade_normal_zoom_rotate_y		= 0.000600
+second_grenade_normal_zoom_offset		= -0.102500,-0.048000,-0.207500
+second_grenade_normal_zoom_rotate_x		= -0.009500
+second_grenade_normal_zoom_rotate_y		= 0.000600
+[wpn_fn2000_repair]:wpn_fn2000base_repair
+
+
+
+
+
+

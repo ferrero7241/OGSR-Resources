@@ -64,24 +64,24 @@ kill_msg_height		= 30
 
 ;-----------------------------------------------------------------------------------
 ;params of weapon recoil
-fire_dispersion_base		= 0.20		;угол (в градусах) базовой дисперсии оружия (оружия зажатого в тисках)
+fire_dispersion_base		= 0.175	;0.18	ОГСЕ 0.20	;угол (в градусах) базовой дисперсии оружия (оружия зажатого в тисках)
 control_inertion_factor		= 1.09f
 disp_rate 			= 1.65
 
 ;--отдача
-cam_relax_speed         = 6.3		;скорость возврата в исходное положение
+cam_relax_speed         = 6.3			;скорость возврата в исходное положение
 cam_relax_speed_ai      = 120.75
-cam_dispersion          = 0.3		;увеличения угла (в градусах) с каждым выстрелом
-cam_dispersion_inc		= 0.20;0.15		;увеличениe cam_dispersion с каждым выстрелом
-cam_dispertion_frac		= 0.9		;ствол будет подыматься на cam_dispersion*cam_dispertion_frac +- cam_dispersion*(1-cam_dispertion_frac)
-cam_max_angle			= 9.0		;максимальный угол отдачи
-cam_max_angle_horz		= 30.0		;(degree) maximum shot horizontal degree 
-cam_step_angle_horz		= 1.25;1.1		;(degree) size of step camera moved in horizontal position while shooting
+cam_dispersion          = 0.2	;0.3	;увеличения угла (в градусах) с каждым выстрелом
+cam_dispersion_inc		= 0.2			;увеличениe cam_dispersion с каждым выстрелом
+cam_dispertion_frac		= 0.9			;ствол будет подыматься на cam_dispersion*cam_dispertion_frac +- cam_dispersion*(1-cam_dispertion_frac)
+cam_max_angle			= 10.0			;максимальный угол отдачи
+cam_max_angle_horz		= 20.0	;30.0	;(degree) maximum shot horizontal degree 
+cam_step_angle_horz		= 1.25			;(degree) size of step camera moved in horizontal position while shooting
 ;износ
-fire_dispersion_condition_factor 	= 5    	;увеличение дисперсии в процентах при максимальном износе 
-misfire_probability 	= 0.0015	;вероятность осечки при максимальном износе 
-misfire_condition_k		= 0.05
-condition_shot_dec 	= 0.00015	;увеличение износа при каждом выстреле
+fire_dispersion_condition_factor 	= 5    		;увеличение дисперсии в процентах при максимальном износе 
+misfire_probability 				= 0.003		;вероятность осечки при максимальном износе 
+misfire_condition_k					= 0.05
+condition_shot_dec 					= 0.00015	;увеличение износа при каждом выстреле
 ;-----------------------------------------------------------------------------------
 
 fire_point             	=  0,0.216,0.58			; position (3rd person view) for particles of fire 
@@ -116,14 +116,14 @@ shell_particles				= amik\weapons\5_45x39\5_45x39_shells_r_00
 ;С 1962 г. дульце гильзы по стыку с пулей и кромке капсюля для повышения влагостойкости покрываются лаком-герметизатором. В 1962-1963 гг. цвет лака был фиолетовый, а с 1964 г. лак на патронах с любым типом пули стал красным.
 
 ;параметры качания ствола в руках ГГ при движении в режиме прицеливания (стрельба навскидку)
-PDM_disp_base 			= 1.05		;ОГСЕ 1.2	;множитель, на который умножается базовая дисперсия оружия, когда ГГ стоит на месте в полный рост 
-PDM_disp_vel_factor 	= 1.15		;ОГСЕ 1.3	;множитель, на который умножается базовая дисперсия оружия, когда ГГ крутит оружием или бежит
-PDM_disp_accel_factor 	= 1.3		;ОГСЕ 1.3	;множитель, на который умножается базовая дисперсия оружия, когда ГГ бежит в спринте
+PDM_disp_base 			= 1.1		;ОГСЕ 1.2	;множитель, на который умножается базовая дисперсия оружия, когда ГГ стоит на месте в полный рост 
+PDM_disp_vel_factor 	= 0.99		;ОГСЕ 1.3	;множитель, на который умножается базовая дисперсия оружия, когда ГГ крутит оружием или бежит
+PDM_disp_accel_factor 	= 0.9		;ОГСЕ 1.3	;множитель, на который умножается базовая дисперсия оружия, когда ГГ бежит в спринте
 PDM_crouch	 			= 1.01		;ОГСЕ 1.0	;множитель, на который умножается базовая дисперсия оружия, когда ГГ идет пригнувшись
-PDM_crouch_no_acc 		= 1.0		;ОГСЕ 1.0	;множитель, на который умножается базовая дисперсия оружия, когда ГГ стоит на месте, пригнувшись
+PDM_crouch_no_acc 		= 1.2		;ОГСЕ 1.0	;множитель, на который умножается базовая дисперсия оружия, когда ГГ стоит на месте, пригнувшись
 
 ; ttc
-hit_power                       = 0.61		;size of damage by bullet
+hit_power                       = 0.65		;size of damage by bullet
 hit_impulse		 	= 25		;size of physic impulse by bullet	
 hit_type 			= fire_wound 	;[] type of the wound
 fire_distance            	= 250		; maximum fire distance that bullet can fly
@@ -137,9 +137,9 @@ time_to_aim					= 1.0
 ;params when silencer is attached 
 ;similar to corresponding params without prefix silencer_
 
-silencer_hit_power       	= 0.55
+silencer_hit_power       	= 0.6
 silencer_hit_impulse	 	= 25
-silencer_fire_distance   	= 150		;ОГСЕ АКС74У 150
+silencer_fire_distance   	= 200		;ОГСЕ АКС74У 150
 silencer_bullet_speed	 	= 720
 
 hud                      	= wpn_aks74ub_hud				; name of the section of the hud
@@ -179,6 +179,15 @@ silencer_y 				    = 18
 grenade_launcher_name 		= no_grenade_launcher		;wpn_addon_grenade_launcher; section name for the attachable grenade launcher
 grenade_launcher_x 			= 117						; offset in inventory icon
 grenade_launcher_y 			= 22
+
+;ПРОБУЕМ пока один набор на всех (ВРЕМЕННО, пока KRodin в движок всё перенести не раздуплится)
+highlight_addons = fake_wpn_addon_mag_ak7430, fake_wpn_addon_mag_rpk7445, fake_wpn_addon_mag_ak10560, fake_wpn_addon_scope_1p29, fake_wpn_addon_scope_kobra, fake_wpn_addon_scope_1pn51, fake_wpn_addon_mtk83, fake_wpn_addon_acog, fake_wpn_addon_scope_eotech
+;при торговле обрабатывает не все аддоны из списка, а только те прицелы, что в секции ствола.
+;С патронами, глушаками и подстволами всё нормально - они же движковые (не имеют фейков).
+;Магазины, прицельные планки и ручки почему-то не обрабатываются. 
+;при закрытии инвентаря фейки превращаются в не фейки, и в торговле поэтому глюки
+;Флаг, позволяющий для всех предметов реагировать на флаг FRuckDefault. Если флаг установлен, хабар будет подбираться в рюкзак, а не в слот по умолчанию.
+default_to_ruck = true
 
 ;------------------------------ O.G.S.E. sound remake ------------------------------
 ;sounds (name of the sound, volume (0.0 - 1.0), delay (sec))
@@ -283,6 +292,13 @@ anim_shoot_gl				= shoot_w_gl		;ходьба/удержание/бег с ГП
 zoom_offset			= -0.168800,0.059450,-0.223100
 zoom_rotate_x		= 0.043400
 zoom_rotate_y		= 0.030280
+
+;штатный механический прицел (второй режим - для оптики)
+;second_zoom_offset			= -0.168800,0.059450,-0.223100
+;second_zoom_rotate_x		= 0.043400
+;second_zoom_rotate_y		= 0.030280
+;поднимать ВСЕ!
+
 
 zoom_hide_crosshair	= true						;to hide crosshair in zoom 
 

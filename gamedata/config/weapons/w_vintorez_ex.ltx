@@ -1,0 +1,735 @@
+;-----------------------------------------------------------------------------------
+;Сменные аддоны ОГСЕ
+;-----------------------------------------------------------------------------------
+;управляемые В СЕКЦИЯХ АДДОНОВ кости  (64=50+2m+4d+8s) ВСС с привязкой by k01jan:
+;wpn_body		ВСС +патрон в стволе
+;  wpn_silencer	- (пустая - интегрированный ПБС)
+;  wpn_scope	- (движковая, д/б пустая)
+;  safe			пп
+;  trigger		спусК
+;  lock			защёлка магазина
+;  mag			- (Д/Б пустая, анимированная)
+;    mag: ammo		2 патрона в МАГазине (Д/Б скрытА при разряжании, виднА при заряжании)
+;    mag: mag1		10 ВСС
+;    mag: mag2		20 АС
+;  custom 		щека СВД																				(фейк-?ручка!)
+;~  grip			ручка (анимировать)
+;  scope1		ПСО-1М2-1 х4
+;  scope2		ЭКП-8М-01 "Кобра" х1
+;  scope3		1ПН51 (НСПУ-3 "Казуар") х3,46 (СТАРЫЙ, заменить!)
+;  mount1 		планка МТК-83 (кронштейн-переходник "ласточкин хвост"/Picatinny rail)
+;  scope4		ACOG TA31-CH х4 (на рельсу)
+;  scope5		EOTech  552.A65 х1 (на рельсу)
+;-  mount2 		- длинная рельса (? тогда надо ставить её и на Калачи)
+;-  scope6		- длинный ЗУМ (_на длинный рельс)
+;-  scope7		- увеличитель EOTech (_на длинный рельс)
+;-  scope8		- НВ-насадок (EOTech, ACOG) (_на длинный рельс)
+;+  muzzle		+ЛЕНТА (_m1 "Ласка")
+;-----------------------------------------------------------------------------------
+;материал: МИР объект-large_weapon
+;-----------------------------------------------------------------------------------
+;шейдеры:
+;collimator_metka0 первая линза Кобры - прозрачная с меткой (сменная) ХУД hud\reddotsight1 / МИР  (3+1 +12=16 =6+1+9) !!!= models\artefact2
+;collimator_lens01 вторая линза Кобры - полупрозрачная круглая зелёная ХУД модель-transparent / МИР 
+;
+;lens_eotech первая линза EOTech - прозрачная с меткой ХУД худ-reddotsight1 / МИР 
+;collimator_linza0 вторая линза EOTech - полупрозрачная квадратная серая ХУД модель-transparent / МИР
+;
+;_худовый laser (луч и точка) - шейдер models\lightplanes ()11
+;_зенитка ?  - шейдер models\model
+;--точка не по центру (модель => зависит от положения ствола)
+;
+;ТЕСТ микрик:
+;убрать с худа lens1 от глаз (K2_lens01)collimator_lens02 полупрозрачная ХУД модель-transparent / МИР 
+;lens_red_dot метка (rdot_metka0) lens_red_dot 		  ХУД hud\reddotsight1 / МИР (= models\artefact2)
+;lens2 (K2_lens01)collimator_lens02 полупрозрачная ХУД модель-transparent / МИР 
+;
+;ТЕСТ сквозного ACOG: сетка2 transparent\lightplanes метка1
+;для худовой внешние (тонирование) lens_acog и вторая линза-сетка grid_acog - transparent (только чёрный, при стрельбе смещается)
+;для худовой +первая от глаз текстура mark_acog -lightplanes метка (цветная, при стрельбе смещается)
+;для мировой collimator_lens02 -transparent
+;-----------------------------------------------------------------------------------
+;!!!для худовых моделей models\transparent менять на forward\collimator (пролечена засветка)
+;***********************************************************************************
+[wpn_vss_base]:wpn_vss
+script_binding  = ogse_bind_weapon.init
+;скрытые (управляемые) кости:
+managed_bones = muzzle, mag1, mag2, grip, custom, scope1, scope2, scope3, mount1, scope4, scope5, mount2, scope6, scope7, scope8 
+silencer_status			= 1
+grenade_launcher_status	= 0
+scope_status			= 2
+scope_mount_status		= 2
+grip_status				= 0
+magazine_status			= 2
+;
+fire_dispersion_base		= 0.2		;0.145		;АС 0.12 ВСС 0.1 ;угол (в градусах) базовой дисперсии оружия (оружия зажатого в тисках)
+cam_relax_speed				= 4.75		;5			;ВСС 4.75	;скорость возврата в исходное положение
+cam_dispersion				= 0.15		;0.13		;ВСС 0.125 	;увеличения угла (в градусах) с каждым выстрелом
+cam_max_angle				= 5.0		;4.0		;ВСС 3.0	;максимальный угол отдачи
+cam_max_angle_horz			= 5.5		;1.5		;ВСС 1.0	;(degree) maximum shot horizontal degree
+;
+hud                      = wpn_vss_base_hud
+
+[wpn_vss_base_hud]:wpn_vss_hud
+
+[wpn_vss_base_repair]
+tech_complication 		= 800
+repair_compatibility 	= vintorez
+
+;перезарядка без магазина
+[wpn_vss_nomag_hud]:wpn_vss_base_hud
+anim_reload					= idle
+
+;перезарядка магазина ВСС
+[wpn_vss_mag10_hud]:wpn_vss_base_hud
+anim_reload					= reload_vss
+
+;перезарядка магазина АС
+[wpn_vss_mag20_hud]:wpn_vss_base_hud
+anim_reload					= reload_as20
+
+
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; служебные секции описателей магазинов
+[vss_m10]
+bones = mag1
+[vss_m10_p] ; имитация движкового параметра для магазина ВСС
+magazine_name            = wpn_addon_mag_vss10
+magazine                 = vss_m10
+ammo_mag_size			= 10
+ammo_elapsed			= 10
+;иконка ствола
+inv_grid_x				= 36
+inv_grid_y				= 0
+
+[vss_m20]
+bones = mag2
+[vss_m20_p] ; имитация движкового параметра для магазина АС
+magazine_name            = wpn_addon_mag_as20
+magazine                 = vss_m20
+ammo_mag_size 			 = 20
+ammo_elapsed 			 = 20
+;иконка ствола
+inv_grid_x				= 36
+inv_grid_y				= 2
+
+[vss_nomag]
+;;;bones = 
+[vss_nomag_p] ; имитация движкового параметра для магазинов
+ammo_class               = ammo_9x39_dummy, ammo_9x39_dummy	;патрон-залушка
+ammo_mag_size            = 0					; не во что заряжать
+ammo_elapsed 			 = 0
+rpm                      = 0					; нечем стрелять
+snd_reload               = $no_sound
+snd_empty                = $no_sound
+hud                      = wpn_vss_nomag_hud
+;иконка ствола
+inv_grid_x				= 36
+inv_grid_y				= 4
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; служебные секции описателей прицелов
+;+при одетом прицеле кости bones показываются, bones_hide скрываются
+
+; штатный механический прицел (не задействован)
+[vss_ironsight]
+;force_remove_texture = true
+;показываемые кости, был пустой, залочен (здесь НЕ работает?) bones = 
+;смещение ствола при прицеливании: лево/право,верх/низ,от/к себя(е)
+zoom_offset			= -0.159400,0.070500,-0.264000
+zoom_rotation		= 0.022000,-0.000200
+[vss_ironsight_p]
+; имитация движкового параметра для прицела
+scope_name = 
+; донастройка модели прицела
+scope                    = vss_ironsight
+
+
+; ПСО-1M2- (16Ц1М2-1) х4
+[vss_pso11]
+;тест мех.прицела force_remove_texture = true
+bones         = scope1
+;штатный механический прицел
+zoom_offset			= -0.159400,0.070500,-0.264000
+zoom_rotation		= 0.022000,-0.000200
+[vss_pso11_p] ; имитация движкового параметра
+; движковый прицел
+scope_name               = wpn_addon_scope_pso1m21
+scope                    = vss_pso11
+;иконка прицела
+;scope_x			= 62
+;scope_y			= 10
+
+
+; ЭКП-8М-01 "Кобра" х1
+[vss_kobra]
+force_remove_texture = true
+bones         = scope2
+;СКВОЗНОЙ 3D (со сдвигом)
+zoom_offset			= -0.143700,-0.000500,-0.201000
+zoom_rotation		= 0.000000,-0.030700
+[vss_kobra_p]
+scope_name               = wpn_addon_scope_kobra
+scope                    = vss_kobra
+;иконка прицела
+scope_x				= 70	;62
+scope_y				= 12	;10
+; второй прицел ОГСР не надо сдвигать, а second_ тут не работают.. disable_second_scope = true
+
+; 1ПН51 (НСПУ-3 "Казуар") х3,46
+[vss_1pn51]
+;тест мех.прицела force_remove_texture = true
+bones         = scope3
+;штатный механический прицел
+zoom_offset			= -0.159400,0.070500,-0.264000
+zoom_rotation		= 0.022000,-0.000200
+[vss_1pn51_p]
+scope_name               = wpn_addon_scope_1pn51
+scope                    = vss_1pn51
+;иконка прицела
+scope_x		= 60
+scope_y		= -3
+
+
+; ACOG TA31-CH х4
+[vss_acog]
+;тест мех.прицела, СКВОЗНОЙ +3D
+force_remove_texture = true
+bones         = scope4
+;СКВОЗНОЙ 3D (со сдвигом)
+zoom_offset			= -0.162800,-0.003500,-0.306999
+zoom_rotation		= 0.013000,-0.001700
+[vss_acog_p]
+scope_name               = wpn_addon_acog
+scope                    = vss_acog
+;иконка прицела
+scope_x				= 70	;62
+scope_y				= 12	;10
+
+
+; EOTech 552.A65 х1
+[vss_eotech]
+force_remove_texture = true
+bones         = scope5
+;СКВОЗНОЙ 3D (со сдвигом)
+zoom_offset			= -0.151800,-0.002000,-0.201000
+zoom_rotation		= 0.018000,-0.019700
+[vss_eotech_p]
+scope_name               = wpn_addon_scope_eotech
+scope                    = vss_eotech
+;иконка прицела
+scope_x				= 70	;62
+scope_y				= 12	;10
+; второй прицел ОГСР не надо сдвигать, а second_ тут не работают.. disable_second_scope = true
+
+
+
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; служебные секции описателей аддонов
+;+ЕСТЬ (ПЛанка, МАГазин, РУКоять)
+;-ДОБАВИТЬ (ПРиклад-щека, СТВол)
+;-----------------------------------------------------------------------------------
+;кронштейн-переходник "ласточкин хвост"/Picatinny rail МТК-83 (короткий)
+[vss_mtk83]
+bones = mount1
+[vss_mtk83_p]
+scope_mount_name         = wpn_addon_mtk83
+scope_mount              = vss_mtk83
+;---нет иконки
+
+
+;РУКоятка (анимировать)
+[vss_grip]
+bones = grip
+[vss_grip_p]
+grip_name				= wpn_addon_grip
+grip					= vss_grip
+;---нет иконки
+;+точность
+fire_dispersion_base		= 0.145		;0.2		;АС 0.12 ВСС 0.1 ;угол (в градусах) базовой дисперсии оружия (оружия зажатого в тисках)
+;-отдача
+cam_relax_speed				= 4.75		;4.75		;ВСС 4.75	;скорость возврата в исходное положение
+cam_dispersion				= 0.13		;0.15		;ВСС 0.125 	;увеличения угла (в градусах) с каждым выстрелом
+cam_max_angle				= 4.0		;5.0		;ВСС 3.0	;максимальный угол отдачи
+cam_max_angle_horz			= 2.0		;5.5		;ВСС 1.0	;(degree) maximum shot horizontal degree
+;
+
+
+
+;---щека СВД (фейк РУчКки, сделать свой аддон ПРиклад)
+;_можно использовать как затычку, пока нет анимаций ручки
+[vss_scheek]
+bones = custom
+;bones_hide =  
+[vss_scheek_p]
+grip_name				= wpn_addon_svd_scheek
+grip					= vss_scheek
+;(Модифицированный wpn_vintorez_m1 "Ласка")
+;disp_rate 			    = 1.5		;ВСС 1.8
+;fire_dispersion_condition_factor	= 4			;ВСС 4.2	;увеличение дисперсии в процентах при максимальном износе 
+;condition_shot_dec					= 0.0002	;ВСС 0.0003	;увеличение износа при каждом выстреле
+time_to_aim							= 0.8		;ВСС 1.0
+;+точность
+fire_dispersion_base		= 0.145		;0.2		;АС 0.12 ВСС 0.1 ;угол (в градусах) базовой дисперсии оружия (оружия зажатого в тисках)
+;-отдача
+cam_relax_speed				= 4.75		;4.75		;ВСС 4.75	;скорость возврата в исходное положение
+cam_dispersion				= 0.13		;0.15		;ВСС 0.125 	;увеличения угла (в градусах) с каждым выстрелом
+cam_max_angle				= 4.0		;5.0		;ВСС 3.0	;максимальный угол отдачи
+cam_max_angle_horz			= 2.0		;5.5		;ВСС 1.0	;(degree) maximum shot horizontal degree
+;
+
+
+
+
+
+;***********************************************************************************
+; секции оружия с аддонами
+;***********************************************************************************
+;---------------------------------------------------боковая планка "ласточкин хвост"
+;-----------------------------------------------------------------------------------
+;---------------------------------------------------------боковая планка, магазин ВСС
+; боковая планка, ПСО, магазин ВСС (wpn_vintorez)
+[wpn_vss_m10_side_rail_pso]:wpn_vss_base,vss_pso11_p,vss_m10_p
+;___ЗАМЕНИТЬ на [wpn_vintorez]:wpn_vss_base,vss_pso11_p,vss_m10_p
+;___$spawn				= "weapons\vintorez"
+cost					 = 14200
+inv_weight				 = 2.75		;2.6всс+0.15маг10 (2,75) +0.24патроны (2,99) +0.6псо =3.6
+;прицелы на боковую планку
+wpn_addon_scope_kobra		= wpn_vss_m10_side_rail_kobra
+wpn_addon_scope_1pn51   	= wpn_vss_m10_side_rail_1pn51
+;короткая планка Пикатинни
+wpn_addon_mtk83          = wpn_vss_m10_mtk83_acog
+;магазины 
+wpn_addon_mag_as20      = wpn_vss_m20_side_rail_pso
+magazine_removed_section = wpn_vss_nomag_side_rail_pso
+;ручки
+;wpn_addon_grip = wpn_vss_m10_side_rail_pso_grip
+;_wpn_addon_svd_scheek = wpn_vss_m10_side_rail_pso_scheek
+[wpn_vss_m10_side_rail_pso_repair]:wpn_vss_base_repair
+
+
+; боковая планка, Кобра, магазин ВСС
+[wpn_vss_m10_side_rail_kobra]:wpn_vss_base,vss_kobra_p,vss_m10_p
+cost					 = 14200
+inv_weight				 = 2.75		;2.6всс+0.15маг10 (2,75) +0.24патроны (2,99) +0.15к	=3.14)
+;прицелы на боковую планку 
+wpn_addon_scope_pso1m21    = wpn_vss_m10_side_rail_pso
+wpn_addon_scope_1pn51   	= wpn_vss_m10_side_rail_1pn51
+;короткая планка Пикатинни	
+wpn_addon_mtk83          = wpn_vss_m10_mtk83_acog
+;магазины 
+wpn_addon_mag_as20      = wpn_vss_m20_side_rail_kobra
+magazine_removed_section = wpn_vss_nomag_side_rail_kobra
+;ручки
+;wpn_addon_grip = wpn_vss_m10_side_rail_kobra_grip
+;_wpn_addon_svd_scheek = wpn_vss_m10_side_rail_kobra_scheek
+[wpn_vss_m10_side_rail_kobra_repair]:wpn_vss_base_repair
+
+
+; боковая планка, НСПУ, магазин ВСС
+[wpn_vss_m10_side_rail_1pn51]:wpn_vss_base,vss_1pn51_p,vss_m10_p
+cost					 = 14200
+inv_weight				 = 2.75		;2.6всс+0.15маг10 (2,75) +0.24патроны (2,99) +2.1н	=5.09)
+;прицелы на боковую планку 
+wpn_addon_scope_pso1m21    = wpn_vss_m10_side_rail_pso
+wpn_addon_scope_kobra		= wpn_vss_m10_side_rail_kobra
+;короткая планка Пикатинни	
+wpn_addon_mtk83          = wpn_vss_m10_mtk83_acog
+;магазины 
+wpn_addon_mag_as20      = wpn_vss_m20_side_rail_1pn51
+magazine_removed_section = wpn_vss_nomag_side_rail_1pn51
+;ручки
+;wpn_addon_grip = wpn_vss_m10_side_rail_1pn51_grip
+;_wpn_addon_svd_scheek = wpn_vss_m10_side_rail_1pn51_scheek
+[wpn_vss_m10_side_rail_1pn51_repair]:wpn_vss_base_repair
+
+
+;-----------------------------------------------------------------------------------
+;----------------------------------------------------------боковая планка, магазин АС
+; боковая планка, ПСО, магазин АС
+[wpn_vss_m20_side_rail_pso]:wpn_vss_base,vss_pso11_p,vss_m20_p
+cost					 = 14200
+inv_weight				 = 2.77		;2.6всс+0.17маг20 (2,77) +0.5патроны (3,27) +0.6псо		=3.87
+;прицелы на боковую планку
+wpn_addon_scope_kobra		= wpn_vss_m20_side_rail_kobra
+wpn_addon_scope_1pn51   	= wpn_vss_m20_side_rail_1pn51
+;короткая планка Пикатинни	
+wpn_addon_mtk83          = wpn_vss_m20_mtk83_acog
+;магазины 
+wpn_addon_mag_vss10      = wpn_vss_m10_side_rail_pso
+magazine_removed_section = wpn_vss_nomag_side_rail_pso
+;ручки
+;wpn_addon_grip = wpn_vss_m20_side_rail_pso_grip
+;_wpn_addon_svd_scheek = wpn_vss_m20_side_rail_pso_scheek
+[wpn_vss_m20_side_rail_pso_repair]:wpn_vss_base_repair
+
+; боковая планка, Кобра, магазин АС
+[wpn_vss_m20_side_rail_kobra]:wpn_vss_base,vss_kobra_p,vss_m20_p
+cost					 = 14200
+inv_weight				 = 2.77		;2.6всс+0.17маг20 (2,77) +0.5патроны (3,27) +0.15к		=3.42
+;прицелы на боковую планку 
+wpn_addon_scope_pso1m21    = wpn_vss_m20_side_rail_pso
+wpn_addon_scope_1pn51   	= wpn_vss_m20_side_rail_1pn51
+;короткая планка Пикатинни	
+wpn_addon_mtk83          = wpn_vss_m20_mtk83_acog
+;магазины 
+wpn_addon_mag_vss10      = wpn_vss_m10_side_rail_kobra
+magazine_removed_section = wpn_vss_nomag_side_rail_kobra
+;ручки
+;wpn_addon_grip = wpn_vss_nomag_side_rail_kobra_grip
+;_wpn_addon_svd_scheek = wpn_vss_nomag_side_rail_kobra_scheek
+[wpn_vss_m20_side_rail_kobra_repair]:wpn_vss_base_repair
+
+
+; боковая планка, НСПУ, магазин АС
+[wpn_vss_m20_side_rail_1pn51]:wpn_vss_base,vss_1pn51_p,vss_m20_p
+cost					 = 14200
+inv_weight				 = 2.77		;2.6всс+0.17маг20 (2,77) +0.5патроны (3,27) +2.1н		=5.37
+;прицелы на боковую планку 
+wpn_addon_scope_pso1m21    = wpn_vss_m20_side_rail_pso
+wpn_addon_scope_kobra		= wpn_vss_m20_side_rail_kobra
+;короткая планка Пикатинни	
+wpn_addon_mtk83          = wpn_vss_m20_mtk83_acog
+;магазины 
+wpn_addon_mag_vss10      = wpn_vss_m10_side_rail_1pn51
+magazine_removed_section = wpn_vss_nomag_side_rail_1pn51
+;ручки
+;wpn_addon_grip = wpn_vss_nomag_side_rail_1pn51_grip
+;_wpn_addon_svd_scheek = wpn_vss_nomag_side_rail_1pn51_scheek
+[wpn_vss_m20_side_rail_1pn51_repair]:wpn_vss_base_repair
+
+
+
+;-----------------------------------------------------------------------------------
+;-------------------------------------------------------боковая планка, нет магазина
+; боковая планка, ПСО, нет магазина
+[wpn_vss_nomag_side_rail_pso]:wpn_vss_base,vss_pso11_p,vss_nomag_p
+cost					 = 14200
+inv_weight				 = 2.6		;2.6всс (+0.6псо=3.2)
+;прицелы на боковую планку
+wpn_addon_scope_kobra		= wpn_vss_nomag_side_rail_kobra
+wpn_addon_scope_1pn51   	= wpn_vss_nomag_side_rail_1pn51
+;короткая планка Пикатинни	
+wpn_addon_mtk83          = wpn_vss_nomag_mtk83_acog
+;магазины
+wpn_addon_mag_vss10      = wpn_vss_m10_side_rail_pso
+wpn_addon_mag_as20      = wpn_vss_m20_side_rail_pso
+;ручки
+;wpn_addon_grip = wpn_vss_nomag_side_rail_pso_grip
+;_wpn_addon_svd_scheek = wpn_vss_nomag_side_rail_pso_scheek
+[wpn_vss_nomag_side_rail_pso_repair]:wpn_vss_base_repair
+
+; боковая планка, Кобра, нет магазина
+[wpn_vss_nomag_side_rail_kobra]:wpn_vss_base,vss_kobra_p,vss_nomag_p
+cost					 = 14200
+inv_weight				 = 2.6		;2.6всс (+0.15к=2.75)
+;прицелы на боковую планку 
+wpn_addon_scope_pso1m21    = wpn_vss_nomag_side_rail_pso
+wpn_addon_scope_1pn51   	= wpn_vss_nomag_side_rail_1pn51
+;короткая планка Пикатинни	
+wpn_addon_mtk83          = wpn_vss_nomag_mtk83_acog
+;магазины
+wpn_addon_mag_vss10      = wpn_vss_m10_side_rail_kobra
+wpn_addon_mag_as20      = wpn_vss_m20_side_rail_kobra
+;ручки
+;wpn_addon_grip = wpn_vss_nomag_side_rail_kobra_grip
+;_wpn_addon_svd_scheek = wpn_vss_nomag_side_rail_kobra_scheek
+[wpn_vss_nomag_side_rail_kobra_repair]:wpn_vss_base_repair
+
+
+; боковая планка, НСПУ, нет магазина
+[wpn_vss_nomag_side_rail_1pn51]:wpn_vss_base,vss_1pn51_p,vss_nomag_p
+cost					 = 14200
+inv_weight				 = 2.6		;2.6всс (+2.1н=4.7)
+;прицелы на боковую планку 
+wpn_addon_scope_pso1m21    = wpn_vss_nomag_side_rail_pso
+wpn_addon_scope_kobra   	= wpn_vss_nomag_side_rail_kobra
+;короткая планка Пикатинни	
+wpn_addon_mtk83          = wpn_vss_nomag_mtk83_acog
+;магазины
+wpn_addon_mag_vss10      = wpn_vss_m10_side_rail_1pn51
+wpn_addon_mag_as20      = wpn_vss_m20_side_rail_1pn51
+;ручки
+;wpn_addon_grip = wpn_vss_nomag_side_rail_1pn51_grip
+;_wpn_addon_svd_scheek = wpn_vss_nomag_side_rail_1pn51_scheek
+[wpn_vss_nomag_side_rail_1pn51_repair]:wpn_vss_base_repair
+
+
+
+
+
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;------------------------------------------------короткий переходник Пикатинни (МТК-83)
+;-----------------------------------------------------------------------------------
+;----------------------------------------------------короткая Пикатинни, магазин ВСС
+; планка Пикатинни, ACOG, магазин ВСС
+[wpn_vss_m10_mtk83_acog]:wpn_vss_base,vss_acog_p,vss_mtk83_p,vss_m10_p
+;прицелы на короткую планку Пикатинни
+wpn_addon_scope_eotech   	= wpn_vss_m10_mtk83_eotech
+scope_mount_removed_section      = wpn_vss_m10_side_rail_pso
+;магазины
+wpn_addon_mag_as20      = wpn_vss_m20_mtk83_acog
+magazine_removed_section = wpn_vss_nomag_mtk83_acog
+;ручки
+;wpn_addon_grip = wpn_vss_m10_mtk83_acog_grip
+;_wpn_addon_svd_scheek = wpn_vss_m10_mtk83_acog_scheek
+[wpn_vss_m10_mtk83_acog_repair]:wpn_vss_base_repair
+
+
+; планка Пикатинни, EOTech, магазин ВСС
+[wpn_vss_m10_mtk83_eotech]:wpn_vss_base,vss_eotech_p,vss_mtk83_p,vss_m10_p
+;прицелы на короткую планку Пикатинни
+wpn_addon_acog				= wpn_vss_m10_mtk83_acog
+scope_mount_removed_section      = wpn_vss_m10_side_rail_pso
+;магазины
+wpn_addon_mag_as20      = wpn_vss_m20_mtk83_eotech
+magazine_removed_section = wpn_vss_nomag_mtk83_acog
+;ручки
+;wpn_addon_grip = wpn_vss_m10_mtk83_eotech_grip
+;_wpn_addon_svd_scheek = wpn_vss_m10_mtk83_eotech_scheek
+[wpn_vss_m10_mtk83_eotech_repair]:wpn_vss_base_repair
+
+;-----------------------------------------------------------------------------------
+;-----------------------------------------------------короткая Пикатинни, магазин АС
+; планка Пикатинни, ACOG, магазин АС
+[wpn_vss_m20_mtk83_acog]:wpn_vss_base,vss_acog_p,vss_mtk83_p,vss_m20_p
+;прицелы на короткую планку Пикатинни
+wpn_addon_scope_eotech   	= wpn_vss_m20_mtk83_eotech
+scope_mount_removed_section      = wpn_vss_m20_side_rail_pso
+;магазины
+wpn_addon_mag_vss10      = wpn_vss_m10_mtk83_acog
+magazine_removed_section = wpn_vss_nomag_mtk83_acog
+;ручки
+;wpn_addon_grip = wpn_vss_m20_mtk83_acog_grip
+;_wpn_addon_svd_scheek = wpn_vss_m20_mtk83_acog_scheek
+[wpn_vss_m20_mtk83_acog_repair]:wpn_vss_base_repair
+
+; планка Пикатинни, EOTech, магазин АС
+[wpn_vss_m20_mtk83_eotech]:wpn_vss_base,vss_eotech_p,vss_mtk83_p,vss_m20_p
+;прицелы на короткую планку Пикатинни
+wpn_addon_acog				= wpn_vss_m20_mtk83_acog
+scope_mount_removed_section      = wpn_vss_m20_side_rail_pso
+;магазины
+wpn_addon_mag_vss10      = wpn_vss_m10_mtk83_eotech
+magazine_removed_section = wpn_vss_nomag_mtk83_acog
+;ручки
+;wpn_addon_grip = wpn_vss_m20_mtk83_eotech_grip
+;_wpn_addon_svd_scheek = wpn_vss_m20_mtk83_eotech_scheek
+[wpn_vss_m20_mtk83_eotech_repair]:wpn_vss_base_repair
+
+;-----------------------------------------------------------------------------------
+;---------------------------------------------------короткая Пикатинни, нет магазина
+; планка Пикатинни, ACOG, нет магазина
+[wpn_vss_nomag_mtk83_acog]:wpn_vss_base,vss_acog_p,vss_mtk83_p,vss_nomag_p
+;прицелы на короткую планку Пикатинни
+wpn_addon_scope_eotech   	= wpn_vss_nomag_mtk83_eotech
+scope_mount_removed_section      = wpn_vss_nomag_side_rail_pso
+;магазины
+wpn_addon_mag_vss10      = wpn_vss_m10_mtk83_acog
+wpn_addon_mag_as20      = wpn_vss_m20_mtk83_acog
+;ручки
+;wpn_addon_grip = wpn_vss_nomag_mtk83_acog_grip
+;_wpn_addon_svd_scheek = wpn_vss_nomag_mtk83_acog_scheek
+[wpn_vss_nomag_mtk83_acog_repair]:wpn_vss_base_repair
+
+; планка Пикатинни, EOTech, нет магазина
+[wpn_vss_nomag_mtk83_eotech]:wpn_vss_base,vss_eotech_p,vss_mtk83_p,vss_nomag_p
+;прицелы на короткую планку Пикатинни
+wpn_addon_acog				= wpn_vss_nomag_mtk83_acog
+scope_mount_removed_section      = wpn_vss_nomag_side_rail_pso
+;магазины
+wpn_addon_mag_vss10      = wpn_vss_m10_mtk83_eotech
+wpn_addon_mag_as20      = wpn_vss_m20_mtk83_eotech
+;ручки
+;wpn_addon_grip = wpn_vss_nomag_mtk83_eotech_grip
+;_wpn_addon_svd_scheek = wpn_vss_nomag_mtk83_eotech_scheek
+[wpn_vss_nomag_mtk83_eotech_repair]:wpn_vss_base_repair
+
+;-----------------------------------------------------------------------------------
+;-----------------------------------------------------------------------------------
+;-----------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+;---------------------------------------ДОДЕЛАТЬ------------------------------------
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;-----------------------------------------------------------------------------------
+
+
+;-----------------------------------------------------------------------------------
+;---------------------------------------------------------------------------щека СВД
+;ТЕСТ - щека (фейк ручки) wpn_addon_svd_scheek
+; боковая планка, ПСО, магазин ВСС, щека
+;[wpn_vss_m10_side_rail_pso_scheek]:wpn_vss_base,vss_pso11_p,vss_m10_p,vss_scheek_p
+;grip_removed_section = wpn_vss_m10_side_rail_pso
+;[wpn_vss_m10_side_rail_pso_scheek_repair]:wpn_vss_base_repair
+
+; боковая планка, Кобра, магазин ВСС, щека
+;[wpn_vss_m10_side_rail_kobra_scheek]:wpn_vss_base,vss_kobra_p,vss_m10_p,vss_scheek_p
+;grip_removed_section = wpn_vss_m10_side_rail_kobra
+;[wpn_vss_m10_side_rail_kobra_scheek_repair]:wpn_vss_base_repair
+
+; боковая планка, НСПУ, магазин ВСС, щека
+;[wpn_vss_m10_side_rail_1pn51_scheek]:wpn_vss_base,vss_1pn51_p,vss_m10_p,vss_scheek_p
+;grip_removed_section = wpn_vss_m10_side_rail_1pn51
+;[wpn_vss_m10_side_rail_1pn51_scheek_repair]:wpn_vss_base_repair
+
+
+;-----------------------------------------------------------------------------------
+; боковая планка, ПСО, магазин АС, щека
+;[wpn_vss_m20_side_rail_pso_scheek]:wpn_vss_base,vss_pso11_p,vss_m20_p,vss_scheek_p
+;grip_removed_section = wpn_vss_m20_side_rail_pso
+;[wpn_vss_m20_side_rail_pso_scheek_repair]:wpn_vss_base_repair
+
+; боковая планка, Кобра, магазин АС, щека
+;[wpn_vss_m20_side_rail_kobra_scheek]:wpn_vss_base,vss_kobra_p,vss_m20_p,vss_scheek_p
+;grip_removed_section = wpn_vss_m20_side_rail_kobra
+;[wpn_vss_m20_side_rail_kobra_scheek_repair]:wpn_vss_base_repair
+
+; боковая планка, НСПУ, магазин АС, щека
+;[wpn_vss_m20_side_rail_1pn51_scheek]:wpn_vss_base,vss_1pn51_p,vss_m20_p,vss_scheek_p
+;grip_removed_section = wpn_vss_m20_side_rail_1pn51
+;[wpn_vss_m20_side_rail_1pn51_scheek_repair]:wpn_vss_base_repair
+
+
+;-----------------------------------------------------------------------------------
+; боковая планка, ПСО, нет магазина, щека
+;[wpn_vss_nomag_side_rail_pso_scheek]:wpn_vss_base,vss_pso11_p,vss_nomag_p,vss_scheek_p
+;grip_removed_section = wpn_vss_nomag_side_rail_pso
+;[wpn_vss_nomag_side_rail_pso_scheek_repair]:wpn_vss_base_repair
+
+; боковая планка, Кобра, нет магазина, щека
+;[wpn_vss_nomag_side_rail_kobra_scheek]:wpn_vss_base,vss_kobra_p,vss_nomag_p,vss_scheek_p
+;grip_removed_section = wpn_vss_nomag_side_rail_kobra
+;[wpn_vss_nomag_side_rail_kobra_scheek_repair]:wpn_vss_base_repair
+
+; боковая планка, НСПУ, нет магазина, щека
+;[wpn_vss_nomag_side_rail_1pn51_scheek]:wpn_vss_base,vss_1pn51_p,vss_nomag_p,vss_scheek_p
+;grip_removed_section = wpn_vss_nomag_side_rail_1pn51
+;[wpn_vss_nomag_side_rail_1pn51_scheek_repair]:wpn_vss_base_repair
+
+
+
+
+
+
+
+
+
+
+
+
+
+;------------------------------------------------------------------------------ручки
+; боковая планка, ПСО, магазин ВСС, ручка
+;[wpn_vss_m10_side_rail_pso_grip]:wpn_vss_base,vss_pso11_p,vss_m10_p,vss_grip_p
+;grip_removed_section = wpn_vss_m10_side_rail_pso
+;[wpn_vss_m10_side_rail_pso_grip_repair]:wpn_vss_base_repair
+
+; боковая планка, Кобра, магазин ВСС, ручка
+;[wpn_vss_m10_side_rail_kobra_grip]:wpn_vss_base,vss_kobra_p,vss_m10_p,vss_grip_p
+;grip_removed_section = wpn_vss_m10_side_rail_kobra
+;[wpn_vss_m10_side_rail_kobra_grip_repair]:wpn_vss_base_repair
+
+; боковая планка, НСПУ, магазин ВСС, ручка
+;[wpn_vss_m10_side_rail_1pn51_grip]:wpn_vss_base,vss_1pn51_p,vss_m10_p,vss_grip_p
+;grip_removed_section = wpn_vss_m10_side_rail_1pn51
+;[wpn_vss_m10_side_rail_1pn51_grip_repair]:wpn_vss_base_repair
+
+;-----------------------------------------------------------------------------------
+
+;-----------------------------------------------------------------------------------
+; боковая планка, ПСО, магазин АС, ручка
+;[wpn_vss_m20_side_rail_pso_grip]:wpn_vss_base,vss_pso11_p,vss_m20_p,vss_grip_p
+;grip_removed_section = wpn_vss_m20_side_rail_pso
+;[wpn_vss_m20_side_rail_pso_grip_repair]:wpn_vss_base_repair
+
+; боковая планка, Кобра, магазин АС, ручка
+;[wpn_vss_m20_side_rail_kobra_grip]:wpn_vss_base,vss_kobra_p,vss_m20_p,vss_grip_p
+;grip_removed_section = wpn_vss_m20_side_rail_kobra
+;[wpn_vss_m20_side_rail_kobra_grip_repair]:wpn_vss_base_repair
+
+; боковая планка, НСПУ, магазин АС, ручка
+;[wpn_vss_m20_side_rail_1pn51_grip]:wpn_vss_base,vss_1pn51_p,vss_m20_p,vss_grip_p
+;grip_removed_section = wpn_vss_m20_side_rail_1pn51
+;[wpn_vss_m20_side_rail_1pn51_grip_repair]:wpn_vss_base_repair
+
+
+;-----------------------------------------------------------------------------------
+; боковая планка, ПСО, нет магазина, ручка
+;[wpn_vss_nomag_side_rail_pso_grip]:wpn_vss_base,vss_pso11_p,vss_nomag_p,vss_grip_p
+;grip_removed_section = wpn_vss_nomag_side_rail_pso
+;[wpn_vss_nomag_side_rail_pso_grip_repair]:wpn_vss_base_repair
+
+; боковая планка, Кобра, нет магазина, ручка
+;[wpn_vss_nomag_side_rail_kobra_grip]:wpn_vss_base,vss_kobra_p,vss_nomag_p,vss_grip_p
+;grip_removed_section = wpn_vss_nomag_side_rail_kobra
+;[wpn_vss_nomag_side_rail_kobra_grip_repair]:wpn_vss_base_repair
+
+; боковая планка, НСПУ, нет магазина, ручка
+;[wpn_vss_nomag_side_rail_1pn51_grip]:wpn_vss_base,vss_1pn51_p,vss_nomag_p,vss_grip_p
+;grip_removed_section = wpn_vss_nomag_side_rail_1pn51
+;[wpn_vss_nomag_side_rail_1pn51_grip_repair]:wpn_vss_base_repair
+
+;-----------------------------------------------------------------------------------
+
+
+
+
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+[wpn_vintorez]:wpn_vss_m10_side_rail_pso
+$spawn				= "weapons\vintorez"
+;--------после ЛЮБОЙ смены аддонов ПЕРЕСТАЁТ БЫТЬ wpn_vintorez !!!
+[wpn_vintorez_repair]:wpn_vss_base_repair
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;-----------------------------------------------------------------------------
+;квест ОТКЛЧЕН "доведённый Винторез" Бармэна «Ласка»
+;-----------------------------------------------------------------------------
+[wpn_vintorez_m1]:wpn_vss_m20_side_rail_pso
+$spawn				= "weapons\vintorez_m1"
+;+ОБМОТКА muzzle
+managed_bones = mag1, mag2, grip, custom, scope1, scope2, scope3, mount1, scope4, scope5, mount2, scope6, scope7, scope8
+;--------после ЛЮБОЙ смены аддонов ПЕРЕСТАЁТ БЫТЬ уником
+;cost				= 14200
+description			= enc_weapons1_wpn-vss_m1		;enc_weapons1_wpn-vintorez_m1
+inv_name			= wpn-vss_m1					;wpn-vintorez_m1
+inv_name_short		= wpn-vss_m1_s					;wpn-vintorez_m1
+inv_grid_x				= 0
+inv_grid_y				= 6
+[wpn_vintorez_m1_repair]:wpn_vss_base_repair
+

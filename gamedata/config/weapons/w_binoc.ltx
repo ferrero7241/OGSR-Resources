@@ -45,7 +45,8 @@ attach_position_offset		= 0.080000,0.021273,0.100000
 attach_bone_name			= bip01_r_hand
 auto_attach					= false
 
-visual						= weapons\swmt\binoc\wpn_binoculars_world.ogf
+;visual						= weapons\swmt\binoc\wpn_binoculars_world.ogf
+visual				= weapons\binoculars\wpn_binoculars.ogf
 hand_dependence		 		= 1
 single_handed				= 0
 
@@ -128,7 +129,7 @@ snd_close			= $no_sound, 0
 
 vision_present				= false
 scope_dynamic_zoom = true
-vis_frame_speed				= 10; 4						; скорость, с которой наводится рамка на цель
+vis_frame_speed				= 4						; скорость, с которой наводится рамка на цель
 vis_frame_color             = 0.8,0.8,0.8,1.0		; 0.7; цвет рамки RGBA (A) Не учитывается
 found_snd				    = detectors\DA-2_beep1
 
@@ -156,7 +157,8 @@ anim_idle_aim				= idle
 ;Yukon NVB Tracker 3x42 (есть 3.5x40 RX) на основе ЭОП первого поколения
 [wpn_binoc_m1]:wpn_binoc
 $spawn				= "weapons\binocular_m1"
-visual				= weapons\binoculars\wpn_binoculars.ogf
+;visual				= weapons\binoculars\wpn_binoculars.ogf
+visual				= weapons\binoculars\wpn_binoculars_m1.ogf
 hud					= wpn_binoc_m1_hud
 ammo_class		 	= ammo_binoc_02_dummy
 inv_name		 	= addon_bino_nv

@@ -1,15 +1,15 @@
-;Тактическая рукоятка (устанавливается на нижнюю рельсу Пикатинни)
+;Тактическая рукоятка вертикальная (устанавливается на глушитель ВСС, АПБ)
 [wpn_addon_grip]:wpn_fake_addon_base
 inv_grid_width				= 1
 inv_grid_height				= 1
 inv_grid_x					= 65	;37
 inv_grid_y					= 11	;35
 visual          = weapons\upgrade\grip.ogf 
-inv_name		= addon_gip
-inv_name_short	= addon_gip_s
-description		= enc_addon_gip
+inv_name		= addon_grip
+inv_name_short	= addon_grip_s
+description		= enc_addon_grip4tube
 cost			= 1300
-inv_weight		= 1.0
+inv_weight		= 0.3
 is_grip_addon = true
 fake_item_section = fake_wpn_addon_grip
 always_fake = true
@@ -17,7 +17,27 @@ always_fake = true
 [fake_wpn_addon_grip]:wpn_addon_grip
 real_item_section = wpn_addon_grip
 
+;Тактическая рукоятка наклонная Magpul Angled Fore Grip (устанавливается на нижнюю рельсу Пикатинни АК102-2 Custom, Вепрь-12 Молот Custom)
+[wpn_addon_afg]:wpn_fake_addon_base
+inv_grid_width				= 1
+inv_grid_height				= 1
+inv_grid_x			= 78
+inv_grid_y			= 18
+visual          = weapons\upgrade\afg.ogf 
+inv_name		= addon_grip
+inv_name_short	= addon_grip_s
+description		= enc_addon_grip4rail
+cost			= 2300
+inv_weight		= 0.08
+is_grip_addon = true
+fake_item_section = fake_wpn_addon_afg
+always_fake = true
+; только для совместимости с системой аддонов
+[fake_wpn_addon_afg]:wpn_addon_afg
+real_item_section = wpn_addon_afg
 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;костыли
 ;щека приклада СВД
 [wpn_addon_svd_scheek]:wpn_fake_addon_base
 inv_grid_width	= 1
@@ -37,3 +57,200 @@ always_fake = true
 [fake_wpn_addon_svd_scheek]:wpn_addon_svd_scheek
 real_item_section = wpn_addon_svd_scheek
 
+
+;Custom АК Kit - телескопический приклад, пистолетная анатомическая рукоятка и цевьё с нижней рельсой Пикатинни (устанавливается ремонтником)
+[wpn_addon_ak100_custom]:wpn_fake_addon_base
+inv_grid_width	= 2
+inv_grid_height	= 1
+inv_grid_x			= 63
+inv_grid_y			= 11
+visual          = weapons\upgrade\ak100_custom.ogf
+inv_name		= addon_ak100_custom
+inv_name_short	= addon_ak100_custom_s
+description		= enc_addon_ak100_custom
+cost			= 2000
+inv_weight		= 1.0
+is_scope_mount_addon = true
+fake_item_section	= fake_wpn_addon_ak100_custom
+always_fake = true
+; только для совместимости с системой аддонов
+[fake_wpn_addon_ak100_custom]:wpn_addon_ak100_custom
+real_item_section = wpn_addon_ak100_custom
+
+
+;Затыльник-амортизатор ГП-25 (не ставится)
+[wpn_addon_gp_galoscha]:wpn_fake_addon_base
+inv_grid_width	= 1
+inv_grid_height	= 1
+inv_grid_x			= 76
+inv_grid_y			= 10
+visual          = weapons\upgrade\gp_galoscha.ogf
+inv_name		= addon_gp_galoscha
+inv_name_short	= addon_gp_galoscha_s
+description		= enc_addon_gp_galoscha
+cost			= 456
+inv_weight		= 0.1
+is_scope_mount_addon = true
+fake_item_section	= fake_wpn_addon_gp_galoscha
+always_fake = true
+; только для совместимости с системой аддонов
+[fake_wpn_addon_gp_galoscha]:wpn_addon_gp_galoscha
+real_item_section = wpn_addon_gp_galoscha
+
+
+;насадок АПБ
+[wpn_addon_apb_silencer]:wpn_fake_addon_base
+inv_grid_width	= 2
+inv_grid_height	= 1
+inv_grid_x		= 76
+inv_grid_y		= 7
+visual          = weapons\upgrade\apb_silencer.ogf
+inv_name		= wpn-addon-silencer_apb
+inv_name_short	= wpn-addon-silencer_apb_s
+description		= enc_weapons_wpn-addon-silencer_apb
+cost			= 800
+inv_weight		= 0.6
+is_scope_mount_addon = true
+fake_item_section	= fake_wpn_addon_apb_silencer
+always_fake = true
+; только для совместимости с системой аддонов
+[fake_wpn_addon_apb_silencer]:wpn_addon_apb_silencer
+real_item_section = wpn_addon_apb_silencer
+
+
+;приклад АПБ
+[wpn_addon_apb_buttstock]:wpn_fake_addon_base
+inv_grid_width		= 2
+inv_grid_height		= 1
+inv_grid_x			= 77			;кобур 76
+inv_grid_y			= 15			;кобур 6
+visual          = weapons\upgrade\apb_butstock.ogf
+inv_name		= addon_apb_buttstock
+inv_name_short	= addon_apb_buttstock_s
+description		= enc_addon_apb_buttstock
+cost			= 500
+inv_weight		= 0.2
+is_magazine_addon = true
+fake_item_section	= fake_wpn_addon_apb_buttstock
+always_fake = true
+; только для совместимости с системой аддонов
+[fake_wpn_addon_apb_buttstock]:wpn_addon_apb_buttstock
+real_item_section = wpn_addon_apb_buttstock
+
+
+;кобур-приклад Маузера
+[wpn_addon_mauser_buttstock]:wpn_fake_addon_base
+inv_grid_width		= 2
+inv_grid_height		= 1
+inv_grid_x			= 76
+inv_grid_y			= 6
+visual          = weapons\upgrade\m712_butstock.ogf
+inv_name		= addon_mauser_buttstock
+inv_name_short	= addon_mauser_buttstock_s
+description		= enc_addon_mauser_buttstock
+cost			= 500
+inv_weight		= 0.8
+is_grip_addon = true
+fake_item_section	= fake_wpn_addon_mauser_buttstock
+always_fake = true
+; только для совместимости с системой аддонов
+[fake_wpn_addon_mauser_buttstock]:wpn_addon_mauser_buttstock
+real_item_section = wpn_addon_mauser_buttstock
+
+
+;насадок-увеличитель EOTech G33.STS Magnifier (ставится ГГ апгрейдом перед коллиматором)
+[wpn_addon_magnifier]:wpn_fake_addon_base
+inv_grid_width		= 1
+inv_grid_height		= 1
+inv_grid_x					= 74
+inv_grid_y					= 13
+visual          = weapons\upgrade\magnifier.ogf
+inv_name		= addon_scopemount_magnifier
+inv_name_short	= addon_scopemount_magnifier_s
+description		= enc_addon_scopemount_magnifier
+cost			= 2000
+inv_weight		= 0.31
+fake_item_section	= fake_wpn_addon_magnifier
+is_grip_addon = true
+always_fake = true
+[fake_wpn_addon_magnifier]:wpn_addon_magnifier
+real_item_section = wpn_addon_magnifier
+
+
+;насадок-ПНВ PVS-14 (ставится ГГ апгрейдом перед прицелом)
+[wpn_addon_nightvision]:wpn_fake_addon_base
+inv_grid_width		= 2
+inv_grid_height		= 1
+inv_grid_x					= 77
+inv_grid_y					= 14
+visual          = weapons\upgrade\pvs.ogf
+inv_name		= addon_scopemount_nightvision
+inv_name_short	= addon_scopemount_nightvision_s
+description		= enc_addon_scopemount_nightvision
+cost			= 2000
+inv_weight		= 0.31
+fake_item_section	= fake_wpn_addon_nightvision
+is_grip_addon = true
+always_fake = true
+[fake_wpn_addon_nightvision]:wpn_addon_nightvision
+real_item_section = wpn_addon_nightvision
+
+
+;ИК-насадок (ставится ГГ апгрейдом перед прицелом)
+[wpn_addon_irnv]:wpn_fake_addon_base
+inv_grid_width		= 2
+inv_grid_height		= 1
+;иконка 3Д - переделать
+inv_grid_x		= 14
+inv_grid_y		= 24
+visual          = weapons\upgrade\irnv.ogf
+inv_name		= addon_scopemount_irnv
+inv_name_short	= addon_scopemount_irnv_s
+description		= enc_addon_scopemount_irnv
+cost			= 5000
+inv_weight		= 0.31
+fake_item_section	= fake_wpn_addon_irnv
+is_grip_addon = true
+always_fake = true
+[fake_wpn_addon_irnv]:wpn_addon_irnv
+real_item_section = wpn_addon_irnv
+
+
+
+;ЛЦУ (ставится ГГ апгрейдом)
+[wpn_addon_zenitka]:wpn_fake_addon_base
+inv_grid_width		= 2
+inv_grid_height		= 1
+inv_grid_x			= 71
+inv_grid_y			= 18
+visual          = weapons\upgrade\zenitka.ogf
+inv_name		= addon_scopemount_zenitka
+inv_name_short	= addon_scopemount_zenitka_s
+description		= enc_addon_scopemount_zenitka
+cost			= 5000
+inv_weight		= 0.31
+fake_item_section	= fake_wpn_addon_zenitka
+is_grip_addon = true
+always_fake = true
+[fake_wpn_addon_zenitka]:wpn_addon_zenitka
+real_item_section = wpn_addon_zenitka
+
+
+;приклад ВСК-94 (устанавливается ремонтником)
+[wpn_addon_vsk94_buttstock]:wpn_fake_addon_base
+inv_grid_width		= 2
+inv_grid_height		= 1
+inv_grid_x				= 38
+inv_grid_y				= 8
+visual          = weapons\upgrade\vsk94_butstock.ogf
+inv_name		= addon_vsk94_buttstock
+inv_name_short	= addon_vsk94_buttstock_s
+description		= enc_addon_vsk94_buttstock
+cost			= 500
+inv_weight		= 0.8
+is_grip_addon = true
+fake_item_section	= fake_wpn_addon_vsk94_buttstock
+always_fake = true
+; только для совместимости с системой аддонов
+[fake_wpn_addon_vsk94_buttstock]:wpn_addon_vsk94_buttstock
+real_item_section = wpn_addon_vsk94_buttstock

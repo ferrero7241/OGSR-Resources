@@ -33,7 +33,7 @@ weapon_class			= assault_rifle		; the type of the box that will be used in buy-m
 	
 ammo_elapsed			= 30	
 ammo_mag_size			= 1				;30 clip (magazine) size
-fire_modes				= 3, 1, 0, -1	;1, -1
+fire_modes				= 3, 1, 0, -1
 
 ;Магазинное питание 
 ;ammo_class	= mag_30_5.56x45_ss190, mag_30_5.56x45_ap
@@ -125,11 +125,11 @@ shell_point		 			= 0,0.216,0.154				; position (3rd person view) for shell to th
 shell_particles	 		= amik\weapons\5_56x45\5_56x45_r_00
 
 ;параметры качания ствола в руках ГГ при движении в режиме прицеливания (стрельба навскидку)
-PDM_disp_base 				= 1.09		;ОГСЕ 1.2	;множитель, на который умножается базовая дисперсия оружия, когда ГГ стоит на месте в полный рост
-PDM_disp_vel_factor 		= 1.15		;ОГСЕ 1.3	;множитель, на который умножается базовая дисперсия оружия, когда ГГ крутит оружием или бежит
+PDM_disp_base 				= 1.0		;ОГСЕ 1.2	;множитель, на который умножается базовая дисперсия оружия, когда ГГ стоит на месте в полный рост
+PDM_disp_vel_factor 		= 1.13		;ОГСЕ 1.3	;множитель, на который умножается базовая дисперсия оружия, когда ГГ крутит оружием или бежит
 PDM_disp_accel_factor 		= 1.3		;ОГСЕ 1.3	;множитель, на который умножается базовая дисперсия оружия, когда ГГ бежит в спринте
-PDM_crouch	 				= 1.02		;ОГСЕ 1.0	;множитель, на который умножается базовая дисперсия оружия, когда ГГ идет пригнувшись
-PDM_crouch_no_acc 			= 1.0		;ОГСЕ 1.0	;множитель, на который умножается базовая дисперсия оружия, когда ГГ стоит на месте, пригнувшись
+PDM_crouch	 				= 1.05		;ОГСЕ 1.0	;множитель, на который умножается базовая дисперсия оружия, когда ГГ идет пригнувшись
+PDM_crouch_no_acc 			= 0.96		;ОГСЕ 1.0	;множитель, на который умножается базовая дисперсия оружия, когда ГГ стоит на месте, пригнувшись
 
 ; ttc
 hit_power                	= 0.71		;ОГСЕ 0.70	;size of damage by bullet
@@ -147,7 +147,7 @@ time_to_aim					= 1.0
 
 silencer_hit_power       	= 0.64
 silencer_hit_impulse	 	= 25
-silencer_fire_distance   	= 300
+silencer_fire_distance   	= 200
 silencer_bullet_speed	 	= 750
 
 hud                      	= wpn_ak102_hud				; name of the section of the hud
@@ -186,6 +186,9 @@ grenade_launcher_name 		= wpn_addon_grenade_launcher; section name for the attac
 ;wpn_addon_AK100_custom ;grenade_vel = 76 ;76 м/сек для ВОГ-25 и 71 м/сек для М-209
 grenade_launcher_x 			= 111						; offset in inventory icon
 grenade_launcher_y 			= 27			;25
+
+;ПРОБУЕМ пока один набор на всех
+highlight_addons = fake_wpn_addon_mag_ak10230, fake_wpn_addon_mag_cmag100, fake_wpn_addon_grenade_launcher, fake_wpn_addon_scope_1p29, fake_wpn_addon_scope_kobra, fake_wpn_addon_scope_1pn51, fake_wpn_addon_mtk83, fake_wpn_addon_acog, fake_wpn_addon_scope_eotech
 
 ;------------------------------ O.G.S.E. sound remake ------------------------------
 ;ARMA
@@ -281,43 +284,34 @@ anim_shoot_gl				= shoot_w_gl		;ходьба/удержание/бег с ГП
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;HUD offset in zoom mode (to all)
-;(use ОГСЕ CONSOLE: hud_adjust_mode 0,1,2, then keys WSADQE and P to show current value in console)
-;-лево/+право,-низ/+верх,-к/+от себя
-;штатный механический прицел
-;zoom_offset			= -0.112840,0.039250,-0.158000
-;-вверх/+вниз zoom_rotate_x		= 0.054800
-;-лево/+право zoom_rotate_y		= 0.043280
-
 ; тест sto1en
-
 zoom_offset			= -0.168800,0.067450,-0.223100
 zoom_rotate_x		= 0.043400
 zoom_rotate_y		= 0.030280
-
-zoom_hide_crosshair	= true						;to hide crosshair in zoom 
-
+;штатный механический прицел (второй режим - для оптики)
+second_zoom_offset			= -0.168800,0.067450,-0.223100
+second_zoom_rotate_x		= 0.043400
+second_zoom_rotate_y		= 0.030280
 ; same as above, but for attached grenade launcher for
 ; in NORMAL shoot mode
-;grenade_normal_zoom_offset		= -0.112840,0.039250,-0.158000
-;grenade_normal_zoom_rotate_x	= 0.054800
-;grenade_normal_zoom_rotate_y	= 0.043280
-
-; тест sto1en
 grenade_normal_zoom_offset		= -0.168800,0.067450,-0.223100
 grenade_normal_zoom_rotate_x	= 0.043400
 grenade_normal_zoom_rotate_y	= 0.030280
-
+second_grenade_normal_zoom_offset		= -0.168800,0.067450,-0.223100
+second_grenade_normal_zoom_rotate_x	= 0.043400
+second_grenade_normal_zoom_rotate_y	= 0.030280
 ; same as above, but for attached grenade launcher for
 ; in GRENADE mode
-;grenade_zoom_offset		= -0.030070,-0.130950,-0.053000
-;grenade_zoom_rotate_x		= -0.146311
-;grenade_zoom_rotate_y		= 0.005760
-
 ; тест sto1en grenade_zoom_offset			= -0.112860,-0.368469,-0.409998
 grenade_zoom_offset			= -0.112860,-0.368469,-0.1
 grenade_zoom_rotate_x		= -0.410010
 grenade_zoom_rotate_y		= 0.023930
-
+second_grenade_zoom_offset			= -0.112860,-0.368469,-0.1
+second_grenade_zoom_rotate_x		= -0.410010
+second_grenade_zoom_rotate_y		= 0.023930
+;-----------------------------------------------------------------------------
+;прячем перекрестие прицела в зуме
+zoom_hide_crosshair	= true						;to hide crosshair in zoom 
 
 ;-----------------------------------------------------------------------------------
 ;ремонт ОГСЕ

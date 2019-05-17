@@ -1,4 +1,6 @@
-; M134-A2 Gatling Machine Gun (5.56mm minigun) Vulcan
+; 7.62х51mm NATO GE "Minigun" 6-barreled Gatling Machine Gun
+; General Electric GAU-17/A flexible mount «Minigun» (армейский индекс — M134, авиационный индекс — SUU-11 (контейнерный), GAU (станковый вертолётный by the U.S. Air Force and U.S. Navy), флотский индекс — Mk 25). Пулемёт, построенный по схеме Гатлинга, представляет собой уменьшенную в размерах 20-мм авиапушку M61 Vulcan под стандартный винтовочный боеприпас НАТО калибра 7,62 мм.
+; в каталогах продукции компании General Electric вплоть до конца 1990-х годов РЕКЛАМИРОВАЛСЯ XM214 Microgun - экспериментальный малокалиберный (5,56х45 мм) вариант с регулируемым темпом стрельбы от 400 до 6000 выстрелов в минуту. Существовало популярное заблуждение о том, что был изготовлен единичный образец «Микрогана».. Масса 10,2 кг (тело пулемёта), 38,6 кг (пулемёт в сборе со станком М122, встроенной батареей и контейнером с 1000 патронов, которых хватает секунд на 15-20). Расчёты показывают, что если стрелять короткими очередями при относительно умеренной (не более 2-3000 выстрелов в минуту) скорострельности, то теоретически удержать эту дуру таки возможно..
 ;--------------------------------------
 [wpn_m_134]:identity_immunities,base_wpn_zoom
 GroupControlSection		 	= spawn_group
@@ -28,7 +30,7 @@ ammo_elapsed		= 500
 ammo_mag_size		= 500
 
 hand_dependence		= 2
-;single_handed		= o
+single_handed		= 0
 
 ammo_class		= ammo_5.56x45_ss190, ammo_5.56x45_ap
 fire_modes 		= -1
@@ -50,29 +52,29 @@ inv_grid_y			= 34
 ;kill_msg_width		= 78
 ;kill_msg_height	= 25
 
-;запрещение режима Sprint для Актера
+;false - запрещение режима Sprint (для ГГ)
 sprint_allowed		= false
 ;-----------------------------------------------------------------------------------
 ;params of weapon recoil
 ;dispersion_start		= 2
-fire_dispersion_base	= 0.25		; угол (в градусах) базовой дисперсии оружия (оружия зажатого в тисках)
-;control_inertion_factor	= 1.24f
-;disp_rate 			    = 1.88
+fire_dispersion_base	= 0.12	;0.24 угол (в градусах) базовой дисперсии оружия (оружия зажатого в тисках)
+control_inertion_factor	= 1.24f
+disp_rate 			    = 1.86
 
 ;отдача
 cam_relax_speed         = 4.75	;скорость возврата в исходное положение
-;cam_relax_speed_ai     = 120.75
+cam_relax_speed_ai     = 120.75
 cam_dispersion          = 0.12	;увеличения угла (в градусах) с каждым выстрелом
 cam_dispersion_inc		= 0.2	;увеличениe cam_dispersion с каждым выстрелом (!!!!параметр используется, но его убирание не приводит к вылету!!!)
-cam_dispertion_frac		= 1.0	;ствол будет подыматься на cam_dispersion*cam_dispertion_frac +- cam_dispersion*(1-cam_dispertion_frac) (!!!зависит от предыдущего!!!)
+cam_dispertion_frac		= 0.6	;ствол будет подыматься на cam_dispersion*cam_dispertion_frac +- cam_dispersion*(1-cam_dispertion_frac) (!!!зависит от предыдущего!!!)
 cam_max_angle			= 10.0	;максимальный угол отдачи
-cam_max_angle_horz		= 5.0	;(degree) maximum shot horizontal degree 
-cam_step_angle_horz		= 0.4	;(degree) size of step camera moved in horizontal position while shooting
+cam_max_angle_horz		= 8.0	;(degree) maximum shot horizontal degree 
+cam_step_angle_horz		= 1.4	;(degree) size of step camera moved in horizontal position while shooting
 
 fire_dispersion_condition_factor = 8	;увеличение дисперсии в процентах при максимальном износе 
-misfire_probability 	= 0.0005 ;вероятность осечки при максимальном износе 
-misfire_condition_k	    = 0.1 ;при значении 0 осечка никогда не возникает, даже при полном износе. (!!!!параметр используется, но его убирание не приводит к вылету!!!). влияет на первый параметр)
-condition_shot_dec 		= 0.00003 ;увеличение износа при каждом выстреле
+misfire_probability 	= 0.003 ;вероятность осечки при максимальном износе 
+misfire_condition_k	    = 0.05 ;при значении 0 осечка никогда не возникает, даже при полном износе. (!!!!параметр используется, но его убирание не приводит к вылету!!!). влияет на первый параметр)
+condition_shot_dec 		= 0.0001 ;увеличение износа при каждом выстреле
 ;-----------------------------------------------------------------------------------
 
 ;direction 		        = 0, 0, 1

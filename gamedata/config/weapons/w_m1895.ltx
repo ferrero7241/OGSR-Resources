@@ -1,0 +1,272 @@
+; Наган "солдатский" (УСМ без самовзвода)
+;Модель/текстуры Tripwire Interactive, глушитель Rastaman_vip74
+;анимации Zazzer
+; калибр							7,62 мм 
+; длина ствола					114 мм
+; барабан						7 патронов 
+; вес без патронов				0,75 кг 
+; вес со снаряженным барабаном	0,837 кг 
+; прицельная дальность			60 м
+; дульная скорость пули			250-270 м/с
+; темп стрельбы					-- в/м
+;
+;Усилие на спуске	1,5 кг 
+;Усилие на спуске при стрельбе самовзводами	6,5 кг 
+;
+;Перезарядка - откинуть окошко на правой стороне рамки, выдвинуть и отвести в сторону стержень-экстрактор (под стволом) и по-одному, удалить стреляные гильзы.
+;
+;стрельба https://www.youtube.com/watch?v=O_mVzVVPTUo
+;наш и бельгийский http://nagant.info/?a=revolvery-systemy-nagan
+;
+;брамит https://ru.wikipedia.org/wiki/%D0%91%D1%80%D0%B0%D0%9C%D0%B8%D1%82
+;В 1929 году братьями Митиными был создан глушитель звука выстрела (по современной терминологии ПБС) «устройство БраМит». 
+;«БраМит» значительно (с 834 до 1144 г) увеличивал вес и длину (с 230 до 350 мм) нагана и существенно снижал пробивное действие и кучность стрельбы
+;
+;Сменный барабан под патрон .32 АСР изготавливался в Южной Корее для продажи в США с целью использовать более дешевый патрон.
+;
+;Последние бои «наганы» приняли во время борьбы с бандами лесных братьев и бендеровцев в 40–50-х годах.
+;
+;свыше 6500 «Наганов» и более миллиона патронов к ним было захвачено на складах и ВЧ ВСУ в Донецкой и Луганской областях, и (по разным данным) от 14 до 20 тысяч на складах мобилизационного резерва и МВД.
+;
+;Низкое останавливающее действие пули. Наган в принципе не годится для перестрелок в американском стиле по принципу "попал - завалил". Он - очень точная машинка, требующая прямых рук для стрельбы в уязвимые части тела или сочленения костей (который в это время будет садить в тебя двойками в центр масс из самозарядного пистолета 9мм или .45, да).
+;---------------------------------------------------
+; базовая секция
+[wpn_desert_eagle]:identity_immunities,base_wpn_zoom
+GroupControlSection			= spawn_group
+discovery_dependency 		= 
+$spawn                   	= "weapons\Desert Eagle"					; option for Level Editor
+$npc			 			= on				; option for Level Editor
+$prefetch 		 			= 8
+scheduled                	= off              ; option for ALife Simulator
+cform                    	= skeleton
+class                    	= WP_SHOTG
+min_radius               	= 0
+max_radius               	= 60
+description					= enc_weapons1_wpn-m1895
+
+ef_main_weapon_type			= 0		;1
+ef_weapon_type				= 5		;7
+
+;-----------------------------------------------------------------------------------
+holder_range_modifier	= 0.9
+holder_fov_modifier		= 1.3
+;-----------------------------------------------------------------------------------
+
+tri_state_reload			= on
+
+cost					 	= 3500
+weapon_class			 	= shotgun
+
+ammo_elapsed		 		= 7
+ammo_mag_size		 		= 7
+ammo_class		 			= ammo_7.62x25_p, ammo_7.62x25_ps
+
+;-----------------------------------------------------------------------------------
+;базовая дисперсия
+fire_dispersion_base		= 0.24  ;0.25 угол (в градусах) базовой дисперсии оружия (оружия зажатого в тисках)
+disp_rate 			= 1.8
+
+;отдача
+cam_relax_speed         	= 7.0	;скорость возврата в исходное положение
+cam_relax_speed_ai        	= 120.75
+cam_dispersion          	= 3.0	;увеличения угла (в градусах) с каждым выстрелом
+cam_dispersion_inc			= 0.0	;увеличениe cam_dispersion с каждым выстрелом
+cam_dispertion_frac			= 1.0   
+cam_max_angle				= 12	;максимальный угол отдачи
+cam_max_angle_horz	= 9.0	;(degree) maximum shot horizontal degree 
+cam_step_angle_horz	= 0.5	;1.5 (degree) size of step camera moved in horizontal position while shooting
+
+fire_dispersion_condition_factor = 7	;увеличение дисперсии в процентах при максимальном износе 
+misfire_probability 		= 0.0	    ;вероятность осечки при максимальном износе 
+misfire_condition_k			= 0.05
+condition_shot_dec 			= 0.0001	;увеличение износа при каждом выстреле
+;-----------------------------------------------------------------------------------
+
+hand_dependence 	 		= 1
+single_handed				= 1		;0
+
+slot 				 		= 1		; // primary
+animation_slot		 		= 1		; type of the animation that will be used	;БЫЛ 9		; type of the animation that will be used
+
+inv_name					= wpn-m1895
+inv_name_short				= wpn-m1895_s
+inv_weight				= 0.84
+
+inv_grid_width				= 2
+inv_grid_height				= 1
+inv_grid_x			= 77
+inv_grid_y			= 16
+
+kill_msg_x			= 171
+kill_msg_y			= 104
+kill_msg_width		= 75
+kill_msg_height		= 20
+
+direction                	= 0, 0, 1
+shell_point				 	= 0.0, 0.180, 0.647
+fire_point               	= 0.0, 0.158, 0.647
+fire_point2              	= 0.0, 0.158, 0.647
+
+;flame_particles		   		= weapons\generic_weapon05
+flame_particles				= amik\weapons\flame_particles\flame_particles_04
+smoke_particles				= amik\weapons\smoke_particles\smoke_particles_02
+
+rpm_empty_click 	   		= 200
+
+PDM_disp_base 			= 2.2
+PDM_disp_vel_factor 		= 1.7
+PDM_disp_accel_factor 		= 1.7
+PDM_crouch	 		= 1.0
+PDM_crouch_no_acc 		= 1.0
+
+; ttc
+hit_power        		= 0.54		;ТТ 0.5, Кольт 0.55, 
+hit_impulse      		= 130		;ТТ 100, Кольт 120
+hit_type 			= fire_wound
+hit_rate			= 1.85
+
+fire_distance           = 50
+bullet_speed			= 350		;начальная скорость пули 290
+rpm                     = 50 ;250          ;60 = 1 секунда
+; end ttc
+
+hud                      	= wpn_desert_eagle_hud
+normal                   	= 0, 1, 0
+position 			= -0.024, -0.097, 0
+orientation              	= 0, 0, 0      ;значение устанавливается в градусах
+
+;--STRAP PARAMETERS-----------------------------------------------------------------
+;под мишкой
+;strap_position         		= -0.26,-0.10,0.05			; position (offset) and orientation of the weapon when it is strapped
+;strap_orientation      		= -15,-9,110				; (3rd person view in degrees)
+;sto1en test
+strap_position         		= -0.05, -0.08, 0.15 ;-0.26,-0.10,0.05			; position (offset) and orientation of the weapon when it is strapped
+strap_orientation      		= 0.00, 0.00, 0.00  ;-15,-9,110				; (3rd person view in degrees)
+
+strap_bone0					= bip01_spine2
+strap_bone1					= bip01_spine1
+
+startup_ammo             	= 7
+visual                   	= weapons\nagant\wpn_m1895.ogf
+
+light_color		 			= 0.6,0.5,0.3
+light_range		 			= 6.0
+light_var_color		 		= 0.05
+light_var_range		 		= 0.5
+light_time 		 			= 0.2
+
+zoom_enabled				= true
+
+;addons OGSE
+grenade_launcher_status	= 0
+silencer_status			= 2
+scope_status			= 0
+
+silencer_name  				= wpn_addon_sil_m1895
+silencer_x                  = 51
+silencer_y                  = -14
+
+silencer_hit_power       	= 0.5
+silencer_hit_impulse	 	= 99		;70
+
+silencer_fire_distance   	= 50
+silencer_bullet_speed	 	= 250		;270
+
+silencer_smoke_particles 	= amik\weapons\smoke_particles\p_smoke_particles_02
+
+silencer_light_color		= 0.6,0.5,0.3
+silencer_light_range		= 0.01
+silencer_light_var_color	= 0.05
+silencer_light_var_range	= 0.5
+silencer_light_time 		= 0.2
+
+snd_silncer_shot		= weapons\tt33\shoot_sil
+;EoF ТЕСТ
+
+;------------------------------ O.G.S.E. sound remake -----------------------
+;звуки
+snd_draw					= weapons\m1895\nagan_draw
+snd_holster				= weapons\generic_shotgun_holster
+snd_shoot					= weapons\m1895\nagan_fire  
+snd_empty				= weapons\tt33\empty
+snd_reload				= weapons\toz34\toz34_reload
+snd_shoot_duplet		= weapons\toz34\toz34_shoot_both
+snd_open_weapon				= weapons\m1895\nagan_open		
+snd_add_cartridge			= weapons\m1895\nagan_load
+snd_close_weapon			= weapons\m1895\nagan_close
+
+;-----------------------------------------------------------------------------
+
+;-----------------------------------------------------------------------------
+;-- HUD DESCRIPTION
+;-----------------------------------------------------------------------------
+[wpn_desert_eagle_hud]
+
+;sto1en
+shell_point		 	= 0.0, 0.0, 0.0
+
+;fire_point			= 0.000000,0.055000,-0.075000
+fire_point2			= 0.0, 0.0, 0.0
+fire_bone 			= wpn_body
+
+;position			= 0.110000,-0.183000,0.080000
+;orientation			= 13.272207,3.875992,0.000000
+
+;sto1en v1 - ближе
+;position			= 0.010, -0.158, -0.025
+;orientation			= 1.00, 0.50, 0.00
+;fire_point			= 0.058, 0.063, -0.264
+
+;sto1en v2 - дальше
+position			= 0.051, -0.180, 0.080
+orientation			= 3.5, 1.5, 0.00
+fire_point			= 0.056, 0.064, -0.162
+
+visual                   	= weapons\nagant\wpn_m1895_hud.ogf
+
+anim_idle   = idle
+anim_idle_aim   = aim
+anim_idle_sprint  = sprint
+anim_draw   = draw				;достал
+anim_holster   = hide
+anim_shoot   = shot
+anim_shoot_speed_k = 1.3			;звук отстаёт
+anim_shoot_both   = shot
+anim_shoot_speed_k = 1.2			;звук отстаёт
+
+anim_reload   = draw
+anim_reload_speed_k = 1.6			;звук отстаёт
+anim_open_weapon  = open 
+anim_open_weapon_speed_k = 1.5			;+1.3 звук отстаёт
+anim_add_cartridge  = load
+anim_add_cartridge_speed_k = 2.2			;+2.0 звук отстаёт
+anim_close_weapon  = close
+anim_close_weapon_speed_k = 1.4			;+1.3 звук отстаёт
+
+
+;-----------------------------------------------------------------------------
+;смещения HUD для режима приближения
+;zoom_offset			= -0.226700,0.067500,-0.130000
+;zoom_rotate_x		= 0.067700
+;zoom_rotate_y		= 0.228900
+
+;sto1en v1 близко
+;zoom_offset			= -0.113600,0.036900,-0.107400
+;zoom_rotate_x		= 0.009400
+;zoom_rotate_y		= 0.018100
+
+;sto1en v2
+zoom_offset			= -0.160000,0.060500,-0.168400
+zoom_rotate_x		= 0.025400
+zoom_rotate_y		= 0.062100
+
+;прячем перекрестие прицела в зуме
+zoom_hide_crosshair	= true
+
+;время поворота HUD (сек)
+;zoom_rotate_time	= 0.1
+rotate_time			= 0.1
+
+[wpn_desert_eagle_repair]
+tech_complication = 100
+repair_compatibility = m1895

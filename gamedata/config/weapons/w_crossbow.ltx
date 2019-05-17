@@ -1,5 +1,5 @@
 ;ј–ЅјЋ≈“
-[wpn_crossbow]:identity_immunities
+[wpn_crossbow]:identity_immunities,base_wpn_zoom
 GroupControlSection		= spawn_group
 discovery_dependency	 	= 
 $spawn          			= "weapons\cro"
@@ -10,7 +10,7 @@ cform           	        = skeleton
 class           	        = WP_PM
 min_radius      	        = 0
 max_radius      	        = 150
-description	= enc_weapons_wpn-arb
+description	= enc_weapons1_wpn-arbalet
 
 holder_range_modifier	= 2.0
 holder_fov_modifier		= 0.7
@@ -33,8 +33,8 @@ slot = 2
 animation_slot = 2
 
 ;иконка в инвентаре
-inv_name		= wpn-arb
-inv_name_short		= wpn-arb
+inv_name		= wpn-arbalet
+inv_name_short	= wpn-arbalet_s
 inv_weight		= 3.44
 	
 inv_grid_width		= 5
@@ -107,19 +107,18 @@ visual = weapons\swmt\crossbow\wpn_crossbow_world.ogf
 light_disabled = true
 
 ;аддоны
-scope_status				= 0
+scope_status				= 0		;0 -нет в модели
 silencer_status				= 0
 grenade_launcher_status		= 0
 
-;прицел
 zoom_enabled = true
 zoom_hide_crosshair = true
-scope_zoom_factor = 1.66
-ironsight_zoom_factor		= 1.0
-
+scope_zoom_factor 		= 1.0 		;ставить дл€ сквозных 3D прицелов (1.66)
+;_“≈—“им 3D-зум 
+scope_lense_fov_factor = 12.0
+;scope_texture = wpn\scopes\crosshair_cross_10-2
 scope_texture = wpn\scopes\scope_var_2
 
-;звуки
 ;------------------------------ O.G.S.E. sound remake -----------------------
 snd_draw	= weapons\generic_draw
 snd_holster	= weapons\generic_holster, 0.0
@@ -151,9 +150,13 @@ anim_close = holster
 anim_idle_aim = idle_aim
 anim_idle_sprint	= idle_sprint
 
-zoom_offset		= -0.08455,0.05766,-0.2
-zoom_rotate_x		= 0.0
-zoom_rotate_y		= 0.0
+;-zoom_offset		= -0.08455,0.05766,-0.2			;далеко
+zoom_offset			= -0.084150,0.057860,-0.506997
+zoom_rotate_x		= 0.000000
+zoom_rotate_y		= 0.000000
+second_zoom_offset			= -0.084150,-0.002140,-0.506997
+second_zoom_rotate_x		= -0.038000
+second_zoom_rotate_y		= 0.000000
 
 [wpn_crossbow_repair]
 tech_complication = 400
@@ -164,11 +167,11 @@ repair_compatibility = crossbow
 
 [wpn_crossbow_cpec]:wpn_crossbow
 $spawn          			= "weapons\cro_spec"
-description		= enc_weapons_wpn-arb_spec
+description		= enc_weapons1_wpn-arbalet_spec
 cost			= 700
 ammo_class		= ammo_arbolt_spec
-inv_name		= wpn-arb_spec
-inv_name_short		= wpn-arb_spec
+inv_name		= wpn-arbalet_spec
+inv_name_short	= wpn-arbalet_spec_s
 inv_grid_x		= 56
 inv_grid_y		= 36
 inv_weight		= 2.44
@@ -179,5 +182,5 @@ hit_impulse = 100
 
 fire_distance = 300
 bullet_speed = 150
-scope_zoom_factor = 2.3 ; 40
-ironsight_zoom_factor		= 1.0
+
+[wpn_crossbow_cpec_repair]:wpn_crossbow_repair

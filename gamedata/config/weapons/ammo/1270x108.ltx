@@ -1,0 +1,114 @@
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;Снайперский патрон - 12,7 СН (7Н34)
+;Отличительная окраска – нет.
+;Масса патрона – 147,7 (149,9) г.
+[ammo_12.7x108_ap]:ammo_base
+$spawn			= "weapons\ammo\ammo_12.7x108_ap" ; option for Level Editor
+;-visual          	= weapons\arsenal\ammo\127x108ap.ogf
+visual	= weapons\dshkm\korob.ogf
+
+description		= enc_weapons_ammo-12.7x108ap
+
+cost			= 1350
+box_size		= 10
+inv_weight		= 1.47		;+(147*10=1470г.)
+
+inv_name		= ammo-12.7x108ap
+inv_name_short	= ammo-12.7x108ap_s
+
+inv_grid_width		= 2
+inv_grid_height		= 1
+inv_grid_x			= 12
+inv_grid_y			= 32
+
+k_dist			= 1
+k_disp			= 1.84
+k_hit			= 11.9	;5.7
+k_impulse		= 10	;7		;коэффициент "толчка" при попадании. Походу работает только на "неживых"
+k_pierce		= 3.5			;коэффициент бронебойности. hit_power оружия на бронебойность влияния не оказывает
+impair			= 2.5			;коэффициент износа ствола от пули
+buck_shot		= 1
+wm_size         = 0.127
+;tracer			= off
+;explosive		= on
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;Патрон с бронебойно-зажигательной пулей Б-32
+;Отличительная окраска: пули – черная вершина с красным пояском, упаковки – полосы красного и черного цвета.
+;Кол-во патронов: в металлической коробке – 85* или 80** шт., в ящике – 170 или 160 шт.
+;Вес ящика с патронами – 28-29* или 27-28** кг.
+;* - в оцинкованных и сварно-закатных коробках;
+;** - в штампованных коробках.
+[ammo_12.7x108]:ammo_12.7x108_ap
+$spawn			= "weapons\ammo\ammo_12.7x108" ; option for Level Editor
+
+;-visual	= weapons\magazines\box_100_762x51.ogf
+visual	= weapons\dshkm\korob.ogf
+
+description		= enc_weapons_ammo-12.7x108
+
+cost			= 1000
+
+box_size		= 50				;лента (короб) ДШК
+inv_name		= ammo-12.7x108
+inv_name_short	= ammo-12.7x108_s
+inv_weight		= 6.7		;+(133*50=6650г.)
+
+inv_grid_width		= 2
+inv_grid_height		= 1
+inv_grid_x			= 10
+inv_grid_y			= 31
+
+k_pierce		= 3.0			;коэффициент бронебойности. hit_power оружия на бронебойность влияния не оказывает
+impair			= 2.0			;коэффициент износа ствола от пули
+
+;tracer			= off
+explosive		= on
+
+
+[mag_5_12.7x108_ap]:ammo_12.7x108_ap
+box_size	= 1
+mag_size	= 5
+script_binding  = ammo_manager.init
+wm_section	= wm_12.7x108a5
+inv_name		= mag_5_12.7x108
+description		= desc_load_12.7x108_ap
+inv_name_short	= mag_5_12.7x108_ap_s
+inv_weight		= 0.1320
+belt = true
+inv_grid_width		= 1
+inv_grid_height		= 1
+inv_grid_x			= 14
+inv_grid_y			= 31
+;visual	= weapons\magazines\mag_5_1270x108.ogf
+visual	= weapons\dshkm\korob.ogf
+cost = 220
+
+
+[belt_50_12.7x108]:ammo_12.7x108
+box_size	= 1
+mag_size	= 50
+script_binding  = ammo_manager.init
+wm_section	= wm_12.7x108a50
+inv_name		= belt_50_12.7x108
+description		= desc_load_12.7x108
+inv_name_short		= belt_50_12.7x108_s
+inv_weight	= 0.0257
+belt = true
+inv_grid_width		= 2
+inv_grid_height		= 1
+inv_grid_x			= 12
+inv_grid_y			= 31
+;visual	= weapons\magazines\box_100_762x51.ogf
+;visual	= weapons\magazines\box_100_556x45.ogf
+visual	= weapons\dshkm\korob.ogf
+cost = 450
+
+
+[mag_5_12.7x108_ap_e]:mag_5_12.7x108_ap
+description		= desc_mag_e
+inv_weight = 0.24
+
+[belt_50_12.7x108_e]:belt_50_12.7x108
+description		= desc_belt_e
+inv_weight		= 1.28

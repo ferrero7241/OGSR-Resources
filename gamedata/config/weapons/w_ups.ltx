@@ -21,7 +21,7 @@ cform                    	= skeleton
 class                    	= WP_PM		;WP_USP45
 min_radius               	= 0
 max_radius                  = 30
-description					= enc_weapons1_wpn-usp
+description					= enc_weapons1_wpn-usp2
 
 ef_weapon_type				= 5
 
@@ -42,8 +42,8 @@ single_handed				= 1
 slot 			 			= 1
 animation_slot				= 1		; type of the animation that will be used
 
-inv_name					= wpn_usp
-inv_name_short				= wpn_usp_s
+inv_name					= wpn_usp2
+inv_name_short				= wpn_usp2_s
 inv_weight					= .79
 
 inv_grid_width				= 1
@@ -58,7 +58,7 @@ kill_msg_height				= 25
 
 ;-----------------------------------------------------------------------------------
 ;базовая дисперсия
-fire_dispersion_base		= 0.19	;угол (в градусах) базовой дисперсии оружия (оружия зажатого в тисках)
+fire_dispersion_base		= 0.25	;угол (в градусах) базовой дисперсии оружия (оружия зажатого в тисках)
 ;control_inertion_factor		= 1.10f
 
 ;отдача
@@ -110,9 +110,9 @@ rpm                 = 0
 use_aim_bullet				= true		;Поддерживается ли первая суппер пуля
 time_to_aim					= 1.0	
 
-silencer_hit_power       	= 0.4
+silencer_hit_power       	= 0.45
 silencer_hit_impulse	 	= 50
-silencer_fire_distance   	= 30
+silencer_fire_distance   	= 50
 silencer_bullet_speed	 	= 200
 
 hud                      	= wpn_usp0_hud
@@ -140,13 +140,21 @@ script_binding  = ogse_bind_weapon.init
 
 zoom_enabled				= true
 
+;ПРОБУЕМ пока один набор на всех прописать напрямую (ВРЕМЕННО, пока KRodin в движок всё перенести не раздуплится)
+highlight_addons = fake_wpn_addon_mag_usp8, fake_wpn_addon_mag_usp15
+
+; ----------------------------== Sounds ==---------------------------------
 ;звуки
-snd_draw					= weapons\usp\draw
-snd_holster					= weapons\usp\holster
+;snd_draw					= weapons\usp\draw
+snd_draw					= weapons\pm\draw							;достал
+;snd_holster					= weapons\usp\holster
+snd_holster					= weapons\pm\holster						;убрал
 snd_shoot					= weapons\usp\shoot
-snd_empty					= weapons\usp\empty
+;snd_empty					= weapons\usp\empty
+snd_empty					= weapons\fort17\fort_empty
 snd_reload					= weapons\usp\reload
-snd_close					= weapons\usp\close
+;snd_close					= weapons\usp\close
+snd_close					= weapons\fort17\fort_close
 snd_silncer_shot			= weapons\usp\shoot_sil 
 
 
@@ -272,13 +280,13 @@ hud                     = wpn_usp_mag_hud
 [wpn_usp_nomag]:wpn_usp0,usp_nomag_p
 ;магазины
 wpn_addon_mag_usp8     = wpn_usp
-wpn_addon_mag_usp15      = wpn_usp9
+wpn_addon_mag_usp15    = wpn_usp9
 [wpn_usp_nomag_repair]:wpn_usp0_repair
 
 
 [wpn_usp9]:wpn_usp0,usp_usp15_p
-fire_dispersion_base		= 0.25		;0.19
-hit_power           = 0.47
+fire_dispersion_base		= 0.26		;0.25
+hit_power           = 0.46		;0.47
 hit_impulse		 	= 75
 silencer_hit_power       	= 0.4
 silencer_hit_impulse	 	= 50
@@ -288,7 +296,7 @@ magazine_removed_section = wpn_usp_nomag
 [wpn_usp9_repair]:wpn_usp0_repair
 ;-----------------------------------------------------------------------------------
 [wpn_usp]:wpn_usp0,usp_usp8_p
-fire_dispersion_base		= 0.19
+fire_dispersion_base		= 0.23		;0.24=Colt
 hit_power           = 0.55
 hit_impulse		 	= 105
 silencer_hit_power       	= 0.45

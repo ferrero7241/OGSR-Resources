@@ -1,6 +1,7 @@
 ; Винтовка электромагнитная "изделие №62"
+; ебически мощная и охуенно точная помесь рельсотрона, собственно гауссовки и турболазера.. похуй на физику..
 ;--------------------------------------
-[wpn_gauss]:identity_immunities
+[wpn_gauss]:identity_immunities,base_wpn_zoom
 GroupControlSection	= spawn_group
 discovery_dependency = 
 $spawn                  = "weapons\gauss"	; option for Level Editor
@@ -147,23 +148,29 @@ scope_texture		= wpn\scopes\scope_gauss
 
 vision_present		= true
 scope_dynamic_zoom = true
-vis_frame_speed		= 10; 5			; скорость, с которой наводится рамка на цель
+vis_frame_speed		= 10	;5			; скорость, с которой наводится рамка на цель
 vis_frame_color		= 0.7,0.7,0.7,1.0	; цвет рамки RGBA (A) Не учитывается
 found_snd			= detectors\DA-2_beep1
 
 
 ;------------------------------ O.G.S.E. sound remake -----------------------
 ;звуки
-snd_draw			= weapons\gauss\gauss_draw
-snd_holster			= weapons\gauss\gauss_holster
-snd_shoot			= weapons\gauss\gauss_shoot
-snd_empty			= weapons\gauss\gauss_empty, 0.5
-snd_reload			= weapons\gauss\gauss_reload, 1.0, 1.0
+;snd_draw			= weapons\gauss\gauss_draw
+;snd_holster			= weapons\gauss\gauss_holster
+;snd_shoot			= weapons\gauss\gauss_shoot
+;snd_empty			= weapons\gauss\gauss_empty, 0.5
+;snd_reload			= weapons\gauss\gauss_reload, 1.0, 1.0
 
-snd_gyro			= $no_sound, 0
-snd_zoomin			= $no_sound, 0
-snd_zoomout			= $no_sound, 0
-snd_close			= $no_sound, 0
+snd_draw					= weapons\gauss\draw
+snd_holster					= weapons\gauss\holster
+snd_shoot					= weapons\gauss\shoot
+snd_empty					= weapons\gauss\empty
+snd_reload					= weapons\gauss\reload
+
+snd_gyro			= weapons\binoculars_gyro		;$no_sound, 0
+snd_zoomin			= weapons\binoculars_zoomin		;$no_sound, 0
+snd_zoomout			= weapons\binoculars_zoomout	;$no_sound, 0
+snd_close			= weapons\generic_close			;$no_sound, 0
 ;-----------------------------------------------------------------------------
  
 ;-----------------------------------------------------------------------------
@@ -173,33 +180,43 @@ snd_close			= $no_sound, 0
 
 allow_inertion			= true
 
-fire_point			= -0.044000, 0.111000, 0.155000
+;fire_point			= -0.044000, 0.111000, 0.155000
+fire_point					= 0,0.058,0.788
 fire_bone 			= wpn_body
 
-orientation			= 1, 1, 0
-position			= 0, 0, 0
+;orientation			= 1, 1, 0
+;position			= 0, 0, 0
+position					= -0.063,-0.12,0.11
+orientation					= 0,0,0
+
 visual 				= weapons\gauss\wpn_gauss_hud.ogf
 
-shell_point			= -0.042000, 0.103000, 0.267000		; position (3rd person view) for shell to throw out
+;shell_point			= -0.042000, 0.103000, 0.267000		; position (3rd person view) for shell to throw out
+shell_point					= 0,0,-0.6				
 
-anim_holster			= holster
+anim_holster		= holster
 anim_idle			= idle
-anim_idle_aim			= idle
+anim_idle_aim		= idle_aim	;idle
 anim_reload			= reload
 anim_draw			= draw
 anim_shoot			= shoot
+anim_idle_sprint			= idle_sprint
 
 ;смещения HUD для режима приближения
-zoom_offset			= -0.050000,0.00,-0.04
-zoom_rotate_x			= 0.017200
-zoom_rotate_y			= -0.002800
+;zoom_offset			= -0.050000,0.00,-0.04
+;zoom_rotate_x			= 0.017200
+;zoom_rotate_y			= -0.002800
+
+zoom_offset					= -0.1,0,-0.05
+zoom_rotate_x				= 0
+zoom_rotate_y				= 0
 
 ;прячем перекрестие прицела в зуме
 zoom_hide_crosshair		= true
 
 ;время поворота HUD (сек)
-zoom_rotate_time		= 0.5
-rotate_time			= 0.5
+zoom_rotate_time	= 0.25		;0.5
+rotate_time			= 0.25		;0.5
 
 [wpn_gauss_repair]
 tech_complication = 1000

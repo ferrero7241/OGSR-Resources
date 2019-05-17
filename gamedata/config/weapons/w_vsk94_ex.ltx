@@ -1,0 +1,809 @@
+;-----------------------------------------------------------------------------------
+;Сменные аддоны ОГСЕ
+;-----------------------------------------------------------------------------------
+;управляемые В СЕКЦИЯХ АДДОНОВ кости  (64=50+2m+4d+8s) 9А-91/ВСК-94 с привязкой by k01jan:
+;wpn_body		9А-91/ВСК-94 +патрон в стволе
+;  wpn_silencer	- ПБС 9А-91/ВСК-94 (у ВСС была пустая - интегрированный)
+;  wpn_scope	- (движковая, д/б пустая)
+;  safe			пп
+;  trigger		спусК
+;  lock			защёлка магазина
+;  mag			- (Д/Б пустая, анимированная)
+;    mag: ammo		2 патрона в МАГазине (Д/Б скрытА при разряжании, виднА при заряжании)
+;    mag: mag1		20 9А-91/ВСК-94 (Магазины некоторых автоматов не фиксируются в горловинах других автоматов из-за превышения размеров по толщине некоторых магазинов и несовпадения окон для защелки магазина с защелками некоторых автоматов. Магазины выпускались с подавателями разной конструкции и разным расположением отверстий для контроля наличия патронов. Сначала выпускались подаватели с правым расположением верхнего патрона. Потом выпускали подаватели с левым расположением верхнего патрона. Магазины с подавателями второго типа имеют отверстие для контроля количества патронов, выполненные на толщину одного патрона выше, чем с подавателями первого типа. В результате плохого контроля качества на заводе-изготовителе начали поступать магазины с подавателями первого типа с корпусами магазинов позднего образца. При снаряжении таких магазинов патронами в отверстии видна гильза патрона, что сигнализирует о том, что магазин полностью снаряжен 20 патронами. На самом деле в магазине 19 патронов.)
+;    mag: mag2	-	(30 нет, наск.знаю), ВОЗМОЖНО подойдёт 20 от ОЦ-14-4А
+;  custom 		обвес ВСК-94 (скелетный приклад, "низкое" цевье)
+;  grip			- ручка (АНИМИРОВАТЬ)
+;  scope1		ПСО-1М2-1 х4
+;  scope2		ЭКП-8М-01 "Кобра" х1
+;  scope3		1ПН51 (НСПУ-3 "Казуар") х3,46
+;  mount1 		планка МТК-83 (кронштейн-переходник "ласточкин хвост"/Picatinny rail)
+;  scope4		ACOG TA31-CH х4 (на рельсу)
+;  scope5		EOTech  552.A65 х1 (на рельсу)
+;  mount2 		щека СВД
+;_  scope6 не заюзан			IR NV х1
+;_  scope7 не заюзан			PVS14-11 х1
+;_  scope8 не заюзан			EOTech Magnifier x3
+;  muzzle		обвес 9А-91 (складной приклад + пистолетная рукоять, "высокое" цевье)
+;-----------------------------------------------------------------------------------
+;материал: МИР объект-large_weapon
+;-----------------------------------------------------------------------------------
+;шейдеры:
+;collimator_metka0 первая линза Кобры - прозрачная с меткой (сменная) ХУД hud\reddotsight1 / МИР  (3+1 +12=16 =6+1+9) !!!= models\artefact2
+;collimator_lens01 вторая линза Кобры - полупрозрачная круглая зелёная ХУД модель-transparent / МИР 
+;
+;lens_eotech первая линза EOTech - прозрачная с меткой ХУД худ-reddotsight1 / МИР 
+;collimator_linza0 вторая линза EOTech - полупрозрачная квадратная серая ХУД модель-transparent / МИР
+;
+;ТЕСТ сквозного ACOG: сетка2 transparent\lightplanes метка1
+;для худовой внешние (тонирование) lens_acog и вторая линза-сетка grid_acog - transparent (только чёрный, при стрельбе смещается)
+;для худовой +первая от глаз текстура mark_acog -lightplanes метка (цветная, при стрельбе смещается)
+;для мировой collimator_lens02 -transparent
+;3D ACOG: для худовой wpn\upgrades\3D_acog с шейдером models_lense_scope (мировая - непрозрачные линзы - wpn\upgrades\scope_acog с models\weapons)
+;
+;3D_acog.dds прозрачная с сеткой ACOG
+	;grid_acog.dds прозрачная с чёрной сеткой ACOG (для сквозного)
+	;mark_acog.dds прозрачная с жёлтой меткой ACOG (для сквозного)
+;
+;lens_acog.dds круглая полупрозрачная янтарная
+;collimator_lens01.dds круглая полупрозрачная зелёная
+;collimator_lens02.dds круглая полупрозрачная жёлтая
+;
+;collimator_metka0.dds прозрачная с меткой Кобры (т-образная)
+;collimator_metka0.dds прозрачная с меткой Кобры (т-образная)
+;
+;lens_eotech.dds прозрачная с меткой EOTech
+;collimator_linza0.dds полупрозрачная квадратная серая (с бликом)
+;
+;-----------------------------------------------------------------------------------
+;!!!для худовых моделей models\transparent менять на forward\collimator (пролечена засветка)
+;***********************************************************************************
+
+
+
+
+
+
+
+;----------------при переключении между стволами глючат кости (когда 9А-91 и ВСК-94 оба в слотах)
+;
+;
+;
+;----------------при смене прикладов (фейк-РУКоятка) глючат аддоны (упор 9А-91 снимается при установке приклада ВСК-94 и НАКАПЛИВАЕТСЯ в инвентаре)
+;----------------!!!снимать оба приклада НЕЛЬЗЯ
+;!!!!!сделать чтоб 9А-91/ВСК-94 не брался в слот без приклада! (+ogse_disassembled_weapon.script +прописано в ogse_signals_addons_list.script)
+;+++Перенос 9А-91/ВСК-94 со снятым прикладом в слот: не оружие (нельзя стрелять - полуразобрано) - убрать в инвентарь.
+;-----ручки (сняв приклад, назад уже НЕ поставить - не оружие - скрипт выкинет из слота в рюкзак)
+;
+;????????????!сделать несъёмным (установка приклада ВСК-94 только оружейником)
+;
+;
+;
+
+
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; базовые секции
+;-----------------------------------------------------------------------------------
+; базовая секция со штатными прикладом и цевьём 9А-91 (muzzle)
+[wpn_a91_base]:wpn_vsk94
+;9А-91 нет (апгрейд ремонтника?) custom-приклада ВСК-94 - custom надо ВСЕГДА скрывать
+;9А-91 установлен stock-приклад - muzzle надо ВСЕГДА показывать
+script_binding  = ogse_bind_weapon.init
+;скрытые (управляемые) кости: +muzzle (обвес 9А-91) или -custom (обвес ВСК-94)
+managed_bones = custom, grip, mag1, mag2, scope1, scope2, scope3, mount1, mount2, scope4, scope5, mount2, scope6, scope7, scope8
+;
+silencer_status			= 2
+grenade_launcher_status	= 0
+scope_status			= 2
+scope_mount_status		= 2
+grip_status				= 0		;-не отследить ПЫС-глушак
+magazine_status			= 2
+;
+fire_dispersion_base		= 0.3		;0.2		;АС 0.12 ВСС 0.1 ;угол (в градусах) базовой дисперсии оружия (оружия зажатого в тисках)
+cam_relax_speed				= 5						;ВСС 4.75	;скорость возврата в исходное положение
+cam_dispersion				= 0.2		;0.13		;ВСС 0.125 	;увеличения угла (в градусах) с каждым выстрелом
+cam_max_angle				= 9.0		;5.0		;ВСС 3.0	;максимальный угол отдачи
+cam_max_angle_horz			= 9.5		;2.5		;ВСС 1.0	;(degree) maximum shot horizontal degree
+;
+description			= enc_weapons1_wpn-9a91
+inv_name			= wpn-9a91
+inv_name_short		= wpn-9a91_s
+inv_weight			= 2.1
+;иконка ствола
+;inv_grid_x				= 32
+;inv_grid_y				= 		
+;2 - 9А-91
+;6 - 9А-91 без магазина
+;0 - ВСК-94
+;4 - ВСК-94 без магазина
+;+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+;подсветки предметов в инвентарных окнах из ЗП (Metro UI - "плиточная" подсветка ячейки):
+;выбранного предмета, доступных предмету слотов при наведении курсора на предмет, патронов/аддонов при клике по оружию (и наоборот)
+;--!при использовании "старого" ТЧ-стиля (подсветка иконки, а не ячейки) - ТОЛЬКО патронов/аддонов при клике по оружию (и наоборот)
+;+!! и аддонов тоже!
+;++! а если перекрасить - то и ячеек!!
+;фейк-предметы типа новых аддонов не учитываются, тк не движковые, поэтому их надо дополнительно прописать в секции ствола
+;опции по настройке подсветок - в external.ltx
+;
+;не задействованы ВАРИАНТЫ - фейки прицелов (ручки) wpn_addon_magnifier, wpn_addon_nightvision, wpn_addon_irnv
+;не задействованы ВАРИАНТЫ - прицелы wpn_addon_scope_pvs, wpn_addon_scope_irnv,
+;на тест для 9А-91 в модели есть приклад (фейк-ручка - лучше не ставить аддоном, а через апгрейд), увеличитель, ПНВ и ИК насадки
+;
+;тут пока не прописаны highlight_addons = wpn_addon_grip, wpn_addon_svd_scheek, 
+;тут готовы wpn_addon_mag_vsk20, wpn_addon_scope_pso1m21, wpn_addon_scope_kobra, wpn_addon_scope_1pn51, wpn_addon_mtk83, wpn_addon_acog, wpn_addon_scope_eotech
+;
+;прицелы (не фейки) должны, по идее, подсвечиваться без явного ТУТ указания
+; именно ФЕЙКИ надо - они в инвентаре ОГСЕ.
+;а вообще лучше бы для каждой секции уникальный набор аддонов вручную ТУТ задавать
+;ПРОБУЕМ пока один набор на всех
+highlight_addons = fake_wpn_addon_grip, fake_wpn_addon_mag_vsk20, fake_wpn_addon_scope_pso1m21, fake_wpn_addon_scope_kobra, fake_wpn_addon_scope_1pn51, fake_wpn_addon_mtk83, fake_wpn_addon_acog, fake_wpn_addon_scope_eotech
+;+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+hud                      = wpn_a91_base_hud
+[wpn_a91_base_hud]:wpn_vsk94_hud
+[wpn_a91_base_repair]
+tech_complication 		= 800
+repair_compatibility 	= a91
+
+
+[wpn_vsk94_base]:wpn_a91_base
+;9А-91 нет (апгрейд ремонтника?) stock-приклада - muzzle надо ВСЕГДА скрывать
+;9А-91 установлен custom-приклад ВСК-94 (custom надо ВСЕГДА показывать)
+managed_bones = muzzle, grip, mag1, mag2, scope1, scope2, scope3, mount1, scope4, scope5, scope6, scope7, scope8
+;
+silencer_status			= 1
+grenade_launcher_status	= 0
+scope_status			= 2
+scope_mount_status		= 2
+grip_status				= 0		;-не отследить ПЫС-глушак
+magazine_status			= 1
+
+;+точность fire_dispersion_base		= 0.2		;0.145		;АС 0.12 ВСС 0.1
+fire_dispersion_base		= 0.25
+;-отдача
+cam_relax_speed				= 4.75		;5			;ВСС 4.75	;скорость возврата в исходное положение
+cam_dispersion				= 0.15		;0.13		;ВСС 0.125 	;увеличения угла (в градусах) с каждым выстрелом
+cam_max_angle				= 5.0		;4.0		;ВСС 3.0	;максимальный угол отдачи
+cam_max_angle_horz			= 5.5		;1.5		;ВСС 1.0	;(degree) maximum shot horizontal degree
+;
+description			= enc_weapons1_wpn-vsk94
+inv_name			= wpn-vsk94
+inv_name_short		= wpn-vsk94_s
+inv_weight			= 2.8
+;иконка ствола
+;inv_grid_x				= 32
+;inv_grid_y				= 		
+;2 - 9А-91
+;6 - 9А-91 без магазина
+;0 - ВСК-94
+;4 - ВСК-94 без магазина
+;
+hud                      = wpn_vsk94_base_hud
+[wpn_vsk94_base_hud]:wpn_vsk94_hud
+[wpn_vsk94_base_repair]
+tech_complication 		= 800
+repair_compatibility 	= vsk94
+
+
+;перезарядка  магазина
+[wpn_vsk94_m20_hud]:wpn_vsk94_hud
+anim_reload					= reload_as20
+
+
+;перезарядка без магазина
+[wpn_vsk94_nomag_hud]:wpn_vsk94_hud
+anim_reload					= idle
+
+
+
+
+
+
+
+;**************************************************************************************
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; служебные секции описателей АДДОНОВ
+;+ЕСТЬ (ПЛанка, МАГазин, РУКоять)
+;-ДОБАВИТЬ (ПРиклад-щека, СТВол) 					-КОСТЫЛи (ФЕЙКи)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; служебные секции описателей прицелов
+;при одетом прицеле кости bones показываются, bones_hide скрываются
+;-----------------------------------------------------------------------------------
+
+; штатный механический прицел (не задействован)
+[vsk94_ironsight]
+;force_remove_texture = true
+;показываемые кости, был пустой, залочен (здесь НЕ работает?) bones = 
+;смещение ствола при прицеливании: лево/право,верх/низ,от/к себя(е)
+zoom_offset			= -0.159900,0.050500,-0.201000
+zoom_rotation		= 0.011000,-0.000700
+[vsk94_ironsight_p]
+; имитация движкового параметра для прицела
+scope_name = 
+; донастройка модели прицела
+scope                    = vsk94_ironsight
+
+
+; ПСО-1M2- (16Ц1М2-1) х4
+[vsk94_pso11]
+;тест мех.прицела force_remove_texture = true
+bones         = scope1
+;штатный механический прицел (не задействован)
+zoom_offset			= -0.159900,0.050500,-0.201000
+zoom_rotation		= 0.011000,-0.000700
+[vsk94_pso11_p] ; имитация движкового параметра
+; движковый прицел
+scope_name               = wpn_addon_scope_pso1m21
+scope                    = vsk94_pso11
+;иконка прицела
+;scope_x			= 62
+;scope_y			= 10
+
+
+; ЭКП-8М-01 "Кобра" х1
+[vsk94_kobra]
+force_remove_texture = true
+bones         = scope2
+;штатный механический прицел (со сдвигом)
+zoom_offset			= -0.159400,-0.010000,-0.201000
+zoom_rotation		= 0.000000,0.000300
+[vsk94_kobra_p]
+scope_name               = wpn_addon_scope_kobra
+scope                    = vsk94_kobra
+;иконка прицела
+scope_x				= 70	;62
+scope_y				= 12	;10
+; второй прицел ОГСР не надо сдвигать, а second_ тут не работают.. disable_second_scope = true
+
+
+; 1ПН51 (НСПУ-3 "Казуар") х3,46
+[vsk94_1pn51]
+;тест мех.прицела force_remove_texture = true
+bones         = scope3
+;штатный механический прицел (не задействован)
+zoom_offset			= -0.159900,0.050500,-0.201000
+zoom_rotation		= 0.011000,-0.000700
+[vsk94_1pn51_p]
+scope_name               = wpn_addon_scope_1pn51
+scope                    = vsk94_1pn51
+;иконка прицела
+scope_x		= 60
+scope_y		= -3
+
+
+; ACOG TA31-CH х4
+[vsk94_acog]
+;тест мех.прицела, СКВОЗНОЙ +3D
+force_remove_texture = true
+bones         = scope4				;ACOG
+;_ТЕСТ  не заюзаных (не хватает аддонов):
+;_bones         = scope4,scope7		;ACOG	+PVS14-11 (нужно менять текстуру линзы ночника в зависимости от наличия+типа/отсутствия прицела)
+;_bones         = scope6			;IR NV
+;_bones         = scope8			;EOTech Magnifier x3 (нужно менять текстуру линзы увеличителя в зависимости от наличия/отсутствия коллиматора)
+;штатный механический прицел ACOG (не задействован, не настроен, д/б со сдвигом)
+;мех.прицел zoom_offset			= -0.128900,0.067500,-0.201000
+;мех.прицел zoom_rotation		= 0.018000,-0.000700
+;или СКВОЗНОЙ ACOG (со сдвигом)
+;zoom_offset			= -0.132800,-0.003500,-0.201000
+;zoom_rotation		= 0.013000,-0.001700
+
+;или ACOG ОГСР 3D (со сдвигом)
+;сдвинул худ вправо zoom_offset			= -0.129800,-0.009000,-0.306999
+zoom_offset			= -0.159800,-0.009000,-0.306999
+zoom_rotation		= 0.013000,-0.003700
+
+;PVS14-11 ОГСР 3D (со сдвигом)
+;zoom_offset			= -0.130300,-0.010000,-0.213000
+;zoom_rotation		= 0.013000,-0.003700
+;IR NV ОГСР 3D (со сдвигом)
+;zoom_offset			= -0.130300,-0.006000,-0.292499
+;zoom_rotation		= 0.013000,-0.003700
+;Magnifier ОГСР 3D (со сдвигом)
+;zoom_offset			= -0.129800,-0.013000,-0.278499
+;zoom_rotation		= 0.013000,-0.003700
+[vsk94_acog_p]
+scope_name               = wpn_addon_acog
+scope                    = vsk94_acog
+;иконка прицела
+scope_x				= 70	;62
+scope_y				= 12	;10
+;от ПРИЦЕЛА scope_lense_fov_factor НЕ НАСЛЕДУЕТСЯ (ЛИНЗА ЧЁРНАЯ), УКАЗЫВАТЬ ЯВНО В СТВОЛЕ
+; KRodin поправил, наследуется от прицела!!!
+scope_lense_fov_factor = 0.05
+
+
+
+; EOTech 552.A65 х1
+[vsk94_eotech]
+force_remove_texture = true
+bones         = scope5
+;штатный механический прицел (со сдвигом)
+;zoom_offset			= -0.151400,-0.006500,-0.201000
+zoom_offset			= -0.151300,-0.006700,-0.201000
+zoom_rotation		= 0.018000,-0.016200
+[vsk94_eotech_p]
+scope_name               = wpn_addon_scope_eotech
+scope                    = vsk94_eotech
+;иконка прицела
+scope_x				= 70	;62
+scope_y				= 12	;10
+; второй прицел ОГСР не надо сдвигать, а second_ тут не работают.. disable_second_scope = true
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; служебные секции описателей МАГазинов
+;-----------------------------------------------------------------------------------
+[vsk94_m20]
+bones = mag1
+[vsk94_m20_p] ; имитация движкового параметра для магазина
+magazine_name            = wpn_addon_mag_vsk20
+magazine                 = vsk94_m20
+ammo_mag_size			= 20
+hud                      = wpn_vsk94_m20_hud
+
+
+[vsk94_nomag]
+;bones = 
+[vsk94_nomag_p] ; имитация движкового параметра для магазина
+ammo_class               = ammo_9x39_dummy, ammo_9x39_dummy	;патрон-залушка
+ammo_mag_size            = 0					; не во что заряжать
+rpm                      = 0					; нечем стрелять
+snd_reload               = $no_sound
+snd_empty                = $no_sound
+hud                      = wpn_vsk94_nomag_hud
+
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; служебные секции описателей прицельных баз (ПЛанок)
+;-----------------------------------------------------------------------------------
+;кронштейн-переходник "ласточкин хвост"/Picatinny rail МТК-83 (короткий)
+[vsk94_mtk83]
+bones = mount1
+[vsk94_mtk83_p]
+scope_mount_name         = wpn_addon_mtk83
+scope_mount              = vsk94_mtk83
+
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; служебные секции описателей РУКояток
+;-----------------------------------------------------------------------------------
+;РУКоятка (анимировать, ставится ТОЛЬКО на глушитель)
+[vsk94_grip]
+bones = grip
+[vsk94_grip_p]
+grip_name				= wpn_addon_grip
+grip					= vsk94_grip
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; служебные секции описателей аддонов
+;-----------------------------------------------------------------------------------
+;Упор 9А-91
+[a91_buttstock]
+bones = muzzle											;штатные упор и пистолетная рукоять 9А-91
+;bones_hide = custom			 						;custom (телескопический приклад +пистолетная рукоять)
+[a91_buttstock_p] ; имитация движкового параметра
+
+;Приклад ВСК-94 
+[vsk94_buttstock]
+bones = custom
+;bones_hide = muzzle
+[vsk94_buttstock_p] ; имитация движкового параметра
+
+
+
+
+
+
+
+
+
+;***********************************************************************************
+; секции оружия с аддонами
+;***********************************************************************************
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;9А-91
+;----------------------------------------------------------боковая планка, магазин
+; боковая планка, ПСО, магазин
+[wpn_a91_m20_side_rail_pso]:wpn_a91_base,vsk94_pso11_p,a91_buttstock_p,vsk94_m20_p
+;иконка ствола
+inv_grid_y				= 2		
+;2 - 9А-91
+;6 - 9А-91 без магазина
+;0 - ВСК-94
+;4 - ВСК-94 без магазина
+;прицелы на боковую планку
+wpn_addon_scope_kobra		= wpn_a91_m20_side_rail_kobra
+wpn_addon_scope_1pn51   	= wpn_a91_m20_side_rail_1pn51
+;короткая планка Пикатинни	
+wpn_addon_mtk83          = wpn_a91_m20_mtk83_acog
+;магазины 
+magazine_removed_section = wpn_a91_nomag_side_rail_pso
+;ручки 
+;-wpn_addon_vsk94_buttstock = wpn_vsk94_m20_side_rail_pso
+;_wpn_addon_grip = wpn_a91_m20_side_rail_pso_grip
+;-grip_removed_section = disassembled_wpn_a91_m20_side_rail_pso
+[wpn_a91_m20_side_rail_pso_repair]:wpn_a91_base_repair
+;-[disassembled_wpn_a91_m20_side_rail_pso]:wpn_a91_base,vsk94_pso11_p,a91_buttstock_p,vsk94_m20_p
+;-приклады снимаются БЕСКОНЕЧНО - неправильное наследование ]:wpn_a91_m20_side_rail_pso
+;-ручки (сняв приклад, назад уже НЕ поставить - не оружие - скрипт выкинет из слота в рюкзак)
+;-wpn_addon_vsk94_buttstock = wpn_vsk94_m20_side_rail_pso
+;-wpn_addon_a91_buttstock = wpn_a91_m20_side_rail_pso
+
+; боковая планка, Кобра, магазин
+[wpn_a91_m20_side_rail_kobra]:wpn_a91_base,vsk94_kobra_p,a91_buttstock_p,vsk94_m20_p
+;иконка ствола
+inv_grid_y				= 2		
+;2 - 9А-91
+;6 - 9А-91 без магазина
+;0 - ВСК-94
+;4 - ВСК-94 без магазина
+;прицелы на боковую планку 
+wpn_addon_scope_pso1m21    = wpn_a91_m20_side_rail_pso
+wpn_addon_scope_1pn51   	= wpn_a91_m20_side_rail_1pn51
+;короткая планка Пикатинни	
+wpn_addon_mtk83          = wpn_a91_m20_mtk83_acog
+;магазины 
+magazine_removed_section = wpn_a91_nomag_side_rail_kobra
+;ручки
+;_wpn_addon_grip = wpn_a91_m20_side_rail_kobra_grip
+[wpn_a91_m20_side_rail_kobra_repair]:wpn_a91_base_repair
+
+; боковая планка, НСПУ, магазин
+[wpn_a91_m20_side_rail_1pn51]:wpn_a91_base,vsk94_1pn51_p,a91_buttstock_p,vsk94_m20_p
+;иконка ствола
+inv_grid_y				= 2		
+;2 - 9А-91
+;6 - 9А-91 без магазина
+;0 - ВСК-94
+;4 - ВСК-94 без магазина
+;прицелы на боковую планку 
+wpn_addon_scope_pso1m21    = wpn_a91_m20_side_rail_pso
+wpn_addon_scope_kobra		= wpn_a91_m20_side_rail_kobra
+;короткая планка Пикатинни	
+wpn_addon_mtk83          = wpn_a91_m20_mtk83_acog
+;магазины 
+magazine_removed_section = wpn_a91_nomag_side_rail_1pn51
+;ручки
+;_wpn_addon_grip = wpn_a91_m20_side_rail_1pn51_grip
+[wpn_a91_m20_side_rail_1pn51_repair]:wpn_a91_base_repair
+
+;-------------------------------------------------------боковая планка, нет магазина
+; боковая планка, ПСО, нет магазина
+[wpn_a91_nomag_side_rail_pso]:wpn_a91_base,vsk94_pso11_p,a91_buttstock_p,vsk94_nomag_p
+;иконка ствола
+inv_grid_y				= 6		
+;2 - 9А-91
+;6 - 9А-91 без магазина
+;0 - ВСК-94
+;4 - ВСК-94 без магазина
+;прицелы на боковую планку
+wpn_addon_scope_kobra		= wpn_a91_nomag_side_rail_kobra
+wpn_addon_scope_1pn51   	= wpn_a91_nomag_side_rail_1pn51
+;короткая планка Пикатинни	
+wpn_addon_mtk83          = wpn_a91_nomag_mtk83_acog
+;магазины
+wpn_addon_mag_vsk20      = wpn_a91_m20_side_rail_pso
+;ручки
+;_wpn_addon_grip = wpn_a91_nomag_side_rail_pso_grip
+[wpn_a91_nomag_side_rail_pso_repair]:wpn_a91_base_repair
+
+; боковая планка, Кобра, нет магазина
+[wpn_a91_nomag_side_rail_kobra]:wpn_a91_base,vsk94_kobra_p,a91_buttstock_p,vsk94_nomag_p
+;иконка ствола
+inv_grid_y				= 6		
+;2 - 9А-91
+;6 - 9А-91 без магазина
+;0 - ВСК-94
+;4 - ВСК-94 без магазина
+;прицелы на боковую планку 
+wpn_addon_scope_pso1m21    = wpn_a91_nomag_side_rail_pso
+wpn_addon_scope_1pn51   	= wpn_a91_nomag_side_rail_1pn51
+;короткая планка Пикатинни	
+wpn_addon_mtk83          = wpn_a91_nomag_mtk83_acog
+;магазины
+wpn_addon_mag_vsk20      = wpn_a91_m20_side_rail_kobra
+;ручки
+;_wpn_addon_grip = wpn_a91_nomag_side_rail_kobra_grip
+[wpn_a91_nomag_side_rail_kobra_repair]:wpn_a91_base_repair
+
+; боковая планка, НСПУ, нет магазина
+[wpn_a91_nomag_side_rail_1pn51]:wpn_a91_base,vsk94_1pn51_p,a91_buttstock_p,vsk94_nomag_p
+;иконка ствола
+inv_grid_y				= 6		
+;2 - 9А-91
+;6 - 9А-91 без магазина
+;0 - ВСК-94
+;4 - ВСК-94 без магазина
+;прицелы на боковую планку 
+wpn_addon_scope_pso1m21    = wpn_a91_nomag_side_rail_pso
+wpn_addon_scope_kobra   	= wpn_a91_nomag_side_rail_kobra
+;короткая планка Пикатинни	
+wpn_addon_mtk83          = wpn_a91_nomag_mtk83_acog
+;магазины
+wpn_addon_mag_vsk20      = wpn_a91_m20_side_rail_1pn51
+;ручки
+;_wpn_addon_grip = wpn_a91_nomag_side_rail_1pn51_grip
+[wpn_a91_nomag_side_rail_1pn51_repair]:wpn_a91_base_repair
+
+
+;-----------------------------------------------------короткая Пикатинни, магазин
+; планка Пикатинни, ACOG, магазин
+[wpn_a91_m20_mtk83_acog]:wpn_a91_base,vsk94_acog_p,vsk94_mtk83_p,a91_buttstock_p,vsk94_m20_p
+;иконка ствола
+inv_grid_y				= 2		
+;2 - 9А-91
+;6 - 9А-91 без магазина
+;0 - ВСК-94
+;4 - ВСК-94 без магазина
+;прицелы на короткую планку Пикатинни
+wpn_addon_scope_eotech   	= wpn_a91_m20_mtk83_eotech
+scope_mount_removed_section      = wpn_a91_m20_side_rail_pso
+;магазины
+magazine_removed_section = wpn_a91_nomag_mtk83_acog
+;ручки
+;_wpn_addon_grip = wpn_a91_m20_mtk83_acog_grip
+[wpn_a91_m20_mtk83_acog_repair]:wpn_a91_base_repair
+
+; планка Пикатинни, EOTech, магазин
+[wpn_a91_m20_mtk83_eotech]:wpn_a91_base,vsk94_eotech_p,vsk94_mtk83_p,a91_buttstock_p,vsk94_m20_p
+;иконка ствола
+inv_grid_y				= 2		
+;2 - 9А-91
+;6 - 9А-91 без магазина
+;0 - ВСК-94
+;4 - ВСК-94 без магазина
+;прицелы на короткую планку Пикатинни
+wpn_addon_acog				= wpn_a91_m20_mtk83_acog
+scope_mount_removed_section      = wpn_a91_m20_side_rail_pso
+;магазины
+magazine_removed_section = wpn_a91_nomag_mtk83_acog
+;ручки
+;_wpn_addon_grip = wpn_a91_m20_mtk83_eotech_grip
+[wpn_a91_m20_mtk83_eotech_repair]:wpn_a91_base_repair
+
+;---------------------------------------------------короткая Пикатинни, нет магазина
+; планка Пикатинни, ACOG, нет магазина
+[wpn_a91_nomag_mtk83_acog]:wpn_a91_base,vsk94_acog_p,vsk94_mtk83_p,a91_buttstock_p,vsk94_nomag_p
+;иконка ствола
+inv_grid_y				= 6		
+;2 - 9А-91
+;6 - 9А-91 без магазина
+;0 - ВСК-94
+;4 - ВСК-94 без магазина
+;прицелы на короткую планку Пикатинни
+wpn_addon_scope_eotech   	= wpn_a91_nomag_mtk83_eotech
+scope_mount_removed_section      = wpn_a91_nomag_side_rail_pso
+;магазины
+wpn_addon_mag_vsk20      = wpn_a91_m20_mtk83_acog
+;ручки
+;_wpn_addon_grip = wpn_a91_nomag_mtk83_acog_grip
+[wpn_a91_nomag_mtk83_acog_repair]:wpn_a91_base_repair
+
+; планка Пикатинни, EOTech, нет магазина
+[wpn_a91_nomag_mtk83_eotech]:wpn_a91_base,vsk94_eotech_p,vsk94_mtk83_p,a91_buttstock_p,vsk94_nomag_p
+;иконка ствола
+inv_grid_y				= 6		
+;2 - 9А-91
+;6 - 9А-91 без магазина
+;0 - ВСК-94
+;4 - ВСК-94 без магазина
+;прицелы на короткую планку Пикатинни
+wpn_addon_acog				= wpn_a91_nomag_mtk83_acog
+scope_mount_removed_section      = wpn_a91_nomag_side_rail_pso
+;магазины
+wpn_addon_mag_vsk20      = wpn_a91_m20_mtk83_eotech
+;ручки
+;_wpn_addon_grip = wpn_a91_nomag_mtk83_eotech_grip
+[wpn_a91_nomag_mtk83_eotech_repair]:wpn_a91_base_repair
+;-----------------------------------------------------------------------------------
+;-----------------------------------------------------------------------------------
+
+
+
+
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;ВСК-94 ---КРИВОЙ ПОКАЗ КОСТЕЙ---
+;----------------------------------------------------------боковая планка, магазин
+; боковая планка, ПСО, магазин
+[wpn_vsk94_m20_side_rail_pso]:wpn_vsk94_base,vsk94_pso11_p,vsk94_buttstock_p,vsk94_m20_p
+;иконка ствола
+inv_grid_y				= 0		
+;2 - 9А-91
+;6 - 9А-91 без магазина
+;0 - ВСК-94
+;4 - ВСК-94 без магазина
+;прицелы на боковую планку
+wpn_addon_scope_kobra		= wpn_vsk94_m20_side_rail_kobra
+wpn_addon_scope_1pn51   	= wpn_vsk94_m20_side_rail_1pn51
+;короткая планка Пикатинни	
+wpn_addon_mtk83          = wpn_vsk94_m20_mtk83_acog
+;магазины magazine_removed_section = wpn_vsk94_nomag_side_rail_pso
+;ручки
+;_wpn_addon_grip = wpn_vsk94_m20_side_rail_pso_grip
+;wpn_addon_svd_scheek = wpn_vsk94_m20_side_rail_pso_scheek
+[wpn_vsk94_m20_side_rail_pso_repair]:wpn_vsk94_base_repair
+
+; боковая планка, Кобра, магазин
+[wpn_vsk94_m20_side_rail_kobra]:wpn_vsk94_base,vsk94_kobra_p,vsk94_buttstock_p,vsk94_m20_p
+;иконка ствола
+inv_grid_y				= 0		
+;2 - 9А-91
+;6 - 9А-91 без магазина
+;0 - ВСК-94
+;4 - ВСК-94 без магазина
+;прицелы на боковую планку 
+wpn_addon_scope_pso1m21    = wpn_vsk94_m20_side_rail_pso
+wpn_addon_scope_1pn51   	= wpn_vsk94_m20_side_rail_1pn51
+;короткая планка Пикатинни	
+wpn_addon_mtk83          = wpn_vsk94_m20_mtk83_acog
+;магазины magazine_removed_section = wpn_vsk94_nomag_side_rail_kobra
+;ручки
+;_wpn_addon_grip = wpn_vsk94_m20_side_rail_kobra_grip
+;wpn_addon_svd_scheek = wpn_vsk94_m20_side_rail_kobra_scheek
+[wpn_vsk94_m20_side_rail_kobra_repair]:wpn_vsk94_base_repair
+
+; боковая планка, НСПУ, магазин
+[wpn_vsk94_m20_side_rail_1pn51]:wpn_vsk94_base,vsk94_1pn51_p,vsk94_buttstock_p,vsk94_m20_p
+;иконка ствола
+inv_grid_y				= 0		
+;2 - 9А-91
+;6 - 9А-91 без магазина
+;0 - ВСК-94
+;4 - ВСК-94 без магазина
+;прицелы на боковую планку 
+wpn_addon_scope_pso1m21    = wpn_vsk94_m20_side_rail_pso
+wpn_addon_scope_kobra		= wpn_vsk94_m20_side_rail_kobra
+;короткая планка Пикатинни	
+wpn_addon_mtk83          = wpn_vsk94_m20_mtk83_acog
+;магазины magazine_removed_section = wpn_vsk94_nomag_side_rail_1pn51
+;ручки
+;_wpn_addon_grip = wpn_vsk94_m20_side_rail_1pn51_grip
+;wpn_addon_svd_scheek = wpn_vsk94_m20_side_rail_1pn51_scheek
+[wpn_vsk94_m20_side_rail_1pn51_repair]:wpn_vsk94_base_repair
+
+;-------------------------------------------------------боковая планка, нет магазина
+; боковая планка, ПСО, нет магазина
+[wpn_vsk94_nomag_side_rail_pso]:wpn_vsk94_base,vsk94_pso11_p,vsk94_buttstock_p,vsk94_nomag_p
+;иконка ствола
+inv_grid_y				= 4		
+;2 - 9А-91
+;6 - 9А-91 без магазина
+;0 - ВСК-94
+;4 - ВСК-94 без магазина
+;прицелы на боковую планку
+wpn_addon_scope_kobra		= wpn_vsk94_nomag_side_rail_kobra
+wpn_addon_scope_1pn51   	= wpn_vsk94_nomag_side_rail_1pn51
+;короткая планка Пикатинни	
+wpn_addon_mtk83          = wpn_vsk94_nomag_mtk83_acog
+;магазины wpn_addon_mag_vsk20      = wpn_vsk94_m20_side_rail_pso
+;ручки
+;_wpn_addon_grip = wpn_vsk94_nomag_side_rail_pso_grip
+;wpn_addon_svd_scheek = wpn_vsk94_nomag_side_rail_pso_scheek
+[wpn_vsk94_nomag_side_rail_pso_repair]:wpn_vsk94_base_repair
+
+; боковая планка, Кобра, нет магазина
+[wpn_vsk94_nomag_side_rail_kobra]:wpn_vsk94_base,vsk94_kobra_p,vsk94_buttstock_p,vsk94_nomag_p
+;иконка ствола
+inv_grid_y				= 4		
+;2 - 9А-91
+;6 - 9А-91 без магазина
+;0 - ВСК-94
+;4 - ВСК-94 без магазина
+;прицелы на боковую планку 
+wpn_addon_scope_pso1m21    = wpn_vsk94_nomag_side_rail_pso
+wpn_addon_scope_1pn51   	= wpn_vsk94_nomag_side_rail_1pn51
+;короткая планка Пикатинни	
+wpn_addon_mtk83          = wpn_vsk94_nomag_mtk83_acog
+;магазины wpn_addon_mag_vsk20      = wpn_vsk94_m20_side_rail_kobra
+;ручки
+;_wpn_addon_grip = wpn_vsk94_nomag_side_rail_kobra_grip
+;wpn_addon_svd_scheek = wpn_vsk94_nomag_side_rail_kobra_scheek
+[wpn_vsk94_nomag_side_rail_kobra_repair]:wpn_vsk94_base_repair
+
+; боковая планка, НСПУ, нет магазина
+[wpn_vsk94_nomag_side_rail_1pn51]:wpn_vsk94_base,vsk94_1pn51_p,vsk94_buttstock_p,vsk94_nomag_p
+;иконка ствола
+inv_grid_y				= 4		
+;2 - 9А-91
+;6 - 9А-91 без магазина
+;0 - ВСК-94
+;4 - ВСК-94 без магазина
+;прицелы на боковую планку 
+wpn_addon_scope_pso1m21    = wpn_vsk94_nomag_side_rail_pso
+wpn_addon_scope_kobra   	= wpn_vsk94_nomag_side_rail_kobra
+;короткая планка Пикатинни	
+wpn_addon_mtk83          = wpn_vsk94_nomag_mtk83_acog
+;магазины wpn_addon_mag_vsk20      = wpn_vsk94_m20_side_rail_1pn51
+;ручки
+;_wpn_addon_grip = wpn_vsk94_nomag_side_rail_1pn51_grip
+;wpn_addon_svd_scheek = wpn_vsk94_nomag_side_rail_1pn51_scheek
+[wpn_vsk94_nomag_side_rail_1pn51_repair]:wpn_vsk94_base_repair
+
+;-----------------------------------------------------короткая Пикатинни, магазин
+; планка Пикатинни, ACOG, магазин
+[wpn_vsk94_m20_mtk83_acog]:wpn_vsk94_base,vsk94_acog_p,vsk94_mtk83_p,vsk94_buttstock_p,vsk94_m20_p
+;иконка ствола
+inv_grid_y				= 0		
+;2 - 9А-91
+;6 - 9А-91 без магазина
+;0 - ВСК-94
+;4 - ВСК-94 без магазина
+;прицелы на короткую планку Пикатинни
+wpn_addon_scope_eotech   	= wpn_vsk94_m20_mtk83_eotech
+scope_mount_removed_section      = wpn_vsk94_m20_side_rail_pso
+;магазины magazine_removed_section = wpn_vsk94_nomag_mtk83_acog
+;ручки
+;_wpn_addon_grip = wpn_vsk94_m20_mtk83_acog_grip
+;wpn_addon_svd_scheek = wpn_vsk94_m20_mtk83_acog_scheek
+[wpn_vsk94_m20_mtk83_acog_repair]:wpn_vsk94_base_repair
+
+; планка Пикатинни, EOTech, магазин
+[wpn_vsk94_m20_mtk83_eotech]:wpn_vsk94_base,vsk94_eotech_p,vsk94_mtk83_p,vsk94_buttstock_p,vsk94_m20_p
+;иконка ствола
+inv_grid_y				= 0		
+;2 - 9А-91
+;6 - 9А-91 без магазина
+;0 - ВСК-94
+;4 - ВСК-94 без магазина
+;прицелы на короткую планку Пикатинни
+wpn_addon_acog				= wpn_vsk94_m20_mtk83_acog
+scope_mount_removed_section      = wpn_vsk94_m20_side_rail_pso
+;магазины magazine_removed_section = wpn_vsk94_nomag_mtk83_acog
+;ручки
+;_wpn_addon_grip = wpn_vsk94_m20_mtk83_eotech_grip
+;wpn_addon_svd_scheek = wpn_vsk94_m20_mtk83_eotech_scheek
+[wpn_vsk94_m20_mtk83_eotech_repair]:wpn_vsk94_base_repair
+
+;---------------------------------------------------короткая Пикатинни, нет магазина
+; планка Пикатинни, ACOG, нет магазина
+[wpn_vsk94_nomag_mtk83_acog]:wpn_vsk94_base,vsk94_acog_p,vsk94_mtk83_p,vsk94_buttstock_p,vsk94_nomag_p
+;иконка ствола
+inv_grid_y				= 4		
+;2 - 9А-91
+;6 - 9А-91 без магазина
+;0 - ВСК-94
+;4 - ВСК-94 без магазина
+;прицелы на короткую планку Пикатинни
+wpn_addon_scope_eotech   	= wpn_vsk94_nomag_mtk83_eotech
+scope_mount_removed_section      = wpn_vsk94_nomag_side_rail_pso
+;магазины wpn_addon_mag_vsk20      = wpn_vsk94_m20_mtk83_acog
+;ручки
+;_wpn_addon_grip = wpn_vsk94_nomag_mtk83_acog_grip
+;wpn_addon_svd_scheek = wpn_vsk94_nomag_mtk83_acog_scheek
+[wpn_vsk94_nomag_mtk83_acog_repair]:wpn_vsk94_base_repair
+
+; планка Пикатинни, EOTech, нет магазина
+[wpn_vsk94_nomag_mtk83_eotech]:wpn_vsk94_base,vsk94_eotech_p,vsk94_mtk83_p,vsk94_buttstock_p,vsk94_nomag_p
+;иконка ствола
+inv_grid_y				= 4		
+;2 - 9А-91
+;6 - 9А-91 без магазина
+;0 - ВСК-94
+;4 - ВСК-94 без магазина
+;прицелы на короткую планку Пикатинни
+wpn_addon_acog				= wpn_vsk94_nomag_mtk83_acog
+scope_mount_removed_section      = wpn_vsk94_nomag_side_rail_pso
+;магазины wpn_addon_mag_vsk20      = wpn_vsk94_m20_mtk83_eotech
+;ручки
+;_wpn_addon_grip = wpn_vsk94_nomag_mtk83_eotech_grip
+;wpn_addon_svd_scheek = wpn_vsk94_nomag_mtk83_eotech_scheek
+[wpn_vsk94_nomag_mtk83_eotech_repair]:wpn_vsk94_base_repair
+
+;-----------------------------------------------------------------------------------
+[wpn_val_arena]:wpn_vsk94_m20_side_rail_pso
+$spawn             		= "weapons\arena\wpn_val_arena"
+;скрытые (управляемые) кости:
+managed_bones = muzzle, grip, mag1, mag2, scope1, scope2, scope3, mount1, scope4, scope5, scope6, scope7, scope8
+scope_status			= 0	;2
+scope_mount_status		= 0	;2
+;-----------------------------------------------------------------------------------

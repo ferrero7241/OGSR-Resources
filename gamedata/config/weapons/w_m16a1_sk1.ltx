@@ -1,17 +1,17 @@
-; штурмовая винтовка US Rifle, 5.56mm, M16A1
-;--------------------------------------
+; штурмовая винтовка US Rifle, 5.56mm, M16A1 (XM16E1)
+;---------------------------------------------------
 [wpn_m16a1_sk1]:identity_immunities,base_wpn_zoom
 GroupControlSection		= spawn_group
 discovery_dependency 	= 
-$spawn                  = "weapons\m16a1_sk1"					; option for Level Editor
+$spawn                  = "weapons\xm16e1"	; option for Level Editor
 $npc			 		= on				; option for Level Editor
 $prefetch 		 		= 8
 scheduled               = off              ; option for ALife Simulator
 cform                   = skeleton
-class                   = WP_AK74
+class                   = WP_AK74			;WP_LR300 нет подствола
 min_radius              = 15
 max_radius              = 150
-description				= enc_arsenal_m16a1
+description				= enc_weapons1_wpn-m16
 
 ef_main_weapon_type		= 2
 ef_weapon_type			= 6
@@ -25,32 +25,33 @@ weapon_class			= assault_rifle
 
 cost					= 6400
 
-ammo_elapsed			= 20
-ammo_mag_size		 	= 20
+ammo_elapsed			= 30
+ammo_mag_size		 	= 30
 grenade_class			= ammo_m209
 ammo_class		 		= ammo_5.56x45_ss190, ammo_5.56x45_ap
-fire_modes				= 1, -1
+fire_modes				= 1, 0, -1		;3, 1, 0, -1 Авто, 3, одиночные, пред (по кругу)
 launch_speed = 0
 
 hand_dependence		 	= 1
 single_handed			= 0
 
-inv_name				= ars-m16a1
-inv_name_short			= ars-m16a1
+slot 					= 2		; // secondary
+animation_slot			= 2		; type of the animation that will be used
+
+inv_name				= wpn-m16
+inv_name_short			= wpn-m16_s
 inv_weight				= 2.9
 
 inv_grid_width			= 5
 inv_grid_height			= 2
 inv_grid_x				= 36
-inv_grid_y				= 16
+inv_grid_y				= 18
 
 kill_msg_x			= 72
 kill_msg_y			= 82
 kill_msg_width		= 56
 kill_msg_height		= 23
 
-slot 					= 2		; // secondary
-animation_slot			= 2		; type of the animation that will be used
 
 ;-----------------------------------------------------------------------------------
 fire_dispersion_base			= 0.14		;угол (в градусах) базовой дисперсии оружия (оружия зажатого в тисках)
@@ -72,15 +73,30 @@ misfire_condition_k			= 0.06
 condition_shot_dec 			= 0.0002	;увеличение износа при каждом выстреле
 ;--------------------------------------------------------------------------------
 
-direction               = 0, 0, 1
+direction 					= 0, 0, 1
 
-fire_point             	=  0,0.235,0.673
-flame_particles			= weapons\generic_weapon05
-shell_particles	 		= weapons\arsenal_shells1
-grenade_flame_particles		= weapons\generic_weapon01
+fire_point 					= 0.0, 0.199, 0.575
 
-shell_point		 		= 0,0.244,0.087
-shell_dir		 		= 0.0, 1.0, 0.0
+;flame_particles					= weapons\generic_weapon05
+flame_particles				= amik\weapons\flame_particles\dtk_flame_particles_5
+;шелевидный4АКМЛ редко dtk_flame_particles_3
+;шелевидный редко много dtk_flame_particles_6
+;шелевидный редко много dtk_flame_particles_8
+;? flame_particles = amik\weapons\flame_particles\flame_particles_00
+;+слабое пламя flame_particles_01
+
+
+;smoke_particles					= weapons\generic_shoot_00
+smoke_particles				= amik\weapons\smoke_particles\smoke_particles_02
+grenade_flame_particles			= weapons\generic_weapon01
+grenade_flame_particles		= amik\weapons\grenade_flame_particles\grenade_flame_particles_01
+;grenade_flame_particles		= amik\weapons\grenade_flame_particles\grenade_flame_particles_02
+
+shell_point		 			= 0.0, 0.199, 0.09
+shell_dir		 			= 0.0, 1.0, 0.0
+;shell_particles	 				= weapons\generic_shells
+;shell_particles	 		= weapons\arsenal_shells1
+shell_particles	 		= amik\weapons\5_56x45\5_56x45_r_00
 
 rpm_empty_click 	 	= 200
 
@@ -108,19 +124,18 @@ silencer_hit_impulse	 	= 25
 silencer_fire_distance   	= 200
 silencer_bullet_speed	 	= 860
 
-hud                     = wpn_m16a1_sk1_hud
-normal                  = 0, 1, 0
-position         	    = -0.02,-0.172,0.02
-orientation             = 0, 0, 0
+hud 						= wpn_xm16e1_hud
+normal 						= 0, 1, 0
+position 					= -0.026, -0.130, 0.0
+orientation 					= 0.0, 0.0, 0.0
 
 ;--STRAP PARAMETERS-----------------------------------------------------------------
-strap_position         		= -0.16,-0.36,0.15			; position (offset) and orientation of the weapon when it is strapped
-strap_orientation      		= -10,-5,10					; (3rd person view in degrees)
-strap_bone0					= bip01_spine2
+strap_position 					= -0.15,-0.37,0.2	; position (offset) and orientation of the weapon when it is strapped
+strap_orientation 				= -10,-5,10		; (3rd person view in degrees)
+strap_bone0					= bip01_spine2 
 strap_bone1					= bip01_spine1
 
-startup_ammo            = 1000
-visual                   	= weapons\m16a1\wpn_m16a1_sk1.ogf
+visual 						= weapons\m16\wpn_xm16e1m203.ogf
 
 light_color		 		= 0.6,0.5,0.3
 light_range		 		= 5
@@ -128,30 +143,68 @@ light_var_color		 	= 0.05
 light_var_range		 	= 0.1
 light_time 		 		= 0.2
 
-;--------------------------addons
-scope_status			= 2
-silencer_status			= 2
-grenade_launcher_status	= 2
-;переходим в режим винтовки с подствольным дробоганом wpn_addon_remington_870mcs (суть подствол wpn_addon_grenade_launcher_m203)
-wpn_addon_remington_870mcs	= wpn_m16a1_sk1_shg_a
-;--------------------------
+;ph_mass		 = 3
+;startup_ammo    = 1000
 
-scope_name 					= wpn_addon_acog
+;addons
+script_binding  = ogse_bind_weapon.init
+;скрытые (управляемые) кости: managed_bones = пустая -вылетает
+;-показывать без подствольных модулей managed_bones = cevie
+managed_bones = muzzle
+
+
+scope_status					= 2
+silencer_status					= 2
+grenade_launcher_status			= 2			;0
+
+scope_mount_status		= 0
+grip_status				= 0		;2 есть анимки
+magazine_status			= 0
+
+
+;Сменные аддоны ОГСЕ д/б: 
+scope_name = wpn_scope
 scope_x 					= 66
-scope_y 					= -7
+scope_y 					= -1		;-5
+zoom_enabled					= true
+;для несъёмного - не наследуется! 
+scope_texture		= wpn\scopes\scope_ps
+
+;прицелы на ручку
+wpn_addon_scope_colt3  = wpn_xm16e1_colt
+
+;Прицел установлен в режиме ПГ (альтернативное смещение ХУДа при прицеливании)
+use_scope_grenade_zoom=true
+
+;******************************************************************************
+;KRodin: Поднесём 3D-линзу поближе к морде актора - и scope_lense_fov_factor ~ scope_zoom_factor
+;******************************************************************************
+;для ПЫС-оптики (без 3D) ставить scope_zoom_factor = 3.0
+scope_zoom_factor 					= 1.0	;ставить для 3D-прицелов
+;НЕ комментить - ЧЁРНЫЙ; от ПРИЦЕЛА scope_lense_fov_factor НЕ НАСЛЕДУЕТСЯ (ЛИНЗА ЧЁРНАЯ), УКАЗЫВАТЬ ЯВНО В СТВОЛЕ
+; KRodin поправил, наследуется от прицела!!!
+scope_lense_fov_factor = 9.0		;КОРРЕКЦИЯ (ПОПРАВЛЕНО KRodin - тут работает)
+;******************************************************************************
 
 silencer_name  				= wpn_addon_sil_556_ar
 silencer_x 					= 203
 silencer_y 					= 15
 
-grenade_launcher_name 		= wpn_addon_grenade_launcher_m203
-grenade_launcher_x 			= 112
-grenade_launcher_y 			= 26
+grenade_launcher_name 			= wpn_grenade_launcher		;wpn_addon_grenade_launcher_m203
+grenade_launcher_x 				= 100
+grenade_launcher_y 				= 28
+
+;переходим в режим винтовки с подствольным гранатомётом
+wpn_addon_grenade_launcher_m203	= wpn_xm16e1_m203
+
+;переходим в режим винтовки с подствольным дробоганом wpn_addon_remington_870mcs (суть ружё)
+wpn_addon_remington_870mcs	= wpn_xm16e1mk_shg_a
 
 ;silencer_flame_particles 	= weapons\generic_weapon01
 silencer_smoke_particles 	= weapons\generic_shoot_00
 
 silencer_light_color		= 1.0, 0.1, 0.0
+;silencer_light_color				= 0.58
 silencer_light_range		= 0.01
 silencer_light_var_color	= 0.05
 silencer_light_var_range	= 0.5
@@ -159,90 +212,159 @@ silencer_light_time 		= 0.2
 
 zoom_enabled			= true
 
-;------------------------------ O.G.S.E. sound remake -----------------------
-;звуки
-snd_draw			= weapons\generic_draw, 0.5
-snd_holster			= weapons\generic_avtomat_holster, 0.5
-snd_shoot			= weapons\ar15\ar15_shot
-snd_empty			= weapons\gen_empty, 0.5
-snd_reload			= weapons\ar15\ar15_reload, 0.5
-snd_switch			= weapons\groza\groza_switch, 1.0, 0.5
+;ПРОБУЕМ пока один набор на всех прописать напрямую (ВРЕМЕННО, пока KRodin в движок всё перенести не раздуплится)
+highlight_addons = fake_wpn_addon_grenade_launcher_m203, fake_wpn_addon_remington_870mcs, fake_wpn_addon_scope_colt3 
+;при торговле обрабатывает не все аддоны из списка, а только те прицелы, что в секции ствола.
+;С патронами, глушаками и подстволами всё нормально - они же движковые (не имеют фейков).
+;Магазины, прицельные планки и ручки почему-то не обрабатываются. 
+;при закрытии инвентаря фейки превращаются в не фейки, и в торговле поэтому глюки
+;Флаг, позволяющий для всех предметов реагировать на флаг FRuckDefault. Если флаг установлен, хабар будет подбираться в рюкзак, а не в слот по умолчанию.
+default_to_ruck = true
+
+;звуки (name of the sound, volume (0.0 - 1.0), delay (sec))
+snd_draw					= weapons\xm16e1\draw
+snd_holster					= weapons\xm16e1\holster
+snd_shoot					= weapons\xm16e1\shoot_0
+snd_shoot1					= weapons\xm16e1\shoot_1
+snd_shoot2					= weapons\xm16e1\shoot_2
+snd_shoot3					= weapons\xm16e1\shoot_3
+snd_shoot4					= weapons\xm16e1\shoot_4
+snd_shoot5					= weapons\xm16e1\shoot_5
+snd_empty					= weapons\xm16e1\empty, 0.6
+snd_reload					= weapons\xm16e1\reload 
+;-ОГСЕ 
 snd_silncer_shot	= weapons\ar15\ar15_silent, 0.5
+;_нет огг-комментов snd_silncer_shot			= weapons\xm16e1\special_01 
+;_нет огг-комментов snd_silncer_shot1			= weapons\xm16e1\special_02 
+;_нет огг-комментов snd_silncer_shot2			= weapons\xm16e1\special_03
+
+
+snd_switch					= weapons\g36\switch		;ОГСЕ weapons\m203\M203_switch, 1.0, 0.5
 snd_shoot_grenade	= weapons\m203\m203_grenshoot
 snd_reload_grenade	= weapons\m203\m203_grenload
-;-----------------------------------------------------------------------------
 
 
 ;-----------------------------------------------------------------------------
 ;-- HUD DESCRIPTION
-;----------------------------------------------------------------------------- 
-[wpn_m16a1_sk1_hud]
-shell_point          	= 0.00, 0.00, 0.00
-shell_dir		 = 0.0, 0.0, 0.0
+;-----------------------------------------------------------------------------
+[wpn_xm16e1_hud]
 
-fire_bone               = wpn_body
-fire_point              = 0.235,0.0,0.013
-fire_point2             = 0.235,0.0,-0.15
+allow_inertion					= true
 
-orientation             = 0, 0, 0
-position                = 0, 0, 0
-visual                  = weapons\m16a1\wpn_m16a1_sk1_hud.ogf
+shell_point					= 0.000,0.000,-0.800
+shell_dir		 			= 0.0, 1.0, 0.0
 
-grenade_bone            	= grenka1	; name of the bone in the model for grenade launcher
+fire_point			= 0.050000,-0.029000,-0.005000
+;-fire_point2         = 0.000000,-0.059000,-0.010000
 
-; animation names
+fire_bone               			= muzzle
 
-anim_idle					= idle
-anim_idle_aim				= idle_aim
-anim_reload					= reload
-anim_draw					= draw
-anim_holster				= holster
-anim_shoot					= shoot
-anim_idle_sprint			= idle_sprint
+;orientation = (x,y,z) = (x move right -x move left, y move up -y move down, z move forward -z move backwards)
+;position = (x,y,z) = (x move right -x move left, y move up -y move down, z move forward -z move backwards)
+;orientation             			= 3, 0, 0
+orientation             			= 3, 3, 0
+;position               				= 0.10,-0.03,-0.20
+position               				= 0.15,-0.05,-0.15
 
-; animation names
-; attached grenade launcher [GRENADE fire mode]
-anim_idle_g					= idle_g
-anim_idle_g_aim				= idle_g_aim
-anim_reload_g				= reload_g
-anim_shoot_g				= shoot_g
-anim_switch_grenade_on		= g_on
-anim_switch_grenade_off		= g_off
-anim_draw_g					= draw_g
-anim_holster_g				= holster_g
+visual 						= weapons\m16\wpn_xm16e1m203_hud.ogf
+
+;grenade_bone 					= grenade
+grenade_bone 					= wpn_grenade
+
+anim_idle   					= idle
+anim_idle_aim   				= idle_aim
+anim_reload  					= reload_zad
+anim_draw   					= draw
+anim_holster 					= holster
+anim_shoot   					= shoot
+anim_idle_sprint  				= idle_sprint
+
+;анимации с подключенным подствольником
+;(режим стрельбы из подствольника)
+anim_idle_g   					= idle_genade
+anim_idle_g_aim   				= idle_grenade_aim
+anim_reload_g   				= reload_grenade
+anim_shoot_g   					= shoot_grenade
+anim_switch_grenade_on  			= switch_on
+anim_switch_grenade_off  			= switch_off
+anim_draw_g   					= draw_grenade
+anim_holster_g   				= holster_grenade
 
 ; attached grenade launcher [NORMAL fire mode]
-anim_idle_gl				= idle_w_gl
-anim_idle_gl_aim			= idle_w_gl_aim
-anim_reload_gl				= reload_w_gl
-anim_draw_gl				= draw_w_gl
-anim_holster_gl				= holster_w_gl
-anim_shoot_gl				= shoot_w_gl
+;(режим обычной стрельбы)
+anim_idle_gl   					= idle_w_gl
+anim_idle_gl_aim  				= idle_w_gl_aim
+anim_reload_gl   				= reload_w_gl_zad
+anim_draw_gl   					= draw_w_gl
+anim_holster_gl   				= holster_w_gl
+anim_shoot_gl   				= shoot_w_gl
+
+;-----------------------------------------------------------------------------
+;;;;;;;;;;;;;;;;;;;;;;Альтернативное прицеливание ОГСР через штатный механический прицел
+;смещения HUD для режима приближения (прицеливание через ручку, без увеличения)
+;ствол без установленного гранатомёта
+zoom_offset			= -0.142300,0.040800,-0.139500
+zoom_rotate_x		= 0.066700
+zoom_rotate_y		= 0.051900
+;ствол с установленным гранатомётом в основном режиме (ствол)
+grenade_normal_zoom_offset		= -0.142300,0.040800,-0.139500
+grenade_normal_zoom_rotate_x		= 0.066700
+grenade_normal_zoom_rotate_y		= 0.051900
+;режим подствольника (положение д/б одинаковым - у подствола свой прицел)
+;Рамочный прицел устанавливается на цевье винтовки (за основанием мушки). При стрельбе на большие дальности (до 400 м) используется квадрант, монтируемый на рукоятке винтовки.
+;2-grenade_zoom_offset			= -0.142300,-0.074200,0.021500
+;2-grenade_zoom_rotate_x		= 0.033300
+;2-grenade_zoom_rotate_y		= 0.051900
+;_2
+grenade_zoom_offset			= -0.141300,-0.074200,0.132500
+grenade_zoom_rotate_x		= -0.034700
+grenade_zoom_rotate_y		= 0.051900
+;1+grenade_zoom_offset			= -0.142300,0.012800,-0.070000
+;1+grenade_zoom_rotate_x		= 0.041700
+;1+grenade_zoom_rotate_y		= 0.051900
+;Прицел установлен в режиме ПГ
+scope_grenade_zoom_offset			= -0.098300,-0.072200,-0.070000
+scope_grenade_zoom_rotate_x		= -0.032300
+scope_grenade_zoom_rotate_y		= 0.013900
+
+;;;;;;;;;;;;;;;;;;;;;;Прицеливание через оптику (перекрывается текстуроЙ)
+;прицеливание по умолчанию (по-старому, через "оптику" - ТЕКСТУРОЙ), альтернативное ОГСЕ (мех.прицел, МОДЕЛЬЮ) сбрасывается при установке любого аддона, включая ПЫС-подствол)
+second_zoom_offset			= -0.142300,0.040800,-0.139500
+second_zoom_rotate_x		= 0.066700
+second_zoom_rotate_y		= 0.051900
+;+близко - для 3D-зума 
+;zoom_offset			= -0.142300,0.013300,-0.306998
+;zoom_rotate_x		= 0.066700
+;zoom_rotate_y		= 0.051900
+;режим ствола (тоже самое, но для прицепленого подствольника)
+;режим обычной стрельбы
+second_grenade_normal_zoom_offset		= -0.142300,0.040800,-0.139500
+second_grenade_normal_zoom_rotate_x		= 0.066700
+second_grenade_normal_zoom_rotate_y		= 0.051900
+;+близко - для 3D-зума 
+;second_grenade_normal_zoom_offset			= -0.142300,0.013300,-0.306998
+;second_grenade_normal_zoom_rotate_x		= 0.066700
+;second_grenade_normal_zoom_rotate_y		= 0.051900
+;_режим стрельбы из подствольника (положение д/б одинаковым - у подствола свой прицел)
+;_1+second_grenade_zoom_offset			= -0.142300,0.012800,-0.070000
+;_1+second_grenade_zoom_rotate_x		= 0.041700
+;_1+second_grenade_zoom_rotate_y		= 0.051900
+;-----------------------------------------------------------------------------
+;прячем перекрестие прицела в зуме
+zoom_hide_crosshair				= true
+
+;время поворота HUD (сек)
+zoom_rotate_time				= 0.4
+rotate_time					= 0.4
 
 
-;HUD offset in zoom mode (to all)
-;(use CONSOLE: hud_adjust_mode 0,1,2, then keys WSADQE and P to show current value in console)
-
-zoom_hide_crosshair	= true						;to hide crosshair in zoom 
-
-; same as above, but for attached grenade launcher for
-; in NORMAL shoot mode
-
-zoom_offset			= -0.127051,0.003851,-0.165
-zoom_rotate_x		= -0.0
-zoom_rotate_y		= 0.0
-
-grenade_normal_zoom_offset			= -0.127051,0.003851,-0.165
-grenade_normal_zoom_rotate_x		= -0.0
-grenade_normal_zoom_rotate_y		= 0.0
-
-grenade_zoom_offset			= -0.127051,-0.211,-0.15
-grenade_zoom_rotate_x		= -0.2
-grenade_zoom_rotate_y		= -0.0
 
 [wpn_m16a1_sk1_repair]
 tech_complication = 700
-repair_compatibility = m16a1
+repair_compatibility = m16
+
+
+
 
 
 
@@ -253,40 +375,181 @@ repair_compatibility = m16a1
 
 
 ;-----------------------------------------------------------------------------------
-;М-16 с дробоганом
+;Сменные аддоны ОГСЕ
 ;-----------------------------------------------------------------------------------
-;--режим винтовки
-[wpn_m16a1_sk1_shg_a]:wpn_m16a1_sk1
-$spawn         		    	= "weapons\uniq\wpn_m16a1_sk1_shg_1"
+;управляемые В СЕКЦИЯХ АДДОНОВ кости (64=57+4s+3m) Эмка с привязкой by k01jan:
+;wpn_body				Эмка +патрон в стволе
+;  cevie				пластик M16 (убирается анимкой, когда одет подствол, на мировой ВИДНА)
+;  lever				рукоять взведения (разобщена с затвором)
+;  mag					- д/б пустая (анимированная)
+		;-1  	mag: m1			M16 (20)
+		;-2  	mag: m2			M16A1 (30)
+		;-3  	mag: m3			?яйца Beta C-Mag (100) 			?!?ручка (-надо менять цевьё на с рельсами)
+;  	ammo				2 патрона в магазинах
+;  muzzle				временно Colt - ?рельса (кронштейн-переходник Picatinny rail на ручку - Carry Handle Scope Mount)
+;  safe					ПП
+;  slide				затвор
+;  trigger				спуск
+;  wpn_grenade_launcher	m203/MasterKey (+своё цевьё)
+;  	launcher_sight		рамка (до 250 - через мушку)
+;  	launcher_slide		труба/помпа
+;  		wpn_grenade		m433/12
+;  			gren_shell	гильза
+;  	launcher_trigger	пуск
+;  wpn_scope			- (движковая, д/б пустая)
+		;-4  scope1			Colt 3x or 4x carry handle scope
+		;-5  scope2			ACOG TA31-CH х4
+		;-6  scope3			EOTech  552.A65 х1
+		;-7  scope4			- ? короткий ЗУМ, НВ или ИК
+;  wpn_silencer			GM5
+;
+;
+;
+;KRodin: Участок модели, на который рендерится зум должен быть идеально ровным и ему должен быть назначен специальный шейдер.
+;??? перед линзой не должно быть других линз
+;!!! НАДО задвинуть линзу вглубь прицела чтобы не обсчитывало зря (когда не целишься)
+;оптика wpn\g36\wpn_g36_crosshair БЫЛА с шейдером models\model_aref ХУДовый ЗАМЕНИТЬ на models_lense_scope для 3D
+;коллиматор wpn\upgrades\laser_red_dot с шейдером forward\collimator (в СДК = models\transparent)
+;-selflight непрозрачный
+;
+;ВСС: wpn\upgrades\collimator_linza0, wpn\upgrades\collimator_lens01 с шейдером forward\collimator
+;ВСС: wpn\upgrades\lens_eotech, wpn\upgrades\collimator_metka0 с шейдером hud\reddotsight1
+;
+;-----------------------------------------------------------------------------------
+;материал: МИР объект-large_weapon
+;-----------------------------------------------------------------------------------
+;шейдеры:
+;collimator_metka0 первая линза Кобры - прозрачная с меткой (сменная) ХУД hud\reddotsight1 / МИР  (3+1 +12=16 =6+1+9) !!!= models\artefact2
+;collimator_lens01 вторая линза Кобры - полупрозрачная круглая зелёная ХУД модель-transparent / МИР 
+;
+;lens_eotech первая линза EOTech - прозрачная с меткой ХУД худ-reddotsight1 / МИР 
+;collimator_linza0 вторая линза EOTech - полупрозрачная квадратная серая ХУД модель-transparent / МИР
 
-;вылетает, пробовать прицелы-аддоны scope_status			= 0
-;silencer_status		= 2
+;3D models_lense_scope
+;2D models\transparent
 
+
+
+;-----------------------------------------------------------------------------------
+; служебные секции описателей прицелов
+
+;+Colt 3X (3D)
+[xm16e1_colt]
+force_remove_texture = true
+bones         = muzzle
+;СКВОЗНОЙ 3D (со сдвигом)
+;-zoom_offset			= -0.142300,0.013300,-0.306998
+zoom_offset			= -0.142300,0.012600,-0.306998
+zoom_rotation		= 0.066700,0.051900
+[xm16e1_colt_p]
+; движковый прицел
+scope_name               = wpn_addon_scope_colt3
+scope                    = xm16e1_colt
+;KRodin: тут пусть будет пустой параметр, посмотрим.
+addon_mode_section = 
+
+
+
+
+
+
+;-----------------------------------------------------------------------------------
+; служебные секции описателей магазинов
+
+
+
+;-----------------------------------------------------------------------------------
+; служебные секции описателей аддонов
+;кронштейн-переходник рукоять/Picatinny rail
+
+
+
+
+
+
+;-----------------------------------------------------------------------------------
+; секции оружия с аддонами
+;-----------------------------------------------------------------------------------
+;---------------------------------Эмка с прицелом colt на ручку
+[wpn_xm16e1_colt]:wpn_m16a1_sk1,xm16e1_colt_p
+;секция при снятом прицеле 
+scope_removed_section	 = wpn_m16a1_sk1
+;переходим в режим винтовки с подствольным гранатомётом
+wpn_addon_grenade_launcher_m203	= wpn_xm16e1_m203_colt
+;переходим в режим винтовки с подствольным дробоганом wpn_addon_remington_870mcs (суть ружё)
+wpn_addon_remington_870mcs	= wpn_xm16e1mk_colt_shg_a
+[wpn_xm16e1_colt_repair]:wpn_m16a1_sk1_repair
+
+
+;---------------------------------;---------------------------------Эмка с подствольным гранатомётом
+[wpn_xm16e1_m203]:wpn_m16a1_sk1
+grenade_launcher_name 		= wpn_addon_grenade_launcher_m203
+;-остаётся скрытой после снятия подствола managed_bones = cevie
+;?запилить grenade_launcher_removed_section     = wpn_m16a1_sk1
+;прицелы на ручку 
+wpn_addon_scope_colt3  = wpn_xm16e1_m203_colt
+[wpn_xm16e1_m203_repair]:wpn_m16a1_sk1_repair
+;---------------------------------Эмка с гранатомётом и прицелом colt на ручку
+[wpn_xm16e1_m203_colt]:wpn_xm16e1_m203,xm16e1_colt_p
+;секция при снятом прицеле 
+scope_removed_section	 = wpn_xm16e1_m203
+[wpn_xm16e1_m203_colt_repair]:wpn_m16a1_sk1_repair
+
+
+
+
+
+
+;---------------------------------;---------------------------------Эмка с подствольным дробоганом
+;---------------------------------режим обычной стрельбы (винтовки)
+[wpn_xm16e1mk_shg_a]:wpn_m16a1_sk1
+$spawn         		    	= "weapons\uniq\wpn_xm16e1_shg_1"
+visual 				= weapons\m16\wpn_xm16e1mk.ogf
+;прицелы на ручку
+wpn_addon_scope_colt3  = wpn_xm16e1mk_colt_shg_a
+;-остаётся скрытьй после снятия подствола managed_bones = cevie
 grenade_launcher_name 		= wpn_addon_remington_870mcs
-grenade_launcher_status		= 2
-grenade_vel				    = 71
-
-shotgun_mode_section		= wpn_m16a1_sk1_shg_b
+;grenade_launcher_status		= 2
+grenade_vel				    = 15
+grenade_launcher_x 				= 100
+grenade_launcher_y 				= 18
+shotgun_mode_section		= wpn_xm16e1mk_shg_b
 shotgun_removed_section     = wpn_m16a1_sk1
+hud                      	= wpn_xm16e1mk_shg_a_hud
+[wpn_xm16e1mk_shg_a_hud]:wpn_xm16e1_hud
+visual 				= weapons\m16\wpn_xm16e1mk_hud.ogf
+[wpn_xm16e1mk_shg_a_repair]:wpn_m16a1_sk1_repair
+;---------------------------------Эмка с дровиком в режиме винтовки и прицелом colt на ручку
+[wpn_xm16e1mk_colt_shg_a]:wpn_xm16e1mk_shg_a,xm16e1_colt_p
+;секция при снятом прицеле 
+scope_removed_section	 = wpn_xm16e1mk_shg_a
+shotgun_mode_section		= wpn_xm16e1mk_colt_shg_b
+shotgun_removed_section     = wpn_xm16e1_colt
+[wpn_xm16e1mk_colt_shg_a_repair]:wpn_m16a1_sk1_repair
 
 
-;--режим подствольного дробовика
-[wpn_m16a1_sk1_shg_b]:wpn_m16a1_sk1_shg_a
-$spawn                  = 
-;-----------------------------------------------------------------------------------
-;class                    	= WP_SHOTG
 
-ammo_elapsed			    = 5	
-ammo_mag_size				= 5				;3(+1) +расширитель на 5(+1) или 7(+1)
+;---------------------------------режим подствольного дробовика
+[wpn_xm16e1mk_shg_b]:wpn_xm16e1mk_shg_a
+$spawn         		    	= "weapons\uniq\wpn_xm16e1_shg_2"
+;__________________________________________________;
+class                    	= WP_SHOTG
+weapon_class			 	= shotgun
+ef_main_weapon_type			= 1
+ef_weapon_type				= 7
+tri_state_reload			= on
+;__________________________________________________;
+ammo_elapsed			    = 4	
+ammo_mag_size				= 4				;3(+1)
 fire_modes					= 1
 ammo_class		 			= ammo_12x70_kart, ammo_12x76_zhekan
-
-silencer_status				= 0
-
+;прицелы на ручку
+wpn_addon_scope_colt3  = wpn_xm16e1mk_colt_shg_b
+;silencer_status				= 0
+;grenade_launcher_status		= 1
 ;базовая дисперсия
 fire_dispersion_base		= 0.46	;long 0.33 	;угол (в градусах) базовой дисперсии оружия (оружия зажатого в тисках)
 disp_rate 			= 1.3
-
 ;отдача
 cam_relax_speed         	= 7.0	;скорость возврата в исходное положение
 cam_relax_speed_ai        	= 120.75
@@ -296,98 +559,80 @@ cam_dispertion_frac			= 1.0
 cam_max_angle				= 10.0	;максимальный угол отдачи
 cam_max_angle_horz	= 10.0	;(degree) maximum shot horizontal degree 
 cam_step_angle_horz	= 1.5	;(degree) size of step camera moved in horizontal position while shooting
-
 fire_dispersion_condition_factor = 7	;увеличение дисперсии в процентах при максимальном износе 
 misfire_probability 		= 0.001	    ;вероятность осечки при максимальном износе 
 misfire_condition_k			= 0.05
 condition_shot_dec 			= 0.0001	;увеличение износа при каждом выстреле
-
 ; ttc
 hit_power        			= 0.73
 hit_impulse      			= 30
 hit_type 					= fire_wound
 hit_rate			= 2.0
-
 fire_distance            	= 50			;100
 bullet_speed			 	= 340			;начальная скорость пули
 rpm                      	= 60            ;60 = 1 секунда
 ; end ttc
-
 flame_particles				= amik\weapons\flame_particles\flame_particles_00
 smoke_particles		   		= amik\weapons\smoke_particles\smoke_particles_pump_01
-
-;snd_draw					= weapons\w1300\w1300_draw
-;snd_holster					= weapons\generic_shotgun_holster
-;snd_shoot					= weapons\w1300\w1300_shot  
-;snd_silncer_shot			= weapons\w1300\w1300_shot
-;snd_empty					= weapons\w1300\w1300_empty
-;snd_reload					= weapons\toz34\toz34_reload
-;snd_shoot_duplet			= weapons\toz34\toz34_shoot_both
-;snd_open_weapon				= weapons\w1300\w1300_open		
-;snd_add_cartridge			= weapons\w1300\w1300_load_2
-;snd_close_weapon			= weapons\w1300\w1300_close_2
-
-snd_draw					= weapons\w1300\draw
-snd_holster					= weapons\w1300\holster
+;snd_draw					= weapons\w1300\draw
+;snd_holster					= weapons\w1300\holster
 snd_shoot					= weapons\w1300\shoot
+snd_shoot1					= weapons\w1300\shoot
+snd_shoot2					= weapons\w1300\shoot
+snd_shoot3					= weapons\w1300\shoot
+snd_shoot4					= weapons\w1300\shoot
+snd_shoot5					= weapons\w1300\shoot
 snd_empty					= weapons\w1300\empty
 snd_reload					= weapons\w1300\reload
-snd_shoot_duplet			= weapons\w1300\reload
-
+snd_shoot_duplet			= weapons\w1300\shoot
 snd_open_weapon				= weapons\w1300\draw_silent		
 snd_add_cartridge			= weapons\w1300\reload
 snd_close_weapon			= weapons\w1300\reload_end
-
 snd_silncer_shot			= weapons\w1300\shoot
-;-----------------------------------------------------------------------------------
-
-hud                      	= wpn_m16a1_sk1_shg_b_hud
-
-rifle_mode_section			= wpn_m16a1_sk1_shg_a
+snd_silncer_shot1			= weapons\w1300\shoot
+snd_silncer_shot2			= weapons\w1300\shoot
+hud                      	= wpn_xm16e1mk_shg_b_hud
+rifle_mode_section			= wpn_xm16e1mk_shg_a
 shotgun_mode_section		=
 shotgun_removed_section     = wpn_m16a1_sk1
-
-
-;---------------ТЕСТ
-;visual 				= weapons\masterkey\wpn_mk.ogf
-;---------------EoF ТЕСТ
-
-
-
-
-[wpn_m16a1_sk1_shg_b_hud]:wpn_m16a1_sk1_hud
-fire_point              = 0.13,0.0,-0.09
-
-;ЗАТЫЧКИ
-anim_shoot_both 		= shoot
-anim_open_weapon		= reload
-anim_add_cartridge	= reload
-anim_close_weapon		= reload
-
-
-;---------------ТЕСТ (недоАнимировано)
-;visual 				= weapons\masterkey\wpn_mk_hud.ogf
-;anim_idle			= idle
-;anim_reload			= draw
-;anim_draw			= draw
-;anim_holster			= holster
-;anim_shoot			= shoot
-;anim_shoot_both 		= shoot
-;anim_idle_aim				= aim
-;anim_idle_sprint			= sprint
-;
-;anim_open_weapon			= reload_start
-;anim_add_cartridge			= reload
-;anim_close_weapon			= reload_end
-;
-;shell_point		 	= 0.0, 0.0, 0.0
-;fire_point      			= 0.0, 0.0,-0.5
-;fire_point2				    = 0.0, 0.0,0.0
-;fire_bone                	= muzzle
-;position					= 0,-0.16,0.15
-;orientation					= 2,2,0
-;
-;zoom_offset		= -0.154750,0.087000,0.008000
-;zoom_rotate_x		= 0.030500
-;zoom_rotate_y		= 0.034800
-;---------------EoF ТЕСТ
+;(режим стрельбы из подствольника)
+[wpn_xm16e1mk_shg_b_hud]:wpn_xm16e1mk_shg_a_hud
+;подствол fire_point              = 0.13,0.0,-0.09
+;ствол fire_point			= 0.050000,-0.029000,-0.005000
+anim_idle   					= idle_genade
+anim_idle_aim   				= idle_grenade_aim
+anim_reload   				= reload_grenade
+;-anim_reload_speed_k = 2.0
+anim_draw   				= draw_grenade			;достал
+anim_holster   				= holster_grenade		;убрал
+;(режим обычной для подствольного дробовика стрельбы)
+anim_idle_gl   					= idle_genade
+anim_idle_gl_aim  				= idle_grenade_aim
+anim_reload_gl   				= reload_grenade			;отыгывается именно эта (1 раз, перезаряжая ВСЕ патроны разом)
+anim_draw_gl   					= draw_grenade
+anim_holster_gl   				= holster_grenade
+anim_shoot_gl   				= shoot_mk					;shoot_grenade
+;_anim_shoot_gl_speed_k    = 1.2
+anim_shoot   		= shoot_mk
+;_anim_shoot_speed_k    = 1.2
+anim_shoot_both 	= shoot_mk
+;_anim_shoot_both_speed_k    = 1.3
+anim_open_weapon	= reload_mk_start
+;_anim_open_weapon_speed_k    = 1.3
+anim_add_cartridge	= reload_mk_act
+anim_add_cartridge_speed_k    = 1.6
+anim_close_weapon	= reload_mk_end
+;_anim_close_weapon_speed_k    = 1.5
+[wpn_xm16e1mk_shg_b_repair]:wpn_m16a1_sk1_repair
+;---------------------------------Эмка с дровиком в режиме дровика и прицелом colt на ручку
+[wpn_xm16e1mk_colt_shg_b]:wpn_xm16e1mk_shg_b,xm16e1_colt_p
+;секция при снятом прицеле 
+scope_removed_section	 = wpn_xm16e1mk_shg_b
+rifle_mode_section			= wpn_xm16e1mk_colt_shg_a
+shotgun_mode_section		=
+shotgun_removed_section     = wpn_xm16e1_colt
+;_так оптика не выбьет глаз при стрельбе из ружбайки
+;_zoom_offset			= -0.142300,0.013300,-0.260999
+;_zoom_rotate_x		= 0.066700
+;_zoom_rotate_y		= 0.051900
+[wpn_xm16e1mk_colt_shg_b_repair]:wpn_m16a1_sk1_repair

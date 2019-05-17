@@ -1,3 +1,7 @@
+;SG 550 Sniper снабжена тяжёлым стволом длиной 650 мм, пламегаситель отсутствует. 
+;Сошки регулируются по высоте, приклад пластиковый, складывается поворотом на правую сторону ствольной коробки. Приклад оснащён регулируемой "щекой", а также регулируемым резиновым затыльником. Пистолетная рукоятка выполнена по типу снайперской винтовки H&K PSG-1 и регулируется по высоте и углу наклона. УСМ – курковый, режим огня только одиночный, хотя перезаряжание производится автоматически. Питание из магазинов на 5 или 20 патронов, возможно применение стандартных магазинов от SG 550 на 30 патронов
+;выпускается с 1999 года (на заказ) компанией SWISS ARMS AG и используется полицейскими подразделениями стран Европы и США
+;Данную модель винтовки можно считать «последней из могикан» среди армейского снайперского оружия под боеприпас 5,56 миллиметров стандарта НАТО.
 [wpn_sg550sr_sk1]:identity_immunities
 GroupControlSection		= spawn_group
 discovery_dependency 	= 
@@ -28,7 +32,7 @@ ammo_elapsed			= 30
 ammo_mag_size		 	= 30
 ammo_class		 		= ammo_5.56x45_ss190, ammo_5.56x45_ap
 grenade_class			= ammo_m209
-fire_modes				= 1
+fire_modes				= 0, -1
 launch_speed = 0
 
 hand_dependence		 	= 1
@@ -40,8 +44,8 @@ inv_weight				= 4.5
 
 inv_grid_width			= 6
 inv_grid_height			= 2
-inv_grid_x				= 29
-inv_grid_y				= 24
+inv_grid_x		= 27
+inv_grid_y		= 28
 
 kill_msg_x			= 175
 kill_msg_y			= 0
@@ -53,8 +57,9 @@ animation_slot			= 2		; type of the animation that will be used
 
 ;-----------------------------------------------------------------------------------
 ;params of weapon recoil
-fire_dispersion_base			= 0.016		;угол (в градусах) базовой дисперсии оружия (оружия зажатого в тисках)
+fire_dispersion_base			= 0.09		;0.016 угол (в градусах) базовой дисперсии оружия (оружия зажатого в тисках)
 control_inertion_factor			= 1.25f
+disp_rate 			= 1.85
 
 ;отдача
 cam_relax_speed         	= 5.3		;скорость возврата в исходное положение
@@ -96,7 +101,7 @@ hit_power        	= 0.72
 hit_impulse		 	= 25
 hit_type 			= fire_wound
 
-fire_distance          	= 500
+fire_distance          	= 250
 bullet_speed			= 980 ;начальная скорость пули
 rpm                     = 400 ;700-800
 ; end ttc
@@ -106,7 +111,7 @@ time_to_aim					= 1.0
 
 silencer_hit_power       	= 0.65
 silencer_hit_impulse	 	= 25
-silencer_fire_distance   	= 500
+silencer_fire_distance   	= 200
 silencer_bullet_speed	 	= 850
 
 hud                     = wpn_sg550sr_sk1_hud

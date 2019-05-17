@@ -1,0 +1,280 @@
+; АПБ
+;-(правлено SR)-------------------------------------
+; калибр 					9х18 мм
+; длина ствола 				140 мм
+; магазин					20
+;Масса без патронов с глушителем и прикладом, г - 1650
+;Масса с насадком и со снаряженным магазином, г - 1800
+;Масса проволочного приклада, г - 200
+;Масса насадка, г - 400
+; эффективная дальность стрельбы	50 м
+; прицельная дальность		100 м (убойную силу пуля сохраняет до 300 м)
+; дульная скорость пули		290 м/с
+; темп стрельбы				750 в/мин
+; боевая скорострельность	30/60 в/мин
+;---------------------------------------------------
+[wpn_aps]:identity_immunities,base_wpn_zoom
+GroupControlSection			= spawn_group
+discovery_dependency		= 
+$spawn          			= "weapons\aps"					; option for Level Editor
+$npc						= on		; option for Level Editor
+$prefetch 					= 8
+scheduled       	     	= off              ; option for ALife Simulator
+cform               		= skeleton
+class               		= WP_LR300			
+min_radius          		= 30				
+max_radius          		= 100				
+description					= enc_weapons1_wpn-apsb_desc
+	
+ef_main_weapon_type			= 2
+ef_weapon_type				= 6
+
+holder_range_modifier		= 1.0		
+holder_fov_modifier			= 0.7            
+
+cost						= 2400				
+weapon_class				= assault_rifle		
+	
+ammo_limit					= 210				
+ammo_elapsed				= 40				
+	
+ammo_mag_size				= 20				
+fire_modes					= 1, 0, -1
+
+ammo_class					= ammo_9x18_fmj, ammo_9x18_pmm
+;Категорически не рекомендуется использовать для пистолетов АПС и АПБ патроны ПММ. Баллистический импульс этих патронов на 30% превышает импульс штатных. При стрельбе патронами ПММ кожух-затвор приобретает недопустимо высокую скорость отката, в результате чего после небольшого числа выстрелов рамка пистолета выходит из строя.
+
+hand_dependence				= 1									
+single_handed				= 0
+	
+slot 						= 1		;0,1,2,4 не работает, ставит в ножевой (а скрипты с ним не умеют)
+
+animation_slot				= 1									
+
+inv_name					= wpn-apsb
+inv_name_short				= wpn-apsb_s
+inv_weight					= 1.05								
+
+inv_grid_width     			= 2
+inv_grid_height    			= 1
+inv_grid_x					= 73
+inv_grid_y					= 6
+
+kill_msg_x					= 0
+kill_msg_y					= 123
+kill_msg_width				= 69
+kill_msg_height				= 30
+
+fire_dispersion_base				= 0.28		
+control_inertion_factor				= 1.09f
+
+cam_relax_speed         			= 6
+cam_relax_speed_ai      			= 360
+cam_dispersion          			= 0.3		
+cam_dispersion_inc					= 0.20
+cam_dispertion_frac					= 0.9		
+cam_max_angle						= 9.0		
+cam_max_angle_horz					= 30.0		
+cam_step_angle_horz					= 1.25
+
+fire_dispersion_condition_factor 	= 3.8		
+misfire_probability 				= 0.002		
+misfire_condition_k					= 0.05
+condition_shot_dec 					= 0.0003	
+
+;fire_point					= 0.0, 0.133, 0.161
+fire_point               	= 0.0, 0.133, 0.200
+
+flame_particles				= amik\weapons\flame_particles\flame_particles_04
+smoke_particles				= amik\weapons\smoke_particles\p_smoke_particles_02
+grenade_flame_particles		= weapons\generic_shoot_00
+
+shell_point		 			= 0.00, 0.127, 0.025
+;shell_point					= 0.0, 0.133, 0.047
+shell_dir		 			= 0.0, 0.0, 0.4
+shell_particles	 			= amik\weapons\9x18\9x18_r_00
+
+PDM_disp_base 				= 1.0
+PDM_disp_vel_factor 		= 1.05		;0.8
+PDM_disp_accel_factor 		= 1.1		;0.8
+PDM_crouch	 				= 1.0
+PDM_crouch_no_acc 			= 1.0
+
+hit_power               	= 0.46		;0.45
+hit_impulse		 			= 70		;50		
+hit_type 					= fire_wound 	
+
+fire_distance            	= 100		
+bullet_speed				= 290		
+rpm                      	= 650		;700		
+
+use_aim_bullet				= true		
+time_to_aim					= 1.0	
+
+silencer_hit_power       	= 0.44		;0.4
+silencer_hit_impulse	 	= 60		;20
+silencer_fire_distance   	= 80
+silencer_bullet_speed	 	= 290
+
+hud                      	= wpn_aps_hud				
+normal                  	= 0, 1, 0
+
+;position 					= -0.021, -0.085, 0.0
+position                 	= -0.021, -0.089, -0.008
+orientation 				= 0, 0, 0					
+
+direction           	      = 0, 0, 1
+strap_position				= -0.18,-0.45,0.2
+strap_orientation      		= -10,-5,10
+strap_bone0					= bip01_spine2
+strap_bone1					= bip01_spine1
+
+visual                  	= weapons\apb\wpn_apb.ogf
+
+light_color					= 0.6,0.5,0.3				
+light_range		 			= 3.0
+light_var_color				= 0.05						
+light_var_range				= 0.5
+light_time 					= 0.2						
+
+ph_mass						= 1							
+
+;Сменные аддоны ОГСЕ
+scope_status			= 0
+silencer_status			= 0		;насадок - фейк
+grenade_launcher_status	= 0
+scope_mount_status		= 0		;2 насадок
+grip_status				= 0
+magazine_status			= 0		;2 приклад
+script_binding  = ogse_bind_weapon.init
+;скрытые (управляемые) кости: 
+managed_bones = buttstock, d1, d2, g1, g2, g3, m1, m2, muzzle, s1, s2, s3
+
+zoom_enabled				= true						
+					
+scope_name 					= wpn_addon_scope	
+scope_x                     = -30		;52
+scope_y                     = -10		;-5
+silencer_name  				= wpn_addon_sil_apb			
+silencer_x                  = 51		;53
+silencer_y                  = -21		;-17					
+
+;ПРОБУЕМ пока один набор на всех прописать напрямую (ВРЕМЕННО, пока KRodin в движок всё перенести не раздуплится)
+;highlight_addons = fake_wpn_addon_apb_buttstock, fake_wpn_addon_apb_silencer, fake_wpn_addon_grip
+;ПРОБУЕМ прописать наборы по секциям
+
+; ----------------------------== Sounds ==---------------------------------
+;snd_draw					= weapons\aps\draw
+snd_draw					= weapons\pm\draw							;достал
+snd_shoot					= weapons\aps\fire_0
+snd_shoot1					= weapons\aps\fire_1
+snd_shoot2					= weapons\aps\fire_2
+;snd_holster					= weapons\aps\holster
+snd_holster					= weapons\pm\holster						;убрал
+snd_reload					= weapons\aps\reload
+snd_empty					= weapons\aps\empty
+;с ЗЗ snd_empty					= weapons\pm\empty, 0.7
+snd_close					= weapons\pm\close
+;snd_silncer_shot			= weapons\aps\shot_sil
+snd_silncer_shot			= weapons\silncers\p_silncer
+
+silencer_smoke_particles 	= amik\weapons\smoke_particles\p_smoke_particles_02
+
+silencer_light_color		= 0.6,0.5,0.3
+silencer_light_range		= 0.01
+silencer_light_var_color	= 0.05
+silencer_light_var_range	= 0.5
+silencer_light_time 		= 0.2
+
+;-----------------------------------------------------------------------------
+;-- HUD DESCRIPTION
+;-----------------------------------------------------------------------------
+[wpn_aps_hud]
+
+allow_inertion			= true
+
+;shell_point					= -0.025000,0.048000,-0.329000
+;shell_point					= -0.010000,0.250000,-0.040001
+shell_point   = 0,0,0
+
+shell_bone             		= wpn_body
+
+;fire_point					= 0.010000,0.030917,-0.269974
+;fire_point					= 0.001000,-0.094970,-0.047002
+;fire_point   = 0.000000,0.140000,-0.030000
+fire_point   = -0.000000,0.199000,-0.010000
+fire_bone               	= wpn_body
+
+;лево/право,верх/низ,от/к себя(е)
+;position					= -0.031,-0.17,0.0025
+;position					= 0.130000,-0.103000,-0.017000
+;position   = 0.070000,-0.093000,0.233000
+;+далеко position   = -0.028000,-0.017000,0.140000
+position   = -0.010000,-0.017000,0.024
+;orientation					= -0.5,1.,1.15
+;orientation					= 4.398570,3.483642,0.000000
+;orientation   = 6.679660,4.625900,0.000000
+orientation   = 2.862405,2.290610,0.000000
+
+visual                  	= weapons\apb\wpn_apb_hud.ogf
+
+;Zazzer
+anim_holster    = holster   
+anim_idle    = idle
+anim_idle_aim    = aim
+anim_reload    = reload
+anim_reload_speed_k    = 1.8
+anim_draw    = draw
+anim_shoot    = shoot
+anim_idle_sprint   = sprint
+
+;перезарядка одна? и бега с ручкой нет?
+;полная (когда магазин расстрелял) и неполная (если непустой перезаряжаешь). Анимки затвора разные
+;на классе автоматов в движке нет такокго слота, они тупо не читаються движком это в нлц есть (как в зп)
+
+;-----------------------------------------------------------------------------
+;смещения HUD для режима приближения
+;;zoom_offset					= -0.087550,0.057900,-0.050000
+;;zoom_rotate_x				= 0.003000
+;;zoom_rotate_y				= -0.014400
+
+;zoom_offset					= -0.127200,0.084550,0.013000
+;+приклад sto1en zoom_offset   = -0.148200,0.068550,-0.217000
+;+приклад+zoom_offset			= -0.148200,0.069550,-0.204000
+;zoom_offset			= -0.148200,0.068550,-0.097000
+;+zoom_offset   = -0.103700,0.056000,-0.284000
+
+;zoom_rotate_x				= 0.048100
+;zoom_rotate_x  = 0.068100
+;+zoom_rotate_x  = 0.026000
+
+; коллиматор zoom_rotate_x  = 0.097100
+;zoom_rotate_y				= 0.076650
+;zoom_rotate_y  = 0.114650
+;+zoom_rotate_y  = 0.050000
+
+zoom_offset			= -0.115700,0.054000,-0.040000
+zoom_rotate_x		= 0.026000
+zoom_rotate_y		= 0.050000
+
+;-----------------------------------------------------------------------------
+
+;прячем перекрестие прицела в зуме
+zoom_hide_crosshair		= true
+
+;время поворота HUD (сек)
+zoom_rotate_time			= 0.26
+;zoom_rotate_time		= 0.2
+;zoom_rotate_time		= 0.1
+;rotate_time			= 0.1
+rotate_time					= 0.2
+
+[wpn_aps_repair]
+tech_complication 			= 400
+repair_compatibility 		= stechkin
+
+
+;-----------------------------------------------------------------------------------
+;Сменные аддоны ОГСЕ 
+#include "w_apb_ex.ltx"
+;-----------------------------------------------------------------------------------

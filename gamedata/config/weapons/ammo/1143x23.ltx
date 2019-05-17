@@ -1,55 +1,58 @@
-;;; .45ACP
+;.45 ACP (11,43х23 мм)
+;упаковывались следующим образом: 
+;100 пачек по 20 патронов, всего 2000, в железный короб, а тот в деревянный ящик размером 41,5х32х12, весом 48 кг; 
+;патроны со стальной гильзой 12 пачек по 50 патронов в картонный короб, всего 600, два короба в деревянный ящик, всего 1200, ящик размером 40,5х25х18; 
+;ещё один вариант - 10 пачек по 20 или 4 по 50 в деревянном ящике
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 [ammo_11.43x23_fmj]:ammo_base
 $spawn			= "weapons\ammo\ammo_11.43x23_fmj" ; option for Level Editor
 visual          = weapons\ammo\ammo_1143x23_fmj.ogf
 description		= enc_weapons1_ammo_ammo-11.43x23-fmj
-
-cost			= 380
-
-box_size		= 20
-
 inv_name		= ammo-11.43x23-fmj
 inv_name_short	= ammo-11.43x23-fmj_s
-inv_weight		= 0.3
-
 inv_grid_width	= 2
 inv_grid_height	= 1
 inv_grid_x		= 9
 inv_grid_y		= 12
 
-k_disp			= 3
-k_hit			= 1.5
-k_impulse		= 1.1
-k_pierce		= 1.1
-wm_size         = 0.07
+cost			= 380
+box_size		= 20
+inv_weight		= 0.3		;+(10,2*20=357.0г.)
 
-;------------------------------
+k_dist			= 0.96				;1.0
+k_disp			= 2.3				;1.02
+k_hit			= 1.85				;1.5
+k_impulse		= 2.0				;1.1
+k_pierce		= 0.85				;1.1
+;impair			= 1.01				;1.0
+wm_size         = 0.11
+;tracer			= on
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 [ammo_11.43x23_hydro]:ammo_base
 $spawn			= "weapons\ammo\ammo_11.43x23_hydro" ; option for Level Editor
 visual          = weapons\ammo\ammo_1143x23_Hydro.ogf
 description		= enc_weapons1_ammo_ammo-11.43x23-hydro
-
-cost			= 430
-
-box_size		= 20
-
 inv_name		= ammo-11.43x23-hydro
 inv_name_short	= ammo-11.43x23-hydro_s
-inv_weight		= 0.3
-
 inv_grid_width	= 2
 inv_grid_height	= 1
 inv_grid_x		= 7
 inv_grid_y		= 12
 
+cost			= 430
+box_size		= 20
+inv_weight		= 0.3
+
 k_dist			= 0.95
-k_disp			= 3
-k_hit			= 1.7
-k_impulse		= 1.25
-k_pierce		= 1.1
-impair			= 1.15
-wm_size         = 0.07
-explosive		= on
+k_disp			= 2.5
+k_hit			= 1.97				;1.7
+k_impulse		= 2.25				;1.25
+k_pierce		= 0.75				;1.1
+impair			= 1.25				;1.25
+wm_size         = 0.11
+;tracer			= on
+;explosive		= on
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;фейк-боеприпас для оружия без магазина 
 [ammo_11.43x23_dummy]:ammo_11.43x23_fmj

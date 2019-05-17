@@ -1,0 +1,244 @@
+;-----------------------------------------------------------------------------------
+;Сменные аддоны ОГСЕ
+;-----------------------------------------------------------------------------------
+;управляемые В СЕКЦИЯХ АДДОНОВ кости Glock18С с привязкой by k01jan:
+;	wpn_body			Glock18С
+;	wpn_silencer		GM-9 MultiMount
+;	magazin				-
+;		bullet			патрон магазина
+;		m1				магазин 17 стандарт
+;		m2				магазин 31 увеличенный
+;	rail				Universal Scope Mount
+;	s1				 	Aimpoint Micro H-1
+;-----------------------------------------------------------------------------------
+[wpn_glock18c]:wpn_glock17
+script_binding  = ogse_bind_weapon.init
+;скрытые (управляемые) кости:  m1, m2, rail, scope
+managed_bones = m1, m2, rail, s1
+silencer_status			= 0		;2 (в модели есть GM-9 MultiMount)
+grenade_launcher_status	= 0
+scope_status			= 0
+scope_mount_status		= 2
+grip_status				= 0
+magazine_status			= 2
+hud                      = wpn_glock18c_hud
+[wpn_glock18c_hud]:wpn_glock17_hud
+
+[wpn_glock18c_repair]
+tech_complication 		= 500
+repair_compatibility 	= glock
+
+;без магазина
+[wpn_glock_nomag_hud]:wpn_glock18c_hud
+anim_reload					= idle
+
+;без магазина
+[wpn_glock_mag33_hud]:wpn_glock18c_hud
+anim_reload					= reload_mag33		;заменить на reload_long - злинный магазин влезает в руку
+
+
+;-----------------------------------------------------------------------------------
+; служебные секции описателей магазинов
+;+при одетом аддоне показываются только соответствующие bones кости
+[glock_nomag]
+;bones = 
+;bones_hide = 
+[glock_nomag_p]
+ammo_class               = ammo_9x19_dummy, ammo_9x19_dummy	;патрон-залушка
+ammo_mag_size            = 0					; не во что заряжать
+rpm                      = 0					; нечем стрелять
+snd_reload               = $no_sound
+snd_empty                = $no_sound
+hud                      = wpn_glock_nomag_hud
+
+[glock_mag19]
+bones = m1
+;bones_hide = 
+[glock_mag19_p]
+magazine_name            = wpn_addon_mag_glock19
+magazine                 = glock_mag19
+ammo_mag_size			= 17
+
+[glock_mag33]
+bones = m2
+;bones_hide = 
+[glock_mag33_p]
+magazine_name            = wpn_addon_mag_glock33
+magazine                 = glock_mag33
+ammo_mag_size            = 31
+inv_grid_x					= 64
+;inv_grid_y					= 21
+hud = wpn_glock_mag33_hud
+
+;-----------------------------------------------------------------------------------
+; служебные секции описателей прицелов
+; штатный механический прицел
+[glock_ironsight]
+;force_remove_texture = true
+;показываемые кости, был пустой, залочен (здесь НЕ работает?) bones = 
+;смещение ствола при прицеливании: лево/право,верх/низ,от/к себя(е)
+;zoom_offset			= -0.076400,0.032000,0.000000
+;zoom_rotation		= 0.038700,-0.007600
+;zoom_offset			= -0.076400,0.061000,-0.027000
+;zoom_rotation		= 0.029700,-0.007600
+zoom_offset			= -0.077400,0.059000,-0.027000
+zoom_rotation		= 0.030700,-0.006600
+
+
+[glock_ironsight_p]
+; имитация движкового параметра для прицела
+scope_name = 
+; донастройка модели прицела
+scope                    = glock_ironsight
+
+
+; коллиматор Aimpoint Micro H-1
+[glock_aimpoint]
+force_remove_texture = true
+bones         = s1
+;прицел (со сдвигом)
+zoom_offset			= -0.076400,0.038000,0.000000
+zoom_rotation		= 0.041700,-0.007600
+
+[glock_aimpoint_p]
+scope_name               = wpn_addon_scope_aimpoint
+scope                    = glock_aimpoint
+
+
+;-----------------------------------------------------------------------------------
+; служебные секции описателей аддонов
+
+;;приклад [glock_buttstock]
+;;bones = buttstock
+;;bones_hide = 
+;;[glock_buttstock_p] ; имитация движкового параметра
+;;grip_name				= wpn_addon_buttstock_glock
+;;grip					= buttstock_glock
+
+
+;+кронштейн-переходник Picatinny rail
+[glock_prail]
+;перепривязать rail с scope на body (показывает рельсу сразу с прицелом)
+bones = rail
+;ТЕСТ для настройки прицеливания bones = rail, scope
+;штатный механический прицел
+;zoom_offset		= -0.076400,0.032000,0.000000
+;zoom_rotation		= 0.038700,-0.007600
+zoom_offset			= -0.076400,0.061000,-0.027000
+zoom_rotation		= 0.029700,-0.007600
+
+[glock_prail_p]
+scope_mount_name         = wpn_addon_prail
+scope_mount              = glock_prail
+
+
+;-----------------------------------------------------------------------------------
+; секции оружия с аддонами
+;-----------------------------------------------------------------------------------
+[wpn_glock_nomag_ironsight]:wpn_glock18c,glock_ironsight_p,glock_nomag_p
+;cost					 = 
+;inv_weight				 = 
+;магазины
+wpn_addon_mag_glock19      = wpn_glock
+wpn_addon_mag_glock33      = wpn_glock_mag33_ironsight
+;ставим рельсу scope_mount_status		= 2 
+wpn_addon_prail          = wpn_glock_nomag_prail
+[wpn_glock_nomag_ironsight_repair]:wpn_glock18c_repair
+
+; глок БАЗА (роздан)  wpn_glock_mag19_ironsight
+[wpn_glock]:wpn_glock18c,glock_ironsight_p,glock_mag19_p
+;cost					 = 
+;inv_weight				 = 0.90
+;магазины
+wpn_addon_mag_glock33      = wpn_glock_mag33_ironsight
+magazine_removed_section = wpn_glock_nomag_ironsight
+;ставим рельсу scope_mount_status		= 2 
+wpn_addon_prail          = wpn_glock_mag19_prail
+[wpn_glock_repair]:wpn_glock18c_repair
+
+[wpn_glock_mag33_ironsight]:wpn_glock18c,glock_ironsight_p,glock_mag33_p
+;cost					 = 
+;inv_weight				 = 
+;магазины
+wpn_addon_mag_glock19      = wpn_glock
+magazine_removed_section = wpn_glock_nomag_ironsight
+;ставим рельсу scope_mount_status		= 2 
+wpn_addon_prail          = wpn_glock_mag33_prail
+[wpn_glock_mag33_ironsight_repair]:wpn_glock18c_repair
+
+
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+[wpn_glock_nomag_prail]:wpn_glock18c,glock_prail_p,glock_nomag_p
+inv_grid_x					= 62
+;прицелы на планку
+scope_status			= 2
+wpn_addon_scope_aimpoint   = wpn_glock_nomag_aimpoint
+;секция при снятой планке scope_mount_status		= 2 
+scope_mount_removed_section      = wpn_glock_nomag_ironsight
+;магазины
+wpn_addon_mag_glock19      = wpn_glock_mag19_prail
+wpn_addon_mag_glock33      = wpn_glock_mag33_prail
+[wpn_glock_nomag_prail_repair]:wpn_glock18c_repair
+
+[wpn_glock_mag19_prail]:wpn_glock18c,glock_prail_p,glock_mag19_p
+inv_grid_x					= 62
+;прицелы на планку
+scope_status			= 2
+wpn_addon_scope_aimpoint   = wpn_glock_mag19_aimpoint
+;секция при снятой планке scope_mount_status		= 2 
+scope_mount_removed_section      = wpn_glock
+;магазины
+wpn_addon_mag_glock33      = wpn_glock_mag33_prail
+magazine_removed_section = wpn_glock_nomag_prail
+[wpn_glock_mag19_prail_repair]:wpn_glock18c_repair
+
+[wpn_glock_mag33_prail]:wpn_glock18c,glock_prail_p,glock_mag33_p
+inv_grid_x					= 60
+;прицелы на планку
+scope_status			= 2
+wpn_addon_scope_aimpoint   = wpn_glock_mag33_aimpoint
+;секция при снятой планке scope_mount_status		= 2 
+scope_mount_removed_section      = wpn_glock_mag33_ironsight
+;магазины
+wpn_addon_mag_glock19      = wpn_glock_mag19_prail
+magazine_removed_section = wpn_glock_nomag_prail
+[wpn_glock_mag33_prail_repair]:wpn_glock18c_repair
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; глок с рельсой и коллиматором
+[wpn_glock_nomag_aimpoint]:wpn_glock18c,glock_aimpoint_p,glock_prail_p,glock_nomag_p
+inv_grid_x					= 62
+;секция при снятой планке scope_mount_status		= 2 
+scope_mount_removed_section      = wpn_glock_nomag_ironsight
+;прицелы
+scope_status			= 2
+;магазины
+wpn_addon_mag_glock19      = wpn_glock_mag19_aimpoint
+wpn_addon_mag_glock33      = wpn_glock_mag33_aimpoint
+[wpn_glock_nomag_aimpoint_repair]:wpn_glock18c_repair
+
+[wpn_glock_mag19_aimpoint]:wpn_glock18c,glock_aimpoint_p,glock_prail_p,glock_mag19_p
+inv_grid_x					= 62
+;секция при снятой планке scope_mount_status		= 2 
+scope_mount_removed_section      = wpn_glock
+;прицелы
+scope_status			= 2
+;магазины
+wpn_addon_mag_glock33      = wpn_glock_mag33_aimpoint
+magazine_removed_section = wpn_glock_nomag_aimpoint
+[wpn_glock_mag19_aimpoint_repair]:wpn_glock18c_repair
+
+[wpn_glock_mag33_aimpoint]:wpn_glock18c,glock_aimpoint_p,glock_prail_p,glock_mag33_p
+inv_grid_x					= 60
+;секция при снятой планке scope_mount_status		= 2 
+scope_mount_removed_section      = wpn_glock_mag33_ironsight
+;прицелы
+scope_status			= 2
+;магазины
+wpn_addon_mag_glock19      = wpn_glock_mag19_aimpoint
+magazine_removed_section = wpn_glock_nomag_aimpoint
+[wpn_glock_mag33_aimpoint_repair]:wpn_glock18c_repair

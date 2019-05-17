@@ -57,6 +57,7 @@ hud = wpn_ak102_stok_hud
 ;-----------------------------------------------------------------------------------
 ; базовая секция +custom (телескопический приклад +пистолетная рукоять и цевьё с рельсой) (d2)
 [wpn_ak102_custom]:wpn_ak102_stok
+fire_modes				= 3, 1, -1
 grenade_launcher_status	= 0
 grip_status				= 2
 ;скрытые (управляемые) кости: d2, d1, s1, s2, s3, s4, s5, m1, m2, m3, muzzle
@@ -81,7 +82,7 @@ anim_reload_gl				= idle_w_gl
 
 ;-----------------------------------------------------------------------------------
 ;АК102 яйца C-Mag
-[wpn_ak102_buben_hud]:wpn_ak102_stok_hud
+[wpn_ak102_wide_hud]:wpn_ak102_stok_hud
 ; тест jumbo5337
 anim_reload					= reload_c_mag
 anim_reload_gl				= reload_c_mag_w_gl
@@ -147,6 +148,9 @@ zoom_rotation		= 0.038600,0.030480
 ; движковый прицел
 scope_name               = wpn_addon_scope_kobra
 scope                    = ak102_kobra
+; второй прицел ОГСР не надо сдвигать, а second_ тут не работают..
+disable_second_scope = true
+
 
 ; 1ПН51 (НСПУ-3 "Казуар") х3,46
 [ak102_1pn51]
@@ -172,20 +176,31 @@ scope_y		= -3
 
 ; ACOG TA31-CH х4
 [ak102_acog]
-;тест мех.прицела force_remove_texture = true
+;тест мех.прицела +3D
+force_remove_texture = true
 bones         = s4
 ;штатный механический прицел ACOG (не настроен)
 ;zoom_offset			= -0.112840,0.027250,0.128000
 ;zoom_rotation		= 0.064800,0.043280
-
 ; тест sto1en
-zoom_offset			= -0.168800,0.067450,-0.223100
+; zoom_offset			= -0.168800,0.067450,-0.223100
+; zoom_rotation		= 0.043400,0.030280
+; тест 3D
+zoom_offset			= -0.168800,0.023450,-0.223100
 zoom_rotation		= 0.043400,0.030280
 
 [ak102_acog_p] ; имитация движкового параметра
 ; движковый прицел
 scope_name               = wpn_addon_acog
 scope                    = ak102_acog
+;-через дыру с мушкой
+;-second_zoom_offset			= -0.169300,0.037950,-0.223100
+;-second_zoom_rotate_x		= 0.017400
+;-second_zoom_rotate_y		= 0.030280
+;_второй прицел ОГСР не надо сдвигать, а second_ тут не работают.. 
+disable_second_scope = true
+;_поднимать планку
+
 
 ; EOTech 552.A65 х1
 [ak102_eotech]
@@ -194,7 +209,6 @@ bones         = s5
 ;штатный механический прицел (со сдвигом)
 ;zoom_offset			= -0.168800,0.067450,-0.223100
 ;zoom_rotation		= 0.043400,0.030280
-
 ; тест sto1en
 zoom_offset			= -0.164540,0.013750,-0.181000
 zoom_rotation		= 0.033600,0.024780
@@ -203,6 +217,9 @@ zoom_rotation		= 0.033600,0.024780
 ; движковый прицел
 scope_name               = wpn_addon_scope_eotech
 scope                    = ak102_eotech
+; второй прицел ОГСР не надо сдвигать, а second_ тут не работают..
+disable_second_scope = true
+
 
 
 ;-----------------------------------------------------------------------------------
@@ -232,7 +249,7 @@ inv_grid_x			= 59
 inv_grid_y			= 14
 ;inv_weight				= 3.75		;АКМ 3.5 = 3.15 + 0.45 ;АКМС (+0,15) 3,75=3,3+0,45
 ;cost					= 5200
-hud                     = wpn_ak102_buben_hud
+hud                     = wpn_ak102_wide_hud
 ;------------------------------------------------------------------------------------
 
 [ak102_nomag]
@@ -276,41 +293,31 @@ bones = d2											;custom (телескопический приклад +пистолетная рукоять)
 [ak102_custom_p] ; имитация движкового параметра
 
 ;+ТЕСТ точности LR-300
-fire_dispersion_base	= 0.16	;ОГСЕ 0.15
+fire_dispersion_base	= 0.165	;ОГСЕ 0.15
 disp_rate 				= 1.5
-
 control_inertion_factor	= 1.25f		;ОГСЕ 1.1f АК, АК74 1.25f ;Эмка 1.25, LR-300 1.2		;удобность
 cam_dispersion_inc		= 0.29		;ОГСЕ 0.25 АК74 0.3		;увеличениe cam_dispersion с каждым выстрелом
-;-cam_dispertion_frac	= 1			;ОГСЕ 1 АК74 0.3		;ствол будет подыматься на cam_dispersion*cam_dispertion_frac +- cam_dispersion*(1-cam_dispertion_frac)
-;cam_max_angle			= 9			;ОГСЕ 9 АК74 10		;максимальный угол отдачи
-;cam_max_angle_horz		= 15		;ОГСЕ 15 АК74 10, Эмка 20.0, LR-300 10		;(degree) maximum shot horizontal degree 
-;cam_step_angle_horz	= 0.5		;ОГСЕ 0.5 АК74 1.1, LR-300 0.5				;(degree) size of step camera moved in horizontal position while shooting
-
-;cam_relax_speed         = 5		;ОГСЕ АК74 5, Эмка, LR-300 6			;скорость возврата в исходное положение
-PDM_disp_vel_factor 	= 1.2		;ОГСЕ АК74 1.3, Эмка, LR-300 0.8
-PDM_disp_accel_factor 	= 1.2		;ОГСЕ АК74 1.3, Эмка, LR-300 0.8
-
-
+PDM_disp_vel_factor 	= 1.12		;1.13
+PDM_disp_accel_factor 	= 1.25		;1.3
 
 ;рукоятка
 [ak102_grip]
 bones = muzzle
 [ak102_grip_p]
-grip_name				= wpn_addon_grip
+grip_name				= wpn_addon_afg
 grip					= ak102_grip
 
 ;+ТЕСТ точности (LR-300)
-fire_dispersion_base	= 0.155		;102 0.17
+fire_dispersion_base	= 0.155		;0.155 СТОК-102 0.17
 ;control_inertion_factor= 1.25f		;ОГСЕ АК, АК74 1.25f ;Эмка 1.25, LR-300 1.2		;удобность
 cam_dispersion_inc		= 0.25		;ОГСЕ АК74 0.3		;увеличениe cam_dispersion с каждым выстрелом
 ;-cam_dispertion_frac	= 1			;102 0.9	ОГСЕ АК74 0.3		;ствол будет подыматься на cam_dispersion*cam_dispertion_frac +- cam_dispersion*(1-cam_dispertion_frac)
 cam_max_angle			= 9			;102 10		ОГСЕ АК74 10		;максимальный угол отдачи
 cam_max_angle_horz		= 15		;102 18		ОГСЕ АК74 10, Эмка 20.0, LR-300 10		;(degree) maximum shot horizontal degree 
 cam_step_angle_horz		= 0.5		;102 1.1	ОГСЕ 0.4 АК74 1.1, LR-300 0.5			;(degree) size of step camera moved in horizontal position while shooting
-
 ;cam_relax_speed        = 6			;102 5		ОГСЕ АК74 5, Эмка, LR-300 6			;скорость возврата в исходное положение
-;-PDM_disp_vel_factor 	= 1.0		;102 1.15	ОГСЕ АК74 1.3, Эмка, LR-300 0.8
-;-PDM_disp_accel_factor = 1.0		;102 1.3	ОГСЕ АК74 1.3, Эмка, LR-300 0.8
+PDM_disp_vel_factor 	= 1.1		;1.12		;1.13
+PDM_disp_accel_factor 	= 1.2		;1.25		;1.3
 
 ;-----------------------------------------------------------------------------------
 ;ремонт ОГСЕ
@@ -570,7 +577,7 @@ wpn_addon_mtk83          = wpn_ak102_ak10230_custom_mtk83_acog
 wpn_addon_mag_cmag100      = wpn_ak102_cmag100_custom_1p29
 magazine_removed_section = wpn_ak102_nomag_custom_1p29
 ;+рабочий ТЕСТ ручки
-wpn_addon_grip = wpn_ak102_ak10230_custom_grip_1p29
+wpn_addon_afg = wpn_ak102_ak10230_custom_grip_1p29
 [wpn_ak102_ak10230_custom_1p29_repair]:wpn_ak1022_repair
 [wpn_ak102_ak10230_custom_grip_1p29]:wpn_ak102_custom,ak102_1p29_p,ak102_custom_p,ak102_ak10230_p,ak102_grip_p
 ;grip_status				= 2
@@ -604,7 +611,7 @@ wpn_addon_mtk83          = wpn_ak102_ak10230_custom_mtk83_acog
 wpn_addon_mag_cmag100      = wpn_ak102_cmag100_custom_kobra
 magazine_removed_section = wpn_ak102_nomag_custom_kobra
 ;+рабочий ТЕСТ ручки
-wpn_addon_grip = wpn_ak102_ak10230_custom_grip_kobra
+wpn_addon_afg = wpn_ak102_ak10230_custom_grip_kobra
 [wpn_ak102_ak10230_custom_kobra_repair]:wpn_ak1022_repair
 [wpn_ak102_ak10230_custom_grip_kobra]:wpn_ak102_custom,ak102_kobra_p,ak102_custom_p,ak102_ak10230_p,ak102_grip_p
 cost 			= 7350
@@ -638,7 +645,7 @@ wpn_addon_mtk83          = wpn_ak102_ak10230_custom_mtk83_acog
 wpn_addon_mag_cmag100      = wpn_ak102_cmag100_custom_1pn51
 magazine_removed_section = wpn_ak102_nomag_custom_1pn51
 ;+рабочий ТЕСТ ручки
-wpn_addon_grip = wpn_ak102_ak10230_custom_grip_1pn51
+wpn_addon_afg = wpn_ak102_ak10230_custom_grip_1pn51
 [wpn_ak102_ak10230_custom_1pn51_repair]:wpn_ak1022_repair
 [wpn_ak102_ak10230_custom_grip_1pn51]:wpn_ak102_custom,ak102_1pn51_p,ak102_custom_p,ak102_ak10230_p,ak102_grip_p
 cost 			= 7350
@@ -673,7 +680,7 @@ wpn_addon_mtk83          = wpn_ak102_cmag100_custom_mtk83_acog
 wpn_addon_mag_ak10230      = wpn_ak102_ak10230_custom_1p29
 magazine_removed_section = wpn_ak102_nomag_custom_1p29
 ;+рабочий ТЕСТ ручки
-wpn_addon_grip = wpn_ak102_cmag100_custom_grip_1p29
+wpn_addon_afg = wpn_ak102_cmag100_custom_grip_1p29
 [wpn_ak102_cmag100_custom_1p29_repair]:wpn_ak1022_repair
 [wpn_ak102_cmag100_custom_grip_1p29]:wpn_ak102_custom,ak102_1p29_p,ak102_custom_p,ak102_cmag100_p,ak102_grip_p
 cost 			= 7800
@@ -707,7 +714,7 @@ wpn_addon_mtk83          = wpn_ak102_cmag100_custom_mtk83_acog
 wpn_addon_mag_ak10230      = wpn_ak102_ak10230_custom_kobra
 magazine_removed_section = wpn_ak102_nomag_custom_kobra
 ;+рабочий ТЕСТ ручки
-wpn_addon_grip = wpn_ak102_cmag100_custom_grip_kobra
+wpn_addon_afg = wpn_ak102_cmag100_custom_grip_kobra
 [wpn_ak102_cmag100_custom_kobra_repair]:wpn_ak1022_repair
 [wpn_ak102_cmag100_custom_grip_kobra]:wpn_ak102_custom,ak102_kobra_p,ak102_custom_p,ak102_cmag100_p,ak102_grip_p
 cost 			= 7800
@@ -741,7 +748,7 @@ wpn_addon_mtk83          = wpn_ak102_cmag100_custom_mtk83_acog
 wpn_addon_mag_ak10230      = wpn_ak102_ak10230_custom_1pn51
 magazine_removed_section = wpn_ak102_nomag_custom_1pn51
 ;+рабочий ТЕСТ ручки
-wpn_addon_grip = wpn_ak102_cmag100_custom_grip_1pn51
+wpn_addon_afg = wpn_ak102_cmag100_custom_grip_1pn51
 [wpn_ak102_cmag100_custom_1pn51_repair]:wpn_ak1022_repair
 [wpn_ak102_cmag100_custom_grip_1pn51]:wpn_ak102_custom,ak102_1pn51_p,ak102_custom_p,ak102_cmag100_p,ak102_grip_p
 cost 			= 7800
@@ -777,7 +784,7 @@ wpn_addon_mtk83          = wpn_ak102_nomag_custom_mtk83_acog
 wpn_addon_mag_ak10230      = wpn_ak102_ak10230_custom_1p29
 wpn_addon_mag_cmag100      = wpn_ak102_cmag100_custom_1p29
 ;+рабочий ТЕСТ ручки
-wpn_addon_grip = wpn_ak102_nomag_custom_grip_1p29
+wpn_addon_afg = wpn_ak102_nomag_custom_grip_1p29
 [wpn_ak102_nomag_custom_1p29_repair]:wpn_ak1022_repair
 [wpn_ak102_nomag_custom_grip_1p29]:wpn_ak102_custom,ak102_1p29_p,ak102_custom_p,ak102_nomag_p,ak102_grip_p
 cost 			= 7200
@@ -811,7 +818,7 @@ wpn_addon_mtk83          = wpn_ak102_nomag_custom_mtk83_acog
 wpn_addon_mag_ak10230      = wpn_ak102_ak10230_custom_kobra
 wpn_addon_mag_cmag100      = wpn_ak102_cmag100_custom_kobra
 ;+рабочий ТЕСТ ручки
-wpn_addon_grip = wpn_ak102_nomag_custom_grip_kobra
+wpn_addon_afg = wpn_ak102_nomag_custom_grip_kobra
 [wpn_ak102_nomag_custom_kobra_repair]:wpn_ak1022_repair
 [wpn_ak102_nomag_custom_grip_kobra]:wpn_ak102_custom,ak102_kobra_p,ak102_custom_p,ak102_nomag_p,ak102_grip_p
 cost 			= 7200
@@ -845,7 +852,7 @@ wpn_addon_mtk83          = wpn_ak102_nomag_custom_mtk83_acog
 wpn_addon_mag_ak10230      = wpn_ak102_ak10230_custom_1pn51
 wpn_addon_mag_cmag100      = wpn_ak102_cmag100_custom_1pn51
 ;+рабочий ТЕСТ ручки
-wpn_addon_grip = wpn_ak102_nomag_custom_grip_1pn51
+wpn_addon_afg = wpn_ak102_nomag_custom_grip_1pn51
 [wpn_ak102_nomag_custom_1pn51_repair]:wpn_ak1022_repair
 [wpn_ak102_nomag_custom_grip_1pn51]:wpn_ak102_custom,ak102_1pn51_p,ak102_custom_p,ak102_nomag_p,ak102_grip_p
 cost 			= 7200
@@ -879,7 +886,7 @@ scope_mount_removed_section      = wpn_ak102_ak10230_custom_1p29
 wpn_addon_mag_cmag100      = wpn_ak102_cmag100_custom_mtk83_acog
 magazine_removed_section = wpn_ak102_nomag_custom_mtk83_acog
 ;+рабочий ТЕСТ ручки
-wpn_addon_grip = wpn_ak102_ak10230_custom_grip_mtk83_acog
+wpn_addon_afg = wpn_ak102_ak10230_custom_grip_mtk83_acog
 [wpn_ak102_ak10230_custom_mtk83_acog_repair]:wpn_ak1022_repair
 [wpn_ak102_ak10230_custom_grip_mtk83_acog]:wpn_ak102_custom,ak102_acog_p,ak102_custom_p,ak102_mtk83_p,ak102_ak10230_p,ak102_grip_p
 cost 			= 8350
@@ -911,7 +918,7 @@ scope_mount_removed_section      = wpn_ak102_ak10230_custom_1p29
 wpn_addon_mag_cmag100      = wpn_ak102_cmag100_custom_mtk83_eotech
 magazine_removed_section = wpn_ak102_nomag_custom_mtk83_eotech
 ;+рабочий ТЕСТ ручки
-wpn_addon_grip = wpn_ak102_ak10230_custom_grip_mtk83_eotech
+wpn_addon_afg = wpn_ak102_ak10230_custom_grip_mtk83_eotech
 [wpn_ak102_ak10230_custom_mtk83_eotech_repair]:wpn_ak1022_repair
 [wpn_ak102_ak10230_custom_grip_mtk83_eotech]:wpn_ak102_custom,ak102_eotech_p,ak102_custom_p,ak102_mtk83_p,ak102_ak10230_p,ak102_grip_p
 cost 			= 8350
@@ -944,7 +951,7 @@ scope_mount_removed_section      = wpn_ak102_cmag100_custom_1p29
 wpn_addon_mag_ak10230      = wpn_ak102_ak10230_custom_mtk83_acog
 magazine_removed_section = wpn_ak102_nomag_custom_mtk83_acog
 ;+рабочий ТЕСТ ручки
-wpn_addon_grip = wpn_ak102_cmag100_custom_grip_mtk83_acog
+wpn_addon_afg = wpn_ak102_cmag100_custom_grip_mtk83_acog
 [wpn_ak102_cmag100_custom_mtk83_acog_repair]:wpn_ak1022_repair
 [wpn_ak102_cmag100_custom_grip_mtk83_acog]:wpn_ak102_custom,ak102_acog_p,ak102_custom_p,ak102_mtk83_p,ak102_cmag100_p,ak102_grip_p
 cost 			= 8800
@@ -976,7 +983,7 @@ scope_mount_removed_section      = wpn_ak102_cmag100_custom_1p29
 wpn_addon_mag_ak10230      = wpn_ak102_ak10230_custom_mtk83_eotech
 magazine_removed_section = wpn_ak102_nomag_custom_mtk83_eotech
 ;+рабочий ТЕСТ ручки
-wpn_addon_grip = wpn_ak102_cmag100_custom_grip_mtk83_eotech
+wpn_addon_afg = wpn_ak102_cmag100_custom_grip_mtk83_eotech
 [wpn_ak102_cmag100_custom_mtk83_eotech_repair]:wpn_ak1022_repair
 [wpn_ak102_cmag100_custom_grip_mtk83_eotech]:wpn_ak102_custom,ak102_eotech_p,ak102_custom_p,ak102_mtk83_p,ak102_cmag100_p,ak102_grip_p
 cost 			= 8800
@@ -1009,7 +1016,7 @@ scope_mount_removed_section      = wpn_ak102_nomag_custom_1p29
 wpn_addon_mag_ak10230      = wpn_ak102_ak10230_custom_mtk83_acog
 wpn_addon_mag_cmag100      = wpn_ak102_cmag100_custom_mtk83_acog
 ;+рабочий ТЕСТ ручки
-wpn_addon_grip = wpn_ak102_nomag_custom_grip_mtk83_acog
+wpn_addon_afg = wpn_ak102_nomag_custom_grip_mtk83_acog
 [wpn_ak102_nomag_custom_mtk83_acog_repair]:wpn_ak1022_repair
 [wpn_ak102_nomag_custom_grip_mtk83_acog]:wpn_ak102_custom,ak102_acog_p,ak102_custom_p,ak102_mtk83_p,ak102_nomag_p,ak102_grip_p
 cost 			= 8200
@@ -1041,7 +1048,7 @@ scope_mount_removed_section      = wpn_ak102_nomag_custom_1p29
 wpn_addon_mag_ak10230      = wpn_ak102_ak10230_custom_mtk83_eotech
 wpn_addon_mag_cmag100      = wpn_ak102_cmag100_custom_mtk83_eotech
 ;+рабочий ТЕСТ ручки
-wpn_addon_grip = wpn_ak102_nomag_custom_grip_mtk83_eotech
+wpn_addon_afg = wpn_ak102_nomag_custom_grip_mtk83_eotech
 [wpn_ak102_nomag_custom_mtk83_eotech_repair]:wpn_ak1022_repair
 [wpn_ak102_nomag_custom_grip_mtk83_eotech]:wpn_ak102_custom,ak102_eotech_p,ak102_custom_p,ak102_mtk83_p,ak102_nomag_p,ak102_grip_p
 cost 			= 8200

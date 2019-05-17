@@ -7,10 +7,10 @@ $npc				= on						; option for Level Editor
 $prefetch 			= 8
 scheduled 			= off						; option for ALife Simulator
 cform				= skeleton
-class				= WP_BINOC					; WP_SVD
+class				= WP_SVD	;WP_BINOC					; WP_SVD
 min_radius			= 20
 max_radius			= 200
-description			= enc_wpn_awm
+description			= enc_weapons1_wpn-awsm
 
 ef_main_weapon_type		= 3
 ef_weapon_type			= 8
@@ -24,14 +24,14 @@ cost				= 40000
 weapon_class			= sniper_rifle
 
 ammo_elapsed			= 5
-ammo_mag_size			= 10
+ammo_mag_size			= 5
 ammo_class			= ammo_8.6x70_lm
 
-inv_name			= wpn_awm
-inv_name_short			= wpn_awm_s
+inv_name			= wpn-awsm
+inv_name_short		= wpn-awsm_s
 inv_weight			= 6.8
 
-inv_grid_width		= 7
+inv_grid_width		= 6
 inv_grid_height		= 2
 inv_grid_x		= 21
 inv_grid_y		= 28
@@ -50,17 +50,18 @@ animation_slot			= 2						; type of the animation that will be used
 sprint_allowed			= true
 
 ;-----------------------------------------------------------------------------------
-;базовая дисперсия
-fire_dispersion_base			= 0.010		;угол (в градусах) базовой дисперсии оружия (оружия зажатого в тисках)
+;базовая дисперсия						;было 0.01 	;ОГСЕ СВД 0.015		
+fire_dispersion_base			= 0.06	;угол (в градусах) базовой дисперсии оружия (оружия зажатого в тисках)
 control_inertion_factor			= 2.2f
+disp_rate 			    = 1.85
 
 cam_relax_speed				= 4.5		;скорость возврата в исходное положение
 cam_relax_speed_ai			= 120.75
 cam_dispersion				= 1.7		;увеличения угла (в градусах) с каждым выстрелом
 cam_dispersion_inc			= 0.5		;увеличениe cam_dispersion с каждым выстрелом
 cam_dispertion_frac			= 1.0		;ствол будет подыматься на cam_dispersion*cam_dispertion_frac +- cam_dispersion*(1-cam_dispertion_frac)
-cam_max_angle				= 10.0		;максимальный угол отдачи
-cam_max_angle_horz			= 3.0		;(degree) maximum shot horizontal degree 
+cam_max_angle				= 6.0	;10.0	СВД4 	;максимальный угол отдачи
+cam_max_angle_horz			= 2.0	;3.0	СВД1	;(degree) maximum shot horizontal degree 
 cam_step_angle_horz			= 0.25		;(degree) size of step camera moved in horizontal position while shooting
 fire_dispersion_condition_factor	= 3.3		;увеличение дисперсии в процентах при максимальном износе 
 misfire_probability			= 0.005		;вероятность осечки при максимальном износе 
@@ -81,16 +82,16 @@ shell_dir		 	= 0.0, 0.0, 0.4
 ;shell_particles		= weapons\generic_shells_right_3
 
 PDM_disp_base 			= 1.0
-PDM_disp_vel_factor		= 0.9
-PDM_disp_accel_factor		= 1.0
-PDM_crouch			= 1.0
+PDM_disp_vel_factor		= 1.13		;0.9
+PDM_disp_accel_factor	= 1.3		;1.0
+PDM_crouch				= 1.05		;1.0
 PDM_crouch_no_acc		= 1.0
 
 ; ttc
-hit_power			= 1.38
+hit_power			= 1.0		;1.38
 hit_impulse		 	= 36
 hit_type 			= fire_wound
-fire_distance			= 1100
+fire_distance			= 600
 bullet_speed		 	= 936
 rpm				= 30						; 60
 ; end ttc
@@ -124,8 +125,12 @@ silencer_status			= 0
 grenade_launcher_status		= 0
 
 zoom_enabled			= true
-scope_zoom_factor		= 12.5						; "Schmidt&Bender" PMII 5-25x56 L/P
 scope_texture			= wpn\scopes\scope_var_41
+scope_dynamic_zoom = true
+scope_zoom_factor 		= 12.5	;1.0 ставить для сквозных 3D прицелов (12.5 "Schmidt&Bender" PMII 5-25x56 L/P)
+;_ТЕСТим 3D-зум scope_lense_fov_factor = 16.0
+;разрешить ПНВ
+nightvision_lock	= false
 
 ;--------------------------- O.G.S.E. sound remake ---------------------------
 ;sounds (name of the sound, volume (0.0 - 1.0), delay (sec))
@@ -143,8 +148,7 @@ snd_zoomin		= $no_sound, 0
 snd_zoomout		= $no_sound, 0
 snd_close		= weapons\generic_close
 ;-----------------------------------------------------------------------------
-vision_present			= false
-scope_dynamic_zoom = true
+
 ;-----------------------------------------------------------------------------
 ;-- HUD DESCRIPTION
 ;-----------------------------------------------------------------------------
@@ -160,18 +164,19 @@ orientation			= -0.07, 0.75, 1.55
 position			= -0.060, -0.175, 0.075
 visual				= weapons\awm_a3\wpn_awm_a3_hud.ogf
 
-anim_holster				= holster
+anim_holster			= holster
 anim_idle				= idle
-anim_idle_aim				= idle
+anim_idle_aim				= idle			;ВОДИТ, для 3D не годится
 anim_reload				= reload
 anim_draw				= draw
 anim_shoot				= shoot
-anim_idle_sprint			= idle_sprint
+anim_idle_sprint		= idle_sprint
 
 ;смещения HUD для режима приближения
-zoom_offset				= -0.1040, 0.0560, -0.1010
-zoom_rotate_x			= 0.0000
-zoom_rotate_y			= 0.0270
+;zoom_offset				= -0.1040, 0.0560, -0.1010
+zoom_offset			= -0.104000,0.056000,-0.247001
+zoom_rotate_x		= 0.000000
+zoom_rotate_y		= 0.027000
 
 ;время поворота HUD (сек)
 zoom_rotate_time		= 0.5

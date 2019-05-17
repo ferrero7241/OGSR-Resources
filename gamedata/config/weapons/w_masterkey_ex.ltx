@@ -1,0 +1,462 @@
+;-----------------------------------------------------------------------------------
+;Сменные аддоны ОГСЕ
+;-------------------------------------------------------------------------------------------
+;управляемые В СЕКЦИЯХ АДДОНОВ кости KAC Masterkey (Rem 870 MCS) с привязкой by k01jan:
+;wpn_body		мастеркей
+;  wpn_silencer	_удлиннитель ствола (barrel)									(съёмный, ставится игроком)
+				;_scope_mount_removed_section - при установке игроком снимутся все прицелы
+				;-глушак - неуправляемый
+				;-ручка - используется под прицельные насадки
+;  wpn_scope	- (движковая, д/б пустая)
+;  s1			EOTech  552.A65 х1
+;  s2			ACOG TA31-CH х4
+;--U.S.Optics SR-6 х1.5-6 УБРАН (на классе бинокля криво работает перезарядка шотгана)
+;  s3			IR NV
+;  s4			PVS14								(ручка)
+;  s5			EOTech G33.STS Magnifier			(ручка)
+;  zatvor		помпа +окно выбрасывателя затвора
+;  patron		патрон в магазине (при заряжании)
+;  lock			окно податчика патрона в магазине (при заряжании)
+;  gilza		гильза (анимирована, вылетает при перезарядке после выстрела)
+;  muzzle		_удлиннитель магазина)
+;  buttstock	- (приклад)														(съёмный, ставится игроком)
+;-----------------------------------------------------------------------------------
+;шейдеры:
+;lens_eotech первая линза EOTech - прозрачная с меткой ХУД худ-reddotsight1 / МИР 
+;collimator_linza0 вторая линза EOTech - полупрозрачная серая ХУД модель-transparent / МИР 
+;collimator_lenz02 линзы увеличителя - полупрозрачная серая ХУД модель-transparent / МИР 
+;-------------------------------------------------------------------------------------------
+
+;ремонт ОГСЕ
+[wpn_mk_repair]
+tech_complication = 300
+repair_compatibility = masterkey
+
+;-------------------------------------------------------------------------------------------
+; служебные секции описателей аддонов
+;при установленном аддоне кости bones показываются, bones_hide скрываются
+;-----------------------------------------------------------------------------------
+; штатный магазин на 3(+1 в стволе), +УПМ на 5 или 7
+;удлинитель магазина и ствола (Remington 870MCS Kit)
+[masterkey_long]
+bones = muzzle
+[masterkey_long_p]
+magazine_name            = wpn_addon_mag_mk6
+magazine                 = masterkey_long
+ammo_mag_size			= 7
+;inv_grid_x			= 59
+;inv_grid_y			= 12
+
+;-----удлинитель ствола
+;[masterkey_barrel]
+;bones = muzzle
+;[masterkey_barrel_p] ; имитация движкового параметра
+;scope_mount_name         = wpn_addon_mk_barrel
+;scope_mount              = masterkey_barrel
+
+
+
+; прицелы
+;_штатный механический (не задействован)
+[masterkey_ironsight]
+;force_remove_texture = true
+;показываемые кости, был пустой, залочен (здесь НЕ работает?) bones = 
+;смещение ствола при прицеливании: лево/право,верх/низ,от/к себя(е)
+;zoom_offset			= -0.154750,0.088000,0.008000
+;-вверх/+вниз zoom_rotate_x		= 0.027500
+;-лево/+право zoom_rotate_y		= 0.034800
+;zoom_rotation		= 0.027500,0.034800
+zoom_offset		= -0.154750,0.087000,0.008000
+zoom_rotation		= 0.030500,0.034800
+[masterkey_ironsight_p]
+scope_name = 
+scope                    = masterkey_ironsight
+;_второй прицел ОГСР не надо сдвигать, а second_ тут не работают.. 
+disable_second_scope = true
+
+
+;+EOTech 552.A65 х1
+[masterkey_eotech]
+force_remove_texture = true
+bones         = s1
+zoom_offset			= -0.158750,0.050000,0.008000
+zoom_rotation		= 0.032500,0.044800
+[masterkey_eotech_p]
+scope_name               = wpn_addon_scope_eotech
+scope                    = masterkey_eotech
+;KRodin: тут пусть будет пустой параметр, посмотрим.
+addon_mode_section = 
+;_второй прицел ОГСР не надо сдвигать, а second_ тут не работают.. 
+disable_second_scope = true
+
+
+;+ACOG TA31-CH х4 (3D)
+[masterkey_acog]
+;тест мех.прицела +3D
+force_remove_texture = true
+bones         = s2
+;штатный механический прицел
+;zoom_offset		= -0.154750,0.087000,0.008000
+;zoom_rotation		= 0.030500,0.034800
+;СКВОЗНОЙ 3D (со сдвигом)
+zoom_offset			= -0.154750,0.050000,-0.287498
+zoom_rotation		= 0.030500,0.034800
+[masterkey_acog_p]
+; движковый прицел
+scope_name               = wpn_addon_acog
+scope                    = masterkey_acog
+;KRodin: тут пусть будет пустой параметр, посмотрим.
+addon_mode_section = 
+;_второй прицел ОГСР не надо сдвигать, а second_ тут не работают..
+disable_second_scope = true
+
+;+IR NV (3D)
+[masterkey_irnv]
+;тест мех.прицела +3D
+force_remove_texture = true
+bones         = s3
+;штатный механический прицел
+;zoom_offset		= -0.154750,0.087000,0.008000
+;zoom_rotation		= 0.030500,0.034800
+;СКВОЗНОЙ 3D (со сдвигом)
+zoom_offset			= -0.154750,0.057500,-0.255498
+zoom_rotation		= 0.030500,0.034800
+[masterkey_irnv_p]
+; движковый прицел
+scope_name               = wpn_addon_scope_irnv
+scope                    = masterkey_irnv
+scope_lense_fov_factor = 4.0			--корректируем5
+;KRodin: тут пусть будет пустой параметр, посмотрим.
+addon_mode_section = 
+;_второй прицел ОГСР не надо сдвигать, а second_ тут не работают..
+disable_second_scope = true
+;ИК в 3D thermo_vision_enabled = true --наследуем от прицела
+
+;+EOTech+PVS-14 (ТЕСТ 2D)
+[masterkey_eotech_nightvision]
+;тут НАДО рисовать сетку, вид через ПНВ
+force_remove_texture = true				;только для 3D
+bones         = s1
+zoom_offset			= -0.158750,0.050000,0.008000
+zoom_rotation		= 0.032500,0.044800
+[masterkey_eotech_nightvision_p]
+;---только для 2D---scope_name = wpn_addon_scope_eotech
+scope_name               = wpn_addon_scope_pvs					;только для 2D wpn_addon_scope_eotech
+scope_lense_fov_factor = 5.0			;5 корректируем	(1-уменьшает)	;---только для 3D---
+scope                    = masterkey_eotech_nightvision
+;KRodin: тут пусть будет пустой параметр, посмотрим.
+addon_mode_section = 
+;_второй прицел ОГСР не надо сдвигать, а second_ тут не работают.. 
+disable_second_scope = true
+
+
+;+ACOG+PVS-14 (ТЕСТ 3D)
+[masterkey_acog_nightvision]
+;тут НАДО рисовать сетку, вид через ПНВ 
+force_remove_texture = true				;только для 3D
+bones         = s2
+zoom_offset			= -0.154750,0.050000,-0.215999
+zoom_rotation		= 0.030500,0.034800
+[masterkey_acog_nightvision_p]
+;---только для 2D---scope_name = wpn_addon_scope_acog
+scope_name               = wpn_addon_scope_pvs
+scope_lense_fov_factor = 10.0			;5 корректируем		;---только для 3D---
+scope                    = masterkey_acog_nightvision
+;KRodin: тут пусть будет пустой параметр, посмотрим.
+addon_mode_section = 
+;_второй прицел ОГСР не надо сдвигать, а second_ тут не работают.. 
+disable_second_scope = true
+
+
+; фейки "прицел"-РУЧКА
+;насадок-ПНВ (ставится только на eotech или acog)
+[masterkey_nightvision]
+bones = s4
+[masterkey_nightvision_p]
+grip_name         = wpn_addon_nightvision
+grip              = masterkey_nightvision
+;_второй прицел ОГСР не надо сдвигать, а second_ тут не работают.. 
+disable_second_scope = true
+
+
+;+насадок-увеличитель 3х (ставится только на eotech) (ТЕСТ 3D)
+[masterkey_magnifier]
+bones = s5
+zoom_offset			= -0.161250,0.058000,-0.216999
+zoom_rotation		= 0.047500,0.049300
+[masterkey_magnifier_p]
+grip_name         = wpn_addon_magnifier
+grip              = masterkey_magnifier
+scope_lense_fov_factor = 30.0				--+ТЕСТ
+;_второй прицел ОГСР не надо сдвигать, а second_ тут не работают.. 
+disable_second_scope = true
+
+
+
+;-----------------------------------------------------------------------------------
+; секции оружия с аддонами
+;-----------------------------------------------------------------------------------
+[wpn_masterkey_eotech]:wpn_masterkey,masterkey_eotech_p
+;description					= masterkey_eotech
+;cost						= 3000	;+?
+;inv_weight					= 2.0	;+?
+;прицелы на рельсу  (наследуется)
+wpn_addon_acog    = wpn_masterkey_acog
+wpn_addon_scope_irnv    = wpn_masterkey_irnv
+;секция при снятом прицеле
+scope_removed_section	 = wpn_masterkey
+;ставим насадок-увеличитель (или ПНВ) 
+grip_status				= 2
+wpn_addon_magnifier     = wpn_masterkey_eotech_magnifier
+wpn_addon_nightvision     = wpn_masterkey_eotech_nightvision
+;магазины (+ствол)
+wpn_addon_mag_mk6		= wpn_wincheaster1300_eotech
+[wpn_masterkey_eotech_repair]:wpn_mk_repair
+
+[wpn_masterkey_eotech_magnifier]:wpn_masterkey,masterkey_eotech_p,masterkey_magnifier_p
+;description					= masterkey_eotech_magnifier
+;cost						= 3000	;+?
+;inv_weight					= 2.0	;+?
+;добавить свою иконку
+inv_grid_x					= 65
+;inv_grid_y					= 19
+scope_status				= 1			;прицел НЕСЪЁМНЫЙ пока не снят увеличитель (не используется с Акогом)
+scope_name        			= wpn_addon_scope_eotech		;-----наследуется от ствола wpn_scope
+;scope_x 					= 35			;-----наследуется от ствола
+;scope_y 					= -15			;-----наследуется от ствола
+scope_texture		= wpn\scopes\scope_test.dds		;-----НЕ наследуется от коллиматора, ВЫЛЕТАЕТ
+;УБРАТЬ для 3D scope_zoom_factor		= 3.0						;-----наследуется 1 от ствола
+;УБРАТЬ для 3D ironsight_zoom_factor	= 3.0						;-----наследуется 1 от ствола
+;меняем насадок для прицелов (увеличитель на ПНВ) 
+grip_status				= 2
+wpn_addon_nightvision     = wpn_masterkey_eotech_nightvision
+;секция при снятом насадке
+grip_removed_section      = wpn_masterkey_eotech
+;магазины (+ствол)
+wpn_addon_mag_mk6		= wpn_wincheaster1300_eotech_magnifier
+[wpn_masterkey_eotech_magnifier_repair]:wpn_mk_repair
+
+;ТЕСТ 2D
+[wpn_masterkey_eotech_nightvision]:wpn_masterkey,masterkey_nightvision_p,masterkey_eotech_nightvision_p
+;description					= masterkey_eotech_nightvision
+;cost						= 3000	;+?
+;inv_weight					= 2.0	;+?
+;добавить свою иконку
+inv_grid_x					= 70
+;inv_grid_y					= 19
+scope_status			= 1			;прицел НЕСЪЁМНЫЙ пока не снят ночник
+scope_name        			= wpn_addon_scope_pvs
+;+scope_texture		= wpn\scopes\scope_e0tech.dds		;------------------- ?тут НЕ перекрывает?
+;снимам насадок-ПНВ 
+grip_status				= 2
+wpn_addon_magnifier     = wpn_masterkey_eotech_magnifier
+;секция при снятом насадке
+grip_removed_section      = wpn_masterkey_eotech
+;магазины (+ствол)
+wpn_addon_mag_mk6		= wpn_wincheaster1300_eotech_nightvision
+[wpn_masterkey_eotech_nightvision_repair]:wpn_mk_repair
+
+
+;+++++++++++++++++++++++++++++++++++++++++++++++++++++++
+[wpn_masterkey_acog]:wpn_masterkey,masterkey_acog_p
+;description					= masterkey_acog
+;cost						= 3000	;+?
+;inv_weight					= 2.0	;+?
+;прицелы на рельсу 
+wpn_addon_scope_eotech  = wpn_masterkey_eotech
+wpn_addon_scope_irnv    = wpn_masterkey_irnv
+;секция при снятом прицеле
+scope_removed_section	 = wpn_masterkey
+;ставим насадок-ПНВ 
+grip_status				= 2
+wpn_addon_nightvision     = wpn_masterkey_acog_nightvision
+;магазины (+ствол)
+wpn_addon_mag_mk6		= wpn_wincheaster1300_acog
+[wpn_masterkey_acog_repair]:wpn_mk_repair
+
+[wpn_masterkey_acog_nightvision]:wpn_masterkey,masterkey_nightvision_p,masterkey_acog_p
+;description					= masterkey_acog_nightvision
+;cost						= 3000	;+?
+;inv_weight					= 2.0	;+?
+;добавить свою иконку
+inv_grid_x					= 70
+inv_grid_y					= 21
+scope_status			= 1			;прицел НЕСЪЁМНЫЙ пока не снят ночник
+scope_name        			= wpn_addon_scope_pvs
+;+scope_texture		= wpn\scopes\scope_ac0g.dds
+;УБРАТЬ для 3D scope_zoom_factor		= 3.5
+;УБРАТЬ для 3D ironsight_zoom_factor	= 3.5
+;снимам насадок-ПНВ 
+grip_status				= 2
+;секция при снятом насадке
+grip_removed_section      = wpn_masterkey_acog
+;магазины (+ствол)
+wpn_addon_mag_mk6		= wpn_wincheaster1300_acog_nightvision
+[wpn_masterkey_acog_nightvision_repair]:wpn_mk_repair
+
+
+
+;+**********************************************************
+;расширитель магазина +ствол 18" wpn_masterkey_long wpn_wincheaster1300
+[wpn_wincheaster1300]:wpn_masterkey,masterkey_long_p
+;description					= masterkey_long
+;cost						= 3000	;+?
+;inv_weight					= 2.0	;+?
+silencer_status				= 1
+inv_grid_width				= 4
+fire_distance           = 180		;100
+hit_power               = 0.8
+fire_dispersion_base	= 0.34		;0.33		;0.35
+cam_dispersion          = 2.0		;3.0
+cam_max_angle			= 7.0		;8 10.0
+cam_max_angle_horz		= 8.0		;9 10.0
+cam_step_angle_horz		= 0.7		;1.5
+;fire_point               	= 0.0, 0.158, 0.647
+;fire_point2              	= 0.0, 0.158, 0.647
+;секция при снятом магазине
+magazine_removed_section	 = wpn_masterkey
+;прицелы на рельсу
+wpn_addon_scope_eotech  = wpn_wincheaster1300_eotech
+wpn_addon_acog    = wpn_wincheaster1300_acog
+wpn_addon_scope_irnv    = wpn_wincheaster1300_irnv
+hud                      = wpn_wincheaster1300_hud
+
+;KRodin: тут пусть будет пустой параметр, посмотрим.
+addon_mode_section = 
+
+[wpn_wincheaster1300_hud]:wpn_masterkey_hud
+;fire_point      			= 0.0, 0.0,-0.5
+;fire_point2				    = 0.0, 0.0,0.0
+anim_draw_speed_k = 1.3			;достал
+;_anim_holster_speed_k = 1.6			;убрал
+;+анимку доставания (не из-за плеча)
+[wpn_wincheaster1300_repair]:wpn_mk_repair
+
+;--***
+[wpn_wincheaster1300_eotech]:wpn_wincheaster1300,masterkey_eotech_p
+;description					= masterkey_long_eotech
+;cost						= 3000	;+?
+;inv_weight					= 2.0	;+?
+;секция при снятом магазине
+magazine_removed_section	 = wpn_masterkey_eotech
+;прицелы на рельсу 
+wpn_addon_acog    = wpn_wincheaster1300_acog
+wpn_addon_scope_irnv    = wpn_wincheaster1300_irnv
+;секция при снятом прицеле
+scope_removed_section	 = wpn_wincheaster1300
+;ставим насадок-увеличитель/ПНВ (ручка) 
+grip_status				= 2
+wpn_addon_magnifier     = wpn_wincheaster1300_eotech_magnifier
+wpn_addon_nightvision     = wpn_wincheaster1300_eotech_nightvision
+[wpn_wincheaster1300_eotech_repair]:wpn_mk_repair
+
+;--***
+[wpn_wincheaster1300_eotech_magnifier]:wpn_wincheaster1300,masterkey_magnifier_p,masterkey_eotech_p
+;description					= masterkey_long_eotech_magnifier
+;cost						= 3000	;+?
+;inv_weight					= 2.0	;+?
+;добавить свою иконку
+inv_grid_x					= 65
+;inv_grid_y					= 19
+;секция при снятом магазине
+magazine_removed_section	 = wpn_masterkey_eotech_magnifier
+scope_status			= 1			;прицел НЕСЪЁМНЫЙ пока не снят увеличитель
+scope_name        			= wpn_addon_scope_eotech		;-----наследуется от ствола wpn_scope
+scope_texture		= wpn\scopes\scope_test.dds		;-----НЕ наследуется от коллиматора, ВЫЛЕТАЕТ
+;УБРАТЬ для 3D scope_zoom_factor		= 3.0						;-----наследуется 1 от ствола
+;-ironsight_zoom_factor	= 3.0						;-----наследуется 1 от ствола
+;меняем насадок для прицелов (ручка) 
+grip_status				= 2
+wpn_addon_nightvision     = wpn_wincheaster1300_eotech_nightvision
+;секция при снятом насадке
+grip_removed_section      = wpn_wincheaster1300_eotech
+[wpn_wincheaster1300_eotech_magnifier_repair]:wpn_mk_repair
+
+[wpn_wincheaster1300_eotech_nightvision]:wpn_wincheaster1300,masterkey_nightvision_p,masterkey_eotech_nightvision_p
+;description					= masterkey_long_eotech_nightvision
+;cost						= 3000	;+?
+;inv_weight					= 2.0	;+?
+;добавить свою иконку
+inv_grid_x					= 70
+;inv_grid_y					= 19
+;секция при снятом магазине
+magazine_removed_section	 = wpn_masterkey_eotech_nightvision
+scope_status			= 1			;прицел НЕСЪЁМНЫЙ пока не снят ночник
+scope_name        			= wpn_addon_scope_pvs
+;+scope_texture		= wpn\scopes\scope_e0tech.dds
+;прицелы на рельсу
+wpn_addon_scope_acog  = wpn_wincheaster1300_acog_nightvision
+;меняем насадок для прицелов (ручка) 
+grip_status				= 2
+wpn_addon_magnifier     = wpn_wincheaster1300_eotech_magnifier
+;секция при снятом насадке
+grip_removed_section      = wpn_wincheaster1300_eotech
+[wpn_wincheaster1300_eotech_nightvision_repair]:wpn_mk_repair
+
+;--***
+[wpn_wincheaster1300_acog]:wpn_wincheaster1300,masterkey_acog_p
+;description					= masterkey_long_acog
+;cost						= 3000	;+?
+;inv_weight					= 2.0	;+?
+;секция при снятом магазине 
+magazine_removed_section	 = wpn_masterkey_acog
+;прицелы на рельсу
+wpn_addon_scope_eotech  = wpn_wincheaster1300_eotech
+wpn_addon_scope_irnv    = wpn_wincheaster1300_irnv
+;секция при снятом прицеле
+scope_removed_section	 = wpn_wincheaster1300
+;ставим насадок-ПНВ 
+grip_status				= 2
+wpn_addon_nightvision     = wpn_wincheaster1300_acog_nightvision
+[wpn_wincheaster1300_acog_repair]:wpn_mk_repair
+
+[wpn_wincheaster1300_acog_nightvision]:wpn_wincheaster1300,masterkey_nightvision_p,masterkey_acog_nightvision_p
+;description					= masterkey_long_acog_nightvision
+;cost						= 3000	;+?
+;inv_weight					= 2.0	;+?
+;добавить свою иконку
+inv_grid_x					= 70
+inv_grid_y					= 21
+;секция при снятом магазине
+magazine_removed_section	 = wpn_masterkey_acog_nightvision
+scope_status			= 1			;прицел НЕСЪЁМНЫЙ пока не снят ночник
+scope_name        			= wpn_addon_scope_pvs
+;+scope_texture		= wpn\scopes\scope_ac0g.dds
+;УБРАТЬ для 3D scope_zoom_factor		= 3.5 ironsight_zoom_factor	= 3.5
+;снимам насадок-ПНВ 
+grip_status				= 2
+;секция при снятом насадке
+grip_removed_section      = wpn_wincheaster1300_acog
+[wpn_wincheaster1300_acog_nightvision_repair]:wpn_mk_repair
+
+
+
+;+++++++++++++++++++++++++++++++++++++++++++++++++++++++irnv
+[wpn_masterkey_irnv]:wpn_masterkey,masterkey_irnv_p
+;description					= masterkey_irnv
+;cost						= 3000	;+?
+;inv_weight					= 2.0	;+?
+;ИК в 3D thermo_vision_enabled = true --наследуем от прицела
+;прицелы на рельсу 
+wpn_addon_scope_eotech  = wpn_masterkey_eotech
+wpn_addon_acog    = wpn_masterkey_acog
+;секция при снятом прицеле
+scope_removed_section	 = wpn_masterkey
+;магазины (+ствол)
+wpn_addon_mag_mk6		= wpn_wincheaster1300_irnv
+[wpn_masterkey_irnv_repair]:wpn_mk_repair
+
+
+[wpn_wincheaster1300_irnv]:wpn_wincheaster1300,masterkey_irnv_p
+;description					= masterkey_long_irnv
+;cost						= 3000	;+?
+;inv_weight					= 2.0	;+?
+;ИК в 3D thermo_vision_enabled = true --наследуем от прицела
+;секция при снятом магазине 
+magazine_removed_section	 = wpn_masterkey_irnv
+;прицелы на рельсу
+wpn_addon_scope_eotech  = wpn_wincheaster1300_eotech
+wpn_addon_acog    = wpn_wincheaster1300_acog
+;секция при снятом прицеле
+scope_removed_section	 = wpn_wincheaster1300
+[wpn_wincheaster1300_irnv_repair]:wpn_mk_repair

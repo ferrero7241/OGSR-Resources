@@ -1,0 +1,498 @@
+;-----------------------------------------------------------------------------------
+;Сменные аддоны ОГСЕ
+;-----------------------------------------------------------------------------------
+;управляемые В СЕКЦИЯХ АДДОНОВ кости  (64=50+2m+4d+8s) СР3М с привязкой by k01jan:
+;wpn_body		СР3М +патрон в стволе
+;  wpn_silencer	- ПБС СР3М
+;  wpn_scope	- (движковая, д/б пустая)
+;  safe			пп
+;  trigger		спусК
+;  lock			защёлка магазина
+;  mag			- (Д/Б пустая, анимированная)
+;    mag: ammo		2 патрона в МАГазине (Д/Б скрытА при разряжании, виднА при заряжании)
+;    mag: mag1		20 АС
+;    mag: mag2		30 СР3М - кривая перезарядка (слишком длинный)
+;  custom 		ПУСТАЯ
+;  grip		ручка (анимировать)
+;  scope1		ПСО-1М2-1 х4
+;  scope2		ЭКП-8М-01 "Кобра" х1
+;  scope3		1ПН51 (НСПУ-3 "Казуар") х3,46
+;  mount1 		планка МТК-83 (кронштейн-переходник "ласточкин хвост"/Picatinny rail)
+;  scope4		ACOG TA31-CH х4 (на рельсу)
+;  scope5		EOTech  552.A65 х1 (на рельсу)
+;-  mount2 		-длинный
+;-  scope6		-УСП-1 не имеет сменного под баллистику 9х39
+;Существуют гражданские оси с маркировкой "Сайга" и "Тигр". Первая полностью соответствует оси АК74 (при том, что Сайги в том же калибре просто не существует), а вторая - оси ПКМ.
+;пристреливать оружие имеет смысл на дальности 100 м с отметкой 4, так, чтобы СТП (средняя точка попадания) совпадала с ТП (точкой прицеливания). Тогда при вращении оси отметка 6 будет примерно соответствовать СТП на 250 м, а 7 - на 350 м для патрона калибра 7,62х39 мм и оси с надписью "Сайга" или "АК" (по сути это одно и то же: на ось "АК" в гражданском варианте наносят сайговскую маркировку). В оригинале же эта ось для баллистики патрона калибра 5,45х39 мм.
+;-  scope7		-
+;-  scope8		-
+;-  muzzle		-
+;-----------------------------------------------------------------------------------
+;материал: МИР объект-large_weapon
+;-----------------------------------------------------------------------------------
+;шейдеры:
+;collimator_metka0 первая линза Кобры - прозрачная с меткой (сменная) ХУД hud\reddotsight1 / МИР  (3+1 +12=16 =6+1+9) !!!= models\artefact2
+;collimator_lens01 вторая линза Кобры - полупрозрачная круглая зелёная ХУД модель-transparent / МИР 
+;
+;lens_eotech первая линза EOTech - прозрачная с меткой ХУД худ-reddotsight1 / МИР 
+;collimator_linza0 вторая линза EOTech - полупрозрачная квадратная серая ХУД модель-transparent / МИР
+;
+;ТЕСТ сквозного ACOG: сетка2 transparent\lightplanes метка1
+;для худовой внешние (тонирование) lens_acog и вторая линза-сетка grid_acog - transparent (только чёрный, при стрельбе смещается)
+;для худовой +первая от глаз текстура mark_acog -lightplanes метка (цветная, при стрельбе смещается)
+;для мировой collimator_lens02 -transparent
+;-----------------------------------------------------------------------------------
+;!!!для худовых моделей models\transparent менять на forward\collimator (пролечена засветка)
+;***********************************************************************************
+[wpn_sr3m_base]:wpn_sr3m
+script_binding  = ogse_bind_weapon.init
+;скрытые (управляемые) кости:
+managed_bones = muzzle, mag1, mag2, custom, scope1, scope2, scope3, mount1, scope4, scope5, mount2, scope6, scope7, scope8 
+silencer_status			= 2
+grenade_launcher_status	= 0
+scope_status			= 2
+scope_mount_status		= 2
+grip_status				= 0
+magazine_status			= 2			;???скачет точность
+
+;+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+;подсветки предметов в инвентарных окнах из ЗП (Metro UI - "плиточная" подсветка ячейки):
+;выбранного предмета, доступных предмету слотов при наведении курсора на предмет, патронов/аддонов при клике по оружию (и наоборот)
+;--!при использовании "старого" ТЧ-стиля (подсветка иконки, а не ячейки) - ТОЛЬКО патронов/аддонов при клике по оружию (и наоборот)
+;+!! и аддонов тоже!
+;++! а если перекрасить - то и ячеек!!
+;фейк-предметы типа новых аддонов не учитываются, тк не движковые, поэтому их надо дополнительно прописать в секции ствола
+;опции по настройке подсветок - в external.ltx
+;
+;тут готовы wpn_addon_mag_sr30, wpn_addon_scope_pso1m21, wpn_addon_scope_kobra, wpn_addon_scope_1pn51, wpn_addon_mtk83, wpn_addon_acog, wpn_addon_scope_eotech
+;
+;прицелы (не фейки) должны, по идее, подсвечиваться без явного ТУТ указания
+; именно ФЕЙКИ надо - они в инвентаре ОГСЕ.
+;а вообще лучше бы для каждой секции уникальный набор аддонов вручную ТУТ задавать
+;ПРОБУЕМ пока один набор на всех
+highlight_addons = fake_wpn_addon_mag_sr30, fake_wpn_addon_scope_pso1m21, fake_wpn_addon_scope_kobra, fake_wpn_addon_scope_1pn51, fake_wpn_addon_mtk83, fake_wpn_addon_acog, fake_wpn_addon_scope_eotech
+;+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+hud                      = wpn_sr3m_base_hud
+[wpn_sr3m_base_hud]:wpn_sr3m_hud
+
+[wpn_sr3m_base_repair]
+tech_complication 		= 800
+repair_compatibility 	= vintorez
+
+;перезарядка без магазина
+[wpn_sr3m_nomag_hud]:wpn_sr3m_base_hud
+anim_reload					= idle
+
+;перезарядка магазина СР3М
+[wpn_sr3m_mag30_hud]:wpn_sr3m_base_hud
+;_anim_reload					= reload_sr30
+
+;_перезарядка магазина АС
+;_[wpn_sr3m_mag20_hud]:wpn_sr3m_base_hud
+;_anim_reload					= reload_as20
+
+
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; служебные секции описателей магазинов
+;_[sr3m_m20]
+;_bones = mag1
+;_[sr3m_m20_p] ; имитация движкового параметра для магазина АС
+;_magazine_name            = wpn_addon_mag_as20
+;_magazine                 = sr3m_m20
+;_ammo_mag_size			= 20
+;_ammo_elapsed			= 20
+;_иконка ствола
+;_inv_grid_x				= 36
+;_inv_grid_y				= 6
+
+[sr3m_m30]
+bones = mag2
+[sr3m_m30_p] ; имитация движкового параметра для магазина СР3М
+magazine_name            = wpn_addon_mag_sr30
+magazine                 = sr3m_m30
+ammo_mag_size 			 = 30
+ammo_elapsed 			 = 30
+;иконка ствола
+inv_grid_x				= 36
+inv_grid_y				= 6
+
+[sr3m_nomag]
+;;;bones = 
+[sr3m_nomag_p] ; имитация движкового параметра для магазинов
+ammo_class               = ammo_9x39_dummy, ammo_9x39_dummy	;патрон-залушка
+ammo_mag_size            = 0					; не во что заряжать
+ammo_elapsed 			 = 0
+rpm                      = 0					; нечем стрелять
+snd_reload               = $no_sound
+snd_empty                = $no_sound
+hud                      = wpn_sr3m_nomag_hud
+;иконка ствола
+inv_grid_x				= 36
+inv_grid_y				= 9
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; служебные секции описателей прицелов
+;+при одетом прицеле кости bones показываются, bones_hide скрываются
+
+; ПСО-1M2- (16Ц1М2-1) х4
+[sr3m_pso11]
+;тест мех.прицела force_remove_texture = true
+bones         = scope1
+;штатный механический прицел (не задействован)
+zoom_offset			= -0.128900,0.067500,-0.201000
+zoom_rotation		= 0.018000,-0.000700
+[sr3m_pso11_p] ; имитация движкового параметра
+; движковый прицел
+scope_name               = wpn_addon_scope_pso1m21
+scope                    = sr3m_pso11
+;иконка прицела
+;scope_x			= 62
+;scope_y			= 10
+; второй прицел ОГСР не надо сдвигать, а second_ тут не работают..
+disable_second_scope = true
+; перекрывает прицельную линию
+
+
+; ЭКП-8М-01 "Кобра" х1
+[sr3m_kobra]
+force_remove_texture = true
+bones         = scope2
+;штатный механический прицел (со сдвигом)
+zoom_offset			= -0.113900,-0.000500,-0.201000
+zoom_rotation		= 0.000000,-0.030700
+[sr3m_kobra_p]
+scope_name               = wpn_addon_scope_kobra
+scope                    = sr3m_kobra
+;иконка прицела
+scope_x				= 70	;62
+scope_y				= 12	;10
+; второй прицел ОГСР не надо сдвигать, а second_ тут не работают..
+disable_second_scope = true
+
+
+; 1ПН51 (НСПУ-3 "Казуар") х3,46
+[sr3m_1pn51]
+;тест мех.прицела force_remove_texture = true
+bones         = scope3
+;штатный механический прицел (не задействован)
+zoom_offset			= -0.128900,0.067500,-0.201000
+zoom_rotation		= 0.018000,-0.000700
+[sr3m_1pn51_p]
+scope_name               = wpn_addon_scope_1pn51
+scope                    = sr3m_1pn51
+;иконка прицела
+scope_x		= 60
+scope_y		= -3
+
+
+; ACOG TA31-CH х4
+[sr3m_acog]
+;тест мех.прицела, СКВОЗНОЙ 
+force_remove_texture = true
+bones         = scope4
+;штатный механический прицел ACOG (не задействован, не настроен, д/б со сдвигом)
+;мех.прицел zoom_offset			= -0.128900,0.067500,-0.201000
+;мех.прицел zoom_rotation		= 0.018000,-0.000700
+;или СКВОЗНОЙ ACOG (со сдвигом)
+;zoom_offset			= -0.132800,-0.003500,-0.201000
+;zoom_rotation		= 0.013000,-0.001700
+;или СКВОЗНОЙ ACOG ОГСР 3D (со сдвигом)
+zoom_offset			= -0.132800,-0.003500,-0.306999
+zoom_rotation		= 0.013000,-0.001700
+[sr3m_acog_p]
+scope_name               = wpn_addon_acog
+scope                    = sr3m_acog
+;иконка прицела
+scope_x				= 70	;62
+scope_y				= 12	;10
+;от ПРИЦЕЛА scope_lense_fov_factor НЕ НАСЛЕДУЕТСЯ (ЛИНЗА ЧЁРНАЯ), УКАЗЫВАТЬ ЯВНО В СТВОЛЕ
+scope_lense_fov_factor = 0.05
+;тут работает!!!
+
+
+; EOTech 552.A65 х1
+[sr3m_eotech]
+force_remove_texture = true
+bones         = scope5
+;штатный механический прицел (со сдвигом)
+zoom_offset			= -0.121900,-0.001500,-0.201000
+zoom_rotation		= 0.018000,-0.019700
+[sr3m_eotech_p]
+scope_name               = wpn_addon_scope_eotech
+scope                    = sr3m_eotech
+;иконка прицела
+scope_x				= 70	;62
+scope_y				= 12	;10
+; второй прицел ОГСР не надо сдвигать, а second_ тут не работают..
+disable_second_scope = true
+
+
+
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; служебные секции описателей аддонов
+;+ЕСТЬ (ПЛанка, МАГазин, РУКоять)
+;-ДОБАВИТЬ (ПРиклад-щека, СТВол)
+;-----------------------------------------------------------------------------------
+;кронштейн-переходник "ласточкин хвост"/Picatinny rail МТК-83 (короткий)
+[sr3m_mtk83]
+bones = mount1
+[sr3m_mtk83_p]
+scope_mount_name         = wpn_addon_mtk83
+scope_mount              = sr3m_mtk83
+;---нет иконки
+; планка перекрывает прицельную линию - у всех прицелов на ней отключаем двойное прицеливание ОГСР
+disable_second_scope = true
+
+
+
+
+
+
+
+;***********************************************************************************
+; секции оружия с аддонами
+;***********************************************************************************
+;---------------------------------------------------боковая планка "ласточкин хвост"
+;-----------------------------------------------------боковая планка, магазин СР 30
+; боковая планка, ПСО, магазин СР 30
+;___ЗАМЕНИТЬ на [wpn_val]:
+[wpn_sr3m_m30_side_rail_pso]:wpn_sr3m_base,sr3m_pso11_p,sr3m_m30_p
+;-cost					 = 14200
+;-inv_weight				 = 2.77		;2.6всс+0.17маг20 (2,77) +0.5патроны (3,27) +0.6псо		=3.87
+;прицелы на боковую планку
+wpn_addon_scope_kobra		= wpn_sr3m_m30_side_rail_kobra
+wpn_addon_scope_1pn51   	= wpn_sr3m_m30_side_rail_1pn51
+;короткая планка Пикатинни	
+wpn_addon_mtk83          = wpn_sr3m_m30_mtk83_acog
+;_магазины 
+;_wpn_addon_mag_as20      = wpn_sr3m_m20_side_rail_pso
+magazine_removed_section = wpn_sr3m_nomag_side_rail_pso
+[wpn_sr3m_m30_side_rail_pso_repair]:wpn_sr3m_base_repair
+
+; боковая планка, Кобра, магазин СР 30
+[wpn_sr3m_m30_side_rail_kobra]:wpn_sr3m_base,sr3m_kobra_p,sr3m_m30_p
+;-cost					 = 14200
+;-inv_weight				 = 2.77		;2.6всс+0.17маг20 (2,77) +0.5патроны (3,27) +0.15к		=3.42
+;прицелы на боковую планку 
+wpn_addon_scope_pso1m21    = wpn_sr3m_m30_side_rail_pso
+wpn_addon_scope_1pn51   	= wpn_sr3m_m30_side_rail_1pn51
+;короткая планка Пикатинни	
+wpn_addon_mtk83          = wpn_sr3m_m30_mtk83_acog
+;_магазины 
+;_wpn_addon_mag_as20      = wpn_sr3m_m20_side_rail_kobra
+magazine_removed_section = wpn_sr3m_nomag_side_rail_kobra
+[wpn_sr3m_m30_side_rail_kobra_repair]:wpn_sr3m_base_repair
+
+; боковая планка, НСПУ, магазин СР 30
+[wpn_sr3m_m30_side_rail_1pn51]:wpn_sr3m_base,sr3m_1pn51_p,sr3m_m30_p
+;-cost					 = 14200
+;-inv_weight				 = 2.77		;2.6всс+0.17маг20 (2,77) +0.5патроны (3,27) +2.1н		=5.37
+;прицелы на боковую планку 
+wpn_addon_scope_pso1m21    = wpn_sr3m_m30_side_rail_pso
+wpn_addon_scope_kobra		= wpn_sr3m_m30_side_rail_kobra
+;короткая планка Пикатинни	
+wpn_addon_mtk83          = wpn_sr3m_m30_mtk83_acog
+;_магазины 
+;_wpn_addon_mag_as20      = wpn_sr3m_m20_side_rail_1pn51
+magazine_removed_section = wpn_sr3m_nomag_side_rail_1pn51
+[wpn_sr3m_m30_side_rail_1pn51_repair]:wpn_sr3m_base_repair
+
+;-----------------------------------------------------------------------------------
+;-------------------------------------------------------боковая планка, нет магазина
+; боковая планка, ПСО, нет магазина
+[wpn_sr3m_nomag_side_rail_pso]:wpn_sr3m_base,sr3m_pso11_p,sr3m_nomag_p
+;cost					 = 14200
+;inv_weight				 = 2.6		;2.6всс (+0.6псо=3.2)
+;прицелы на боковую планку
+wpn_addon_scope_kobra		= wpn_sr3m_nomag_side_rail_kobra
+wpn_addon_scope_1pn51   	= wpn_sr3m_nomag_side_rail_1pn51
+;короткая планка Пикатинни	
+wpn_addon_mtk83          = wpn_sr3m_nomag_mtk83_acog
+;магазины
+;_wpn_addon_mag_as20      = wpn_sr3m_m20_side_rail_pso
+wpn_addon_mag_sr30      = wpn_sr3m_m30_side_rail_pso
+[wpn_sr3m_nomag_side_rail_pso_repair]:wpn_sr3m_base_repair
+
+; боковая планка, Кобра, нет магазина
+[wpn_sr3m_nomag_side_rail_kobra]:wpn_sr3m_base,sr3m_kobra_p,sr3m_nomag_p
+;cost					 = 14200
+;inv_weight				 = 2.6		;2.6всс (+0.15к=2.75)
+;прицелы на боковую планку 
+wpn_addon_scope_pso1m21    = wpn_sr3m_nomag_side_rail_pso
+wpn_addon_scope_1pn51   	= wpn_sr3m_nomag_side_rail_1pn51
+;короткая планка Пикатинни	
+wpn_addon_mtk83          = wpn_sr3m_nomag_mtk83_acog
+;магазины
+;_wpn_addon_mag_as20      = wpn_sr3m_m20_side_rail_kobra
+wpn_addon_mag_sr30      = wpn_sr3m_m30_side_rail_kobra
+[wpn_sr3m_nomag_side_rail_kobra_repair]:wpn_sr3m_base_repair
+
+; боковая планка, НСПУ, нет магазина
+[wpn_sr3m_nomag_side_rail_1pn51]:wpn_sr3m_base,sr3m_1pn51_p,sr3m_nomag_p
+;cost					 = 14200
+;inv_weight				 = 2.6		;2.6всс (+2.1н=4.7)
+;прицелы на боковую планку 
+wpn_addon_scope_pso1m21    = wpn_sr3m_nomag_side_rail_pso
+wpn_addon_scope_kobra   	= wpn_sr3m_nomag_side_rail_kobra
+;короткая планка Пикатинни	
+wpn_addon_mtk83          = wpn_sr3m_nomag_mtk83_acog
+;магазины
+_wpn_addon_mag_as20      = wpn_sr3m_m20_side_rail_1pn51
+wpn_addon_mag_sr30      = wpn_sr3m_m30_side_rail_1pn51
+[wpn_sr3m_nomag_side_rail_1pn51_repair]:wpn_sr3m_base_repair
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;------------------------------------------------короткий переходник Пикатинни (МТК-83)
+;----------------------------------------------------короткая Пикатинни, магазин СР 30
+; планка Пикатинни, ACOG, магазин СР 30
+[wpn_sr3m_m30_mtk83_acog]:wpn_sr3m_base,sr3m_acog_p,sr3m_mtk83_p,sr3m_m30_p
+;прицелы на короткую планку Пикатинни
+wpn_addon_scope_eotech   	= wpn_sr3m_m30_mtk83_eotech
+scope_mount_removed_section      = wpn_sr3m_m30_side_rail_pso
+;магазины
+;_wpn_addon_mag_as20      = wpn_sr3m_m20_mtk83_acog
+magazine_removed_section = wpn_sr3m_nomag_mtk83_acog
+[wpn_sr3m_m30_mtk83_acog_repair]:wpn_sr3m_base_repair
+
+; планка Пикатинни, EOTech, магазин СР 30
+[wpn_sr3m_m30_mtk83_eotech]:wpn_sr3m_base,sr3m_eotech_p,sr3m_mtk83_p,sr3m_m30_p
+;прицелы на короткую планку Пикатинни
+wpn_addon_acog				= wpn_sr3m_m30_mtk83_acog
+scope_mount_removed_section      = wpn_sr3m_m30_side_rail_pso
+;магазины
+;_wpn_addon_mag_as20      = wpn_sr3m_m20_mtk83_eotech
+magazine_removed_section = wpn_sr3m_nomag_mtk83_acog
+[wpn_sr3m_m30_mtk83_eotech_repair]:wpn_sr3m_base_repair
+
+
+;---------------------------------------------------короткая Пикатинни, нет магазина
+; планка Пикатинни, ACOG, нет магазина
+[wpn_sr3m_nomag_mtk83_acog]:wpn_sr3m_base,sr3m_acog_p,sr3m_mtk83_p,sr3m_nomag_p
+;прицелы на короткую планку Пикатинни
+wpn_addon_scope_eotech   	= wpn_sr3m_nomag_mtk83_eotech
+scope_mount_removed_section      = wpn_sr3m_nomag_side_rail_pso
+;магазины
+;_wpn_addon_mag_as20      = wpn_sr3m_m120_mtk83_acog
+wpn_addon_mag_sr30      = wpn_sr3m_m30_mtk83_acog
+[wpn_sr3m_nomag_mtk83_acog_repair]:wpn_sr3m_base_repair
+
+; планка Пикатинни, EOTech, нет магазина
+[wpn_sr3m_nomag_mtk83_eotech]:wpn_sr3m_base,sr3m_eotech_p,sr3m_mtk83_p,sr3m_nomag_p
+;прицелы на короткую планку Пикатинни
+wpn_addon_acog				= wpn_sr3m_nomag_mtk83_acog
+scope_mount_removed_section      = wpn_sr3m_nomag_side_rail_pso
+;магазины
+;_wpn_addon_mag_as20      = wpn_sr3m_m20_mtk83_eotech
+wpn_addon_mag_sr30      = wpn_sr3m_m30_mtk83_eotech
+[wpn_sr3m_nomag_mtk83_eotech_repair]:wpn_sr3m_base_repair
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+[wpn_val]:wpn_sr3m_m30_side_rail_pso
+$spawn				= "weapons\val"					; option for Level Editor
+;-----------------------------------------------------------------------------
+;Модифицированный Вал (не заюзан - вырезал KD или DD)
+;[wpn_val_m1]:wpn_val
+;$spawn             				= "weapons\uniq\wpn_val_m1"	
+;description						= enc_weapons1_wpn-val_m1
+;inv_name						= wpn-val_m1
+;inv_name_short					= wpn-val_m1
+;condition_shot_dec 				= 0.0004
+;cost		 	 			    = 8500
+;inv_grid_x						= 5
+;inv_grid_y						= 31
+;scope_status					= 2
+;[wpn_val_m1_repair]
+;tech_complication = 700
+;repair_compatibility = val
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+
+
+
+
+
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;РАБОЧИЕ, не заюзаны;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;---------------------------------------------------------боковая планка, магазин АС 20
+; боковая планка, ПСО, магазин АС 20
+;[wpn_sr3m_m20_side_rail_pso]:wpn_sr3m_base,sr3m_pso11_p,sr3m_m20_p
+;-cost					 = 14200
+;-inv_weight				 = 2.75		;2.6всс+0.15маг10 (2,75) +0.24патроны (2,99) +0.6псо =3.6
+;прицелы на боковую планку
+;wpn_addon_scope_kobra		= wpn_sr3m_m20_side_rail_kobra
+;wpn_addon_scope_1pn51   	= wpn_sr3m_m20_side_rail_1pn51
+;короткая планка Пикатинни
+;wpn_addon_mtk83          = wpn_sr3m_m20_mtk83_acog
+;_магазины 
+;_wpn_addon_mag_sr30      = wpn_sr3m_m30_side_rail_pso
+;_magazine_removed_section = wpn_sr3m_nomag_side_rail_pso
+;[wpn_sr3m_m20_side_rail_pso_repair]:wpn_sr3m_base_repair
+
+; боковая планка, Кобра, магазин АС 20
+;[wpn_sr3m_m20_side_rail_kobra]:wpn_sr3m_base,sr3m_kobra_p,sr3m_m20_p
+;-cost					 = 14200
+;-inv_weight				 = 2.75		;2.6всс+0.15маг10 (2,75) +0.24патроны (2,99) +0.15к	=3.14)
+;прицелы на боковую планку 
+;wpn_addon_scope_pso1m21    = wpn_sr3m_m20_side_rail_pso
+;wpn_addon_scope_1pn51   	= wpn_sr3m_m20_side_rail_1pn51
+;короткая планка Пикатинни	
+;wpn_addon_mtk83          = wpn_sr3m_m20_mtk83_acog
+;_магазины 
+;_wpn_addon_mag_sr30      = wpn_sr3m_m30_side_rail_kobra
+;_magazine_removed_section = wpn_sr3m_nomag_side_rail_kobra
+;[wpn_sr3m_m20_side_rail_kobra_repair]:wpn_sr3m_base_repair
+
+; боковая планка, НСПУ, магазин АС 20
+;[wpn_sr3m_m20_side_rail_1pn51]:wpn_sr3m_base,sr3m_1pn51_p,sr3m_m20_p
+;-cost					 = 14200
+;-inv_weight				 = 2.75		;2.6всс+0.15маг10 (2,75) +0.24патроны (2,99) +2.1н	=5.09)
+;прицелы на боковую планку 
+;wpn_addon_scope_pso1m21    = wpn_sr3m_m20_side_rail_pso
+;wpn_addon_scope_kobra		= wpn_sr3m_m20_side_rail_kobra
+;короткая планка Пикатинни	
+;wpn_addon_mtk83          = wpn_sr3m_m20_mtk83_acog
+;_магазины 
+;_wpn_addon_mag_sr30      = wpn_sr3m_m30_side_rail_1pn51
+;_magazine_removed_section = wpn_sr3m_nomag_side_rail_1pn51
+;[wpn_sr3m_m10_side_rail_1pn51_repair]:wpn_sr3m_base_repair
+;----------------------------------------------------короткая Пикатинни, магазин АС 20
+; планка Пикатинни, ACOG, магазин АС 20
+;[wpn_sr3m_m20_mtk83_acog]:wpn_sr3m_base,sr3m_acog_p,sr3m_mtk83_p,sr3m_m20_p
+;прицелы на короткую планку Пикатинни
+;wpn_addon_scope_eotech   	= wpn_sr3m_m20_mtk83_eotech
+;scope_mount_removed_section      = wpn_sr3m_m20_side_rail_pso
+;_магазины
+;_wpn_addon_mag_sr30      = wpn_sr3m_m30_mtk83_acog
+;_magazine_removed_section = wpn_sr3m_nomag_mtk83_acog
+;[wpn_sr3m_m20_mtk83_acog_repair]:wpn_sr3m_base_repair
+
+; планка Пикатинни, EOTech, магазин АС 20
+;[wpn_sr3m_m20_mtk83_eotech]:wpn_sr3m_base,sr3m_eotech_p,sr3m_mtk83_p,sr3m_m20_p
+;прицелы на короткую планку Пикатинни
+;wpn_addon_acog				= wpn_sr3m_m20_mtk83_acog
+;scope_mount_removed_section      = wpn_sr3m_m20_side_rail_pso
+;_магазины
+;_wpn_addon_mag_sr30      = wpn_sr3m_m30_mtk83_eotech
+;_magazine_removed_section = wpn_sr3m_nomag_mtk83_acog
+;[wpn_sr3m_m20_mtk83_eotech_repair]:wpn_sr3m_base_repair
+
+;-----------------------------------------------------------------------------------
+
+

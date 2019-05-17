@@ -45,7 +45,7 @@ animation_slot		 	= 1		; type of the animation that will be used
 single_handed				= 1
 
 inv_name					= wpn-pm
-inv_name_short				= wpn-pm
+inv_name_short				= wpn-pm_s
 inv_weight				= 0.76
 
 inv_grid_width				= 1
@@ -159,8 +159,8 @@ silencer_light_var_range	= 0.5
 silencer_light_time 		= 0.2
 
 
-snd_draw					= weapons\pm\draw
-snd_holster					= weapons\pm\holster
+snd_draw					= weapons\pm\draw							;достал
+snd_holster					= weapons\pm\holster						;убрал
 snd_shoot					= weapons\pm\shot
 snd_silncer_shot			= weapons\pm\silencer
 snd_empty					= weapons\pm\empty, 0.7
@@ -218,7 +218,7 @@ anim_idle_sprint_empty		= idle_sprint_empty
 zoom_offset			= -0.106100,0.039400,-0.023000
 zoom_rotate_x		= -0.007400
 zoom_rotate_y		= -0.008800
-;-----------------------------------------------------------------------------
+
 ;прячем перекрестие прицела в зуме
 zoom_hide_crosshair			= true						
 
@@ -233,3 +233,8 @@ rotate_time					= 0.1
 [wpn_pm_repair]
 tech_complication = 400
 repair_compatibility = pm
+
+;-----------------------------------------------------------------------------
+[wpn_pm_arena]:wpn_pm
+$spawn             		= "weapons\arena\wpn_pm_arena"
+;-----------------------------------------------------------------------------

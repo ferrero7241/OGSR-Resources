@@ -42,22 +42,24 @@ ammo_elapsed				= 0
 
 ammo_mag_size				= 10
 ;не было - НЕ РАБОТАЕТ fire_modes					= 1, 0, -1	
+fire_modes					= 0, 1	
 ammo_class					= ammo_7.62x54_7h1, ammo_7.62x54_7h14, ammo_7.62x54_ap
 
 sprint_allowed				= true
 ;-----------------------------------------------------------------------------------
 ;базовая дисперсия
-fire_dispersion_base	= 0.015		;0.1 со щекой	;моя0.05 или 7 	;ОГСЕ СВД 0.015	;угол (в градусах) базовой дисперсии оружия (оружия зажатого в тисках)
+fire_dispersion_base	= 0.13		;+0.15		;0.09 со щекой		;угол (в градусах) базовой дисперсии оружия (оружия зажатого в тисках)
 control_inertion_factor	= 2.2f
 disp_rate 			    = 1.85
 
 ;отдача
 cam_relax_speed         = 4.7	;скорость возврата в исходное положение
 cam_dispersion          = 1.8	;увеличения угла (в градусах) с каждым выстрелом
+;cam_relax_speed_ai      = 120.75	;скорость возврата в исходное положение
 cam_dispersion_inc		= 0.5	;увеличениe cam_dispersion с каждым выстрелом
 cam_dispertion_frac		= 1.0	;ствол будет подыматься на cam_dispersion*cam_dispertion_frac +- cam_dispersion*(1-cam_dispertion_frac)
-cam_max_angle			= 10.0	;максимальный угол отдачи
-cam_max_angle_horz		= 3.0	;(degree) maximum shot horizontal degree 
+cam_max_angle			= 4.0	;10.0	;максимальный угол отдачи
+cam_max_angle_horz		= 1.0	;3.0	;(degree) maximum shot horizontal degree 
 cam_step_angle_horz		= 0.25	;(degree) size of step camera moved in horizontal position while shooting
 
 fire_dispersion_condition_factor = 3.3	;увеличение дисперсии в процентах при максимальном износе 
@@ -99,26 +101,27 @@ rpm_empty_click 			= 200
 shell_dir		 			= 0.0, 0.0, 0.4
 shell_particles	 			= amik\weapons\7.62x54_shells_r_01
 
-;параметры качания ствола в руках ГГ при движении в режиме прицеливания (стрельба навскидку)
-PDM_disp_base 			= 1.15		;ОГСЕ 1.0 	;множитель, на который умножается базовая дисперсия оружия, когда ГГ стоит на месте в полный рост
-PDM_disp_vel_factor 	= 1.25		;ОГСЕ 0.9 	;множитель, на который умножается базовая дисперсия оружия, когда ГГ крутит оружием или бежит
+;параметры качания ствола в руках ГГ при движении в режиме прицеливания (стрельба навскидку) 
+;МЕНЬШЕ множитель ТОЧНЕЙ (fire_dispersion_base стремится к -оо) *1.х = +разброс
+PDM_disp_base 			= 1.0		;ОГСЕ 1.0 	;множитель, на который умножается базовая дисперсия оружия, когда ГГ стоит на месте в полный рост
+PDM_disp_vel_factor 	= 1.13		;ОГСЕ 0.9 	;множитель, на который умножается базовая дисперсия оружия, когда ГГ крутит оружием или бежит
 PDM_disp_accel_factor 	= 1.3		;ОГСЕ 1.0 	;множитель, на который умножается базовая дисперсия оружия, когда ГГ бежит в спринте
 PDM_crouch	 			= 1.05		;ОГСЕ 1.0	;множитель, на который умножается базовая дисперсия оружия, когда ГГ идет пригнувшись
-PDM_crouch_no_acc 		= 0.001		;ОГСЕ 1.0	;множитель, на который умножается базовая дисперсия оружия, когда ГГ стоит на месте, пригнувшись
+PDM_crouch_no_acc 		= 0.96		;ОГСЕ 1.0	;множитель, на который умножается базовая дисперсия оружия, когда ГГ стоит на месте, пригнувшись
 
 ; ttc
-hit_power           = 1.25
+hit_power           = 0.92		;0.96		;ОГСЕ 1.2
 hit_impulse		 	= 30
 hit_type 			= fire_wound
 hit_rate			= 2.0
 
-fire_distance       = 500
-bullet_speed		= 1100	; 800 начальная скорость пули
-rpm                 = 200; (реальная 30 в/мин)
+fire_distance       = 500   ;КОЭФФИЦИЕНТ максимальной дистанции выстрела (АМК 205)
+bullet_speed		= 800	;КОЭФФИЦИЕНТ начальной скорости пули (АМК 450), реальная 830 м/с
+rpm                 = 200	;реальная 30 в/мин
 
-silencer_hit_power       	= 1.06
+silencer_hit_power       	= 0.87		;0.91		;ОГСЕ 0.92 посл 0,8
 silencer_hit_impulse	 	= 30
-silencer_fire_distance   	= 1000
+silencer_fire_distance   	= 500
 silencer_bullet_speed	 	= 730
 ; end ttc
 
@@ -156,6 +159,8 @@ scope_name 					= wpn_addon_scope
 scope_x 					= 42
 scope_y 					= 3
 
+;есть в прицеле scope_dynamic_zoom = true
+ 
 silencer_smoke_particles 	= weapons\generic_shoot_00
 
 silencer_name  				= wpn_addon_sil_762_tgp-v
@@ -168,6 +173,10 @@ silencer_light_var_color	= 0.05
 silencer_light_var_range	= 0.5
 silencer_light_time 		= 0.2
 
+;ПРОБУЕМ пока один набор на всех прописать напрямую (ВРЕМЕННО, пока KRodin в движок всё перенести не раздуплится)
+highlight_addons = fake_wpn_addon_mag_svd10, fake_wpn_addon_mag_svd20, fake_wpn_addon_scope, fake_wpn_addon_scope_1p59, fake_wpn_addon_scope_1pn51, fake_wpn_addon_scope_1p29, fake_wpn_addon_scope_kobra, fake_wpn_addon_svd_scheek
+
+; ----------------------------== Sounds ==---------------------------------
 ;-snd_draw						= weapons\svd\draw
 snd_draw					= weapons\arma\draw
 ;-snd_holster					= weapons\svd\holster
@@ -180,10 +189,10 @@ snd_reload					= weapons\etRussk\ak47_reload
 snd_silncer_shot			= weapons\svd\shoot_sil
 
 ; ОГСЕ
-hit_probability_gd_novice	= 0.80				; точность стрельбы, 
-hit_probability_gd_stalker	= 0.85				; когда оружие в руках НПС
-hit_probability_gd_veteran	= 0.90				; в зависимости от уровня
-hit_probability_gd_master	= 0.95				; сложности игры
+;hit_probability_gd_novice	= 0.80				; точность стрельбы, 
+;hit_probability_gd_stalker	= 0.85				; когда оружие в руках НПС
+;hit_probability_gd_veteran	= 0.90				; в зависимости от уровня
+;hit_probability_gd_master	= 0.95				; сложности игры
 
 
 [wpn_swd_hud]
@@ -218,48 +227,25 @@ anim_shoot					= shoot
 ;штатный механический прицел zoom_offset			= -0.168800,0.072450,-0.235
 ;близко zoom_offset			= -0.168800,0.072450,-0.3
 ;норм zoom_offset			= -0.168800,0.072450,-0.2
-zoom_offset			= -0.168800,0.072450,-0.25
+;sto1en zoom_offset			= -0.168800,0.072450,-0.235
+zoom_offset			= -0.168800,0.072450,-0.240000
 
 ;-вверх/+вниз
 zoom_rotate_x		= 0.037400
 ;-лево/+право
 zoom_rotate_y		= 0.030280
 
+;штатный механический прицел (второй режим - для оптики)
+second_zoom_offset			= -0.168800,0.072450,-0.240000
+second_zoom_rotate_x		= 0.037400
+second_zoom_rotate_y		= 0.030280
+
+
+
 [wpn_swd_repair]
 tech_complication = 700
 repair_compatibility = svd
 
-
-
-;--------------------------------------
-;СВД "Дальнобойщик" wpn_svd_m1
-;--------------------------------------
-; $spawn             		= "weapons\uniq\wpn_svd_m1"	
-; description				= enc_weapons1_wpn-svd_m1
-; inv_name				= wpn-svd_m1
-; inv_name_short			= wpn-svd_m1
-; cam_dispersion			= 0.9
-; cam_step_angle_horz		= 0.1
-; scope_zoom_factor		= 14
-; scope_status			= 1
-; scope_texture			= wpn\scopes\scope_pso-3
-; condition_shot_dec 		= 0.0004
-; cost					= 9500
-; inv_grid_x				= 5
-; inv_grid_y				= 23
-; inv_weight		        = 4.51
-; silencer_x 				= 269
-; silencer_y 				= 18
-
-; [wpn_svd_m1_repair]
-; tech_complication = 1000
-; repair_compatibility = svd
-
-;--------------------------------------
-;СВД Черепа
-; [cherep_svd]:wpn_svd_m1
-; $spawn            = "weapons\uniq\cherep_svd"
-;--------------------------------------
 
 
 ;-----------------------------------------------------------------------------------

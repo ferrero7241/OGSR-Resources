@@ -1,0 +1,387 @@
+; 5,56-мм штурмовая винтовка Enfield L85A2
+;killersan6, пересобрал для ОГСЕ k01jan
+;--------------------------------------
+[wpn_sa80]:identity_immunities,base_wpn_zoom
+GroupControlSection				= spawn_group
+discovery_dependency				= 
+$spawn              				= "weapons\l85"		; option for Level Editor
+$npc						= on				; option for Level Editor
+$prefetch 					= 8
+scheduled					= off				; option for ALife Simulator
+cform               				= skeleton
+class               				= WP_AK74
+min_radius          				= 0
+max_radius          				= 100
+description					= enc_weapons1_wpn-l85a2
+	
+ef_main_weapon_type				= 2
+ef_weapon_type					= 6
+
+;-----------------------------------------------------------------------------------
+holder_range_modifier				= 1.5
+holder_fov_modifier				= 0.8
+;-----------------------------------------------------------------------------------
+
+cost						= 5700
+weapon_class					= assault_rifle	; Type of the weapon
+launch_speed = 0
+
+ammo_elapsed					= 30
+ammo_mag_size					= 30
+ammo_class					= ammo_5.56x45_ss190, ammo_5.56x45_ap
+grenade_class					= ammo_m209
+fire_modes					= 1, 0, -1
+
+hand_dependence					= 1
+single_handed					= 0	
+
+slot 						= 2		; // secondary
+animation_slot				= 2		; type of the animation that will be used
+
+inv_name	        			= wpn-l85a2
+inv_name_short					= wpn-l85a2_s
+inv_weight					= 4.13
+
+inv_grid_width					= 4		;5
+inv_grid_height					= 2
+inv_grid_x					= 32
+inv_grid_y					= 16
+
+kill_msg_x					= 84
+kill_msg_y					= 28
+kill_msg_width					= 73
+kill_msg_height					= 30
+
+;-----------------------------------------------------------------------------------
+fire_dispersion_base				= 0.135	;0.14 угол (в градусах) базовой дисперсии оружия (оружия зажатого в тисках)
+control_inertion_factor				= 1.35f
+disp_rate 					= 1.85
+
+cam_relax_speed         		= 5.6		;скорость возврата в исходное положение
+cam_relax_speed_ai        		= 120.75
+cam_dispersion          		= 0.16		;увеличения угла (в градусах) с каждым выстрелом
+cam_dispersion_inc				= 0.3		;увеличениe cam_dispersion с каждым выстрелом
+cam_dispertion_frac				= 0.9		;ствол будет подыматься на cam_dispersion*cam_dispertion_frac +- cam_dispersion*(1-cam_dispertion_frac)
+cam_max_angle					= 10.0	    	;максимальный угол отдачи
+cam_max_angle_horz				= 20.0		;(degree) maximum shot horizontal degree 
+cam_step_angle_horz				= 1.1		;(degree) size of step camera moved in horizontal position while shooting
+
+fire_dispersion_condition_factor 		= 5	    	;увеличение дисперсии в процентах при максимальном износе 
+misfire_probability 				= 0.008		;вероятность осечки при максимальном износе 
+misfire_condition_k				= 0.06
+condition_shot_dec 				= 0.0003	;увеличение износа при каждом выстреле
+;-----------------------------------------------------------------------------------
+
+;parent dispersion modifiers
+PDM_disp_base 					= 1.2
+PDM_disp_vel_factor 				= 1.4
+PDM_disp_accel_factor 				= 1.4
+PDM_crouch	 				= 1.0
+PDM_crouch_no_acc 				= 1.0
+
+direction              				=  0, 0, 1
+fire_point             				=  0.0, 0.236, 0.455
+fire_point2            				=  0.0, 0.106, 0.468
+
+;flame_particles					= weapons\generic_weapon05
+flame_particles				= amik\weapons\flame_particles\flame_particles_02
+smoke_particles					= weapons\generic_shoot_00
+grenade_flame_particles				= weapons\generic_weapon01
+	
+shell_point		 			= 0.0, 0.216, -0.15
+shell_dir		 			= 0.0, 0.0, 0.4
+;shell_particles	 				= weapons\generic_shells
+shell_particles	 		= amik\weapons\5_56x45\5_56x45_r_00
+
+rpm_empty_click 	 			= 325
+
+; ttc
+hit_power        	= 0.71
+hit_impulse		 	= 25
+hit_type 			= fire_wound
+
+fire_distance          	= 250
+bullet_speed			= 920 ;начальная скорость пули
+rpm                     = 650
+; end ttc
+
+use_aim_bullet					= false		;Поддерживается ли первая суппер пуля
+time_to_aim					= 1.0	
+
+silencer_hit_power       	= 0.64
+silencer_hit_impulse	 	= 25
+silencer_fire_distance   	= 200
+silencer_bullet_speed	 	= 860
+
+hud                      			= wpn_sa80_hud
+normal                   			= 0, 1, 0
+position         	       			= -0.026, -0.155, 0.0
+orientation      	       			= 0, 0, 0
+
+;--STRAP PARAMETERS-----------------------------------------------------------------
+strap_position         				= -0.15,-0.36,0.25			; position (offset) and orientation of the weapon when it is strapped
+strap_orientation      				= -10,-5,10					; (3rd person view in degrees)
+strap_bone0					= bip01_spine2
+strap_bone1					= bip01_spine1
+
+startup_ammo   		        		= 90
+
+visual         		        		= weapons\l85\wpn_l85a2.ogf
+	
+light_color					= 0.6,0.5,0.3
+light_range					= 5
+light_var_color					= 0.05
+light_var_range					= 0.5
+light_time 					= 0.2
+
+;addons
+scope_status					= 2
+silencer_status					= 0		;0 -нет в модели
+grenade_launcher_status			= 2		;2 -не скрывается штатное цевьё (в мировой модели не пашут анимки)
+
+zoom_enabled					= true
+
+scope_name       		= wpn_scope		;аддоны ОГСЕ д/б = wpn_scope	;модель = wpn_addon_scope_susat	
+scope_x 				= 45
+scope_y 				= -3
+
+silencer_name  			= wpn_sil		;!!!нет в модели wpn_addon_sil_556_ar
+silencer_x 				= 190
+silencer_y 				= 10
+
+grenade_launcher_name	= wpn_addon_grenade_launcher_ag36
+grenade_launcher_x 		= 90
+grenade_launcher_y 		= 35
+
+scope_mount_status		= 0		;2
+grip_status				= 0
+magazine_status			= 0
+
+script_binding			= ogse_bind_weapon.init
+;скрытые (управляемые) кости: 
+managed_bones = muzzle
+
+;рукоятка для переноски wpn_addon_l85carryhandle     = wpn_l85_carryhandle
+;прицелы на штатную планку
+wpn_addon_scope_susat    	= wpn_l85_susat
+
+;ПРОБУЕМ пока один набор на всех прописать напрямую (ВРЕМЕННО, пока KRodin в движок всё перенести не раздуплится)
+highlight_addons = fake_wpn_addon_l85carryhandle, fake_wpn_addon_grenade_launcher_ag36, fake_wpn_addon_scope_susat 
+;при торговле обрабатывает не все аддоны из списка, а только те прицелы, что в секции ствола.
+;С патронами, глушаками и подстволами всё нормально - они же движковые (не имеют фейков).
+;Магазины, прицельные планки и ручки почему-то не обрабатываются. 
+;при закрытии инвентаря фейки превращаются в не фейки, и в торговле поэтому глюки
+;Флаг, позволяющий для всех предметов реагировать на флаг FRuckDefault. Если флаг установлен, хабар будет подбираться в рюкзак, а не в слот по умолчанию.
+default_to_ruck = true
+
+;настройки для глушителя
+;silencer_flame_particles 			= weapons\generic_weapon01
+silencer_smoke_particles 			= weapons\generic_shoot_00
+
+silencer_light_color				= 0.6,0.5,0.3
+silencer_light_range				= 0.01
+silencer_light_var_color			= 0.05
+silencer_light_var_range			= 0.5
+silencer_light_time 				= 0.2
+
+;звуки
+snd_draw					= weapons\l85\draw
+snd_holster					= weapons\l85\holster
+snd_shoot					= weapons\l85\l85_shoot 
+snd_shoot1					= weapons\l85\l85_shoot1   
+snd_shoot2					= weapons\l85\l85_shoot2    
+snd_shoot3					= weapons\l85\l85_shoot3   
+snd_empty					= weapons\l85\l85_empty, 0.7
+snd_reload					= weapons\l85\l85_reload, 0.7, 0.35
+snd_shoot_grenade			= weapons\l85\AG36_shot
+snd_reload_grenade			= weapons\l85\AG36_G36_load
+snd_switch					= weapons\l85\switch
+;_нет огг-комментов snd_silncer_shot			= weapons\l85\m16_special_01
+;_нет огг-комментов snd_silncer_shot1			= weapons\l85\m16_special_02
+;_нет огг-комментов snd_silncer_shot2			= weapons\l85\m16_special_03
+;-ОГСЕ 
+snd_silncer_shot	= weapons\ar15\ar15_silent, 0.5
+;-----------------------------------------------------------------------------
+;-- HUD DESCRIPTION
+;-----------------------------------------------------------------------------
+[wpn_sa80_hud]
+visual                   			= weapons\l85\wpn_l85a2_hud.ogf
+
+shell_point            			= 0.15, -0.025, -0.75
+shell_dir         				= 0.0, 1.0, 0.0
+
+fire_bone                	= muzzle
+fire_point   					= -0.01750,0.001000,-0.538500
+fire_point2             		= -0.010000,-0.010000,0.010000
+
+grenade_bone             	= wpn_grenade
+
+;orientation = (x,y,z) = ( x move right -x move left, y move up -y move down, z move forward -z move backwards)
+;orientation               			= 2, 0, 0
+orientation			= 2, 1, 0
+;position = (x,y,z) = ( x move right -x move left, y move up -y move down, z move forward -z move backwards)
+;низко близко +position                			= 0.10,-0.015,-0.20				
+position                			= 0.10,-0.015,-0.1
+
+anim_idle   					= idle
+anim_idle_aim   				= idle_aim
+anim_reload  					= reload
+anim_draw   					= draw
+anim_holster   					= holster
+anim_shoot   					= shoot
+anim_idle_sprint   				= idle_sprint
+anim_idle_g   					= idle_grenade
+anim_idle_g_aim   				= idle_grenade_aim
+anim_reload_g   				= reload_grenade
+anim_shoot_g   					= shoot_grenade
+anim_switch_grenade_on  		= switch_on
+anim_switch_grenade_off  		= switch_off
+anim_draw_g   					= draw_grenade
+anim_holster_g   				= holster_grenade
+; attached grenade launcher [NORMAL fire mode]
+anim_idle_gl   					= idle_w_gl
+anim_idle_gl_aim  				= idle_w_gl_aim
+anim_reload_gl   				= reload_w_gl
+anim_draw_gl   					= draw_w_gl
+anim_holster_gl   				= holster_w_gl
+anim_shoot_gl   				= shoot_w_gl
+
+;смещения HUD для режима приближения (прицеливание без увеличения)
+;_ТЕСТ 4х3: fov 70. hud_fov 0.43
+;+ручка zoom_offset		= -0.096050,0.011500,-0.137002
+;+ручка zoom_rotation		= 0.027000,0.033750
+;+мехSUSAT zoom_offset		= -0.095550,-0.008500,-0.035001
+;+мехSUSAT zoom_rotation		= 0.042000,0.033750
+zoom_offset			= -0.096050,0.011500,-0.137002
+zoom_rotate_x		= 0.027000
+zoom_rotate_y		= 0.033750
+second_zoom_offset			= -0.096050,0.011500,-0.137002
+second_zoom_rotate_x		= 0.027000
+second_zoom_rotate_y		= 0.033750
+;прицеплен подствольник
+; режим обычной стрельбы
+grenade_normal_zoom_offset			= -0.096050,0.011500,-0.137002
+grenade_normal_zoom_rotate_x		= 0.027000
+grenade_normal_zoom_rotate_y		= 0.033750
+second_grenade_normal_zoom_offset			= -0.096050,0.011500,-0.137002
+second_grenade_normal_zoom_rotate_x		= 0.027000
+second_grenade_normal_zoom_rotate_y		= 0.033750
+; режим подствольника
+;-grenade_zoom_offset			= -0.021050,-0.055350,-0.023000
+;-grenade_zoom_rotate_x		= -0.042000
+;-grenade_zoom_rotate_y		= -0.017000
+grenade_zoom_offset			= -0.064050,-0.283350,0.238000
+grenade_zoom_rotate_x		= -0.342999
+grenade_zoom_rotate_y		= 0.042000
+
+zoom_rotate_time   				= 0.26
+zoom_hide_crosshair 				= true
+
+
+[wpn_sa80_repair]
+tech_complication = 700
+repair_compatibility = l85
+
+
+
+;-----------------------------------------------------------------------------------
+;Сменные аддоны ОГСЕ
+;-----------------------------------------------------------------------------------
+;управляемые В СЕКЦИЯХ АДДОНОВ кости с привязкой by k01jan:
+;  wpn_body					Enfield SA-80/L85A2
+;  cevie					цевьё L85A2 (убирается анимкой, когда одет подствол)
+;  mag						маг 30
+;  	ammo					патроны
+;  muzzle					ручка + мушка
+;  safe						переводчик (НЕ предохранитель)
+;  shell					- (анимирована)
+;  slide					затвор
+;  trigger					спуск
+;  wpn_grenade_launcher		подствольник HK AG80
+;  	launcher_sight			прицел AG80
+;  	launcher_slide			ствол AG80
+;  	wpn_grenade				m203
+;  	grenade_shell			гильза m203
+;  	launcher_trigger		спуск AG80
+;  wpn_scope				SUSAT x4 (2D)
+;  wpn_silencer				-
+;-------------------------------------------------------------------------------------------
+; служебные секции описателей аддонов
+;при установленном аддоне кости bones показываются, bones_hide скрываются
+;-----------------------------------------------------------------------------------
+; SUSAT х4
+[sa80_susat]
+;тест мех.прицела force_remove_texture = true
+;показываем прицел 
+bones			= wpn_scope
+;прячем ручку
+bones_hide		= muzzle
+;штатный механический прицел (не настроен)
+zoom_offset		= -0.096050,0.011500,-0.135001
+zoom_rotation		= 0.027000,0.033750
+[sa80_susat_p]
+; движковый прицел
+scope_name               = wpn_addon_scope_susat
+; донастройка модели прицела
+scope                    = sa80_susat
+;не рисует сетку, пробуем тут перекрыть scope_texture		= wpn\scopes\crosshair_susat
+
+; рукоятка для переноски
+[l85_carryhandle]
+;показываем ручку
+bones = muzzle
+;прячем прицел bones_hide		= wpn_scope
+[l85_carryhandle_p] ;имитация движкового параметра
+scope_mount_name         = wpn_addon_l85carryhandle
+scope_mount              = l85_carryhandle
+;отключаем двойное прицеливание ОГСР
+;?здесь не работает disable_second_scope = true
+
+
+
+;-----------------------------------------------------------------------------------
+; секции оружия с аддонами
+;-----------------------------------------------------------------------------------
+;**************************со штатной рукояткой
+[wpn_l85_carryhandle]:wpn_sa80,l85_carryhandle_p
+;description	= "ручка"
+;-секция при снятой рукоятке (штатная планка) scope_mount_removed_section     = wpn_sa80
+;??-НАСЛЕДУЮТСЯ!!! прицелы на штатную планку wpn_addon_scope_susat    	= wpn_l85_susat
+disable_second_scope = true
+hud = wpn_l85_carryhandle_hud
+[wpn_l85_carryhandle_hud]:wpn_sa80_hud
+;здесь не работает disable_second_scope = true 
+zoom_offset			= -0.096050,0.011500,-0.137002
+zoom_rotate_x		= 0.027000
+zoom_rotate_y		= 0.033750
+second_zoom_offset			= -0.096050,0.011500,-0.137002
+second_zoom_rotate_x		= 0.027000
+second_zoom_rotate_y		= 0.033750
+;подствольник, режим обычной стрельбы
+grenade_normal_zoom_offset			= -0.096050,0.011500,-0.137002
+grenade_normal_zoom_rotate_x		= 0.027000
+grenade_normal_zoom_rotate_y		= 0.033750
+second_grenade_normal_zoom_offset		= -0.096050,0.011500,-0.137002
+second_grenade_normal_zoom_rotate_x		= 0.027000
+second_grenade_normal_zoom_rotate_y		= 0.033750
+[wpn_l85_carryhandle_repair]:wpn_sa80_repair
+
+
+;**************************с прицелом (на штатную планку)
+[wpn_l85_susat]:wpn_sa80,sa80_susat_p
+;description	= "прицел"
+;??-НАСЛЕДУЮТСЯ!!! прицелы (на штатную планку) - 
+;??-НАСЛЕДУЮТСЯ!!! рукоятка для переноски (на штатную планку, ВМЕСТО прицела) scope_mount_status = 0
+;___секция при снятом прицеле 
+scope_removed_section	 = wpn_l85_carryhandle
+hud = wpn_l85_susat_hud
+[wpn_l85_susat_hud]:wpn_sa80_hud
+;+мехSUSAT 
+second_zoom_offset			= -0.095550,-0.008500,-0.035001
+second_zoom_rotate_x		= 0.042000
+second_zoom_rotate_y		= 0.033750
+;прицеплен подствольник, режим обычной стрельбы
+second_grenade_normal_zoom_offset		= -0.095550,-0.008500,-0.035001
+second_grenade_normal_zoom_rotate_x		= 0.042000
+second_grenade_normal_zoom_rotate_y		= 0.033750
+[wpn_l85_susat_repair]:wpn_sa80_repair

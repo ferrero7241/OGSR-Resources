@@ -1,0 +1,341 @@
+; 7,62-мм автомат АЕК-973 (6П68)
+;(C) k01jan. Модель arby26, текстуры bullshit/lafugix, анимации Holden_McClure/KingFriday/jumbo5337, звуки ARMA/etRussk.
+;--------------------------------------
+;Темп стрельбы – 800-900 выстр./мин.
+;Начальная скорость пули – 700 м/с.
+;Масса: неснаряженного – 3,5 кг (без магазина 3,25)
+;--------------------------------------
+[wpn_aek]:identity_immunities,base_wpn_zoom
+GroupControlSection		= spawn_group
+discovery_dependency	= 
+$spawn              	= "weapons\aek"	; name and section in level editor
+$npc					= on				
+$prefetch 				= 8
+scheduled				= off               ;[] option for ALife Simulator
+cform               	= skeleton
+class               	= WP_AK74			; class of the weapon that corresponding to CPP class
+min_radius          	= 10				; [] for AI
+max_radius          	= 150				; [] for AI
+
+ef_main_weapon_type		= 2
+ef_weapon_type			= 6
+
+;-----------------------------------------------------------------------------------
+holder_range_modifier	= 1.0
+holder_fov_modifier		= 1.0
+;-----------------------------------------------------------------------------------
+
+cost					= 6000		;ОГСЕ	; the price of the item
+weapon_class			= assault_rifle		; the type of the box that will be used in buy-menu in multiplayer mode	
+
+ammo_elapsed			= 30	
+ammo_mag_size			= 30				;clip (magazine) size ;Магазинное питание 1
+fire_modes				= 3, 1, 0, -1
+
+ammo_class				= ammo_7.62x39_fmj, ammo_7.62x39_ap   ; name of the ltx-section of used ammo 
+
+grenade_class			= ammo_vog-25, ammo_vog-25p
+launch_speed			= 0
+
+hand_dependence			= 1									; how many hands (1 or 2) we used to hold weapon in
+single_handed			= 0
+	
+slot 					= 2									; number of slot in inventory we put weapon in (1 - knife slot, 2 - pistol, 3 - rifle, 4 - grenade, 5 - apparatus)
+animation_slot			= 2									; type of the animation that will be used
+
+description				= enc_weapons1_wpn-aek
+inv_name	        	= wpn-aek										; name in inventory	
+inv_name_short			= wpn-aek_s
+inv_weight				= 3.3					; АК 4.3 АКМ 3.15		; weight in inventory
+
+inv_grid_width			= 5		; position and size of the icon that will be used to display weapon in the inventory menu
+inv_grid_height			= 2		; all icons are on the texture ui_icon_equipment.dds,   
+inv_grid_x				= 70	;59	; position and size are in terms of 64x64 squares (след.=64+5ячеек)
+inv_grid_y				= 35	;6
+
+kill_msg_x				= 0
+kill_msg_y				= 28
+kill_msg_width			= 84
+kill_msg_height			= 28
+
+;-----------------------------------------------------------------------------------
+;--params of weapon recoil
+fire_dispersion_base	= 0.13		;АКМС 0.175; АК74 0.155; М16 0.14; G36 0.11		угол (в градусах) базовой дисперсии оружия
+control_inertion_factor	= 1.3f		;=АКС74 1.15f ;удобность ОГСЕ АК 1.25f
+disp_rate 				= 1.80
+
+;--отдача
+cam_relax_speed         = 7.5 		;скорость возврата в исходное положение
+cam_relax_speed_ai      = 120.75
+cam_dispersion          = 0.18		;увеличения угла (в градусах) с каждым выстрелом
+cam_dispersion_inc		= 0.1		;увеличениe cam_dispersion с каждым выстрелом
+cam_dispertion_frac		= 0.70		;ствол будет подыматься на cam_dispersion*cam_dispertion_frac +- cam_dispersion*(1-cam_dispertion_frac)
+cam_max_angle			= 7.0		;максимальный угол отдачи
+cam_max_angle_horz		= 9.0		;(degree) maximum shot horizontal degree 
+cam_step_angle_horz		= 0.5		;(degree) size of step camera moved in horizontal position while shooting
+;--износ
+fire_dispersion_condition_factor 	= 1.5	;увеличение дисперсии в процентах при максимальном износе 
+misfire_probability 	= 0.0004			;вероятность осечки при максимальном износе 
+misfire_condition_k		= 0.02
+condition_shot_dec 		= 0.0002			;увеличение износа при каждом выстреле
+;-----------------------------------------------------------------------------------
+
+fire_point             	=  0,0.216,0.58			; position (3rd person view) for particles of fire 
+fire_point2            	=  0,0.1650,0.730		; position (3rd person view) for particles of fire (when shooting with secondary fire)
+
+;ДЕФ flame_particles						= weapons\generic_weapon05	; particles for shooting effects
+flame_particles				= amik\weapons\flame_particles\dtk_flame_particles_2
+
+
+;ДЕФ smoke_particles						= weapons\generic_shoot_00
+;АКМ smoke_particles				= amik\weapons\smoke_particles\smoke_particles_02
+;Абакан smoke_particles_01
+;АК-74М smoke_particles_03
+;АК-74 smoke_particles_00
+smoke_particles				= amik\weapons\smoke_particles\smoke_particles_03
+
+;grenade_flame_particles					= weapons\generic_weapon01
+grenade_flame_particles		= amik\weapons\grenade_flame_particles\grenade_flame_particles_02
+
+;shell_point		 		= 0,0.216,0.174				; ОГСЕ
+shell_point		 			= 0,0.216,0.154				; position (3rd person view) for shell to throw out
+
+;левые ДЕФ shell_particles = weapons\generic_shells	; name of the particles for shells
+shell_particles				= amik\weapons\7_62x39\7_62x39_r_02
+
+;параметры качания ствола в руках ГГ при движении в режиме прицеливания (стрельба навскидку)
+PDM_disp_base 			    = 1.0		;ОГСЕ 1.3	;множитель, на который умножается базовая дисперсия оружия, когда ГГ стоит на месте в полный рост
+PDM_disp_vel_factor 		= 1.13		;ОГСЕ 1.4	;множитель, на который умножается базовая дисперсия оружия, когда ГГ крутит оружием или бежит
+PDM_disp_accel_factor 		= 1.3		;ОГСЕ 1.3	;множитель, на который умножается базовая дисперсия оружия, когда ГГ бежит в спринте
+PDM_crouch	 				= 1.05		;ОГСЕ 1.0	;множитель, на который умножается базовая дисперсия оружия, когда ГГ идет пригнувшись
+PDM_crouch_no_acc 			= 0.96		;ОГСЕ 1.0	;множитель, на который умножается базовая дисперсия оружия, когда ГГ стоит на месте, пригнувшись
+
+; ttc
+hit_power                	= 0.72		; size of damage by bullet
+hit_impulse		 			= 25
+hit_type 					= fire_wound
+fire_distance            	= 250		; maximum fire distance that bullet can fly
+bullet_speed				= 760		; starting bullet speed
+rpm                      	= 800		;900 max round per minute
+
+use_aim_bullet				= false		;Поддерживается ли первая суппер пуля
+time_to_aim					= 1.0	
+
+;params when silencer is attached 
+;similar to corresponding params without prefix silencer_
+
+silencer_hit_power       	= 0.63
+silencer_hit_impulse	 	= 25
+silencer_fire_distance   	= 600
+silencer_bullet_speed	 	= 650
+
+hud                      	= wpn_aek_hud				; name of the section of the hud
+
+position         	        = -0.026,-0.172,0			; position (offset) and orientation of the weapon in the hands of character
+orientation      	        = 0,0,0						; (3rd person view)
+
+;--STRAP PARAMETERS-----------------------------------------------------------------
+strap_position         		= -0.16,-0.40,0.15			; position (offset) and orientation of the weapon when it is strapped
+strap_orientation      		= -10,-5,10					; (3rd person view in degrees)
+strap_bone0					= bip01_spine2
+strap_bone1					= bip01_spine1
+
+visual         		        = weapons\aek\wpn_aek.ogf		; name of the model for 3rd person view
+
+light_color					= 0.6,0.5,0.3				; params for light during the fire
+light_range					= 5							; radius
+light_var_color				= 0.05						
+light_var_range				= 0.5
+light_time 					= 0.2						
+
+;addons
+scope_status				= 2							; 0 - no addon
+silencer_status				= 2							; 1 - permanent
+grenade_launcher_status		= 2							; 2 - attachable
+scope_mount_status		= 2
+grip_status				= 0
+magazine_status			= 2
+script_binding  = ogse_bind_weapon.init
+;скрытые (управляемые) кости: d2, d1, s1, s2, s3, s4, s5, m1, m2, m3, muzzle
+;нет (апгрейд ремонтника?) боковой прицельной планки "ласточкин хвост" - d2 надо ВСЕГДА скрывать
+managed_bones = d1, s1, s2, s3, s4, s5, m1, m2, m3
+
+;ПРОБУЕМ пока один набор на всех
+highlight_addons = fake_wpn_addon_mag_akm30, fake_wpn_addon_mag_rpk40, fake_wpn_addon_mag_rpk75, fake_wpn_addon_grenade_launcher, fake_wpn_addon_scope_1p29, fake_wpn_addon_scope_kobra, fake_wpn_addon_scope_1pn51, fake_wpn_addon_mtk83, fake_wpn_addon_acog, fake_wpn_addon_scope_eotech
+
+zoom_enabled				= true						; (on,off)zoom mode (right mouse button)
+
+;KRodin поправил, наследуется от прицела!!! scope_lense_fov_factor = 0.057
+
+;ОГСЕ scope_name 					= wpn_addon_scope	; section name for the attachable scope
+scope_name        			= wpn_addon_scope	;wpn_addon_scope_1p29
+scope_x 					= 65						; offset in inventory icon
+scope_y 					= 5
+;ОГСЕ silencer_name  				= wpn_addon_sil_762_ar	; section name for the attachable silencer
+silencer_name  				= wpn_addon_sil_762_pbs1
+silencer_x 				    = 220
+silencer_y 				    = 18		
+grenade_launcher_name 		= wpn_addon_grenade_launcher; section name for the attachable grenade launcher
+grenade_launcher_x 			= 117						; offset in inventory icon
+grenade_launcher_y 			= 22
+
+;------------------------------ O.G.S.E. sound remake ------------------------------
+snd_draw					= weapons\arma\draw
+snd_holster					= weapons\arma\holster
+snd_shoot					= weapons\arma\ak\shot0
+snd_shoot1					= weapons\arma\ak\shot1
+snd_shoot2					= weapons\arma\ak\shot2
+snd_shoot3					= weapons\arma\ak\shot3
+snd_reload					= weapons\etRussk\ak47_reload
+snd_empty					= weapons\arma\ak_empty, 0.6					;weapons\arma\empty
+;snd_silncer_shot			= weapons\arma\silenser\sil_ar_ak47				;weapons\arma\shot_sil
+;****************************
+;Sound Editor - OGG комментирование 
+;Таблица настроек звука (стандарты ТЧ)
+;Вид звука Quality Min Dist Max Dist Max AI Dist Base Volume Game Type
+;Звуки Амбейта (Эхо и т.п.) ТЧ 0 5 75 10 1 undefined
+;Двери 0 0.5 50 30 1 undefined
+;Инвентарь 0 1 300 300 0.5 undefined
+;Детекторы и звуки ПДА 0 1 300 300 1 undefined
+;Радиопереговоры 0 1 300 2 1 World ambient
+;Выстрел из автомата 0 5 300 65 1 Weapon shooting
+;Выстрел из автомата с глушителем 0 1 100 20 1 Weapon shooting
+;Выстрел из ружья 0 3 200 55 1 Weapon shooting
+;Выстрел из пистолета 0 3 150 55 1 Weapon shooting
+;Выстрел из пистолета с глушителем 0 1 50 6 1 Weapon shooting
+;Выстрел из снайперской винтовки 0 10 400 80 1 Weapon shooting
+;Взрыв гранаты 0 15 400 100 2 Weapon shooting
+;Звук нажатия на курок 0 0.7 20 8 1 Weapon empry clicking
+;Пуля пролетающая возле уха 0 0.5 20 3 0.75 Weapon bullet hit
+;Перезарядка оружия 0 0.7 20 5 1 Weapon recharging
+;Гибель NPC 0 1 30 30 1 NPC dying
+;Ранение NPC 0 1 50 25 1 NPC injuring
+;Шаги NPC 0 2 40 15 1 NPC step
+;Установка аддона на оружие 0 1 300 10 1 NPC step
+;Удар 0 1 40 15 1 Object colliding
+;Взрыв 0 20 500 100 2 Object exploding
+;
+;					Quality Min_Dist 	Max_Dist 	Max_AI_Dist 	Base Volume
+;aek971_sil		 	0,6 	2 			20 			10 				1 		Weapon shooting)
+;aek973_sil.бак	 	0,6 	1 			20 			10 				0,8 	undefined)
+;aek973_sil.бак2	0,6 	1 			20 			10 				1 		undefined)
+;aek973_sil_		0 		1 			20 			10 				1 		_ Undefined или World ambient)
+;****************************
+;
+snd_silncer_shot			= weapons\aek973\aek973_silncer				;ТЕСТ (0 1 20 10 1 ws)
+;
+snd_shoot_grenade			= weapons\arma\gp25\gp25_shot					;weapons\gen_grenshoot
+snd_reload_grenade			= weapons\arma\gp25\grenload_ak ;, 1.0, 0.8		;weapons\gen_grenload, 1.0, 0.8
+snd_reload_grenade1			= weapons\arma\gp25\grenload_ak1 ;, 1.0, 0.8	
+snd_switch					= weapons\arma\gp25\switch_ak     ;, 1.0, 0.5	;weapons\groza_switch, 1.0, 0.5
+;-------------------------------------------------------------
+
+;params when silencer is attached 
+;similar to corresponding params without prefix silencer_
+
+;ДЕФ silencer_flame_particles 	= weapons\generic_weapon01
+;ОГСЕ silencer_smoke_particles 	= weapons\generic_shoot_00
+silencer_smoke_particles 	= amik\weapons\smoke_particles\silencer_smoke_particles_00
+
+silencer_light_color		= 0.6,0.5,0.3
+silencer_light_range		= 0.01
+silencer_light_var_color	= 0.05
+silencer_light_var_range	= 0.5
+silencer_light_time 		= 0.2
+
+;-----------------------------------------------------------------------------
+;-- HUD DESCRIPTION
+;-----------------------------------------------------------------------------
+ 
+[wpn_aek_hud]
+allow_inertion				= true
+;similar to corresponding params in weapon section but for 1st person view
+
+shell_point					= -0.07, -0.02, -0.048 ;sto1en
+shell_dir			     	= 0.0, 1.0, 0.0
+
+fire_point               	= 0.014, 0.025, 0.24 	; sto1en
+fire_point2              	= 0.00,-0.050,0.240			;ОТКЛ ОГСЕ3
+
+fire_bone               	= wpn_body
+
+; тест sto1en
+position 				= 0.171000, -0.072400, -0.072000
+orientation 			= 1.722064, 2.842100, 0.000000
+
+visual                  	= weapons\aek\wpn_aek_hud.ogf
+
+grenade_bone            	= wpn_grenade	; name of the bone in the model for grenade launcher
+
+; animation names
+; attached grenade launcher [GRENADE fire mode]
+anim_idle					= idle
+anim_idle_aim				= idle_aim
+anim_reload					= reload			
+;+другой хват  (локоть отставлен - для бубна) reload2 (старое, удалено) или reload_sector
+anim_draw					= draw
+anim_holster				= holster
+anim_shoot					= shoot
+anim_idle_sprint			= idle_sprint		;?idle_sprint_w_gl
+
+anim_idle_g					= idle_grenade
+anim_idle_g_aim				= idle_grenade_aim
+anim_reload_g				= reload_grenade
+anim_shoot_g				= shoot_grenade		;выстрел из ГП
+;работает неправильно. Особенности движка ТЧ, у ГП нету параметра скорострельности, из-за этого иногда максимум проигрывается 1-2 первые кадра, если очень повезет.
+anim_switch_grenade_on		= switch_on
+anim_switch_grenade_off		= switch_off
+anim_draw_g					= draw_grenade
+anim_holster_g				= holster_grenade	;работает неправильно: при убирании с активным подстволом, пригрывается holster (левая рука берётся за цевьё ЧЕРЕЗ подствольник). Не больше 10 кадров?
+
+; attached grenade launcher [NORMAL fire mode]
+anim_idle_gl				= idle_w_gl
+anim_idle_gl_aim			= idle_w_gl_aim
+anim_reload_gl				= reload_w_gl		;-правой
+;+другой хват reload2_w_gl (старое, удалено) или reload_sector_w_gl
+anim_draw_gl				= draw_w_gl
+anim_holster_gl				= holster_w_gl
+anim_shoot_gl				= shoot_w_gl		;ходьба/удержание/бег с ГП
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;HUD offset in zoom mode (to all)
+; тест sto1en
+;штатный механический прицел
+zoom_offset			= -0.168900,0.062050,-0.247100
+zoom_rotate_x		= 0.038400
+zoom_rotate_y		= 0.030280
+;штатный механический прицел (второй режим - для оптики)
+second_zoom_offset			= -0.168900,0.062050,-0.247100
+second_zoom_rotate_x		= 0.038400
+second_zoom_rotate_y		= 0.030280
+; same as above, but for attached grenade launcher for
+; in NORMAL shoot mode
+grenade_normal_zoom_offset		= -0.168900,0.068050,-0.247100
+grenade_normal_zoom_rotate_x	= 0.043400
+grenade_normal_zoom_rotate_y	= 0.030280
+second_grenade_normal_zoom_offset		= -0.168900,0.068050,-0.247100
+second_grenade_normal_zoom_rotate_x	= 0.043400
+second_grenade_normal_zoom_rotate_y	= 0.030280
+; same as above, but for attached grenade launcher for
+; in GRENADE mode
+grenade_zoom_offset			= -0.109860,-0.362469,-0.100000
+grenade_zoom_rotate_x		= -0.407010
+grenade_zoom_rotate_y		= 0.023930
+;режим стрельбы из подствольника (положение д/б одинаковым - у подствола свой прицел)
+second_grenade_zoom_offset			= -0.109860,-0.362469,-0.100000
+second_grenade_zoom_rotate_x		= -0.407010
+second_grenade_zoom_rotate_y		= 0.023930
+;-----------------------------------------------------------------------------
+;прячем перекрестие прицела в зуме
+zoom_hide_crosshair	= true						;to hide crosshair in zoom 
+
+;-----------------------------------------------------------------------------------
+;ремонт ОГСЕ (перенесено в ***_ex.ltx)
+[wpn_aek_repair]
+tech_complication = 300
+repair_compatibility = aek
+
+;-----------------------------------------------------------------------------------
+;Сменные аддоны ОГСЕ
+#include "w_aek_ex.ltx"
+;-----------------------------------------------------------------------------------

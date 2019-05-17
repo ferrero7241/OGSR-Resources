@@ -1,18 +1,32 @@
-;ГШ-18
+;Glock 18С
+;модель: сборка k01jan
+;анимации: Zazzer
+;звуки Duke
+;
+;Перед выстрелом ударник находится в полувзведённом положении. При нажатии на спусковой крючок вначале снимается блокировка ударника, затем шептало освобождает боевой взвод и производится выстрел и пистолет автоматически ставится на предохранитель до следующего нажатия на спусковой крючок «безопасного действия».
+;К недостаткам такой конструкции иногда относят невозможность повторно выстрелить патрон, давший осечку. 
+;Еще одним неприятным следствием конструкции без ручных предохранителей является изрядное число несчастных случаев в процессе убирания пистолета в кобуру. 
+;Вследствии применения подобных автоматических предохранителей,нельзя прижимать пистолет стволом к чему-либо во время стрельбы - не выстрелит.
+;При недостаточно крепком хвате не перезарядится - лёгкий.
+;
+;http://guns.allzip.org/topic/81/1020826.html
+;
 ;---------------------------------------------------
-[wpn_glock]:identity_immunities,base_wpn_zoom
+[wpn_glock17]:identity_immunities,base_wpn_zoom
 GroupControlSection			= spawn_group
 discovery_dependency 		= 
-$spawn                   	= "weapons\glock"					; option for Level Editor					
+$spawn                   	= "weapons\glock"					; option for Level Editor
 $npc			 			= on		; option for Level Editor
 $prefetch 					= 8
 scheduled            		= off              ; option for ALife Simulator
-cform             			= skeleton
-class                    	= WP_USP45		;WP_PM
+cform                    	= skeleton
+class                    	= WP_LR300
 min_radius               	= 0
 max_radius                  = 30
-description					= enc_weapons1_wpn-gsh18_desc
 
+description					= enc_weapons1_wpn-glock18c
+
+ef_main_weapon_type			= 0
 ef_weapon_type				= 5
 
 ;-----------------------------------------------------------------------------------
@@ -22,26 +36,26 @@ holder_fov_modifier		= 1.0              ; во сколько раз увеличивается eye_fov
 
 cost					 	= 4000
 
-ammo_elapsed		 		= 18
-ammo_mag_size		 		= 18
+ammo_elapsed		 		= 17
+ammo_mag_size		 		= 17
 ammo_class		 			= ammo_9x19_fmj, ammo_9x19_pbp 
 
-hand_dependence		 		= 1
-single_handed				= 1
+fire_modes					= 1, 0, 3 
 
-slot 				 		= 1		
+hand_dependence		 		= 1
+single_handed				= 1							
+
+slot 			 			= 1
 animation_slot				= 1		; type of the animation that will be used
 
-inv_name					= wpn-gsh18
-inv_name_short				= wpn-gsh18
-inv_weight					= 0.58
+inv_name					= wpn-glock18c
+inv_name_short				= wpn-glock18c_s
+inv_weight					= 0.62			;0.90 (с магазином)
 
-inv_grid_width				= 1
-inv_grid_height				= 1
-inv_grid_x					= 74
-inv_grid_y					= 12
-
-
+inv_grid_width				= 2
+inv_grid_height				= 2
+inv_grid_x					= 66
+inv_grid_y					= 21
 
 kill_msg_x			= 134
 kill_msg_y			= 177
@@ -50,8 +64,8 @@ kill_msg_height		= 25
 
 ;-----------------------------------------------------------------------------------
 ;базовая дисперсия
-fire_dispersion_base		= 0.25	;угол (в градусах) базовой дисперсии оружия (оружия зажатого в тисках)
-;control_inertion_factor		= 1.07f
+fire_dispersion_base		= 0.28	;0.25 угол (в градусах) базовой дисперсии оружия (оружия зажатого в тисках)
+control_inertion_factor		= 1.07f
 
 ;отдача
 cam_relax_speed         	= 7.7	;скорость возврата в исходное положение
@@ -62,56 +76,56 @@ cam_max_angle			= 10.0	;максимальный угол отдачи
 cam_max_angle_horz		= 5.0	;(degree) maximum shot horizontal degree 
 cam_step_angle_horz		= 0.6	;(degree) size of step camera moved in horizontal position while shooting
 
-fire_dispersion_condition_factor = 4	;увеличение дисперсии в процентах при максимальном износе 
-misfire_probability 		= 0.002	    ;вероятность осечки при максимальном износе 
-misfire_condition_k					= 0.05 
+fire_dispersion_condition_factor = 5	;увеличение дисперсии в процентах при максимальном износе 
+misfire_probability 		= 0.005	    ;вероятность осечки при максимальном износе 
+misfire_condition_k			= 0.05
 condition_shot_dec 			= 0.0003	;увеличение износа при каждом выстреле
 ;-----------------------------------------------------------------------------------
 
-direction           	    = 0, 0, 1
-fire_point               	= 0.0,0.211,0.123
+direction           	 	= 0, 0, 1
+fire_point               	= 0.0, 0.209, 0.108
 
 flame_particles				= amik\weapons\flame_particles\flame_particles_04
-smoke_particles				= amik\weapons\smoke_particles\p_smoke_particles_02
+smoke_particles				= amik\weapons\smoke_particles\smoke_particles_02
 
-shell_point		 			= 0.00, 0.218, 0.033
+shell_point		 			= 0.019, 0.209, 0.017
 shell_dir		 			= 0.0, 0.0, 0.4
 shell_particles	 			= amik\weapons\9x19_shells_r
 
 rpm_empty_click 	 		= 200
 
-PDM_disp_base 				= 1.0
+PDM_disp_base 			= 1.0
 PDM_disp_vel_factor 		= 0.6
 PDM_disp_accel_factor 		= 0.6
-PDM_crouch	 				= 1.0
-PDM_crouch_no_acc 			= 1.0
+PDM_crouch	 		= 1.0
+PDM_crouch_no_acc 		= 1.0
 
 ;-----------------------------------------------------------------------------------
 ; ttc
-hit_power           = 0.46
-hit_impulse		 	= 75
-hit_type 					= fire_wound
+hit_power           = 0.49
+hit_impulse		 	= 25
+hit_type 			= fire_wound
 hit_rate			= 2
 
 fire_distance       = 50
-bullet_speed		= 350	;начальная скорость пули
-rpm                 = 325
+bullet_speed		= 350
+rpm                 = 800
 ; end ttc
 
 use_aim_bullet				= false		;Поддерживается ли первая суппер пуля
 time_to_aim					= 1.0	
 
-silencer_hit_power       	= 0.4
-silencer_hit_impulse	 	= 55
+silencer_hit_power       	= 0.40
+silencer_hit_impulse	 	= 20
 silencer_fire_distance   	= 50
 silencer_bullet_speed	 	= 290
 
-hud                      	= wpn_glock_hud
-normal                   	= 0, 1, 0
-position                 	= -0.026,-0.172,0.0
-orientation              	= 0, 0, 1
+hud                      	= wpn_glock17_hud
+visual                   	= weapons\glock\wpn_glock18c.ogf
 
-visual                   	= weapons\gsh18\wpn_gsh18.ogf
+normal                   	= 0, 1, 0
+position                 	= -0.025,-0.17,-0.005
+orientation              	= 0, 0, 0
 
 light_color		 			= 0.6,0.5,0.3
 light_range		 			= 4.0
@@ -121,29 +135,21 @@ light_time 		 			= 0.2
 
 ph_mass			 			= 1
 
-;addons
-scope_status				= 0							
-silencer_status				= 0
-grenade_launcher_status		= 0
+;Сменные аддоны ОГСЕ
+silencer_status			= 0
+grenade_launcher_status	= 0
+scope_status			= 0
 
 zoom_enabled				= true
 
-;звуки
-snd_draw					= weapons\gsh18\gsh18_draw, 0.5
-snd_holster					= weapons\gsh18\gsh18_holster, 0.5
-snd_shoot					= weapons\gsh18\gsh18_shot
-snd_empty					= weapons\gsh18\gsh18_empty, 0.5
-snd_reload					= weapons\gsh18\gsh18_reload, 0.8
-snd_close					= weapons\gsh18\gsh18_holster, 0.5
-snd_silncer_shot			= weapons\gsh18\gsh18_silent, 0.5
+scope_name 					= wpn_scope					;wpn_addon_scope_aimpoint	
+scope_x                     = 60
+scope_y                     = 0
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; silencer
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+silencer_name  				= wpn_9mm_nato_silencer		; section name for the attachable silencer
+silencer_x 					= 90						; offset in inventory icon
+silencer_y 					= 0					
 
-silencer_name  				= wpn_9mm_nato_silencer		;wpn_addon_silencer	; section name for the attachable silencer
-silencer_x 					= 40						; offset in inventory icon
-silencer_y 					= -15					
 
 ;params when silencer is attached 
 ;similar to corresponding params without prefix silencer_
@@ -157,41 +163,67 @@ silencer_light_var_color	= 0.05
 silencer_light_var_range	= 0.5
 silencer_light_time 		= 0.2
 
-[wpn_glock_hud]
+;ПРОБУЕМ пока один набор на всех прописать напрямую (ВРЕМЕННО, пока KRodin в движок всё перенести не раздуплится)
+highlight_addons = fake_wpn_addon_mag_glock19, fake_wpn_addon_mag_glock33, fake_wpn_addon_prail, fake_wpn_addon_scope_aimpoint
+
+; ----------------------------== Sounds ==---------------------------------
+snd_draw					= weapons\pm\draw							;достал
+snd_holster					= weapons\pm\holster						;убрал
+snd_shoot					= weapons\glock\shoot
+snd_empty					= weapons\fort17\fort_empty					;без ЗЗ 
+snd_reload					= weapons\glock\reload
+;snd_close					= weapons\generic_close
+snd_close					= weapons\pm\close
+snd_silncer_shot			= weapons\glock\shoot_sil
+
+[wpn_glock17_hud]
 
 allow_inertion		= true
 
-shell_point					= 0.070000,0.032000,-0.190000 
-shell_bone					= wpn_body
-fire_point					= -0.030000,0.050000,-0.360000
-fire_bone					= wpn_body
+shell_point					= 0.05,0.04,-0.1
+shell_dir		 			= 0.0, 1.0, 0.0
 
-position					= -0.021,-0.15,0.0025
-orientation					= -0.5,1.,1.149999
+fire_point               	= 0.0,0.075,-0.22
+fire_bone                	= wpn_body
+;fire_bone                	= body
 
-visual                   	= weapons\gsh18\wpn_gsh18_hud.ogf
+position					= -0.045,-0.11,-0.1025
+orientation					= 0,0,0
+
+visual                   	= weapons\glock\wpn_glock18c_hud.ogf
 
 anim_holster				= holster
 anim_idle					= idle
-anim_empty					= idle_empty
-anim_reload					= reload
-anim_reload_empty			= reload_empty
+anim_idle_aim				= idle_aim								;-idle раскачка
+anim_empty					= idle				;?				;-idle_empty
+anim_reload					= reload_mag18		;reload_mag33 	;-reload
+anim_reload_empty			= reload_mag18		;?				;-reload_empty
 anim_draw					= draw
-anim_draw_empty				= draw_empty
+anim_draw_empty				= draw				;?				;-draw_empty
 anim_shoot					= shoot
-anim_shot_last				= shoot_last
-anim_close					= holster
-anim_idle_aim				= idle_aim
-anim_idle_sprint			= idle_sprint
+anim_shot_last				= shoot				;?				;-shoot_last
+anim_close					= holster			;?
+anim_idle_sprint			= sprint							;-idle_sprint
 
 ;смещения HUD для режима приближения
-zoom_offset					= -0.099200,0.041200,-0.010500
-zoom_rotate_x				= 0.011000
-zoom_rotate_y				= -0.014300
+;zoom_offset			= -0.076400,0.061000,-0.027000
+;zoom_rotate_x		= 0.029700
+;zoom_rotate_y		= -0.007600
+zoom_offset			= -0.077400,0.059000,-0.027000
+zoom_rotate_x		= 0.030700
+zoom_rotate_y		= -0.006600
 
-;zoom_rotate_time			= 0.15
-;rotate_time					= 0.15
+;zoom_hide_crosshair			= true
 
-[wpn_glock_repair]
+;zoom_rotate_time			= 0.2
+;rotate_time				= 0.2
+
+[wpn_glock17_repair]
 tech_complication = 500
 repair_compatibility = glock
+
+
+;-----------------------------------------------------------------------------------
+;Сменные аддоны ОГСЕ 
+#include "w_glock_ex.ltx"
+;-----------------------------------------------------------------------------------

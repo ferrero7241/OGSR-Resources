@@ -1,0 +1,258 @@
+;-----------------------------------------------------------------------------------
+;Сменные аддоны ОГСЕ
+;-----------------------------------------------------------------------------------
+;управляемые В СЕКЦИЯХ АДДОНОВ кости (64=54+5s+3m+2d) АКС74УН3 с привязкой by k01jan:
+;  wpn_body			АПБ
+;    buttstock		приклад
+;    d1				- ТЕСТ Universal Scope Mount (только худ)
+;    d2				-
+;    d3				рычаг ЗЗ (не анимирован)
+;    g1				кольцо с нижней рельсой (крепится на глушитель)
+;    g2				база ручки (крепится на рельсу кольца)
+;    g3				ручка (нет анимки откидывания)
+;    hammer			курок
+;    mag			-
+;      ammo			патроны (верхние в магазине)
+;      m1			магазин
+;      m2			-
+;    muzzle			-
+;    s1				- ТЕСТ Aimpoint Micro H-1 (только худ)
+;    s2				-
+;    s3				-
+;    slide			затвор
+;      safe			переводчик-предохранитель
+;    trigger		спуск
+;    wpn_scope		- (движковая, д/б пустая)
+;    wpn_silencer	насадок
+;-----------------------------------------------------------------------------------
+; от глаз: метка, линза
+;-----------------------------------------------------------------------------------
+; служебные секции описателей аддонов
+;ЕСТЬ (ПЛанка, МАГазин, РУКоять)
+;ДОБАВИТЬ (ПРиклад, СТВол)
+
+;приклад (маг, сделать свой аддон)
+[apb_buttstock]
+bones = buttstock			;wpn_scope не работает (?с движковыми?)
+;bones_hide = 
+[apb_buttstock_p] 
+magazine_name         = wpn_addon_apb_buttstock
+magazine              = apb_buttstock
+fire_dispersion_base		= 0.23		;0.28
+;control_inertion_factor	= 1.5f		;1.09f	;удобность
+cam_dispersion_inc			= 0.2		;0.2	;увеличениe cam_dispersion с каждым выстрелом
+;-cam_dispertion_frac		= 0.9		;0.9	;ствол будет подыматься на cam_dispersion*cam_dispertion_frac +- cam_dispersion*(1-cam_dispertion_frac)
+cam_max_angle				= 9			;9		;максимальный угол отдачи
+cam_max_angle_horz			= 30		;30		;(degree) maximum shot horizontal degree 
+cam_step_angle_horz			= 1.25		;1.25	;(degree) size of step camera moved in horizontal position while shooting
+;cam_relax_speed			= 6			;6		;скорость возврата в исходное положение
+
+
+;насадок (пл, сделать свой аддон)
+[apb_silencer]
+;bones = wpn_silencer
+[apb_silencer_p]
+scope_mount_name         = wpn_addon_apb_silencer
+scope_mount              = apb_silencer
+silencer_status				= 1
+bullet_speed				= 290
+hit_power               	= 0.44		;0.46
+hit_impulse		 			= 60		;70	
+;silencer_hit_power       	= 0.44
+;silencer_hit_impulse	 	= 60
+;silencer_bullet_speed	 	= 290
+;flame_particles				= amik\weapons\flame_particles\flame_particles_04
+;smoke_particles				= amik\weapons\smoke_particles\p_smoke_particles_02
+;silencer_smoke_particles 	= amik\weapons\smoke_particles\p_smoke_particles_02
+snd_shoot			= weapons\aps\shot_sil
+snd_shoot1			= weapons\aps\shot_sil
+snd_shoot2			= weapons\aps\shot_sil
+;snd_silncer_shot	= weapons\aps\shot_sil
+snd_silncer_shot			= weapons\silncers\p_silncer
+fire_dispersion_base		= 0.27		;0.28
+;control_inertion_factor	= 1.5f		;1.09f	;удобность
+cam_dispersion_inc			= 0.2		;0.2	;увеличениe cam_dispersion с каждым выстрелом
+;-cam_dispertion_frac		= 0.9		;0.9	;ствол будет подыматься на cam_dispersion*cam_dispertion_frac +- cam_dispersion*(1-cam_dispertion_frac)
+cam_max_angle				= 9			;9		;максимальный угол отдачи
+cam_max_angle_horz			= 30		;30		;(degree) maximum shot horizontal degree 
+cam_step_angle_horz			= 1.25		;1.25	;(degree) size of step camera moved in horizontal position while shooting
+;cam_relax_speed			= 6			;6		;скорость возврата в исходное положение
+
+
+;рукоятка (рук)
+[apb_grip]
+bones = g1,g2,g3
+[apb_grip_p]
+grip_name				= wpn_addon_grip
+grip					= apb_grip
+;точность
+fire_dispersion_base		= 0.24		;0.28
+;control_inertion_factor	= 1.5f		;1.09f	;удобность
+cam_dispersion_inc			= 0.2		;0.2	;увеличениe cam_dispersion с каждым выстрелом
+;-cam_dispertion_frac		= 0.9		;0.9	;ствол будет подыматься на cam_dispersion*cam_dispertion_frac +- cam_dispersion*(1-cam_dispertion_frac)
+cam_max_angle				= 9			;9		;максимальный угол отдачи
+cam_max_angle_horz			= 30		;30		;(degree) maximum shot horizontal degree 
+cam_step_angle_horz			= 1.25		;1.25	;(degree) size of step camera moved in horizontal position while shooting
+;cam_relax_speed			= 6			;6		;скорость возврата в исходное положение
+
+
+
+;-----------------------------------------------------------------------------------
+; служебные секции описателей прицелов
+; штатный механический прицел (пока не задействован)
+[apb_ironsight]
+;force_remove_texture = true
+;показываемые кости, был пустой, залочен (здесь НЕ работает?) bones = 
+;смещение ствола при прицеливании: лево/право,верх/низ,от/к себя(е)
+;zoom_offset			= -0.115700,0.054000,-0.040000
+zoom_offset			= -0.115700,0.054000,-0.047000
+zoom_rotation		= 0.026000,0.050000
+[apb_ironsight_p]
+; имитация движкового параметра для прицела
+scope_name = 
+; донастройка модели прицела
+scope                    = apb_ironsight
+
+
+
+;-----------------------------------------------------------------------------------
+; секции оружия с аддонами
+;-----------------------------------------------------------------------------------
+; базовая секция АПБ (-)
+[wpn_apb]:wpn_aps
+fire_distance            	= 100
+silencer_fire_distance   	= 80
+scope_mount_status		= 2		; насадок (фейк)
+magazine_status			= 2		; приклад (фейк)
+wpn_addon_apb_buttstock      = wpn_apb_buttstock
+wpn_addon_apb_silencer	= wpn_apb_silencer
+;ПРОБУЕМ прописать наборы по секциям
+highlight_addons = fake_wpn_addon_apb_buttstock, fake_wpn_addon_apb_silencer
+hud = wpn_apb_hud
+[wpn_apb_hud]:wpn_aps_hud
+[wpn_apb_repair]
+tech_complication 		= 400
+repair_compatibility 	= stechkin
+
+;АПБ+приклад (маг)
+[wpn_apb_buttstock]:wpn_apb,apb_buttstock_p
+inv_grid_width     			= 3
+inv_grid_x					= 74
+inv_grid_y					= 16
+fire_distance            	= 220
+silencer_fire_distance   	= 180
+scope_mount_status		= 2
+wpn_addon_apb_silencer	= wpn_apb_silencer_buttstock
+magazine_removed_section = wpn_apb
+;ПРОБУЕМ прописать наборы по секциям
+highlight_addons = fake_wpn_addon_apb_silencer
+hud = wpn_apb_buttstock_hud
+[wpn_apb_buttstock_hud]:wpn_aps_hud
+anim_holster    = holster_butt
+anim_idle    = idle_butt
+anim_idle_aim    = aim_butt
+anim_reload    = reload_butt
+anim_draw    = draw_butt
+anim_shoot    = shoot_butt
+;anim_idle_sprint   = sprint
+;zoom_offset			= -0.115700,0.054000,-0.085000
+zoom_offset			= -0.115700,0.054000,-0.083000
+
+[wpn_apb_buttstock_repair]:wpn_apb_repair
+
+
+;-----------------------------------------------------------------------------------
+;АПБ+глушак (пл)
+[wpn_apb_silencer]:wpn_apb,apb_silencer_p
+grip_status				= 2
+;cost						= 5000		;2400
+;inv_weight					= 1.8
+inv_grid_width     			= 3
+inv_grid_x					= 74
+inv_grid_y					= 14
+fire_distance            	= 120
+silencer_fire_distance   	= 90
+scope_mount_removed_section	= wpn_apb
+wpn_addon_grip = wpn_apb_silencer_grip
+wpn_addon_apb_buttstock      = wpn_apb_silencer_buttstock
+;ПРОБУЕМ прописать наборы по секциям
+highlight_addons = fake_wpn_addon_apb_buttstock, fake_wpn_addon_grip
+[wpn_apb_silencer_repair]:wpn_apb_repair
+
+;---
+;АПБ+глушак+приклад (пл, маг)
+[wpn_apb_silencer_buttstock]:wpn_apb_silencer,apb_buttstock_p
+inv_grid_width     			= 4
+inv_grid_x					= 74
+inv_grid_y					= 17
+fire_distance            	= 150
+silencer_fire_distance   	= 120
+grip_status				= 2
+wpn_addon_grip = wpn_apb_silencer_grip_buttstock
+magazine_removed_section = wpn_apb_silencer
+scope_mount_removed_section	= wpn_apb_buttstock
+;ПРОБУЕМ прописать наборы по секциям
+highlight_addons = fake_wpn_addon_grip
+hud = wpn_apb_silencer_buttstock_hud
+[wpn_apb_silencer_buttstock_hud]:wpn_apb_buttstock_hud
+;zoom_offset			= -0.115700,0.054000,-0.085000
+zoom_offset			= -0.115700,0.054000,-0.083000
+[wpn_apb_silencer_buttstock_repair]:wpn_apb_repair
+;---
+
+
+;-----------------------------------------------------------------------------------
+;АПБ+глушак+ручка ()
+[wpn_apb_silencer_grip]:wpn_apb,apb_silencer_p,apb_grip_p
+;cost						= 3700
+;inv_weight					= 2.1
+inv_grid_width     			= 3
+inv_grid_x					= 74
+inv_grid_y					= 15
+fire_distance            	= 130
+silencer_fire_distance   	= 110
+wpn_addon_apb_buttstock      = wpn_apb_silencer_grip_buttstock
+grip_status				= 2
+grip_removed_section = wpn_apb_silencer
+;глушак не снимать, пока одета ручка scope_mount_removed_section	= wpn_apb
+;ПРОБУЕМ прописать наборы по секциям
+highlight_addons = fake_wpn_addon_apb_buttstock
+hud = wpn_apb_silencer_grip_hud
+[wpn_apb_silencer_grip_hud]:wpn_apb_hud
+anim_holster    = holster _grip  
+anim_idle    = idle_grip
+anim_idle_aim    = aim_grip
+anim_reload    = reload_grip
+anim_draw    = draw_grip
+anim_shoot    = shoot_grip
+anim_idle_sprint   = sprint_grip
+[wpn_apb_silencer_grip_repair]:wpn_apb_repair
+
+;---
+;АПБ+глушак+ручка+приклад (маг, рук)
+[wpn_apb_silencer_grip_buttstock]:wpn_apb_silencer_grip,apb_buttstock_p
+inv_grid_width     			= 4
+inv_grid_x					= 74
+inv_grid_y					= 18
+fire_distance            	= 200
+silencer_fire_distance   	= 150
+grip_status				= 2
+grip_removed_section = wpn_apb_silencer_buttstock
+magazine_removed_section = wpn_apb_silencer_grip
+;глушак не снимать, пока одета ручка scope_mount_removed_section	= wpn_apb_buttstock
+fire_dispersion_base		= 0.22		;0.28
+;ПРОБУЕМ прописать наборы по секциям
+;highlight_addons = 
+hud = wpn_apb_silencer_grip_buttstock_hud
+[wpn_apb_silencer_grip_buttstock_hud]:wpn_aps_hud
+anim_holster    = holster_grip_butt
+anim_idle    = idle_grip_butt
+anim_idle_aim    = aim_grip_butt
+anim_reload    = reload_grip_butt
+anim_draw    = draw_grip_butt
+anim_shoot    = shoot_grip_butt
+anim_idle_sprint   = sprint_grip
+;zoom_offset			= -0.115700,0.054000,-0.085000
+zoom_offset			= -0.115700,0.054000,-0.083000
+[wpn_apb_silencer_grip_buttstock_repair]:wpn_apb_repair
+;---

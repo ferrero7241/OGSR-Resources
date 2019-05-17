@@ -80,7 +80,7 @@ anim_reload_gl				= idle_w_gl
 
 ;-----------------------------------------------------------------------------------
 ;барабанный магазин 75 РПК
-[wpn_ak74n_buben_hud]:wpn_ak74n_base_hud
+[wpn_ak74n_wide_hud]:wpn_ak74n_base_hud
 anim_idle					= idle_drumm
 anim_idle_aim				= idle_aim_drumm
 anim_reload					= reload_drumm
@@ -172,6 +172,8 @@ zoom_rotation		= 0.038600,0.029480
 [ak74n_kobra_p]
 scope_name               = wpn_addon_scope_kobra
 scope                    = ak74n_kobra
+; второй прицел ОГСР не надо сдвигать, а second_ тут не работают..
+disable_second_scope = true
 
 ; 1ПН51 (НСПУ-3 "Казуар") х3,46
 [ak74n_1pn51]
@@ -197,18 +199,29 @@ smoke_particles   		= amik\weapons\smoke_particles\smoke_particles_04
 
 ; ACOG TA31-CH х4
 [ak74n_acog]
-;тест мех.прицела force_remove_texture = true
+;тест мех.прицела +3D
+force_remove_texture = true
 bones         = s4
 ;штатный механический прицел ACOG
 ;zoom_offset			= -0.112840,0.027250,0.128000
 ;zoom_rotation		= 0.064800,0.043280
 ; тест sto1en
-zoom_offset			= -0.168900,0.067360,-0.225100
+; zoom_offset			= -0.168900,0.067360,-0.225100
+; zoom_rotation		= 0.043400,0.030280
+; тест 3D
+zoom_offset			= -0.168900,0.020360,-0.225100
 zoom_rotation		= 0.043400,0.030280
 
 [ak74n_acog_p]
 scope_name               = wpn_addon_acog
 scope                    = ak74n_acog
+;-через дыру с мушкой
+;-second_zoom_offset			= -0.168900,0.036860,-0.225100
+;-second_zoom_rotate_x		= 0.018400
+;-second_zoom_rotate_y		= 0.030280
+;_второй прицел ОГСР не надо сдвигать, а second_ тут не работают.. 
+disable_second_scope = true
+;_поднимать планку
 
 ; EOTech 552.A65 х1
 [ak74n_eotech]
@@ -224,7 +237,8 @@ zoom_rotation		= 0.033600,0.029580
 [ak74n_eotech_p]
 scope_name               = wpn_addon_scope_eotech
 scope                    = ak74n_eotech
-
+; второй прицел ОГСР не надо сдвигать, а second_ тут не работают..
+disable_second_scope = true
 
 ;-----------------------------------------------------------------------------------
 ; служебные секции описателей магазинов
@@ -263,7 +277,7 @@ inv_grid_x			= 64
 inv_grid_y			= 4
 inv_weight				= 3.8		;АК74 3.8 = 3.3 + ???0.5
 cost					= 5400
-hud                     = wpn_ak74n_buben_hud
+hud                     = wpn_ak74n_wide_hud
 
 [ak74n_nomag]
 [ak74n_nomag_p]
@@ -641,18 +655,19 @@ wpn_addon_mag_rpk7445      = wpn_ak74n_rpk45_mtk83_eotech
 wpn_addon_mag_ak10560      = wpn_ak74n_ak60_mtk83_eotech
 [wpn_ak74n_nomag_mtk83_eotech_repair]:wpn_ak74n3_repair
 
+
+;--------------------------------------
+;Скорострельный АК-74
+;--------------------------------------
 [wpn_ak74_m1]:wpn_ak74n_rpk45_side_rail_kobra
+;$spawn             				= "weapons\uniq\wpn_ak74_m1"	
+;-rpm                      		= 850
+;-condition_shot_dec 				= 0.0004
+;-cam_dispersion					= 0.05		
+;-cam_dispersion_inc				= 0.1
+;-cost					        = 5000
 [wpn_ak74_m1_repair]:wpn_ak74n3_repair
+
 [wpn_ak74_arena]:wpn_ak74n_ak74n30_ironsight
 [wpn_ak74_arena_repair]:wpn_ak74n3_repair
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;+Лекарство
-;[wpn_ak74]:wpn_ak74n_ak74n30_ironsight
-;[wpn_ak74_repair]:wpn_ak74n3_repair
-
-;[wpn_ak74_m1]:wpn_ak74n_ak74n30_side_rail_1p29
-;[wpn_ak74_m1_repair]:wpn_ak74n3_repair
-
-;[wpn_aks74_m1_camo1]:wpn_ak74n_ak74n30_side_rail_kobra
-;[wpn_aks74_m1_camo1_repair]:wpn_ak74n3_repair
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;-----------------------------------------------------------------------------------

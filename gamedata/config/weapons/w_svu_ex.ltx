@@ -1,0 +1,431 @@
+;-----------------------------------------------------------------------------------
+;Сменные аддоны ОГСЕ
+;-----------------------------------------------------------------------------------
+;управляемые В СЕКЦИЯХ АДДОНОВ кости (59=+5s+2m+2d) СВУ-АС с привязкой by k01jan:
+;wpn_body		патрон в стволе
+;  wpn_silencer	штатный насадок СВУ
+;  wpn_scope	- (движковая, д/б пустая)
+;  mag			- пустая, анимированная
+;  	ammo		2 патрона в магазине (скрытА при разряжании, виднА при заряжании)
+;  	mag: +m1	СВД 10
+;  	mag: +m2	СВУ-А 20
+;  lock			защёлка-фиксатор магазина
+;  muzzle		сошки (сложены)
+;  +d1			прицелы откинуты
+;  +d2			прицелы сложены (для оптики)
+;  +s1			ПСО-1 х4
+;  +s2			1П59 "Гиперон" (пер.кратность, не поддерживает авторежим)
+;  +s3			1ПН51 (НСПУ-3 "Казуар") х3,46
+;  +s4			1П29 (УСП-1 "Тюльпан") х4
+;  +s5			ЭКП-8М-01 "Кобра" х1
+;  safe			предохранитель
+;  side			затвор
+;  trigger		спусК
+;-----------------------------------------------------------------------------------
+;шейдеры:
+;collimator_metka0 первая линза Кобры - прозрачная с меткой (сменная) ХУД худ-reddotsight1 / МИР
+;collimator_lens01 вторая линза Кобры - полупрозрачная круглая зелёная ХУД модель-transparent / МИР
+;!!!для худовых моделей models\transparent менять на forward\collimator
+;-----------------------------------------------------------------------------------
+
+
+
+; базовая секция
+[wpn_svu_base]:wpn_swu-as
+silencer_status			= 2		;2 насадок wpn_addon_sil_762_svu
+grenade_launcher_status	= 0
+scope_status			= 2
+scope_mount_status		= 0		;?апгрейд - рельса (+3 НАТО)
+grip_status				= 0		;?сошки -хват!
+magazine_status			= 2
+script_binding  = ogse_bind_weapon.init
+;скрытые (управляемые) кости: d2, d1, s1, s2, s3, s4, s5, m1, m2, muzzle
+managed_bones = d2, s1, s2, s3, s4, s5, m1, m2
+hud = wpn_svu_base_hud
+[wpn_svu_base_hud]:wpn_swu-as_hud
+
+
+
+;-----------------------------------------------------------------------------------
+;без магазина (перезарядка)
+[wpn_svu_nomag_hud]:wpn_swu-as_hud
+anim_reload					= idle
+
+
+
+;-----------------------------------------------------------------------------------
+; служебные секции описателей прицелов
+
+; штатный механический прицел (пока не задействован)
+[svu_ironsight]
+;force_remove_texture = true
+;показываемые кости, был пустой, залочен (здесь НЕ работает?) bones = d1
+;смещение ствола при прицеливании: лево/право,верх/низ,от/к себя(е)
+zoom_offset			= -0.154600,0.010750,-0.320999
+;дальше, до затвора zoom_offset			= -0.154600,0.010750,-0.226000
+zoom_rotation		= 0.015360,0.026210
+
+[svu_ironsight_p] ; имитация движкового параметра для прицела
+scope_name = 
+; донастройка модели прицела
+scope                    = svu_ironsight
+;scope_x 					= 54
+;scope_y 					= 3
+
+
+
+;+при одетом прицеле кости bones показываются, bones_hide скрываются
+; 6Ц1 (ПСО-1) х4
+[svu_pso1]
+;тест мех.прицела force_remove_texture = true
+bones         = s1, d2
+bones_hide = d1
+;штатный механический прицел (не настроен)
+zoom_offset			= -0.154600,0.010750,-0.320999
+zoom_rotation		= 0.015360,0.026210
+
+[svu_pso1_p] ; имитация движкового параметра
+; движковый прицел
+scope_name               = wpn_addon_scope
+scope                    = svu_pso1
+;иконка прицела
+;scope_x 					= 54
+;scope_y 					= 3
+
+; 1П59 ("Гиперон") х3-10 (-не поддерживает авторежим)
+[svu_1p59]
+;тест мех.прицела force_remove_texture = true
+bones         = s2, d2
+bones_hide = d1
+;штатный механический прицел (со сдвигом)
+zoom_offset			= -0.154600,0.010750,-0.320999
+zoom_rotation		= 0.015360,0.026210
+
+[svu_1p59_p]:base_wpn_zoom ; имитация движкового параметра
+; движковый прицел
+scope_name               = wpn_addon_scope_1p59
+scope                    = svu_1p59
+;иконка прицела
+scope_x 					= 68
+;scope_y 					= 3
+;ТЕСТ кратность 3х-10х
+class				= WP_BINOC
+;holder_range_modifier		= 2.2
+zoom_enabled				= true
+;есть в прицеле scope_dynamic_zoom = true
+snd_gyro			= weapons\binoculars_gyro
+snd_zoomin			= weapons\binoculars_zoomin
+snd_zoomout			= weapons\binoculars_zoomout
+snd_close			= weapons\generic_close
+vision_present			= false
+vis_frame_speed			= 4			; скорость, с которой наводится рамка на цель
+vis_frame_color			= 0.7,0.7,0.7,1.0	; цвет рамки RGBA (A) Не учитывается
+found_snd			= detectors\DA-2_beep1
+
+
+; 1ПН51 (НСПУ-3 "Казуар") х3,46
+[svu_1pn51]
+;тест мех.прицела force_remove_texture = true
+bones         = s3, d2
+bones_hide = d1
+;штатный механический прицел (не настроен)
+zoom_offset			= -0.154600,0.010750,-0.320999
+zoom_rotation		= 0.015360,0.026210
+;shell_point			= 0.90, 0.03, -0.045
+
+[svu_1pn51_p] ; имитация движкового параметра
+; движковый прицел
+scope_name               = wpn_addon_scope_1pn51
+scope                    = svu_1pn51
+;иконка прицела
+scope_x 					= 73
+;scope_y 					= 3
+
+
+; 1П29 (УСП-1 "Тюльпан") х4
+[svu_1p29]
+;тест мех.прицела force_remove_texture = true
+;показываемые кости
+bones         = s4, d2
+bones_hide = d1
+;штатный механический прицел (не настроен)
+zoom_offset			= -0.154600,0.010750,-0.320999
+zoom_rotation		= 0.015360,0.026210
+
+; кусок секции для наследования
+[svu_1p29_p] ; имитация движкового параметра
+; движковый прицел
+scope_name               = wpn_addon_scope_1p29
+; донастройка модели прицела
+scope                    = svu_1p29
+;иконка прицела
+scope_x 					= 76
+scope_y 					= 6
+
+; ЭКП-8М-01 "Кобра" х1
+[svu_kobra]
+force_remove_texture = true
+bones         = s5, d2
+bones_hide = d1
+;штатный механический прицел (со сдвигом)
+zoom_offset			= -0.154600,-0.012250,-0.320999
+;дальше, до затвора zoom_offset			= -0.154600,0.010750,-0.226000
+zoom_rotation		= 0.015360,0.026210
+
+
+[svu_kobra_p] ; имитация движкового параметра
+; движковый прицел
+scope_name               = wpn_addon_scope_kobra
+scope                    = svu_kobra
+;иконка прицела
+scope_x 					= 85
+scope_y 					= 13
+
+
+
+;-----------------------------------------------------------------------------------
+; служебные секции описателей магазинов
+;+при одетом аддоне показываются только соответствующие bones кости
+
+[svu_svd10]
+bones = m1
+[svu_svd10_p] ; имитация движкового параметра для магазина СВД
+magazine_name            = wpn_addon_mag_svd10
+magazine                 = svu_svd10
+ammo_mag_size			= 10
+inv_grid_x			= 0
+inv_grid_y			= 2
+
+;------------------------------------------------------------------------------------
+[svu_svd20]
+bones = m2
+[svu_svd20_p] ; имитация движкового параметра для магазина СВУ
+magazine_name            = wpn_addon_mag_svd20
+magazine                 = svu_svd20
+ammo_mag_size            = 20
+inv_grid_x			= 65
+inv_grid_y			= 35
+
+;------------------------------------------------------------------------------------
+[svu_nomag]
+;bones = 
+[svu_nomag_p] ; имитация движкового параметра для магазинов
+ammo_class               = ammo_7.62x54_dummy, ammo_7.62x54_dummy, ammo_7.62x54_dummy	;патрон-залушка
+ammo_mag_size            = 0					; не во что заряжать
+rpm                      = 0					; нечем стрелять
+snd_reload               = $no_sound
+snd_empty                = $no_sound
+hud                      = wpn_svu_nomag_hud
+inv_grid_x			= 65
+inv_grid_y			= 33
+
+;-----------------------------------------------------------------------------------
+; служебные секции описателей аддонов
+;-----------------------------------------------------------------------------------
+[wpn_swu_repair]
+tech_complication = 700
+repair_compatibility = svu
+
+
+
+;-----------------------------------------------------------------------------------
+; секции оружия с аддонами
+;-----------------------------------------------------------------------------------
+;;;;;;;;;;;;;;;;;;;;нет магазина
+; ПСО, нет магазина
+[wpn_svu_nomag_pso1]:wpn_svu_base,svu_pso1_p,svu_nomag_p
+;прицелы на боковую планку
+wpn_addon_scope_1p59     = wpn_svu_nomag_1p59
+wpn_addon_scope_1pn51    = wpn_svu_nomag_1pn51
+wpn_addon_scope_1p29	 = wpn_svu_nomag_1p29
+wpn_addon_scope_kobra	 = wpn_svu_nomag_kobra
+;магазины
+wpn_addon_mag_svd10      = wpn_svu
+wpn_addon_mag_svd20      = wpn_svu_svd20_pso1
+[wpn_svu_nomag_pso1_repair]:wpn_swu_repair
+
+; Ночник, нет магазина
+[wpn_svu_nomag_1pn51]:wpn_svu_base,svu_1pn51_p,svu_nomag_p
+;прицелы на боковую планку
+wpn_addon_scope		     = wpn_svu_nomag_pso1
+wpn_addon_scope_1p59     = wpn_svu_nomag_1p59
+wpn_addon_scope_1p29	 = wpn_svu_nomag_1p29
+wpn_addon_scope_kobra	 = wpn_svu_nomag_kobra
+;магазины
+wpn_addon_mag_svd10      = wpn_svu_svd10_1pn51
+wpn_addon_mag_svd20      = wpn_svu_svd20_1pn51
+[wpn_svu_nomag_1pn51_repair]:wpn_swu_repair
+
+; Гиперон, нет магазина
+[wpn_svu_nomag_1p59]:wpn_svu_base,svu_1p59_p,svu_nomag_p
+;прицелы на боковую планку
+wpn_addon_scope		     = wpn_svu_nomag_pso1
+wpn_addon_scope_1pn51    = wpn_svu_nomag_1pn51
+wpn_addon_scope_1p29	 = wpn_svu_nomag_1p29
+wpn_addon_scope_kobra	 = wpn_svu_nomag_kobra
+scope_removed_section	 = wpn_svu_nomag_pso1
+;магазины
+wpn_addon_mag_svd10      = wpn_svu_svd10_1p59
+wpn_addon_mag_svd20      = wpn_svu_svd20_1p59
+[wpn_svu_nomag_1p59_repair]:wpn_swu_repair
+
+; Тюльпан, нет магазина
+[wpn_svu_nomag_1p29]:wpn_svu_base,svu_1p29_p,svu_nomag_p
+;прицелы на боковую планку
+wpn_addon_scope		     = wpn_svu_nomag_pso1
+wpn_addon_scope_1p59     = wpn_svu_nomag_1p59
+wpn_addon_scope_1pn51    = wpn_svu_nomag_1pn51
+wpn_addon_scope_kobra	 = wpn_svu_nomag_kobra
+;магазины
+wpn_addon_mag_svd10      = wpn_svu_svd10_1p29
+wpn_addon_mag_svd20      = wpn_svu_svd20_1p29
+[wpn_svu_nomag_1p29_repair]:wpn_swu_repair
+
+; Кобра, нет магазина
+[wpn_svu_nomag_kobra]:wpn_svu_base,svu_kobra_p,svu_nomag_p
+;прицелы на боковую планку
+wpn_addon_scope		     = wpn_svu_nomag_pso1
+wpn_addon_scope_1p59     = wpn_svu_nomag_1p59
+wpn_addon_scope_1pn51    = wpn_svu_nomag_1pn51
+wpn_addon_scope_1p29	 = wpn_svu_nomag_1p29
+;магазины
+wpn_addon_mag_svd10      = wpn_svu_svd10_kobra
+wpn_addon_mag_svd20      = wpn_svu_svd20_kobra
+[wpn_svu_nomag_kobra_repair]:wpn_swu_repair
+
+
+;;;;;;;;;;;;;;;;;;;;магазин СВД
+; ПСО-1, магазин СВД (wpn_svu_svd10_pso1)
+[wpn_svu]:wpn_svu_base,svu_pso1_p,svu_svd10_p
+$spawn 				= "weapons\svu"
+;прицелы на боковую планку
+wpn_addon_scope_1p59     = wpn_svu_svd10_1p59
+wpn_addon_scope_1pn51    = wpn_svu_svd10_1pn51
+wpn_addon_scope_1p29	 = wpn_svu_svd10_1p29
+wpn_addon_scope_kobra	 = wpn_svu_svd10_kobra
+;магазины
+wpn_addon_mag_svd20      = wpn_svu_svd20_pso1
+magazine_removed_section = wpn_svu_nomag_pso1
+[wpn_svu_repair]:wpn_swu_repair
+
+; НСПУ, магазин СВД
+[wpn_svu_svd10_1pn51]:wpn_svu_base,svu_1pn51_p,svu_svd10_p
+;прицелы на боковую планку
+wpn_addon_scope     	= wpn_svu
+wpn_addon_scope_1p59     = wpn_svu_svd10_1p59
+wpn_addon_scope_1p29	 = wpn_svu_svd10_1p29
+wpn_addon_scope_kobra	 = wpn_svu_svd10_kobra
+;магазины
+wpn_addon_mag_svd20      = wpn_svu_svd20_1pn51
+magazine_removed_section = wpn_svu_nomag_1pn51
+[wpn_svu_svd10_1pn51_repair]:wpn_swu_repair
+
+; Гриперон, магазин СВД
+[wpn_svu_svd10_1p59]:wpn_svu_base,svu_1p59_p,svu_svd10_p
+;прицелы на боковую планку
+wpn_addon_scope		     = wpn_svu
+wpn_addon_scope_1pn51    = wpn_svu_svd10_1pn51
+wpn_addon_scope_1p29	 = wpn_svu_svd10_1p29
+wpn_addon_scope_kobra	 = wpn_svu_svd10_kobra
+scope_removed_section	 = wpn_svu
+;магазины
+wpn_addon_mag_svd20      = wpn_svu_svd20_1p59
+magazine_removed_section = wpn_svu_nomag_1p59
+[wpn_svu_svd10_1p59_repair]:wpn_swu_repair
+
+; Тюльпан, магазин СВД
+[wpn_svu_svd10_1p29]:wpn_svu_base,svu_1p29_p,svu_svd10_p
+;прицелы на боковую планку
+wpn_addon_scope		     = wpn_svu
+wpn_addon_scope_1p59     = wpn_svu_svd10_1p59
+wpn_addon_scope_1pn51    = wpn_svu_svd10_1pn51
+wpn_addon_scope_kobra	 = wpn_svu_svd10_kobra
+;магазины
+wpn_addon_mag_svd20      = wpn_svu_svd20_1p29
+magazine_removed_section = wpn_svu_nomag_1p29
+[wpn_svu_svd10_1p29_repair]:wpn_swu_repair
+
+; Кобра, магазин СВД
+[wpn_svu_svd10_kobra]:wpn_svu_base,svu_kobra_p,svu_svd10_p
+;прицелы на боковую планку
+wpn_addon_scope		     = wpn_svu
+wpn_addon_scope_1p59     = wpn_svu_svd10_1p59
+wpn_addon_scope_1pn51    = wpn_svu_svd10_1pn51
+wpn_addon_scope_1p29	 = wpn_svu_svd10_1p29
+;магазины
+wpn_addon_mag_svd20      = wpn_svu_svd20_kobra
+magazine_removed_section = wpn_svu_nomag_kobra
+[wpn_svu_svd10_kobra_repair]:wpn_swu_repair
+
+
+;;;;;;;;;;;;;;;;;;;;магазин СВУ-А
+; ПСО-1, магазин СВУ-А
+[wpn_svu_svd20_pso1]:wpn_svu_base,svu_pso1_p,svu_svd20_p
+;прицелы на боковую планку
+wpn_addon_scope_1p59     = wpn_svu_svd20_1p59
+wpn_addon_scope_1pn51    = wpn_svu_svd20_1pn51
+wpn_addon_scope_1p29	 = wpn_svu_svd20_1p29
+wpn_addon_scope_kobra	 = wpn_svu_svd20_kobra
+;магазины
+wpn_addon_mag_svd10      = wpn_svu
+magazine_removed_section = wpn_svu_nomag_pso1
+[wpn_svu_svd20_pso1_repair]:wpn_swu_repair
+
+; НСПУ, магазин СВУ-А
+[wpn_svu_svd20_1pn51]:wpn_svu_base,svu_1pn51_p,svu_svd20_p
+;прицелы на боковую планку
+wpn_addon_scope		     = wpn_svu_svd20_pso1
+wpn_addon_scope_1p59     = wpn_svu_svd20_1p59
+wpn_addon_scope_1p29	 = wpn_svu_svd20_1p29
+wpn_addon_scope_kobra 	 = wpn_svu_svd20_kobra
+;магазины
+wpn_addon_mag_svd10      = wpn_svu_svd10_1pn51
+magazine_removed_section = wpn_svu_nomag_1pn51
+[wpn_svu_svd20_1pn51_repair]:wpn_swu_repair
+
+; Гриперон, магазин СВУ-А
+[wpn_svu_svd20_1p59]:wpn_svu_base,svu_1p59_p,svu_svd20_p
+;прицелы на боковую планку
+wpn_addon_scope		     = wpn_svu_svd20_pso1
+wpn_addon_scope_1pn51    = wpn_svu_svd20_1pn51
+wpn_addon_scope_1p29 	 = wpn_svu_svd20_1p29
+wpn_addon_scope_kobra 	 = wpn_svu_svd20_kobra
+scope_removed_section	 = wpn_svu_svd20_pso1
+;магазины
+wpn_addon_mag_svd10      = wpn_svu_svd10_1p59
+magazine_removed_section = wpn_svu_nomag_1p59
+[wpn_svu_svd20_1p59_repair]:wpn_swu_repair
+
+; Тюльпан, магазин СВУ-А
+[wpn_svu_svd20_1p29]:wpn_svu_base,svu_1p29_p,svu_svd20_p
+;прицелы на боковую планку
+wpn_addon_scope		     = wpn_svu_svd20_pso1
+wpn_addon_scope_1p59     = wpn_svu_svd20_1p59
+wpn_addon_scope_1pn51    = wpn_svu_svd20_1pn51
+wpn_addon_scope_kobra    = wpn_svu_svd20_kobra
+;магазины
+wpn_addon_mag_svd10      = wpn_svu_svd10_1p29
+magazine_removed_section = wpn_svu_nomag_1p29
+[wpn_svu_svd20_1p29_repair]:wpn_swu_repair
+
+; Кобра, магазин СВУ-А
+[wpn_svu_svd20_kobra]:wpn_svu_base,svu_kobra_p,svu_svd20_p
+;прицелы на боковую планку
+wpn_addon_scope		     = wpn_svu_svd20_pso1
+wpn_addon_scope_1p59     = wpn_svu_svd20_1p59
+wpn_addon_scope_1pn51    = wpn_svu_svd20_1pn51
+wpn_addon_scope_1p29     = wpn_svu_svd20_1p29
+;магазины
+wpn_addon_mag_svd10      = wpn_svu_svd10_kobra
+magazine_removed_section = wpn_svu_nomag_kobra
+[wpn_svu_svd20_kobra_repair]:wpn_swu_repair
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;--------------------------------------
+;--Громобой ОГСЕ заменён СКС с несъёмным ПУ
+;--------------------------------------
+;--[wpn_svu_m1]:wpn_svu_svd20_pso1
+;--$spawn             	= "weapons\uniq\wpn_svu_m1"	
+;--[wpn_svu_m1_repair]:wpn_swu_repair
+

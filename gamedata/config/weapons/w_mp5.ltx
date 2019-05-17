@@ -28,7 +28,7 @@ cost					= 3200
 ammo_elapsed			= 30
 ammo_mag_size		 	= 30
 ammo_class		 		= ammo_9x19_fmj, ammo_9x19_pbp 
-fire_modes				= 1, 2, -1
+fire_modes				= 2, 1, 0, -1
 
 hand_dependence		 	= 1
 single_handed			= 0
@@ -52,7 +52,7 @@ animation_slot			= 8		; type of the animation that will be used
 
 ;-----------------------------------------------------------------------------------
 ;базовая дисперсия
-fire_dispersion_base		= 0.2 	;угол (в градусах) базовой дисперсии оружия (оружия зажатого в тисках)
+fire_dispersion_base		= 0.21 	;угол (в градусах) базовой дисперсии оружия (оружия зажатого в тисках)
 control_inertion_factor		= 1.07f
 disp_rate 			= 1.75
 
@@ -74,14 +74,21 @@ condition_shot_dec 		= 0.0002 	;увеличение износа при каждом выстреле
 
 direction               = 0, 0, 1
 
-fire_point              = 0.0, 0.2, 0.392
+;fire_point              = 0.0, 0.2, 0.392
+fire_point              	= 0.0, 0.220, 0.312
 
-flame_particles			= weapons\generic_weapon05
-smoke_particles         = weapons\generic_shoot_00
+;flame_particles			= weapons\generic_weapon05
+;smoke_particles         = weapons\generic_shoot_00
 
-shell_point		 		= 0.0, 0.188, 0.082
+flame_particles				= amik\weapons\flame_particles\flame_particles_04
+smoke_particles				= amik\weapons\smoke_particles\smoke_particles_02
+
+
+;shell_point		 		= 0.0, 0.188, 0.082
+shell_point		 			= 0.015, 0.220, 0.03
 shell_dir		 		= 0.0, 1.0, 0.0
-shell_particles	 		= weapons\arsenal_shells1
+;shell_particles	 		= weapons\arsenal_shells1
+shell_particles	 			= amik\weapons\9x19_shells_r
 
 rpm_empty_click 	 	= 400
 
@@ -105,14 +112,15 @@ rpm                     = 800
 use_aim_bullet			= false		;Поддерживается ли первая суппер пуля
 time_to_aim				= 1.0	
 
-silencer_hit_power      = 0.45
+silencer_hit_power      = 0.49
 silencer_hit_impulse	= 10
 silencer_fire_distance  = 150
 silencer_bullet_speed	= 350
 
 hud                     = wpn_mp5_hud
 normal                  = 0, 1, 0
-position         	    = -0.026,-0.16,0.00
+;position         	    = -0.026,-0.16,0.00
+position                	= -0.026,-0.157,0.055
 orientation             = 0, 0, 0
 
 ;--STRAP PARAMETERS-----------------------------------------------------------------
@@ -131,7 +139,7 @@ light_var_range		 	= 0.1
 light_time 		 		= 0.2
 
 ;addons
-scope_status			= 2
+scope_status			= 0
 silencer_status			= 2
 grenade_launcher_status	= 0
 
@@ -156,17 +164,22 @@ zoom_enabled			= true
 
 ;------------------------------ O.G.S.E. sound remake -----------------------
 ;звуки
-snd_draw			= weapons\generic_draw
-snd_holster			= weapons\pistol_holster
-snd_shoot			= weapons\mp5\mp5_shoot 
-snd_shoot1			= weapons\mp5\mp5_shoot1
-snd_shoot2			= weapons\mp5\mp5_shoot2
-snd_shoot3			= weapons\mp5\mp5_shoot3      
-snd_empty			= weapons\mp5\mp5_empty, 0.5 ;цифры определяют задержку звука
-snd_reload			= weapons\mp5\mp5_reload, 1.0, 0.5
-snd_silncer_shot	= weapons\mp5\mp5_shot_sil
+;snd_draw			= weapons\generic_draw
+;snd_holster			= weapons\pistol_holster
+;snd_shoot			= weapons\mp5\mp5_shoot 
+;snd_shoot1			= weapons\mp5\mp5_shoot1
+;snd_shoot2			= weapons\mp5\mp5_shoot2
+;snd_shoot3			= weapons\mp5\mp5_shoot3      
+;snd_empty			= weapons\mp5\mp5_empty, 0.5 ;цифры определяют задержку звука
+;snd_reload			= weapons\mp5\mp5_reload, 1.0, 0.5
+;snd_silncer_shot	= weapons\mp5\mp5_shot_sil
 ;-----------------------------------------------------------------------------
-
+snd_draw					= weapons\mp5\draw
+snd_holster					= weapons\mp5\holster
+snd_shoot					= weapons\mp5\shoot
+snd_empty					= weapons\mp5\empty
+snd_reload					= weapons\mp5\reload_un
+snd_silncer_shot			= weapons\mp5\shoot_sil
 ;-----------------------------------------------------------------------------
 ;-- HUD DESCRIPTION
 ;-----------------------------------------------------------------------------
@@ -174,14 +187,23 @@ snd_silncer_shot	= weapons\mp5\mp5_shot_sil
 
 allow_inertion		= true
 
-shell_point     	= 0.0, -0.03, -0.05
-shell_dir		 	= 0.0, 0.0, 0.0
+;shell_point     	= 0.0, -0.03, -0.05
+;shell_dir		 	= 0.0, 0.0, 0.0
+shell_point             	= 0.021,0.099,0.286
+shell_dir               	= 0.0, 1.0, 0.0
+shell_bone              	= wpn_body
 
-fire_point			= -0.03,0.0,0.0
+;fire_point			= -0.03,0.0,0.0
+fire_point					= 0,0.087762,0.375585
 fire_bone 			= wpn_body
+fire_point2					= -0.03,0.0745,-0.037
+fire_bone2          	   	= wpn_body
 
-orientation			= 0, 0, 0
-position			= 0.08,-0.18,0.15 ; первая влево\вправо ; вторая вверх\вниз ;третья fov 0, 0, 0
+;orientation			= 0, 0, 0
+;position			= 0.08,-0.18,0.15 ; первая влево\вправо ; вторая вверх\вниз ;третья fov 0, 0, 0
+position					= -0.044,-0.19,0.1355
+orientation					= 0.549999,2.399999,0.1499993
+
 visual 				= weapons\mp5\wpn_mp5_hud.ogf
 
 anim_idle			= idle
@@ -189,14 +211,18 @@ anim_idle_aim		= idle_aim
 anim_reload			= reload
 anim_draw			= draw
 anim_holster		= holster
+anim_holster_speed_k = 1.5
 anim_shoot			= shoot
 anim_idle_sprint	= idle_sprint
 ;-----------------------------------------------------------------------------
 
 ;смещения HUD для режима приближения
-zoom_offset			= -0.079,0.04,-0.09
-zoom_rotate_x		= -0.003
-zoom_rotate_y		= 0.000
+;zoom_offset			= -0.079,0.04,-0.09
+;zoom_rotate_x		= -0.003
+;zoom_rotate_y		= 0.000
+zoom_offset					= -0.1105,0.045,-0.08
+zoom_rotate_x				= 0.035
+zoom_rotate_y				= 0.009
 ;-----------------------------------------------------------------------------
 
 ;прячем перекрестие прицела в зуме
@@ -210,36 +236,8 @@ rotate_time			= 0.2
 tech_complication = 400
 repair_compatibility = mp5
 
+
 ;------------------------------------------------------------------------------------------
-;Модифицированный МП5 под советский патрон
-[wpn_mp5_m1]:wpn_mp5	
-$spawn             	= "weapons\uniq\wpn_mp5_m1"
-description			= enc_weapons1_wpn-mp5_m1
-inv_name	        = wpn-mp5_m1
-inv_name_short		= wpn-mp5_m1
-ammo_class		 	= ammo_9x18_fmj, ammo_9x18_pmm
-condition_shot_dec 	= 0.0005
-cost				= 3500
-inv_grid_x			= 27
-inv_grid_y			= 0
-
-silencer_x 			= 135
-silencer_y 			= 14
-
-scope_x 			= 45
-scope_y 			= 0
-
-;------------------------------ O.G.S.E. sound remake -----------------------
-snd_shoot			= weapons\mp5\mp5_m1_shot 
-snd_shoot1			= weapons\mp5\mp5_m1_shot 
-snd_shoot2			= weapons\mp5\mp5_m1_shot 
-snd_shoot3			= weapons\mp5\mp5_m1_shot   
-;----------------------------------------------------------------------------
-
-[wpn_mp5_m1_repair]
-tech_complication = 700
-repair_compatibility = mp5
-
 ;Модифицированный МП5 со встроенным глушителем
 [wpn_mp5_m2]:wpn_mp5
 $spawn             	= "weapons\uniq\wpn_mp5_m2"
@@ -247,7 +245,7 @@ description			= enc_weapons1_wpn-mp5_m2
 inv_name	        = wpn-mp5_m2
 inv_name_short		= wpn-mp5_m2
 
-fire_dispersion_base = 0.21
+fire_dispersion_base = 0.22		;0.21
 condition_shot_dec 	= 0.0004
 cost				= 3500
 inv_grid_x			= 27
@@ -257,7 +255,7 @@ smoke_particles 	= weapons\generic_shoot_00
 flame_particles		= 
 light_disabled		= true
 
-hit_power           = 0.45
+hit_power           = 0.49
 hit_impulse	        = 10
 fire_distance       = 150
 bullet_speed	    = 350
@@ -265,30 +263,35 @@ bullet_speed	    = 350
 visual              = weapons\mp5\wpn_mp5_m2.ogf
 
 scope_status		= 0
-silencer_status		= 0
+silencer_status		= 1
 
 scope_x 			= 44
 scope_y 			= -1
 
 ;------------------------------ O.G.S.E. sound remake -----------------------
-snd_shoot			= weapons\mp5\mp5_m2_shot
-snd_shoot1			= weapons\mp5\mp5_m2_shot
-snd_shoot2			= weapons\mp5\mp5_m2_shot
-snd_shoot3			= weapons\mp5\mp5_m2_shot
-snd_reload			= weapons\mp5\mp5_reload_sil
+;snd_shoot			= weapons\mp5\mp5_m2_shot
+;snd_shoot1			= weapons\mp5\mp5_m2_shot
+;snd_shoot2			= weapons\mp5\mp5_m2_shot
+;snd_shoot3			= weapons\mp5\mp5_m2_shot
+;snd_reload			= weapons\mp5\mp5_reload_sil
 ;----------------------------------------------------------------------------
+snd_shoot					= weapons\mp5\shoot_sil
 
 hud                 = wpn_mp5_m2_hud
 
-[wpn_mp5_m2_hud]:wpn_mp5_hud
 
-orientation			= 0, 0, 0
-position			= -0.04,-0.02,0.0
+[wpn_mp5_m2_hud]:wpn_mp5_hud
+;orientation			= 0, 0, 0
+;position			= -0.04,-0.02,0.0
 
 visual 				= weapons\mp5\wpn_mp5_m2_hud.ogf
-zoom_offset		= -0.07,0.025,-0.073
-zoom_rotate_x		= -0.0085
-zoom_rotate_y		= 0.002
+
+;-zoom_offset		= -0.07,0.025,-0.073
+;-zoom_rotate_x		= -0.0085
+;-zoom_rotate_y		= 0.002
+zoom_offset			= -0.112000,0.049000,-0.080000
+zoom_rotate_x		= 0.035000
+zoom_rotate_y		= 0.009000
 
 [wpn_mp5_m2_repair]
 tech_complication = 700

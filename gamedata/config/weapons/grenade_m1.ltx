@@ -49,8 +49,8 @@ inv_name		= ammo-vog25
 inv_name_short	= ammo-vog25_s
 inv_weight		= .3
 
-inv_grid_x			= 19
-inv_grid_y			= 9
+inv_grid_x					= 76	;19
+inv_grid_y					= 12	;9
 
 kill_msg_x			= 38
 kill_msg_y			= 233
@@ -109,6 +109,8 @@ wm_size         = 0.05
 ;трассы от осколков
 fragment_speed				= 100
 
+;ТЕСТ предохранителя safe_dist_to_explode = 5
+
 explode_duration		 = 5		;подолжительность взрыва (с)
 ;------------------------------ O.G.S.E. sound remake -----------------------
 ;звуки
@@ -136,24 +138,25 @@ force_explode_time  = 10000
 ;------------------------------
 [ammo_vog-25p]:ammo_base_vog
 $spawn			= "weapons\ammo\ammo_vog-25p" ; option for Level Editor
-visual          = weapons\ammo\ammo_vog-25p.ogf
+visual          = weapons\ammo\ammo_vog-25pm.ogf
 
 ;description		= enc_weapons1_ammo_ammo-vog-25p	;ОГСЕ ?фугасно-термобарического (объёмный взрыв) действия
-;description		= enc_weapons1_ammo_ammo-vog25p			;ВОГ-25ПМ («Подкидыш» модернизированный, 7П45)
-description		= enc_weapons1_ammo_ammo-vog25tb	;ВГ-40ТБ (термобарический)
+;+description		= enc_weapons1_ammo_ammo-vog25tb	;ВГ-40ТБ (термобарический)
+description		= enc_weapons1_ammo_ammo-vog25p			;ВОГ-25ПМ («Подкидыш» модернизированный, 7П45)
 
 cost			= 570
 
 ;inv_name		= ammo-vog-25p		;ОГСЕ
-;inv_name		= ammo-vog25p		;ВОГ-25ПМ («Подкидыш» модернизированный, 7П45)
-inv_name		= ammo-vog25tb		;ВГ-40ТБ (термобарический)
+inv_name		= ammo-vog25p		;ВОГ-25ПМ («Подкидыш» модернизированный, 7П45)
+;+inv_name		= ammo-vog25tb		;ВГ-40ТБ (термобарический)
 ;inv_name_short	= ammo-vog-25p_s
-;inv_name_short	= ammo-vog25p_s
-inv_name_short	= ammo-vog25tb_s
+inv_name_short	= ammo-vog25p_s
+;+inv_name_short	= ammo-vog25tb_s
 inv_weight		= 0.3
 
-inv_grid_x		= 19
-inv_grid_y		= 10
+inv_grid_x					= 76	;19
+inv_grid_y					= 11	;10
+
 
 kill_msg_x		= 17
 kill_msg_y		= 232
@@ -175,7 +178,7 @@ jump_height = 1
 fake_grenade_name = wpn_fake_missile1
 
 [wpn_fake_missile1]:ammo_fake_vog
-visual          = weapons\ammo\ammo_vog-25p.ogf
+visual          = weapons\ammo\ammo_vog-25pm.ogf
 
 cost			= 570
 
@@ -214,6 +217,9 @@ fragment_speed				= 190
 wm_size         = 0.05
 ;wallmarks
 wallmark_section		 = explosion_marks
+
+;ТЕСТ предохранителя safe_dist_to_explode = 	5
+
 explode_duration		 = 5		;подолжительность взрыва (с)
 
 ;------------------------------ O.G.S.E. sound remake -----------------------
@@ -252,8 +258,8 @@ cost			= 660
 inv_name		= ammo-m209
 inv_name_short	= ammo-m209_s
 inv_weight		= 0.2
-inv_grid_x		= 5
-inv_grid_y		= 13
+inv_grid_x					= 76	;5
+inv_grid_y					= 13	;13
 
 kill_msg_x		= 61
 kill_msg_y		= 232
@@ -312,6 +318,9 @@ fragment_speed	= 100
 ;wallmarks
 wallmark_section			= explosion_marks
 wm_size			= 0.1
+
+;ТЕСТ предохранителя 
+safe_dist_to_explode = 10
 
 explode_duration			 = 5		;подолжительность взрыва (с)
 
@@ -408,7 +417,10 @@ fragment_speed				= 100
 wallmark_section			= explosion_marks
 wm_size						= 0.1 ;0.05
 
-explode_duration			 = 5		;подолжительность взрыва (с)
+;ТЕСТ предохранителя 
+safe_dist_to_explode = 15
+
+explode_duration			 = 7		;подолжительность взрыва (с)
 
 ;------------------------------ O.G.S.E. sound remake -----------------------
 ;звуки
@@ -494,6 +506,9 @@ wm_size          = 1
 
 fragment_speed	 = 350
 
+;ТЕСТ предохранителя 
+safe_dist_to_explode = 20
+
 explode_duration = 35	
 
 ;------------------------------ O.G.S.E. sound remake -----------------------
@@ -529,7 +544,8 @@ $prefetch 		= 16
 belt			= true
 $spawn			= "weapons\ammo\ammo_og-7b" ; option for Level Editor
 class			= A_OG7B
-visual          = weapons\ammo\ammo_og-7b.ogf
+;visual          = weapons\ammo\ammo_og-7b.ogf
+visual          = weapons\rpg_7\wpn_rpg_7_grenade.ogf
 description		= enc_weapons1_ammo_ammo-og-7b
 
 cost			= 1800
@@ -547,10 +563,10 @@ inv_grid_y		= 5
 
 k_dist			= 1
 k_disp			= 1
-k_hit			= 1
-k_impulse		= 1
-k_pierce		= 1.25
-impair			= 1.15
+k_hit			= 7
+k_impulse		= 5
+k_pierce		= 3.57
+impair			= 1.23
 buck_shot		= 0
 tracer			= on
 wm_size         = 0.1

@@ -1,0 +1,272 @@
+;--------------------------------------
+; автомат малогабаритный СР3М "Вихрь" (замен wpn_val, модифицированный wpn_val_m1 +оптика, не роздан)
+;--------------------------------------
+;--------------------------------------
+;Баллистика 9х39 приближена к реальной (k01jan, W.A.S.P., на основе Sniper Addon АМК), дальномер прицельной сетки размечен с учётом игровых расстояний (W.A.S.P.):
+;основной (верхний) угольник для стрельбы до 40 метров
+;дополнительные угольники (ниже шкалы боковых поправок по вертикали) для прицеливания при стрельбе на 60, 80, 120 и 160 м;
+;--------------------------------------
+[wpn_sr3m]:identity_immunities,base_wpn_zoom
+GroupControlSection		= spawn_group
+discovery_dependency		= 
+;---$spawn				= "weapons\val"
+$spawn				= "weapons\vihr"				; option for Level Editor
+$npc				= off
+$prefetch			= 8
+scheduled			= off						; option for ALife Simulator
+cform				= skeleton
+;---class				= WP_VINT
+class				= WP_VAL
+min_radius			= 0
+max_radius			= 150	;180
+description			= enc_weapons1_wpn-sr3m		;enc_weapons1_wpn-vintorez
+
+ef_main_weapon_type		= 2		;3
+ef_weapon_type			= 6		;7	;8
+
+;--- scope weapons -----------------------------------------------------------------
+holder_range_modifier	= 1.0		;2.15
+holder_fov_modifier		= 1.0		;0.7
+;-----------------------------------------------------------------------------------
+
+cost				= 12200
+weapon_class			= assault_rifle
+
+ammo_elapsed			= 20
+ammo_mag_size			= 20
+ammo_class			= ammo_9x39_pab9, ammo_9x39_ap
+fire_modes			= 1, 0, -1			;Авто, одиночные, пред (по кругу)
+	
+inv_name			= wpn-sr3m
+inv_name_short		= wpn-sr3m_s
+inv_weight			= 2.2
+;2.2 СР3М без магазина, прицела и глушителя
+;3.2 СР3М кг с пустым 30-зарядным магазином () и глушителем
+; ... - магазин для СР-3М (30 патронов), пустой 0,3 снаряженный 0,77, при массе патрона 23,5 г.
+; ... - глушитель для СР-3М (масса 1000-300 =700 г.)
+;Масса ВСС, кг:	
+;2,6 ВСС без магазина и прицела
+;3,7 ВСС заряженная и с прицелом ПСО-1-1
+;2.6всс+0.15маг10 (2,75) +0.24патроны (2,99) +0.6псо	=3.6
+;2.6всс+0.17маг20 (2,77) +0.5патроны (3,27) +0.6псо		=3.87
+;6Л24 - магазин для винтовки 6П29 (ВСС, 10 патронов), пустой 0,15 снаряженный 0,38 (при массе патрона 23,5 г.)
+;6Л25 - магазин для автомата 6П30 (ВАЛ, 20 патронов), пустой 0,17 снаряженный 0,64 (при массе патрона 23,5 г.)
+;Масса патрона СП5 - 23,2 г.,  СП6 - 23,0 г., ПАБ-9 - 23,8 г.
+
+inv_grid_width		= 5
+inv_grid_height		= 2
+inv_grid_x				= 36
+inv_grid_y				= 6
+
+kill_msg_x		= 98
+kill_msg_y		= 0
+kill_msg_width		= 78
+kill_msg_height		= 25
+
+hand_dependence			= 1
+single_handed			= 0
+
+slot				= 2						; // secondary
+animation_slot			= 2		;8						; type of the animation that will be used
+
+;-----------------------------------------------------------------------------------
+;базовая дисперсия
+fire_dispersion_base			= 0.14		;угол (в градусах) базовой дисперсии оружия (оружия зажатого в тисках)
+control_inertion_factor			= 1.04f
+disp_rate				= 1.8
+
+cam_relax_speed				= 5		;скорость возврата в исходное положение
+cam_relax_speed_ai			= 120.75
+cam_dispersion				= 0.125		;ЧИТ-ВСС 0.125 	;увеличения угла (в градусах) с каждым выстрелом
+cam_dispersion_inc			= 0.2		;увеличениe cam_dispersion с каждым выстрелом
+cam_dispertion_frac			= 1.0		;ствол будет подыматься на cam_dispersion*cam_dispertion_frac +- cam_dispersion*(1-cam_dispertion_frac)
+cam_max_angle				= 3.0		;ЧИТ-ВСС 3.0	;максимальный угол отдачи
+cam_max_angle_horz			= 1.0		;ЧИТ-ВСС 1.0	;(degree) maximum shot horizontal degree 
+cam_step_angle_horz			= 0.4		;(degree) size of step camera moved in horizontal position while shooting
+fire_dispersion_condition_factor	= 4.2	;увеличение дисперсии в процентах при максимальном износе. !!!Не в градусах - это множитель. 5 - это 5000% разброса при максимальном износе.  Для пистолетов рекомендуется 3 - 4, автоматов 2 - 2.5, снайперок 1 - 1.5
+misfire_probability			= 0.0015	;ЧИТ-ВСС 0.002	;вероятность осечки при максимальном износе 
+misfire_condition_k			= 0.05		; коэффициент 0.05 - проще не трогать! Может понабиться только для оружия с небольшим настрелом типа ВСС.
+condition_shot_dec			= 0.0002	;ВСС 0.0003 ;увеличение износа при каждом выстреле
+;-----------------------------------------------------------------------------------
+
+direction			= 0, 0, 1
+
+fire_point			= 0.000, 0.127, 0.570
+
+;smoke_particles			= weapons\generic_shoot_00
+smoke_particles					= amik\weapons\smoke_particles\smoke_particles_01
+
+shell_point			= 0.000, 0.127, 0.100
+shell_dir			= 0.0, 1.0, 0.0
+shell_particles	 			= amik\weapons\9x39_shells_r
+
+rpm_empty_click			= 350
+
+PDM_disp_base			= 1.0	;множитель, на который умножается базовая дисперсия оружия, когда ГГ стоит на месте в полный рост;
+PDM_disp_vel_factor		= 1.2	;множитель, на который умножается базовая дисперсия оружия, когда ГГ крутит оружием или бежит;
+PDM_disp_accel_factor	= 1.2	;множитель, на который умножается базовая дисперсия оружия, когда ГГ бежит в спринте;
+PDM_crouch				= 1.0	;множитель, на который умножается базовая дисперсия оружия, когда ГГ идет пригнувшись;
+PDM_crouch_no_acc		= 1.0	;множитель, на который умножается базовая дисперсия оружия, когда ГГ стоит на месте, пригнувшись;
+
+; ttc
+hit_power			= 0.80
+hit_impulse			= 25		;импульс пули (сила, которую летящая пуля передает жертве, влияет на поведение ragdoll-тела. Чем больше поставишь, тем дальше улетит. Если сделать большое отрицательное значение, то жертвы будут прилетать к ГГ)
+hit_type			= fire_wound
+hit_rate			= 1.95
+
+fire_distance	= 200   ;ОГСЕ 600 КОЭФФИЦИЕНТ максимальной дистанции  полета пули (затем она падает на землю и исчезает), реальная 200-400 м (баллистическая кривая должна быть более кривая, 1хрен дистанция остаётся больше А-Лайфа - в ОГСЕ switch_distance 150). Логично прописать значение эффективного огня(пистолеты-пулеметы 50-200м, пистолеты 50м, дробовики 30м и нож полметра)
+bullet_speed	= 210	;ОГСЕ 370 КОЭФФИЦИЕНТ начальной скорости пули, реальная 280-295 м/с
+rpm				= 600	;реальная 40-100 в/мин
+; end ttc
+;попадания дают фонтанчик партиклов из земли в течение трех секунд
+;похоже сильно упала скорость пуль и они из-за этого не рикошетят и время контакта с землей у них стало намного выше, из-за чего такие фонтаны партиклов
+;"фирменный" рикошет ОГСЕ не настраиваемый, это все в движке. Считается по уравнению в котором учтены скорость пули, пробиваемость поверхности и угол столкновения.
+;Баллистическая кривая, по моим практическим наблюдениям, никак не зависит от fire_distance. Баллистика зависит от air_resistance_k и bullet_speed (возможно и от gravity_const - не пробовал).
+;В первоисточнике fire_distance - maximum fire distance that bullet can fly. Я это понимаю: до какой макс дистанции стоит "обсчитывать" пулю. Т.е. простой ограничитель (с точки зрения движка игры), чтобы снизить нагрузку на ЦПУ.
+
+use_aim_bullet		= true						;Поддерживается ли первая суппер пуля
+time_to_aim			= 1.0
+
+hud				= wpn_sr3m_hud
+normal				= 0, 1, 0
+position			= -0.026, -0.084, 0.000
+orientation			= 0, 0, 0
+
+;--STRAP PARAMETERS-----------------------------------------------------------------
+strap_position			= -0.13, -0.27, 0.12				; position (offset) and orientation of the weapon when it is strapped
+strap_orientation		= -5, 0, 0					; (3rd person view in degrees)
+strap_bone0				= bip01_spine2
+strap_bone1				= bip01_spine1
+
+;visual				= weapons\val\wpn_val.ogf
+visual				= weapons\val\wpn_vihr.ogf
+	
+light_disabled			= true
+
+;addons
+scope_status			= 2
+silencer_status			= 2
+grenade_launcher_status	= 0
+
+zoom_enabled			= true
+
+;Сменные аддоны ОГСЕ д/б: 
+scope_name = wpn_scope
+scope_x						= 62
+scope_y						= 10
+
+silencer_name  				= wpn_addon_sil_939			;ЗАТЫЧКА, сделать свой
+silencer_x 					= 160
+silencer_y 					= 24
+
+silencer_hit_power       	= 0.8
+silencer_hit_impulse	 	= 25
+silencer_fire_distance   	= 200
+silencer_bullet_speed	 	= 210
+
+;silencer_flame_particles 	= weapons\generic_weapon01
+;silencer_smoke_particles 	= weapons\generic_shoot_00
+silencer_smoke_particles 		= amik\weapons\smoke_particles\p_smoke_particles_02
+
+;silencer_light_color		= 1.0, 0.1, 0.0
+silencer_light_color				= 0.6,0.5,0.3
+;silencer_light_color				= 0.58
+silencer_light_range		= 0.01
+silencer_light_var_color	= 0.05
+silencer_light_var_range	= 0.5
+silencer_light_time 		= 0.2
+
+highlight_addons = fake_wpn_addon_mag_sr30, fake_wpn_addon_scope_pso1m21, fake_wpn_addon_scope_kobra, fake_wpn_addon_scope_1pn51, fake_wpn_addon_mtk83, fake_wpn_addon_acog, fake_wpn_addon_scope_eotech
+
+;-----------------------------------------------------------------------------
+hit_probability_gd_novice	= 0.80						; точность стрельбы,      
+hit_probability_gd_stalker	= 0.85						; когда оружие в руках НПС
+hit_probability_gd_veteran	= 0.90						; в зависимости от уровня 
+hit_probability_gd_master	= 0.95						; сложности игры         
+
+;------------------------------ O.G.S.E. sound remake ------------------------
+snd_draw					= weapons\vintorez\vintorez_draw
+snd_holster					= weapons\generic_rifle_holster
+;-snd_shoot					= weapons\val\val_shoot
+;-snd_shoot1					= weapons\val\val_shoot1
+;-snd_shoot2					= weapons\val\val_shoot
+;-snd_shoot3					= weapons\val\val_shoot1
+snd_shoot					= weapons\val\vihr_shoot
+snd_empty					= weapons\vintorez\vintorez_empty
+snd_reload					= weapons\vintorez\vintorez_reload, 0.8
+;+KRodin snd_fire_modes				= weapons\firemode_switch
+snd_silncer_shot				= weapons\val\val_9x39_shotbullet_0
+snd_silncer_shot1				= weapons\val\val_9x39_shotbullet_1
+snd_silncer_shot2				= weapons\val\val_9x39_shotbullet_2
+snd_silncer_shot3				= weapons\val\val_9x39_shotbullet_3
+
+
+
+;-----------------------------------------------------------------------------
+
+;-----------------------------------------------------------------------------
+;-- HUD DESCRIPTION
+;-----------------------------------------------------------------------------
+[wpn_sr3m_hud]
+allow_inertion			= true
+
+shell_point			= 0.00, 0.00, -0.90
+shell_dir			= 0.0, 1.0, 0.0
+
+fire_point			= 0.00, 0.01, -0.70
+fire_bone			= muzzle
+
+orientation			= 0, 1, 0
+position			= 0.13, -0.06, -0.03
+;visual				= weapons\val\wpn_val_hud.ogf
+visual				= weapons\val\wpn_vihr_hud.ogf
+
+anim_idle				= idle
+anim_idle_aim			= idle_aim
+;anim_reload				= reload_vss
+anim_reload				= reload_as20		;?правленая20 (reload_val 50)
+anim_draw				= draw
+anim_holster			= holster
+anim_shoot				= shoot
+anim_idle_sprint		= idle_sprint	;тоже не айс
+;anim_idle_sprint		= idle_sprint1 	;ствол приподнят (выше-ближе), неестественная раскачка (медленней)
+;-idle_hidden ;ствол задран вверх "по-спецназерски"  (только для NLC 07)
+;-----------------------------------------------------------------------------
+
+;;;;;;;;;;;;;;;;;;;;;;Альтернативное прицеливание ОГСР через штатный механический прицел СР-3М
+;смещения HUD для режима приближения (прицеливание без увеличения)
+;ствол без установленного гранатомёта
+second_zoom_offset			= -0.129400,0.050500,-0.201000
+second_zoom_rotate_x		= 0.016000
+second_zoom_rotate_y		= -0.000700
+;;;;;;;;;;;;;;;;;;;;;;Прицеливание через оптику (перекрывается текстуроЙ)
+;прицеливание по умолчанию (по-старому, через "оптику" - ТЕКСТУРОЙ), альтернативное ОГСЕ (мех.прицел, МОДЕЛЬЮ) сбрасывается при установке любого аддона, включая ПЫС-подствол)
+;ВСС_zoom_offset			= -0.128900,0.067500,-0.201000
+;ВСС_zoom_rotate_x		= 0.018000
+;ВСС_zoom_rotate_y		= -0.000700
+;СР3М_zoom_offset			= -0.128900,0.058000,-0.201000
+;СР3М_zoom_rotate_x		= 0.025000
+;СР3М_zoom_rotate_y		= -0.000700
+zoom_offset			= -0.129400,0.050500,-0.201000
+zoom_rotate_x		= 0.016000
+zoom_rotate_y		= -0.000700
+
+
+;-----------------------------------------------------------------------------
+
+;прячем перекрестие прицела в зуме
+zoom_hide_crosshair		= true
+
+;время поворота HUD (сек)
+zoom_rotate_time		= 0.3
+rotate_time			= 0.3
+
+[wpn_sr3m_repair]
+tech_complication = 700
+repair_compatibility = vihr
+;ОГСЕ repair_compatibility = val
+
+;-----------------------------------------------------------------------------------
+;Сменные аддоны ОГСЕ 
+#include "w_sr3m_ex.ltx"
+;-----------------------------------------------------------------------------------
