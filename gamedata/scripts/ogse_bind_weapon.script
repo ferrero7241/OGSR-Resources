@@ -201,9 +201,29 @@ function wpn_binder:update_addons_visibility()
 	end
 end
 
+
+local function get_active_scope_section( wpn ) --Получить секцию прицела у оружия
+	local scope_status = ogse_wpn_utils.get_scope_flag( wpn )
+	if scope_status then
+		return get_string( wpn:section(), "scope_name" )
+	end
+end
+
 function wpn_binder:update_hud_addons_visibility()
 	--log1("wpn_binder:update_hud_addons_visibility")
-	
+
+	if db.actor:active_item() and db.actor:active_item():id() == self.object:id() then
+		local scope_sect = get_active_scope_section(self.object)
+		if scope_sect then
+			if get_bool( scope_sect, "thermo_vision_enabled", false ) then
+				level.set_blender_mode_main(2)
+			elseif get_bool( scope_sect, "night_vision_enabled", false ) then
+				level.set_blender_mode_main(1)
+			else
+				level.set_blender_mode_main(0)
+			end
+		end
+	end
 
 	if self.need_initialize_hud then
 		-- гасим по умолчанию все управляемые скриптами кости
@@ -244,6 +264,7 @@ function wpn_binder:update_hud_addons_visibility()
 	end
 	self.need_initialize_hud = false
 end
+
 
 function wpn_binder:on_second_scope_switch( enabled )
 	local parent = self.object:parent()

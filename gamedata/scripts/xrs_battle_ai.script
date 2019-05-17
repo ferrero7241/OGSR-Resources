@@ -131,6 +131,14 @@ local forbidden_profiles = {    -- запретные профили и имен
   [ "sar_monolith_exo_crystal" ] = true,
   [ "sar_monolith_specnaz"     ] = true,
   [ "sar_monolith_commander"   ] = true,
+  
+  [ "rad_kulgband_assistant"   ] = true,
+  [ "dar_farm_assistant"   ] = true,
+  [ "rad_kulgband_shron_guard1"   ] = true,
+  [ "rad_kulgband_shron_guard2"   ] = true,
+  [ "rad_kulgband_shron_guard3"   ] = true,
+  [ "kulgband_informer_assist3"   ] = true,
+  
 }
 
 local forbidden_by_lname = {

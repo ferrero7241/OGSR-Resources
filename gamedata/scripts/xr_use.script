@@ -27,7 +27,9 @@ function notify_on_use(victim, who)
 	if victim:is_talk_enabled() == true then
 		if not xr_wounded.is_wounded(victim) then
 			local act_it = db.actor:active_item()
-			if act_it and act_it:is_weapon() and not act_it:is_binoculars() and not victim:best_danger() and not victim:best_enemy() then
+			--k01jan: добавлена проверка на исключения для апгрейда оружия в руках ГГ через диалог
+			if act_it and act_it:is_weapon() and not act_it:is_binoculars() and not victim:best_danger() and not victim:best_enemy() and not k01jan_order.is_talkative_npc(victim) then
+				--log3("[OGSE] notify_on_use - disable_talk: use_no_weapon [%s]", victim:name())
 				victim:disable_talk() 
 				xr_sound.set_sound_play(victim, "use_no_weapon")
 				xr_abuse.add_abuse(victim, 1)	
@@ -61,7 +63,8 @@ function notify_on_use(victim, who)
 		elseif db.storage[victim:id()].active_scheme == "kamp" then
 			-- Юзание чувака в лагере
 			local act_it = db.actor:active_item()
-			if act_it and act_it:is_weapon() and not act_it:is_binoculars() then
+			--k01jan: добавлена проверка на исключения для апгрейда оружия в руках ГГ через диалог
+			if act_it and act_it:is_weapon() and not act_it:is_binoculars() and not k01jan_order.is_talkative_npc(victim) then
 				xr_sound.set_sound_play(victim, "use_no_weapon")
 				xr_abuse.add_abuse(victim, 1)				
 			end

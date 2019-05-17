@@ -65,11 +65,14 @@ function actor_binder:net_spawn(data)
 	ui_main_menu.start()
 ------------------------------------
 
-	self.am:subscribe({ signal = "on_talk_open",  fun = this.hide_weapon    })
-	self.am:subscribe({ signal = "on_talk_hide",  fun = this.restore_weapon })
-	self.am:subscribe({ signal = "on_trade_open", fun = this.hide_weapon    })
-	self.am:subscribe({ signal = "on_trade_hide", fun = this.restore_weapon })
-
+------------k01jan: отключено для апгрейда оружия в руках ГГ------------
+----------------(в ОГСР 2 равнозначных слота для оружия)----------------
+------(в ОГСЕ NPC и так не станут говорить с ГГ с оружием в руках)------
+--	self.am:subscribe({ signal = "on_talk_open",  fun = this.hide_weapon    })
+--	self.am:subscribe({ signal = "on_talk_hide",  fun = this.restore_weapon })
+--	self.am:subscribe({ signal = "on_trade_open", fun = this.hide_weapon    })
+--	self.am:subscribe({ signal = "on_trade_hide", fun = this.restore_weapon })
+------------------------------k01jan: end-------------------------------
 	self.am:call("on_spawn", data)
 
 	return true
