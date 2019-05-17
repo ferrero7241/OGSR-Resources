@@ -5128,6 +5128,8 @@
 	<dialog id="petr_odnogl_dialog_1">
 		<has_info>first_planshet_info</has_info>
 		<dont_has_info>petrenko_about_odnoglaz</dont_has_info>
+		<dont_has_info>kulg_band_meet_speech_loose</dont_has_info>
+		<dont_has_info>freezer_bandos_kulg_band_info</dont_has_info>
 		<phrase_list>
 			<phrase id="0">
 				<text>petr_odnogl_dialog_1_phrase_1</text>

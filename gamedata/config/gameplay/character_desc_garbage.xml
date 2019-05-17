@@ -1,9 +1,7 @@
 <?xml version='1.0' encoding="windows-1251"?>
 
 <xml>
-
-
-
+<!-- corpse -->
 	<specific_character id="uley_robber" team_default = "1">
 		<name>uley_robber_name</name>
 		<icon>ui_npc_u_green_stalker_3</icon>
@@ -22,8 +20,6 @@
 		<visual>actors\novice\green_stalker_3</visual>
 		<supplies>
 		[spawn] \n
-			wpn_ppsh41 \n
-			ammo_7.62x25_p \n
 			af_uley \n
 		</supplies>
 
@@ -31,7 +27,7 @@
 
 	</specific_character>
 
-<!--newbie_arthunter-->
+<!--  -->
 	<specific_character id="garb_novice_arthunter" team_default = "1">
 		<name>garb_novice_arthunter_name</name>
 		<icon>ui_npc_u_green_stalker_3</icon>
@@ -50,8 +46,9 @@
 		<visual>actors\novice\green_stalker_3</visual>
 		<supplies>
 		[spawn] \n
-			wpn_ppsh41 \n
-			ammo_7.62x25_p \n
+			wpn_pm \n
+			ammo_9x18_fmj \n
+			interactive_detector_advanced \n
 		</supplies>
 		<start_dialog>arthunter_start_dialog</start_dialog>
 		<actor_dialog>dm_help_wounded_medkit_dialog</actor_dialog>
@@ -79,10 +76,9 @@
 		<visual>actors\unic\npc_seriy</visual>
 		<supplies>
 			[spawn] \n
-			wpn_ak74n_ak74n30_ironsight \n
-			ammo_5.45x39_fmj \n
-			wpn_bm16 \n
-			ammo_12x70_kart \n
+			wpn_ppsh41 \n
+			wpn_tt \n
+			ammo_7.62x25_p \n
 			grenade_f1 = 2 \n
 #include "gameplay\character_drugs.xml" \n
 #include "gameplay\character_items.xml" \n
@@ -93,7 +89,9 @@
 		<actor_dialog>stalker_garbage_about_life</actor_dialog>
 #include "gameplay\character_dialogs_unic.xml"
 	</specific_character>	
-	
+
+
+<!-- Yurik -->	
 	<specific_character id="gar_dram_novice" team_default = "1">
 		<name>gar_dram_novice_name</name>
 		<icon>ui_npc_u_green_stalker_11</icon>
@@ -113,7 +111,8 @@
 		<visual>actors\novice\green_stalker_10</visual>
 		<supplies>
 			[spawn] \n
-#include "gameplay\character_equipment\character_novice_2.xml" \n
+			wpn_bm16 \n
+			ammo_12x70_kart \n
 		</supplies>
 
 #include "gameplay\character_criticals_3.xml"
@@ -144,10 +143,10 @@
 		<visual>actors\unic\npc_bes</visual>
 		<supplies>
 			[spawn] \n
-			wpn_aks74ub_aks74ub30_ironsight = 1, silencer \n
+			wpn_aks74ub_rpk45_side_rail_1p29 = 1, silencer \n
 			ammo_5.45x39_fmj \n
-			wpn_bm16 \n
-			ammo_12x70_kart \n
+			wpn_pm \n
+			ammo_9x18_fmj \n
 			grenade_f1 = 2 \n
 #include "gameplay\character_drugs.xml" \n
 #include "gameplay\character_items.xml" \n
@@ -159,7 +158,9 @@
 		<actor_dialog>stalker_garbage_about_life</actor_dialog>
 #include "gameplay\character_dialogs_unic.xml"
 	</specific_character>
-	
+
+
+<!--  -->
 	<specific_character id="gar_bandit_novice_wounded" team_default = "1">
 		<name>GENERATE_NAME_bandit</name>
 		<icon>ui_npc_u_stalker_bandit_antigas</icon>
@@ -179,11 +180,8 @@
 		<visual>actors\bandit\stalker_bandit_antigas</visual>
 		<supplies>
 			[spawn] \n
-			wpn_toz34_short \n
-			ammo_12x70_kart \n
-			wpn_mp5 \n
-			ammo_9x19_fmj \n
-			grenade_f1 = 2 \n
+			wpn_mosin_short \n
+			ammo_7.62x54_7h1 \n
 #include "gameplay\character_drugs.xml" \n
 #include "gameplay\character_items.xml" \n
 #include "gameplay\character_food.xml"
@@ -192,7 +190,8 @@
 <actor_dialog>meet_borov</actor_dialog>		
 #include "gameplay\character_dialogs.xml"
 	</specific_character>
-	
+
+<!-- Boar -->	
 	<specific_character id="gar_bandit_leader" team_default = "1">
 		<name>gar_bandit_leader_name</name>
 		<icon>ui_npc_u_stalker_bandit_master</icon>
@@ -211,10 +210,8 @@
 		<visual>actors\bandit\stalker_bandit_master</visual>
 		<supplies>
 			[spawn] \n
-			wpn_mac10 \n
-			ammo_11.43x23_hydro \n
-			wpn_toz34 \n
-			ammo_12x76_zhekan \n
+			wpn_mp40 = 1, prob = 0.80 \n
+			ammo_9x19_fmj \n
 			grenade_f1 = 2 \n
 #include "gameplay\character_drugs.xml" \n
 #include "gameplay\character_items.xml" \n
@@ -225,6 +222,7 @@
 		<actor_dialog>meet_borov</actor_dialog>
 #include "gameplay\character_dialogs.xml"	
 	</specific_character>
+
 	
 <!--BANDIT NOVICE-->
 	<specific_character id="gar_bandit_novice_default1" team_default = "1">
@@ -245,11 +243,9 @@
 		<visual>actors\bandit\stalker_bandit_3</visual>
 		<supplies>
 			[spawn] \n
-			wpn_toz34_short \n
+			wpn_bm16 \n
 			ammo_12x70_kart \n
-			wpn_mp40 \n
-			ammo_9x19_fmj \n
-			grenade_f1 = 2 \n
+			grenade_rgd5 = 2 \n
 #include "gameplay\character_drugs.xml" \n
 #include "gameplay\character_items.xml" \n
 #include "gameplay\character_food.xml"			
@@ -279,8 +275,6 @@
 			[spawn] \n
 			wpn_tt \n
 			ammo_7.62x25_ps \n
-			wpn_toz34 \n
-			ammo_12x76_zhekan \n
 			grenade_f1 = 2 \n
 #include "gameplay\character_drugs.xml" \n
 #include "gameplay\character_items.xml" \n
@@ -311,8 +305,6 @@
 			[spawn] \n
 			wpn_toz34_short \n
 			ammo_12x70_kart \n
-			wpn_mp5 \n
-			ammo_9x19_fmj \n
 			grenade_f1 = 2 \n
 #include "gameplay\character_drugs.xml" \n
 #include "gameplay\character_items.xml" \n
@@ -343,11 +335,11 @@
 		<visual>actors\bandit\stalker_bandit_5</visual>
 		<supplies>
 			[spawn] \n
-			wpn_mac10 \n
-			ammo_11.43x23_hydro \n
-			wpn_toz34 \n
-			ammo_12x76_zhekan \n
-			grenade_f1 = 2 \n
+			wpn_aks74ub_aks74ub30_ironsight \n
+			ammo_5.45x39_fmj \n
+			wpn_pm \n
+			ammo_9x18_fmj \n
+			grenade_rgd5 = 2 \n
 #include "gameplay\character_drugs.xml" \n
 #include "gameplay\character_items.xml" \n
 #include "gameplay\character_food.xml"
@@ -375,11 +367,11 @@
 		<visual>actors\bandit\stalker_bandit_4</visual>
 		<supplies>
 			[spawn] \n
-			wpn_toz34_short \n
+			wpn_bm16 \n
 			ammo_12x70_kart \n
-			wpn_mp5 \n
-			ammo_9x19_fmj \n
-			grenade_f1 = 2 \n
+			wpn_pm \n
+			ammo_9x18_fmj \n
+			grenade_rgd5 = 2 \n
 #include "gameplay\character_items.xml"	\n
 #include "gameplay\character_drugs.xml" \n
 #include "gameplay\character_food.xml"		
@@ -409,8 +401,8 @@
 			[spawn] \n
 			wpn_toz34_short \n
 			ammo_12x70_kart \n
-			wpn_mp5 \n
-			ammo_9x19_pbp \n
+			wpn_tt \n
+			ammo_7.62x25_p \n
 			grenade_f1 = 2 \n
 #include "gameplay\character_items.xml" \n
 #include "gameplay\character_drugs.xml" \n
@@ -420,7 +412,9 @@
 <actor_dialog>meet_borov</actor_dialog>
 #include "gameplay\character_dialogs.xml"						
 	</specific_character>
-	
+
+
+
 <!--Stalker general-->	
 	<specific_character id="gar_stalker_general_default1" team_default = "1">
 		<name>GENERATE_NAME_stalker</name>
@@ -442,9 +436,9 @@
 		<supplies>
 			[spawn] \n
 			wpn_aks74ub_aks74ub30_ironsight \n
-            ammo_5.45x39_fmj \n
-			wpn_bm16 \n
-			ammo_12x70_kart \n
+			ammo_5.45x39_fmj \n
+			wpn_pm \n
+			ammo_9x18_fmj \n
 			grenade_f1 = 2 \n
 #include "gameplay\character_items.xml" \n
 #include "gameplay\character_drugs.xml" \n
@@ -475,10 +469,10 @@
 		
 		<supplies>
 			[spawn] \n
-			wpn_aks74ub_aks74ub30_ironsight \n
-            ammo_5.45x39_fmj \n
-			wpn_bm16 \n
+			wpn_bm16_full \n
 			ammo_12x70_kart \n
+			wpn_tt \n
+			ammo_7.62x25_p \n
 			grenade_f1 = 2 \n
 #include "gameplay\character_items.xml" \n
 #include "gameplay\character_drugs.xml" \n
@@ -508,10 +502,10 @@
 
 		<supplies>
 			[spawn] \n
-			wpn_akm_akm30_ironsight \n
+			wpn_sks \n
 			ammo_7.62x39_fmj \n
-			wpn_bm16 \n
-			ammo_12x70_kart \n
+			wpn_tt \n
+			ammo_7.62x25_p \n
 			grenade_f1 = 2 \n
 #include "gameplay\character_items.xml" \n
 #include "gameplay\character_drugs.xml" \n
@@ -541,10 +535,10 @@
 		<visual>actors\neytral\stalker_neytral_hood_2</visual>
 		<supplies>
 			[spawn] \n
-			wpn_akm_akm30_ironsight \n
-			ammo_7.62x39_fmj \n
-			wpn_bm16 \n
-			ammo_12x70_kart \n
+			wpn_ak74n_ak74n30_ironsight \n
+			ammo_5.45x39_fmj \n
+			wpn_pm \n
+			ammo_9x18_fmj \n
 			grenade_f1 = 2 \n
 #include "gameplay\character_items.xml" \n
 #include "gameplay\character_drugs.xml" \n
@@ -574,10 +568,10 @@
 		
 		<supplies>
 			[spawn] \n
-			wpn_ak74n_ak74n30_side_rail_kobra = 1, scope \n
-			ammo_5.45x39_fmj \n
-			wpn_bm16 \n
-			ammo_12x70_kart \n
+			wpn_akm_akm30_ironsight \n
+			ammo_7.62x39_fmj \n
+			wpn_tt \n
+			ammo_7.62x25_p \n
 			grenade_f1 = 2 \n
 #include "gameplay\character_items.xml" \n
 #include "gameplay\character_drugs.xml" \n
@@ -586,8 +580,9 @@
 #include "gameplay\character_criticals_4.xml"
 #include "gameplay\character_dialogs.xml"
 	</specific_character>
-	
-	
+
+
+<!--  -->	
 	<specific_character id="gar_wounded_bandit" team_default = "1">
 		<name>GENERATE_NAME_bandit</name>
 		<icon>ui_npc_u_stalker_neytral_hood_2</icon>
@@ -619,6 +614,8 @@
 		<start_dialog>hello_dialog</start_dialog>
 #include "gameplay\character_dialogs.xml"
 	</specific_character>
+
+
 	
 <!--DOLG BLOKPOST-->
 	<specific_character id="gar_dolg_blokpost_default1" team_default = "1">
@@ -640,10 +637,10 @@
 		<visual>actors\dolg\stalker_do_mask_1</visual>
 		<supplies>
 			[spawn] \n
-            wpn_rpk74_sk1 \n
-			ammo_5.45x39_fmj \n
-			wpn_pm \n
-			ammo_9x18_pmm \n
+			wpn_sks \n
+			ammo_7.62x39_fmj \n
+			wpn_tt \n
+			ammo_7.62x25_p \n
 			grenade_f1 = 2 \n
 #include "gameplay\character_items.xml" \n
 #include "gameplay\character_drugs.xml" \n
@@ -673,10 +670,10 @@
 		<visual>actors\dolg\stalker_do_balon_8</visual>
 		<supplies>
 			[spawn] \n
-            wpn_akm_akm30_ironsight \n
+			wpn_akm_akm30_ironsight \n
 			ammo_7.62x39_fmj \n
-			wpn_sayga12k_sk1 \n
-			ammo_12x70_kart \n
+			wpn_tt \n
+			ammo_7.62x25_p \n
 			grenade_f1 = 2 \n
 #include "gameplay\character_items.xml" \n
 #include "gameplay\character_drugs.xml" \n
@@ -706,10 +703,10 @@
 		<visual>actors\dolg\stalker_do_balon_8</visual>
 		<supplies>
 			[spawn] \n
-            wpn_akm_akm30_ironsight \n
-			ammo_7.62x39_fmj \n
-			wpn_sayga12k_sk1 \n
-			ammo_12x70_kart \n
+			wpn_mosin_normal \n
+			ammo_7.62x54_7h1 \n
+			wpn_tt \n
+			ammo_7.62x25_p \n
 			grenade_f1 = 2 \n
 #include "gameplay\character_items.xml" \n
 #include "gameplay\character_drugs.xml" \n
@@ -739,11 +736,8 @@
 		<visual>actors\dolg\stalker_do_balon_4</visual>
 		<supplies>
 			[spawn] \n
-            wpn_rpk74_sk1 \n
-            ammo_5.45x39_ap \n
-			wpn_pm \n
+			wpn_apb \n
 			ammo_9x18_pmm \n
-			grenade_f1 = 2 \n
 #include "gameplay\character_items.xml" \n
 #include "gameplay\character_drugs.xml" \n
 #include "gameplay\character_food.xml"		
@@ -773,9 +767,9 @@
 		<visual>actors\bandit\stalker_bandit_5</visual>
 		<supplies>
 			[spawn] \n
-			wpn_toz34 \n
-			ammo_12x76_zhekan \n
-			wpn_ak74n_ak74n30_ironsight \n
+			wpn_pm \n
+			ammo_9x18_fmj \n
+			wpn_ak74n_ak74n30_side_rail_1p29 = 1, scope \n
 			ammo_5.45x39_fmj \n
 			grenade_f1 = 2 \n
 #include "gameplay\character_items.xml" \n
@@ -807,7 +801,6 @@
 			[spawn] \n
 			wpn_tt \n
 			ammo_7.62x25_ps \n
-			grenade_f1 = 2 \n
 			device_torch
 		</supplies>		
 #include "gameplay\character_criticals_4.xml"
@@ -833,9 +826,8 @@
 		<visual>actors\bandit\stalker_bandit_2</visual>
 		<supplies>
 			[spawn] \n
-			wpn_tt \n
-			ammo_7.62x25_ps \n
-			grenade_f1 = 2 \n
+			wpn_toz34_short \n
+			ammo_12x70_kart \n
 			device_torch
 		</supplies>		
 #include "gameplay\character_criticals_4.xml"
@@ -861,9 +853,10 @@
 		<visual>actors\bandit\stalker_bandit_master</visual>
 		<supplies>
 			[spawn] \n
-			wpn_mp5 \n
-			ammo_9x19_fmj \n
-			grenade_f1 = 2 \n
+			wpn_aks74ub_aks74ub30_ironsight \n
+			ammo_5.45x39_fmj \n
+			grenade_f1 \n
+			grenade_rgd5 \n
 			device_torch
 		</supplies>		
 #include "gameplay\character_criticals_4.xml"

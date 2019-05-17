@@ -291,7 +291,7 @@
 		<crouch_type>0</crouch_type>
 		<supplies>
 			[spawn] \n
-	  		wpn_rpk74_sk1 \n
+	  		wpn_rpk74p_rpk45_side_rail_1p29 \n
             ammo_5.45x39_ap \n
             device_torch \n
 #include "gameplay\character_drugs.xml"
@@ -323,7 +323,7 @@
 		<crouch_type>-1</crouch_type>
 		<supplies>
 			[spawn] \n
-	  		wpn_rpk74_sk1 \n
+	  		wpn_rpk74p_rpk45_side_rail_1p29 \n
             ammo_5.45x39_ap \n
 #include "gameplay\character_items.xml"\n
 #include "gameplay\character_food.xml" \n

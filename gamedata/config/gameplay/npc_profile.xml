@@ -2594,4 +2594,101 @@
 		<class>gunstrader</class>
 	<specific_character>esc_guns_remontnik</specific_character>
 	</character>
+	
+	
+	
+	
+	<character id="kulgband_driver">
+		<class>kulgband_driver</class>
+	</character>
+	<character id="kulgband_looser">
+		<class>kulgband_looser</class>
+	</character>
+	<character id="kulgband_trader">
+		<class>kulgband_trader</class>
+	</character>
+	<character id="kulgband_trader_guard1">
+		<class>kulgband_trader_guard1</class>
+	</character>
+	<character id="kulgband_trader_guard2">
+		<class>kulgband_trader_guard2</class>
+	</character>
+	<character id="kulgband_trader_car_body">
+		<class>kulgband_trader_car_body</class>
+	</character>
+	
+	<character id="dar_farm_assistant">
+		<class>dar_farm_assistant</class>
+	</character>
+	<character id="dar_assistant_friend">
+		<class>dar_assistant_friend</class>
+	</character>
+	<character id="kulgband_scout">
+		<class>kulgband_scout</class>
+	</character>
+	<character id="kulgband_bool">
+		<class>kulgband_bool</class>
+	</character>
+	
+	<character id="mil_monolith_man1">
+		<class>mil_monolith_man1</class>
+	</character>
+	<character id="mil_monolith_man2">
+		<class>mil_monolith_man2</class>
+	</character>
+	<character id="mil_monolith_man3">
+		<class>mil_monolith_man3</class>
+	</character>
+	
+	<character id="val_stalker_trader_quest">
+		<class>val_stalker_trader_quest</class>
+	</character>
+	
+	<character id="dar_bridge_kulgband_man1">
+		<class>dar_bridge_kulgband_man1</class>
+	</character>
+	<character id="dar_bridge_kulgband_man2">
+		<class>dar_bridge_kulgband_man2</class>
+	</character>
+	<character id="dar_bridge_kulgband_man3">
+		<class>dar_bridge_kulgband_man3</class>
+	</character>
+	
+	<character id="kulgband_seif_dead_man">
+		<class>kulgband_seif_dead_man</class>
+	</character>
+	
+	<character id="kulgband_hutor_deadman">
+		<class>kulgband_hutor_deadman</class>
+	</character>
+	
+	<character id="kulgband_informer_assist">
+		<class>kulgband_informer_assist</class>
+	</character>
+	
+	<character id="ds_glavar2">
+		<class>ds_glavar2</class>
+	</character>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 </xml>

@@ -1336,7 +1336,7 @@
   		<crouch_type>0</crouch_type>
 		<supplies>
 			[spawn] \n
-            wpn_rpk74_sk1 \n
+            wpn_ak74n \n
 			grenade_f1 \n
             ammo_5.45x39_fmj \n
 			wpn_pm \n
@@ -1367,7 +1367,7 @@
   		<crouch_type>0</crouch_type>
 		<supplies>
 			[spawn] \n
-            wpn_rpk74_sk1 \n
+            wpn_ak74n \n
 			grenade_f1 \n
            ammo_5.45x39_fmj \n
 			device_torch \n
@@ -1428,7 +1428,7 @@
   		<crouch_type>0</crouch_type>
 		<supplies>
 			[spawn] \n
-            wpn_rpk74_sk1 \n
+            wpn_ak74n \n
             ammo_5.45x39_fmj \n
 			wpn_bm16 \n
 			ammo_12x70_kart \n
@@ -1632,7 +1632,7 @@
   		<crouch_type>0</crouch_type>
 		<supplies>
 			[spawn] \n
-            wpn_rpk74_sk1 \n
+            wpn_ak74n \n
             ammo_5.45x39_fmj \n
 			wpn_bm16 \n
 			ammo_12x70_kart \n
@@ -1666,7 +1666,7 @@
    		<crouch_type>0</crouch_type>
 		<supplies>
 			[spawn] \n
-            wpn_rpk74_sk1 \n
+            wpn_ak74n \n
             ammo_5.45x39_fmj \n
 			wpn_bm16 \n
 			ammo_12x70_kart \n
@@ -1700,7 +1700,7 @@
   		<crouch_type>0</crouch_type>
 		<supplies>
 			[spawn] \n
-            wpn_rpk74_sk1 \n
+            wpn_ak74n \n
             ammo_5.45x39_fmj \n
 			wpn_bm16 \n
 			ammo_12x70_kart \n
@@ -2003,7 +2003,7 @@
   		<crouch_type>0</crouch_type>
 		<supplies>
 			[spawn] \n
-            wpn_rpk74_sk1 \n
+            wpn_ak74n \n
             ammo_5.45x39_fmj \n
 			wpn_pm \n
 			ammo_9x18_pmm \n
@@ -2036,7 +2036,7 @@
   		<crouch_type>0</crouch_type>
 		<supplies>
 			[spawn] \n
-            wpn_rpk74_sk1 \n
+            wpn_ak74n \n
             ammo_5.45x39_fmj \n
 			wpn_pm \n
 			ammo_9x18_pmm \n
@@ -2069,7 +2069,7 @@
   		<crouch_type>0</crouch_type>
 		<supplies>
 			[spawn] \n
-            wpn_rpk74_sk1 \n
+            wpn_ak74n \n
             ammo_5.45x39_ap \n
 			wpn_pm \n
 			ammo_9x18_pmm \n
@@ -2102,7 +2102,7 @@
   		<crouch_type>0</crouch_type>
 		<supplies>
 			[spawn] \n
-            wpn_rpk74_sk1 \n
+            wpn_ak74n \n
             ammo_5.45x39_fmj \n
 			wpn_pm \n
 			ammo_9x18_pmm \n

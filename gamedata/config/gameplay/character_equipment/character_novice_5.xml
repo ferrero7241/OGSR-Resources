@@ -1,14 +1,14 @@
-wpn_toz34_short \n
-ammo_12x70_kart \n
+wpn_mosin_short \n
+ammo_7.62x54_ap \n
 grenade_rgd5 = 1, prob = 0.3 \n
 
 harmonica_a = 1, prob = 0.3 \n
 guitar_a = 1, prob = 0.6 \n
 device_torch \n
 device_pda \n
-sigaret = 1, prob = 0.7 \n
+sigaret = 1, prob=0.7 \n
 
-medkit = 1, prob = 0.7 \n
+medkit = 1, prob=0.7 \n
 bandage = 1, prob = 0.8 \n
 medkit_army \n
 bandage \n

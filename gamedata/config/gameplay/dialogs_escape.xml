@@ -4002,7 +4002,23 @@
 				<action>escape_dialog.transfer_wolf_reward</action>
 				<give_info>esc_kill_bandits_quest_done</give_info>
 				<give_info>esc_petruha_great</give_info>
+				<next>21111</next>
+				<next>21112</next>
 			</phrase>
+			
+			<phrase id="21111">
+				<text>escape_lager_volk_talk_21111</text>
+				<action>escape_dialog.transfer_wolf_reward1</action>
+				<give_info>esc_kill_bandits_quest_done</give_info>
+				<give_info>esc_petruha_great</give_info>
+			</phrase>
+			<phrase id="21112">
+				<text>escape_lager_volk_talk_21112</text>
+				<action>escape_dialog.transfer_wolf_reward2</action>
+				<give_info>esc_kill_bandits_quest_done</give_info>
+				<give_info>esc_petruha_great</give_info>
+			</phrase>
+			
 			<phrase id="2121">
 				<text>escape_lager_volk_talk_2121</text>
 				<action>escape_dialog.transfer_wolf_reward</action>
@@ -4440,6 +4456,7 @@
 	<dialog id="volk_about_first">
 		<dont_has_info>lekar_goto_af_mincer_meat</dont_has_info>
 		<dont_has_info>volk_about_first</dont_has_info>
+		<dont_has_info>kulg_band_meet_speech_loose</dont_has_info>
 		<phrase_list>
 			<phrase id="0">
 				<text>volk_about_first_phrase_1</text>
@@ -4908,6 +4925,7 @@
 	<dialog id="zona_brother1_start_dialog">
 		<!--dont_has_info>zona_bro1_getout</dont_has_info-->
 		<dont_has_info>brother_trap_task</dont_has_info>
+		<dont_has_info>kulg_band_meet_speech_fail</dont_has_info>
 		<phrase_list>
 			<phrase id="0">
 				<text>zona_brother1_start_dialog_phrase_1</text>
@@ -4975,6 +4993,8 @@
 	</dialog>
 	<dialog id="freezer_bandos_start_dialog">
 		<dont_has_info>freez_bandos_kulgband_info</dont_has_info>
+		<dont_has_info>freezer_bandos_kill_newbie_task</dont_has_info>
+		<dont_has_info>kulgband_informer_task</dont_has_info>
 		<phrase_list>
 			<phrase id="0">
 				<text>freezer_bandos_start_dialog_phrase_1</text>
@@ -4987,6 +5007,7 @@
 			<phrase id="2">
 				<text>freezer_bandos_start_dialog_phrase_3</text>
 				<next>3</next>
+				<next>11</next>
 			</phrase>
 			<phrase id="3">
 				<text>freezer_bandos_start_dialog_phrase_4</text>
@@ -5022,8 +5043,92 @@
 				<give_info>freez_bandos_kulgband_info</give_info>
 				<action>jekan_work.set_lekar_enemy</action>
 			</phrase>
+			<phrase id="11">
+				<dont_has_info>freezer_bandos_kulg_band_info</dont_has_info>
+				<text>freezer_bandos_start_dialog_phrase_12</text>
+				<next>12</next>
+			</phrase>
+			<phrase id="12">
+				<text>freezer_bandos_start_dialog_phrase_13</text>
+				<next>13</next>
+			</phrase>
+			<phrase id="13">
+				<text>freezer_bandos_start_dialog_phrase_14</text>
+				<next>14</next>
+			</phrase>
+			<phrase id="14">
+				<text>freezer_bandos_start_dialog_phrase_15</text>
+				<next>15</next>
+			</phrase>
+			<phrase id="15">
+				<text>freezer_bandos_start_dialog_phrase_16</text>
+				<give_info>freezer_bandos_kill_newbie_task</give_info>
+				<action>jekan_work.give_actor_knife</action>
+			</phrase>
 		</phrase_list>
 	</dialog>
+	
+	
+	<dialog id="freezer_bandos_dialog3">
+		<has_info>zona_brother2_dead_by_knife</has_info>
+		<has_info>freezer_bandos_kill_newbie_task</has_info>
+		<dont_has_info>freezer_bandos_kulg_band_info</dont_has_info>
+		<phrase_list>
+			<phrase id="0">
+				<text>freezer_bandos_dialog3_phrase_1</text>
+				<next>1</next>
+			</phrase>
+			<phrase id="1">
+				<text>freezer_bandos_dialog3_phrase_2</text>
+				<next>2</next>
+			</phrase>
+			<phrase id="2">
+				<text>freezer_bandos_dialog3_phrase_3</text>
+				<next>3</next>
+			</phrase>
+			<phrase id="3">
+				<text>freezer_bandos_dialog3_phrase_4</text>
+				<next>4</next>
+			</phrase>
+			<phrase id="4">
+				<text>freezer_bandos_dialog3_phrase_5</text>
+				<next>5</next>
+			</phrase>
+			<phrase id="5">
+				<text>freezer_bandos_dialog3_phrase_6</text>
+				<next>6</next>
+			</phrase>
+			<phrase id="6">
+				<text>freezer_bandos_dialog3_phrase_7</text>
+				<give_info>freezer_bandos_kulg_band_info</give_info>
+				<action>dialogs.break_dialog</action>
+			</phrase>
+		</phrase_list>
+	</dialog>
+	
+	
+	<dialog id="freezer_bandos_dialog4">
+		<has_info>zona_brother2_dead</has_info>
+		<has_info>freezer_bandos_kill_newbie_task</has_info>
+		<dont_has_info>freezer_bandos_kulg_band_info2</dont_has_info>
+		<phrase_list>
+			<phrase id="0">
+				<text>freezer_bandos_dialog4_phrase_1</text>
+				<next>1</next>
+			</phrase>
+			<phrase id="1">
+				<text>freezer_bandos_dialog4_phrase_2</text>
+				<next>2</next>
+			</phrase>
+			<phrase id="2">
+				<text>freezer_bandos_dialog4_phrase_3</text>
+				<give_info>freezer_bandos_kulg_band_info2</give_info>
+				<action>dialogs.break_dialog</action>
+			</phrase>
+		</phrase_list>
+	</dialog>
+	
+	
 	<dialog id="zona_brother2_freezer_dialog">
 		<has_info>freez_bandos_kulgband_info</has_info>
 		<dont_has_info>brother2_goto_rest</dont_has_info>
@@ -5954,13 +6059,24 @@
 				<action>dialogs.break_dialog</action>
 			</phrase>
 			<phrase id="10">
+			<!-- Сталин: 2я попытка застроить -->
 				<text>stalin_start_dialog_phrase_11</text>
 				<next>11</next>
 			</phrase>
 			<phrase id="11">
-				<text>stalin_start_dialog_phrase_12</text>
+				<!-- ГГ <text>stalin_start_dialog_phrase_12</text> -->
+				<text>stalin_start_dialog_phrase_addons</text>
+				<next>12</next>
+			</phrase>
+			<phrase id="12">
+				<!-- Сталин: КМБ (обучалка по аддонам) -->
+				<text>stalin_start_dialog_phrase_training</text>
 				<give_info>stalin_forget</give_info>
 				<give_info>stalin_first_talk</give_info>
+				<next>13</next>
+			</phrase>
+			<phrase id="13">
+				<text>stalin_start_dialog_phrase_goodbye</text>
 				<action>dialogs.break_dialog</action>
 			</phrase>
 		</phrase_list>

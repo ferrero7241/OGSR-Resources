@@ -52,7 +52,7 @@
 		<visual>actors\dolg\stalker_do_balon_8</visual>
 		<supplies>
 			[spawn] \n
-            			wpn_rpk74_sk1 \n
+            			wpn_ak74n \n
             			ammo_5.45x39_ap \n
 #include "gameplay\character_food.xml"
 		</supplies>
@@ -177,7 +177,7 @@
 	<!--freezer_bandos-->
 	<specific_character id="freezer_bandos" team_default = "1">
 		<name>freezer_bandos_name</name>
-		<icon>ui_npc_u_stalker_bandit_8</icon>
+		<icon>freezer_bandos_icon</icon>
 		<bio>esc_stalker_novice_bio</bio>
 
 		<class>freezer_bandos</class>
@@ -190,7 +190,7 @@
 		<snd_config>characters_voice\human_04\bandit\</snd_config>
 		<crouch_type>-1</crouch_type>
 
-		<visual>actors\bandit\stalker_bandit_8</visual>
+		<visual>actors\unic\npc_guzzler</visual>
 		<supplies>
 		[spawn] \n
 			wpn_bm16 \n
@@ -198,6 +198,11 @@
 		</supplies>
 		<start_dialog>freezer_bandos_start_dialog</start_dialog>
 		<actor_dialog>freezer_bandos_dialog2</actor_dialog>
+		<actor_dialog>freezer_bandos_dialog3</actor_dialog>
+		<actor_dialog>freezer_bandos_dialog4</actor_dialog>
+		
+		<actor_dialog>kulgband_informer_dialog1</actor_dialog>
+		
 	</specific_character>
 
 
@@ -432,6 +437,8 @@
 		<actor_dialog>esc_kvest_iscelenie_talk_with_sidor_dialog</actor_dialog>
 		<!-- Dezerter -->
 		<actor_dialog>talk_about_dezerter</actor_dialog>
+		<!-- Odessit -->
+		<actor_dialog>talk_about_odessit</actor_dialog>
 
 		<actor_dialog>tm_start_kvests_u_sidora_dialog</actor_dialog>
 		<actor_dialog>tm_complete_kvests_u_sidora_dialog</actor_dialog>
@@ -594,7 +601,8 @@
 	<!--Tolik (ranenyy u vagonchika) -->
 	<specific_character id="esc_tutorial_wounded" team_default = "1">
 		<name>esc_tolik_name</name>
-		<icon>ui_npc_u_tolik</icon>
+		<!--icon>ui_npc_u_tolik</icon-->
+		<icon>ui_npc_u_green_stalker_2</icon>
 		<bio>esc_tolik_bio</bio>
 
 		<class>esc_tutorial_wounded</class>
@@ -608,7 +616,8 @@
 		<snd_config>characters_voice\human_02\newbie\</snd_config>
 		<crouch_type>-1</crouch_type>
 
-		<visual>actors\unic\nps_tolik</visual>
+		<!--visual>actors\unic\nps_tolik</visual-->
+		<visual>actors\novice\green_stalker_2</visual>
 		<supplies>
 			[spawn] \n
 #include "gameplay\character_equipment\character_novice_unic.xml" \n
@@ -1954,12 +1963,11 @@
 <!----Торговец оружием и ремонтник в деревне новичков на Кордоне ---->		
 	<specific_character id="esc_guns_remontnik" team_default = "1">
 		<name>esc_guns_remontnik_name</name>
-		<icon>ui_npc_esc_guns_remontnik</icon>
+		<icon>ui_npc_missing</icon>
 		<map_icon x="0" y="0"></map_icon>
 		<bio>esc_guns_remontnik_bio</bio>
 		<!-- <class>esc_guns_remontnik</class> -->
 		<class>gunstrader</class>
-		<!-- <community>stalker</community> -->	
 		<community>gunsmith</community>
 		<rank>693</rank>
 		<reputation>-69</reputation>
@@ -1968,34 +1976,19 @@
 		<crouch_type>-1</crouch_type>
 		<panic_treshold>0</panic_treshold>
 		<visual>actors\unic\esc_gunstrader</visual>		
-		
 		<supplies>
 			[spawn] \n
-			wpn_pb = 1, prob = 0.99			
+			wpn_knife_6x2 \n
+			wpn_hpsa = 1, prob = 0.99  \n
 		</supplies>
-
-#include "gameplay\character_criticals_4.xml"
-
-		<!--start_dialog>escape_gunsrepair_dialog</start_dialog-->
-<!-- диалоги обмена, миниигр, $взаймы -->
-		<!-- <actor_dialog>dm_dialog_exchanging_items</actor_dialog> -->
-		<!-- <actor_dialog>mini_games_dialog</actor_dialog> -->
-		<!-- <actor_dialog>dm_loan_money_dialog</actor_dialog> -->
-		<!-- <actor_dialog>dm_loan_money_out_dialog</actor_dialog> -->
-<!-- ремонт	-->
-		<!--actor_dialog>escape_trader_repair</actor_dialog>
-		<actor_dialog>release_repair_weapon</actor_dialog>
-	
-		<actor_dialog>no_release_repair_weapon</actor_dialog>
-		<actor_dialog>items_no_need_repair</actor_dialog-->
-		
-<!-- ЗАКАЗ -->
-		<!--actor_dialog>order_weapon</actor_dialog-->
-
-		<actor_dialog>bill_trader_repair</actor_dialog>
-		<actor_dialog>esc_remontnik_upgrade_weapon</actor_dialog>
-		<!--стандартный "что можешь интересного рассказать?" -->
-		<actor_dialog>dm_cool_info_dialog</actor_dialog>
+		<start_dialog>escape_gunsrepair_dialog</start_dialog>
+		<actor_dialog>odessa_trader_repair</actor_dialog>
+		<actor_dialog>odessa_trader_upgrade</actor_dialog>
+		<actor_dialog>escape_gunsrepair_order_take_dialog</actor_dialog>
+		<actor_dialog>escape_gunsrepair_order_give_dialog</actor_dialog>
+		<actor_dialog>drozd_quest_dialog3</actor_dialog>
 		
 	</specific_character>
+	
+	
 </xml>

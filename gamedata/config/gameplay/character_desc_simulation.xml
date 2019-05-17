@@ -26,7 +26,11 @@
 		</supplies>
 </specific_character>
 
-    <!--BANDITS PROFILES-->
+
+
+
+
+<!--BANDITS PROFILES-->
 
 	<!--BANDIT NOVICE-->
 	<specific_character id="sim_bandit_novice_default1" team_default = "1">
@@ -48,8 +52,6 @@
 			[spawn] \n
 			wpn_tt \n
 			ammo_7.62x25_ps \n
-			wpn_mp5 \n
-			ammo_9x19_fmj \n
 #include "gameplay\character_drugs.xml" \n
 #include "gameplay\character_items.xml" \n
 #include "gameplay\character_food.xml"		
@@ -78,8 +80,6 @@
 			[spawn] \n
 			wpn_toz34_short \n
 			ammo_12x70_kart \n
-			wpn_mp40 \n
-			ammo_9x19_fmj \n
 #include "gameplay\character_drugs.xml" \n
 #include "gameplay\character_items.xml" \n
 #include "gameplay\character_food.xml"				
@@ -106,9 +106,7 @@
 		<visual>actors\bandit\stalker_bandit_5</visual>
 		<supplies>
 			[spawn] \n
-			wpn_mac10 \n
-			ammo_5.45x39_fmj \n
-			wpn_toz34 \n
+			wpn_bm16 \n
 			ammo_12x70_kart \n
 #include "gameplay\character_drugs.xml" \n
 #include "gameplay\character_items.xml" \n
@@ -138,10 +136,8 @@
 		<crouch_type>1</crouch_type>
 		<supplies>
 			[spawn] \n
-			wpn_toz34_short \n
-			ammo_12x70_kart \n
-			wpn_mp40 \n
-            ammo_9x19_pbp \n
+			wpn_pm \n
+            ammo_9x18_fmj \n
 #include "gameplay\character_drugs.xml" \n
 #include "gameplay\character_items.xml" \n
 #include "gameplay\character_food.xml"
@@ -168,10 +164,8 @@
 		<crouch_type>1</crouch_type>
 		<supplies>
 			[spawn] \n
-			wpn_aks74ub_aks74ub30_ironsight \n
-			ammo_5.45x39_fmj \n
-			wpn_toz34_short \n
-			ammo_12x70_kart \n
+			wpn_bm16_full \n
+			ammo_12x76_zhekan \n
 #include "gameplay\character_drugs.xml" \n
 #include "gameplay\character_items.xml" \n
 #include "gameplay\character_food.xml"
@@ -198,10 +192,8 @@
 		<crouch_type>1</crouch_type>
 		<supplies>
 			[spawn] \n
-			wpn_aks74ub_aks74ub30_ironsight \n
-			ammo_5.45x39_fmj \n
-			wpn_toz34_short \n
-			ammo_12x70_kart \n
+			wpn_toz34 \n
+			ammo_12x76_zhekan \n
 #include "gameplay\character_drugs.xml" \n
 #include "gameplay\character_items.xml" \n
 #include "gameplay\character_food.xml"
@@ -228,10 +220,8 @@
 		<crouch_type>1</crouch_type>
 		<supplies>
 			[spawn] \n
-			wpn_toz34_short \n
-			ammo_12x76_zhekan \n
-			wpn_mp5 \n
-			ammo_9x19_fmj \n
+			wpn_spas12 \n
+			ammo_12x70_kart \n
 #include "gameplay\character_drugs.xml" \n
 #include "gameplay\character_items.xml" \n
 #include "gameplay\character_food.xml"
@@ -259,7 +249,7 @@
 		<crouch_type>1</crouch_type>
 		<supplies>
 			[spawn] \n
-			wpn_ak74n_ak74n30_ironsight \n
+			wpn_aks74ub_aks74ub30_ironsight \n
 			ammo_5.45x39_fmj \n
 			wpn_toz34_short \n
 			ammo_12x70_kart \n
@@ -291,10 +281,10 @@
 		<crouch_type>1</crouch_type>
 		<supplies>
 			[spawn] \n
-			wpn_toz34_short \n
-			ammo_12x76_zhekan \n
-			wpn_ak74n_ak74n30_ironsight \n
+			wpn_aks74ub_aks74ub30_ironsight \n
 			ammo_5.45x39_fmj \n
+			wpn_bm16 \n
+			ammo_12x70_kart \n
 #include "gameplay\character_drugs.xml" \n
 #include "gameplay\character_items.xml" \n
 #include "gameplay\character_food.xml"
@@ -323,8 +313,8 @@
 			[spawn] \n
 			wpn_aks74ub_aks74ub30_ironsight \n
 			ammo_5.45x39_fmj \n
-			wpn_toz34_short \n
-			ammo_12x70_kart \n
+			wpn_tt \n
+			ammo_7.62x25_ps \n
 #include "gameplay\character_drugs.xml" \n
 #include "gameplay\character_items.xml" \n
 #include "gameplay\character_food.xml"
@@ -356,13 +346,12 @@
 			[spawn] \n
 			wpn_ak74n_ak74n30_ironsight \n
 			ammo_5.45x39_fmj \n
-			wpn_tt \n
-			ammo_7.62x25_ps \n
+			wpn_beretta \n
+			ammo_9x19_fmj \n
 #include "gameplay\character_drugs.xml" \n
 #include "gameplay\character_items.xml" \n
 #include "gameplay\character_food.xml"	
 		</supplies>
-		
 #include "gameplay\character_criticals_4.xml"
 #include "gameplay\character_dialogs.xml"
 	</specific_character>
@@ -387,10 +376,10 @@
 		<crouch_type>1</crouch_type>
 		<supplies>
 			[spawn] \n
-			wpn_toz34_short \n
-			ammo_12x76_zhekan \n
-			wpn_aks74ub_aks74ub30_ironsight \n
+			wpn_ak74n_ak74n30_ironsight \n
 			ammo_5.45x39_fmj \n
+			wpn_tt \n
+            ammo_7.62x25_ps \n
 #include "gameplay\character_drugs.xml" \n
 #include "gameplay\character_items.xml" \n
 #include "gameplay\character_food.xml"	
@@ -420,10 +409,10 @@
 		<crouch_type>1</crouch_type>
 		<supplies>
 			[spawn] \n
-			wpn_spas12 \n
-			ammo_12x76_zhekan \n
-			wpn_sig550 \n
-			ammo_5.56x45_ss190 \n
+			wpn_ak74n_ak74n30_ironsight \n
+			ammo_5.45x39_fmj \n
+			wpn_fort \n
+			ammo_9x19_fmj \n
 #include "gameplay\character_drugs.xml" \n
 #include "gameplay\character_items.xml" \n
 #include "gameplay\character_food.xml"	
@@ -434,7 +423,7 @@
 	</specific_character>
 
 
-  <!--Neutral STALKERS-->
+<!--Neutral STALKERS-->
 
 	<!--STALKER NOVICE-->
 	
@@ -503,7 +492,7 @@
 		<visual>actors\novice\green_stalker_3</visual>
 		<supplies>
 			[spawn] \n
-#include "gameplay\character_equipment\character_novice_2.xml" \n
+#include "gameplay\character_equipment\character_novice_3.xml" \n
 		</supplies>
 
 #include "gameplay\character_criticals_3.xml"
@@ -527,7 +516,7 @@
 		<visual>actors\novice\green_stalker_4</visual>
 		<supplies>
 			[spawn] \n
-#include "gameplay\character_equipment\character_novice_1.xml" \n
+#include "gameplay\character_equipment\character_novice_4.xml" \n
 		</supplies>
 
 #include "gameplay\character_criticals_3.xml"
@@ -551,7 +540,7 @@
 		<visual>actors\novice\green_stalker_5</visual>
 		<supplies>
 			[spawn] \n
-#include "gameplay\character_equipment\character_novice_2.xml" \n
+#include "gameplay\character_equipment\character_novice_5.xml" \n
 		</supplies>
 
 #include "gameplay\character_criticals_3.xml"
@@ -721,10 +710,10 @@
 			<crouch_type>-1</crouch_type>
 			<supplies>
 			[spawn] \n
-			wpn_bm16 \n
+			wpn_bm16_full \n
 			ammo_12x70_kart \n
-			wpn_akm_akm30_ironsight \n
-			ammo_7.62x39_fmj \n
+			wpn_pm \n
+			ammo_9x18_fmj \n
 #include "gameplay\character_drugs.xml" \n
 #include "gameplay\character_items.xml" \n
 #include "gameplay\character_food.xml"
@@ -752,10 +741,10 @@
 		<crouch_type>-1</crouch_type>
 		<supplies>
 			[spawn] \n
-			wpn_bm16 \n
+			wpn_toz34 \n
 			ammo_12x70_kart \n
-			wpn_akm_akm30_ironsight \n
-			ammo_7.62x39_fmj \n
+			wpn_tt \n
+			ammo_7.62x25_p \n
 #include "gameplay\character_drugs.xml" \n
 #include "gameplay\character_items.xml" \n
 #include "gameplay\character_food.xml"
@@ -782,10 +771,10 @@
 		<crouch_type>-1</crouch_type>
 		<supplies>
 			[spawn] \n
-			wpn_bm16 \n
+			wpn_spas12 \n
 			ammo_12x70_kart \n
-			wpn_akm_akm30_ironsight \n
-			ammo_7.62x39_fmj \n
+			wpn_tt \n
+			ammo_7.62x25_p \n
 #include "gameplay\character_drugs.xml" \n
 #include "gameplay\character_items.xml" \n
 #include "gameplay\character_food.xml"
@@ -814,8 +803,8 @@
 			[spawn] \n
 			wpn_aks74ub_aks74ub30_ironsight \n
 			ammo_5.45x39_fmj \n
-			wpn_bm16 \n
-			ammo_12x70_kart \n
+			wpn_pm \n
+            ammo_9x18_fmj \n
 #include "gameplay\character_drugs.xml" \n
 #include "gameplay\character_items.xml" \n
 #include "gameplay\character_food.xml"
@@ -842,10 +831,10 @@
 		<crouch_type>-1</crouch_type>
 		<supplies>
 			[spawn] \n
-			wpn_aks74ub_aks74ub30_ironsight \n
+			wpn_ak74n_ak74n30_ironsight \n
 			ammo_5.45x39_fmj \n
-			wpn_bm16 \n
-			ammo_12x70_kart \n
+			wpn_pm \n
+            ammo_9x18_fmj \n
 #include "gameplay\character_drugs.xml" \n
 #include "gameplay\character_items.xml" \n
 #include "gameplay\character_food.xml"
@@ -872,10 +861,10 @@
 		<crouch_type>-1</crouch_type>
 		<supplies>
 			[spawn] \n
-			wpn_aks74ub_aks74ub30_ironsight \n
-			ammo_5.45x39_fmj \n
-			wpn_bm16 \n
-			ammo_12x70_kart \n
+			wpn_sks \n
+			ammo_7.62x39_fmj \n
+			wpn_tt \n
+			ammo_7.62x25_p \n
 #include "gameplay\character_drugs.xml" \n
 #include "gameplay\character_items.xml" \n
 #include "gameplay\character_food.xml"
@@ -905,8 +894,8 @@
 			[spawn] \n
 			wpn_spas12 \n
 			ammo_12x76_zhekan \n
-			wpn_sig550 \n
-			ammo_5.56x45_ss190 \n
+			wpn_pm \n
+			ammo_9x18_fmj \n
 #include "gameplay\character_drugs.xml" \n
 #include "gameplay\character_items.xml" \n
 #include "gameplay\character_food.xml"
@@ -935,8 +924,8 @@
 			[spawn] \n
 			wpn_ak74n_ak74n30_ironsight \n
 			ammo_5.45x39_fmj \n
-			wpn_bm16 \n
-			ammo_12x70_kart \n
+			wpn_fort \n
+			ammo_9x19_fmj \n
 #include "gameplay\character_drugs.xml" \n
 #include "gameplay\character_items.xml" \n
 #include "gameplay\character_food.xml"
@@ -963,8 +952,8 @@
 		<crouch_type>-1</crouch_type>
 		<supplies>
 			[spawn] \n
-			wpn_ak74n_ak74n30_ironsight \n
-			ammo_5.45x39_fmj \n
+			wpn_akm_akm30_ironsight \n
+			ammo_7.62x39_fmj \n
 			wpn_bm16 \n
 			ammo_12x70_kart \n
 #include "gameplay\character_drugs.xml" \n
@@ -993,9 +982,9 @@
 		<crouch_type>-1</crouch_type>
 		<supplies>
 			[spawn] \n
-			wpn_spas12 \n
-			ammo_12x70_kart \n
-			wpn_sig550 \n
+			wpn_gsh18 \n
+			ammo_9x19_fmj \n
+			wpn_ak102_ak10230_stok_kobra \n
 			ammo_5.56x45_ss190 \n
 #include "gameplay\character_drugs.xml" \n
 #include "gameplay\character_items.xml" \n
@@ -1023,9 +1012,9 @@
 		<crouch_type>0</crouch_type>
 		<supplies>
 			[spawn] \n
-			wpn_sig550 \n
+			wpn_m16a1_sk1 \n
 			ammo_5.56x45_ss190 \n
-			wpn_bm16 \n
+			wpn_wincheaster1300 \n
 			ammo_12x70_kart \n
 #include "gameplay\character_drugs.xml" \n
 #include "gameplay\character_items.xml" \n
@@ -1056,9 +1045,9 @@
 
 		<supplies>
 			[spawn] \n
-			wpn_val \n
-			ammo_9x39_pab9 \n
-			wpn_bm16 \n
+			wpn_fort \n
+			ammo_9x19_fmj \n
+			wpn_vepr12stok_vepr4_ironsight \n
 			ammo_12x70_kart \n
 #include "gameplay\character_drugs.xml" \n
 #include "gameplay\character_items.xml" \n
@@ -1086,10 +1075,10 @@
 		<visual>actors\stalker_neytral\stalker_light_exo_head_3</visual>
 		<supplies>
 			[spawn] \n
-			wpn_val \n
-			ammo_9x39_pab9 \n
-			wpn_bm16 \n
-			ammo_12x70_kart \n
+			wpn_akm_akm30_ironsight \n
+			ammo_7.62x39_fmj \n
+			wpn_apb \n
+			ammo_9x19_pbp \n
 #include "gameplay\character_drugs.xml" \n
 #include "gameplay\character_items.xml" \n
 #include "gameplay\character_food.xml"
@@ -1118,10 +1107,10 @@
 		<crouch_type>-1</crouch_type>
 		<supplies>
 			[spawn] \n
-			wpn_swd_svd10_pso1 = 1, scope \n
+			wpn_mosin_sni = 1, scope \n
 			ammo_7.62x54_ap \n
-			wpn_aks74ub_aks74ub30_ironsight \n
-			ammo_5.45x39_fmj \n
+			wpn_bm16 \n
+			ammo_12x76_zhekan \n
 #include "gameplay\character_drugs.xml" \n
 #include "gameplay\character_items.xml" \n
 #include "gameplay\character_food.xml"
@@ -1151,10 +1140,10 @@
 		<crouch_type>0</crouch_type>
 		<supplies>
 			[spawn] \n
-            wpn_akm_akm30_ironsight \n
+            wpn_sks \n
 			ammo_7.62x39_fmj \n
-            wpn_sayga12k_sk1 \n
-			ammo_12x70_kart \n
+			wpn_tt \n
+			ammo_7.62x25_ps \n
 #include "gameplay\character_drugs.xml" \n
 #include "gameplay\character_items.xml" \n
 #include "gameplay\character_food.xml"
@@ -1181,10 +1170,10 @@
 		<crouch_type>0</crouch_type>
 		<supplies>
 			[spawn] \n
-            wpn_akm_akm30_ironsight \n
-			ammo_7.62x39_fmj \n
-            wpn_sayga12k_sk1 \n
-			ammo_12x70_kart \n
+            wpn_mosin_normal \n
+			ammo_7.62x54_7h1 \n
+			wpn_tt \n
+			ammo_7.62x25_ps \n
 #include "gameplay\character_drugs.xml" \n
 #include "gameplay\character_items.xml" \n
 #include "gameplay\character_food.xml"
@@ -1213,8 +1202,8 @@
 			[spawn] \n
             wpn_akm_akm30_ironsight \n
 			ammo_7.62x39_fmj \n
-            wpn_sayga12k_sk1 \n
-			ammo_12x70_kart \n
+			wpn_tt \n
+			ammo_7.62x25_ps \n
 #include "gameplay\character_drugs.xml" \n
 #include "gameplay\character_items.xml" \n
 #include "gameplay\character_food.xml"
@@ -1242,10 +1231,10 @@
 		<crouch_type>0</crouch_type>
 		<supplies>
 			[spawn] \n
-            wpn_akm_akm30_ironsight \n
+            wpn_akm_akm30_ironsight = 1, silencer \n
 			ammo_7.62x39_fmj \n
-			wpn_sayga12k_sk1 \n
-			ammo_12x70_kart \n
+			wpn_tt \n
+			ammo_7.62x25_ps \n
             
 #include "gameplay\character_drugs.xml" \n
 #include "gameplay\character_items.xml" \n
@@ -1273,10 +1262,10 @@
 		<crouch_type>0</crouch_type>
 		<supplies>
 			[spawn] \n
-            wpn_akm_akm30_ironsight \n
+            wpn_akm_rpk40_ironsight = 1, launcher \n
 			ammo_7.62x39_fmj \n
-			wpn_sayga12k_sk1 \n
-			ammo_12x70_kart \n
+			wpn_tt \n
+			ammo_7.62x25_ps \n
             
 #include "gameplay\character_drugs.xml" \n
 #include "gameplay\character_items.xml" \n
@@ -1304,10 +1293,10 @@
 		<crouch_type>0</crouch_type>
 		<supplies>
 			[spawn] \n
-            wpn_akm_akm30_ironsight \n
+            wpn_akm_rpk40_side_rail_kobra = 1, scope \n
 			ammo_7.62x39_fmj \n
-			wpn_sayga12k_sk1 \n
-			ammo_12x70_kart \n
+			wpn_tt \n
+			ammo_7.62x25_ps \n
             
 #include "gameplay\character_drugs.xml" \n
 #include "gameplay\character_items.xml" \n
@@ -1335,10 +1324,10 @@
 		<crouch_type>0</crouch_type>
 		<supplies>
 			[spawn] \n
-            wpn_akm_akm30_ironsight \n
-			ammo_7.62x39_fmj \n
-			wpn_sayga12k_sk1 \n
+            wpn_vepr12stok_vepr4_ironsight \n
 			ammo_12x70_kart \n
+			wpn_tt \n
+			ammo_7.62x25_ps \n
             
 #include "gameplay\character_drugs.xml" \n
 #include "gameplay\character_items.xml" \n
@@ -1368,10 +1357,10 @@
 		<crouch_type>0</crouch_type>
 		<supplies>
 			[spawn] \n
-            wpn_rpk74_sk1 \n
-            ammo_5.45x39_fmj \n
+			wpn_rpk74p_rpk45_side_rail_1p29 \n
+			ammo_5.45x39_fmj \n
 			wpn_pm \n
-			ammo_9x18_pmm \n
+			ammo_9x18_fmj \n
 #include "gameplay\character_items.xml" \n
 #include "gameplay\character_food.xml" \n
 #include "gameplay\character_drugs.xml"
@@ -1398,10 +1387,10 @@
 		<crouch_type>0</crouch_type>
 		<supplies>
 			[spawn] \n
-            wpn_akm_akm30_ironsight \n
-			ammo_7.62x39_fmj \n
-			wpn_sayga12k_sk1 \n
-			ammo_12x70_kart \n
+            wpn_a91_m20_side_rail_kobra \n
+			ammo_9x39_pab9 \n
+			wpn_tt \n
+			ammo_7.62x25_ps \n
 #include "gameplay\character_items.xml" \n
 #include "gameplay\character_food.xml" \n
 #include "gameplay\character_drugs.xml"
@@ -1428,10 +1417,10 @@
 		<crouch_type>0</crouch_type>
 		<supplies>
 			[spawn] \n
-            wpn_rpk74_sk1 \n
-            ammo_5.45x39_fmj \n
-			wpn_pm \n
-			ammo_9x18_pmm \n
+			wpn_vepr12stok_vepr8_ironsight \n
+			ammo_12x70_kart \n
+			wpn_tt \n
+			ammo_7.62x25_ps \n
 #include "gameplay\character_items.xml" \n
 #include "gameplay\character_food.xml" \n
 #include "gameplay\character_drugs.xml"
@@ -1458,10 +1447,10 @@
 		<crouch_type>0</crouch_type>
 		<supplies>
 			[spawn] \n
-            wpn_akm_akm30_ironsight \n
-			ammo_7.62x39_fmj \n
-			wpn_sayga12k_sk1 \n
-			ammo_12x70_kart \n
+            wpn_groza = 1, scope \n
+			ammo_9x39_pab9 \n
+			wpn_tt \n
+			ammo_7.62x25_ps \n
 #include "gameplay\character_items.xml" \n
 #include "gameplay\character_food.xml" \n
 #include "gameplay\character_drugs.xml"
@@ -1488,10 +1477,10 @@
 		<crouch_type>0</crouch_type>
 		<supplies>
 			[spawn] \n
-            wpn_rpk74_sk1 \n
-            ammo_5.45x39_fmj \n
+			wpn_pkm \n
+			ammo_7.62x54_7h1 \n
 			wpn_pm \n
-			ammo_9x18_pmm \n
+			ammo_9x18_fmj \n
 #include "gameplay\character_items.xml" \n
 #include "gameplay\character_food.xml" \n
 #include "gameplay\character_drugs.xml"
@@ -1521,8 +1510,8 @@
 			[spawn] \n
 			wpn_swd_svd10_pso1 = 1, scope \n
 			ammo_7.62x54_ap \n
-			wpn_aks74ub_aks74ub30_ironsight \n
-			ammo_5.45x39_fmj \n
+			wpn_pb = 1, silencer \n
+			ammo_9x18_fmj \n
 #include "gameplay\character_items.xml" \n
 #include "gameplay\character_food.xml" \n
 #include "gameplay\character_drugs.xml"
@@ -1549,8 +1538,10 @@
 		<crouch_type>0</crouch_type>
 		<supplies>
 			[spawn] \n
-			wpn_svu \n
+			wpn_svu = 1, silencer, scope \n
 			ammo_7.62x54_ap \n
+			wpn_pb = 1, silencer \n
+			ammo_9x18_fmj \n
 #include "gameplay\character_items.xml" \n
 #include "gameplay\character_food.xml" \n
 #include "gameplay\character_drugs.xml"
@@ -1577,8 +1568,10 @@
 		<crouch_type>0</crouch_type>
 		<supplies>
 			[spawn] \n
-			wpn_svu \n
+			wpn_mosin_sni = 1, scope \n
 			ammo_7.62x54_ap \n
+			wpn_pb = 1, silencer \n
+			ammo_9x18_fmj \n
 #include "gameplay\character_items.xml" \n
 #include "gameplay\character_food.xml" \n
 #include "gameplay\character_drugs.xml"
@@ -1613,10 +1606,10 @@
 		<crouch_type>-1</crouch_type>
 		<supplies>
 			[spawn] \n
-			wpn_m16a1_sk1 \n
+			wpn_l85_carryhandle \n
 			ammo_5.56x45_ss190 \n
-			wpn_wincheaster1300 \n
-			ammo_12x70_kart \n
+			wpn_beretta \n
+			ammo_9x19_fmj \n
 #include "gameplay\character_items.xml"	\n
 #include "gameplay\character_food.xml" \n
 #include "gameplay\character_drugs.xml"		
@@ -1649,7 +1642,7 @@
 			[spawn] \n
 			wpn_m16a1_sk1 \n
 			ammo_5.56x45_ss190 \n
-			wpn_wincheaster1300 \n
+			wpn_masterkey \n
 			ammo_12x70_kart \n
 #include "gameplay\character_items.xml"	\n
 #include "gameplay\character_food.xml" \n
@@ -1681,10 +1674,10 @@
 		<crouch_type>0</crouch_type>
 		<supplies>
 			[spawn] \n
-			wpn_m16a1_sk1 \n
+			wpn_g36 \n
 			ammo_5.56x45_ss190 \n
-			wpn_pm \n
-			ammo_9x18_pmm \n
+			wpn_beretta \n
+			ammo_9x19_pbp \n
 #include "gameplay\character_items.xml"	\n
 #include "gameplay\character_food.xml" \n
 #include "gameplay\character_drugs.xml"			
@@ -1714,8 +1707,10 @@
 		<visual>actors\svoboda\stalker_sv_rukzak_3_1</visual>
 		<supplies>
 			[spawn] \n
-			wpn_awm \n
-			ammo_8.6x70_lm \n
+			wpn_l85_susat \n
+			ammo_5.56x45_ss190 \n
+			wpn_beretta \n
+			ammo_9x19_fmj \n
 #include "gameplay\character_items.xml"	\n
 #include "gameplay\character_food.xml" \n
 #include "gameplay\character_drugs.xml"		
@@ -1746,10 +1741,10 @@
 		<visual>actors\killer\stalker_ki_head_1</visual>
 		<supplies>
 			[spawn] \n
-			wpn_g36 \n
-			ammo_5.56x45_ss190 \n
-			wpn_spas12 \n
-			ammo_12x70_kart \n
+			wpn_akm_akm30_side_rail_kobra = 1,  scope \n
+			ammo_7.62x39_fmj \n
+			wpn_apb \n
+			ammo_9x18_fmj \n
 #include "gameplay\character_drugs.xml" \n
 #include "gameplay\character_items.xml" \n
 #include "gameplay\character_food.xml"
@@ -1776,10 +1771,10 @@
 		<visual>actors\killer\stalker_ki_mask</visual>
 		<supplies>
 			[spawn] \n
-			wpn_g36 \n
+			wpn_sig550 \n
 			ammo_5.56x45_ss190 \n
-			wpn_spas12 \n
-			ammo_12x70_kart \n
+			wpn_usp9 \n
+			ammo_9x19_fmj \n
 #include "gameplay\character_drugs.xml" \n
 #include "gameplay\character_items.xml" \n
 #include "gameplay\character_food.xml"
@@ -1807,10 +1802,11 @@
 		<visual>actors\killer\stalker_ki_head_1</visual>
 		<supplies>
 			[spawn] \n
-			wpn_g36 \n
-			ammo_5.56x45_ss190 \n
-			wpn_spas12 \n
-			ammo_12x70_kart \n
+			wpn_ak74n_ak74n30_side_rail_kobra = 1,  launcher \n
+			ammo_5.45x39_fmj \n
+			ammo_vog-25 \n
+			wpn_fort \n
+			ammo_9x19_fmj \n
 #include "gameplay\character_drugs.xml" \n
 #include "gameplay\character_items.xml" \n
 #include "gameplay\character_food.xml"
@@ -1837,9 +1833,9 @@
 		<visual>actors\killer\stalker_ki_mask</visual>
 		<supplies>
 			[spawn] \n
-			wpn_g36 \n
+			wpn_m16a1_sk1 \n
 			ammo_5.56x45_ss190 \n
-			wpn_spas12 \n
+			wpn_wincheaster1300 \n
 			ammo_12x70_kart \n
 #include "gameplay\character_drugs.xml" \n
 #include "gameplay\character_items.xml" \n
@@ -1868,10 +1864,10 @@
 		<visual>actors\killer\stalker_ki_antigas</visual>
 		<supplies>
 			[spawn] \n
-			wpn_g36 \n
+			wpn_ak102_ak10230_stok_1p29 \n
 			ammo_5.56x45_ss190 \n
-			wpn_spas12 \n
-			ammo_12x70_kart \n
+			wpn_gsh18 \n
+			ammo_9x19_fmj \n
 #include "gameplay\character_drugs.xml" \n
 #include "gameplay\character_items.xml" \n
 #include "gameplay\character_food.xml"
@@ -1900,8 +1896,8 @@
 			[spawn] \n
 			wpn_g36 \n
 			ammo_5.56x45_ss190 \n
-			wpn_spas12 \n
-			ammo_12x70_kart \n
+			wpn_usp \n
+			ammo_11.43x23_fmj \n
 #include "gameplay\character_drugs.xml" \n
 #include "gameplay\character_items.xml" \n
 #include "gameplay\character_food.xml"
@@ -1931,9 +1927,9 @@
 		<supplies>
 			[spawn] \n
 			wpn_sg550sr_sk1 \n
-			ammo_5.56x45_ap \n
-			ammo_9x19_pbp \n
-			wpn_mp5 \n
+			ammo_5.56x45_ss190 \n
+			wpn_glock \n
+			ammo_9x19_fmj \n
 #include "gameplay\character_drugs.xml" \n
 #include "gameplay\character_items.xml" \n
 #include "gameplay\character_food.xml"
@@ -2066,11 +2062,9 @@
 		<crouch_type>-1</crouch_type>
         <supplies>
             [spawn] \n
-			wpn_sig550 \n
+			wpn_fn2000 \n
 			ammo_5.56x45_ss190 \n
-			wpn_beretta \n
-			ammo_9x19_pbp \n
-			device_torch \n
+			ammo_m209 \n
 #include "gameplay\character_drugs.xml"
         </supplies>
         
@@ -2096,10 +2090,9 @@
 		<crouch_type>-1</crouch_type>
         <supplies>
             [spawn] \n
-			wpn_sig550 \n
+			wpn_fn2000 \n
 			ammo_5.56x45_ss190 \n
-			wpn_beretta \n
-			ammo_9x19_pbp \n
+			ammo_m209 \n
 			device_torch \n
 #include "gameplay\character_drugs.xml"
         </supplies>
@@ -2129,9 +2122,6 @@
             [spawn] \n
 			wpn_pkm \n
 			ammo_7.62x54_ap \n
-			wpn_beretta \n
-			ammo_9x19_pbp \n
-			grenade_f1 = 2 \n
 			device_torch \n
 #include "gameplay\character_drugs.xml"
         </supplies>
@@ -2160,9 +2150,6 @@
             [spawn] \n
 			wpn_pkm \n
 			ammo_7.62x54_ap \n
-			wpn_beretta \n
-			ammo_9x19_pbp \n
-			grenade_f1 = 2 \n
 			device_torch \n
 #include "gameplay\character_drugs.xml"
         </supplies>
@@ -2291,7 +2278,7 @@
 		<crouch_type>-1</crouch_type>
 		<supplies>
 			[spawn] \n
-			wpn_ppsh41 \n
+			wpn_tt \n
 			ammo_7.62x25_p \n
 		</supplies>
 		
@@ -2341,8 +2328,8 @@
 		<crouch_type>-1</crouch_type>
 		<supplies>
 			[spawn] \n
-			wpn_mp5 \n
-			ammo_9x19_fmj \n
+			wpn_pm \n
+			ammo_9x18_fmj \n
 		</supplies>
 		
 #include "gameplay\character_criticals_1.xml"
@@ -2366,7 +2353,7 @@
 		<crouch_type>-1</crouch_type>
 		<supplies>
 			[spawn] \n
-			wpn_bm16 \n
+			wpn_toz34_short \n
 			ammo_12x70_kart \n
 		</supplies>
 		
@@ -2416,8 +2403,8 @@
 		<crouch_type>-1</crouch_type>
 		<supplies>
 			[spawn] \n
-			wpn_aks74ub_aks74ub30_ironsight \n
-			ammo_5.45x39_fmj \n
+			wpn_pm \n
+			ammo_9x18_fmj \n
 		</supplies>
 		
 #include "gameplay\character_criticals_1.xml"
@@ -2441,7 +2428,7 @@
 		<crouch_type>-1</crouch_type>
 		<supplies>
 			[spawn] \n
-			wpn_mp5 \n
+			wpn_beretta \n
 			ammo_9x19_fmj \n
 		</supplies>
 		
@@ -2468,8 +2455,8 @@
 
 		<supplies>
 			[spawn] \n
-			wpn_mp5 \n
-			ammo_9x19_fmj \n
+			wpn_ak74n_ak74n30_ironsight \n
+			ammo_5.45x39_fmj \n
 		</supplies>
 		
 #include "gameplay\character_criticals_1.xml"
@@ -2649,8 +2636,8 @@
 		<crouch_type>-1</crouch_type>
 		<supplies>
 			[spawn] \n
-			wpn_ak74n_ak74n30_ironsight \n
-			ammo_5.45x39_fmj \n
+			wpn_bm16_full \n
+			ammo_12x70_kart \n
 		</supplies>
 		
 #include "gameplay\character_criticals_1.xml"
@@ -2675,8 +2662,8 @@
 		<crouch_type>-1</crouch_type>
 		<supplies>
 			[spawn] \n
-			wpn_mp5 \n
-			ammo_9x19_fmj \n
+			wpn_toz34 \n
+			ammo_12x70_kart \n
 		</supplies>
 		
 #include "gameplay\character_criticals_1.xml"
@@ -2707,7 +2694,7 @@
 			wpn_ak74n_ak74n30_ironsight \n
 			ammo_5.45x39_fmj \n
 			wpn_pm \n
-			ammo_9x18_pmm \n
+			ammo_9x18_fmj \n
 #include "gameplay\character_drugs.xml" \n
 #include "gameplay\character_items.xml" \n
 #include "gameplay\character_food.xml"
@@ -2739,7 +2726,7 @@
 			wpn_ak74n_ak74n30_ironsight \n
 			ammo_5.45x39_fmj \n
 			wpn_pm \n
-			ammo_9x18_pmm \n
+			ammo_9x18_fmj \n
 #include "gameplay\character_drugs.xml" \n
 #include "gameplay\character_items.xml" \n
 #include "gameplay\character_food.xml"
@@ -2771,7 +2758,7 @@
 			wpn_ak74n_ak74n30_ironsight \n
 			ammo_5.45x39_fmj \n
 			wpn_pm \n
-			ammo_9x18_pmm \n
+			ammo_9x18_fmj \n
 #include "gameplay\character_drugs.xml" \n
 #include "gameplay\character_items.xml" \n
 #include "gameplay\character_food.xml"
@@ -2803,7 +2790,7 @@
 			wpn_ak74n_ak74n30_ironsight \n
 			ammo_5.45x39_fmj \n
 			wpn_pm \n
-			ammo_9x18_pmm \n
+			ammo_9x18_fmj \n
 #include "gameplay\character_drugs.xml" \n
 #include "gameplay\character_items.xml" \n
 #include "gameplay\character_food.xml"
@@ -2835,7 +2822,7 @@
 			wpn_ak74n_ak74n30_ironsight \n
 			ammo_5.45x39_fmj \n
 			wpn_pm \n
-			ammo_9x18_pmm \n
+			ammo_9x18_fmj \n
 #include "gameplay\character_drugs.xml" \n
 #include "gameplay\character_items.xml" \n
 #include "gameplay\character_food.xml"
@@ -2867,7 +2854,7 @@
 			wpn_ak74n_ak74n30_ironsight \n
 			ammo_5.45x39_fmj \n
 			wpn_pm \n
-			ammo_9x18_pmm \n
+			ammo_9x18_fmj \n
 #include "gameplay\character_drugs.xml" \n
 #include "gameplay\character_items.xml" \n
 #include "gameplay\character_food.xml"
@@ -2899,7 +2886,7 @@
 			wpn_ak74n_ak74n30_ironsight \n
 			ammo_5.45x39_fmj \n
 			wpn_pm \n
-			ammo_9x18_pmm \n
+			ammo_9x18_fmj \n
 #include "gameplay\character_drugs.xml" \n
 #include "gameplay\character_items.xml" \n
 #include "gameplay\character_food.xml"
@@ -2931,7 +2918,7 @@
 			wpn_ak74n_ak74n30_ironsight \n
 			ammo_5.45x39_fmj \n
 			wpn_pm \n
-			ammo_9x18_pmm \n
+			ammo_9x18_fmj \n
 #include "gameplay\character_drugs.xml" \n
 #include "gameplay\character_items.xml" \n
 #include "gameplay\character_food.xml"
@@ -2942,6 +2929,7 @@
 		<start_dialog>hello_dialog</start_dialog>
 #include "gameplay\character_dialogs.xml"
 	</specific_character>
+
 	<!--SOLDIER SPECNAZ-->
 
 	<specific_character id="sim_soldier_specnaz_default7" team_default = "1">
@@ -2961,11 +2949,11 @@
 		<crouch_type>0</crouch_type>
 		<supplies>
 			[spawn] \n
-			wpn_ak74n_ak74n30_side_rail_kobra = 1, scope launcher \n
+			wpn_ak74n_rpk45_ironsight = 1, launcher \n
 			ammo_vog-25 \n
 			ammo_5.45x39_ap \n
-			wpn_pm \n
-			ammo_9x18_pmm \n
+			wpn_fort \n
+			ammo_9x19_pbp \n
 #include "gameplay\character_items.xml" \n
 #include "gameplay\character_drugs.xml" \n
 #include "gameplay\character_food.xml"
@@ -2996,11 +2984,11 @@
 		<crouch_type>0</crouch_type>
 		<supplies>
 			[spawn] \n
-			wpn_ak74n_ak74n30_side_rail_kobra = 1, scope launcher \n
+			wpn_ak74n_rpk45_ironsight = 1, launcher \n
 			ammo_vog-25 \n
 			ammo_5.45x39_ap \n
-			wpn_pm \n
-			ammo_9x18_pmm \n
+			wpn_fort \n
+			ammo_9x19_pbp \n
 #include "gameplay\character_items.xml" \n
 #include "gameplay\character_drugs.xml" \n
 #include "gameplay\character_food.xml"
@@ -3031,11 +3019,10 @@
 		<crouch_type>0</crouch_type>
 		<supplies>
 			[spawn] \n
-			wpn_ak74n_ak74n30_side_rail_kobra = 1, scope launcher \n
-			ammo_vog-25 \n
+			wpn_ak74n_ak74n30_side_rail_kobra \n
 			ammo_5.45x39_fmj \n
-			wpn_pm \n
-			ammo_9x18_pmm \n
+			wpn_apb \n
+			ammo_9x18_fmj \n
 #include "gameplay\character_items.xml" \n
 #include "gameplay\character_drugs.xml" \n
 #include "gameplay\character_food.xml"
@@ -3064,11 +3051,10 @@
 		<crouch_type>0</crouch_type>
 		<supplies>
 			[spawn] \n
-			wpn_ak74n_ak74n30_side_rail_kobra = 1, scope launcher \n
-			ammo_vog-25 \n
+			wpn_ak74n_ak74n30_side_rail_kobra \n
 			ammo_5.45x39_fmj \n
-			wpn_pm \n
-			ammo_9x18_pmm \n
+			wpn_apb \n
+			ammo_9x18_fmj \n
 #include "gameplay\character_items.xml" \n
 #include "gameplay\character_drugs.xml" \n
 #include "gameplay\character_food.xml"
@@ -3100,8 +3086,8 @@
 			[spawn] \n
 			wpn_swd_svd10_pso1 = 1, scope \n
 			ammo_7.62x54_ap \n
-			wpn_aks74ub_aks74ub30_ironsight \n
-			ammo_5.45x39_fmj \n
+			wpn_pb = 1, silencer \n
+			ammo_9x18_fmj \n
 #include "gameplay\character_items.xml" \n
 #include "gameplay\character_drugs.xml" \n
 #include "gameplay\character_food.xml"
@@ -3130,10 +3116,10 @@
 		<crouch_type>0</crouch_type>
 		<supplies>
 			[spawn] \n
-			wpn_ak74n_ak74n30_side_rail_kobra = 1, scope \n
+			wpn_ak74n_ak74n30_side_rail_1p29 = 1, scope \n
 			ammo_5.45x39_fmj \n
 			wpn_pm \n
-			ammo_9x18_pmm \n
+			ammo_9x18_fmj \n
 #include "gameplay\character_items.xml" \n
 #include "gameplay\character_drugs.xml" \n
 #include "gameplay\character_food.xml"
@@ -3165,7 +3151,7 @@
 			wpn_ak74n_ak74n30_side_rail_kobra = 1, scope \n
 			ammo_5.45x39_fmj \n
 			wpn_pm \n
-			ammo_9x18_pmm \n
+			ammo_9x18_fmj \n
 #include "gameplay\character_items.xml" \n
 #include "gameplay\character_drugs.xml" \n
 #include "gameplay\character_food.xml"
@@ -3196,8 +3182,8 @@
 			[spawn] \n
 			wpn_swd_svd10_pso1 = 1, scope \n
 			ammo_7.62x54_ap \n
-			wpn_aks74ub_aks74ub30_ironsight \n
-			ammo_5.45x39_fmj \n
+			wpn_pb = 1, silencer \n
+			ammo_9x18_fmj \n
 #include "gameplay\character_items.xml" \n
 #include "gameplay\character_drugs.xml" \n
 #include "gameplay\character_food.xml"
@@ -3261,7 +3247,7 @@
 			wpn_ak74n_ak74n30_side_rail_kobra = 1, scope \n
 			ammo_5.45x39_fmj \n
 			wpn_pm \n
-			ammo_9x18_pmm \n
+			ammo_9x18_fmj \n
 #include "gameplay\character_items.xml" \n
 #include "gameplay\character_drugs.xml" \n
 #include "gameplay\character_food.xml"
@@ -3271,8 +3257,10 @@
 					
 		<start_dialog>hello_dialog</start_dialog>
 #include "gameplay\character_dialogs_unic.xml"
-	</specific_character>	
+	</specific_character>
+	
 <!--SOLDIER MASTER-->
+
 	<specific_character id="sim_Soldier_master" team_default = "1">
 		<name>GENERATE_NAME_captain</name>
 		<icon>ui_npc_u_stalker_militari_antigas_2</icon>
@@ -3293,10 +3281,10 @@
 		<visual>actors\militari\stalker_militari_antigas_2</visual>		
 		<supplies>
 			[spawn] \n
-			wpn_val \n
+			wpn_a91_m20_side_rail_kobra \n
 			ammo_9x39_pab9 \n
-			wpn_pm \n
-			ammo_9x18_pmm \n
+			wpn_gsh18 \n
+			ammo_9x19_pbp \n
 #include "gameplay\character_items.xml" \n
 #include "gameplay\character_drugs.xml" \n
 #include "gameplay\character_food.xml"
@@ -3309,8 +3297,11 @@
 	</specific_character>
 
 
+
+
+
 ;--Stalkers Quest Profiles--
-<!--Oleg Gusarov-->
+<!--Олег "Демон" Гусаров-->
 	<specific_character id="sim_stalker_veteran_gusarov" team_default = "1">
 		<name>sim_stalker_veteran_gusarov_name</name>
 		<icon>ui_npc_u_stalker_2_gas</icon>
@@ -3328,10 +3319,10 @@
 		<crouch_type>-1</crouch_type>
 		<supplies>
 			[spawn] \n
-			wpn_akm_akm30_ironsight \n
+			wpn_akm_rpk40_ironsight \n
 			ammo_7.62x39_fmj \n
-			wpn_sayga12k_sk1 \n
-			ammo_12x70_kart \n
+			wpn_tt \n
+			ammo_7.62x25_p \n
 #include "gameplay\character_items.xml" \n
 #include "gameplay\character_drugs.xml" \n
 #include "gameplay\character_food.xml"
@@ -3341,8 +3332,8 @@
 #include "gameplay\character_dialogs_unic.xml"
 	</specific_character>
 
-;--Leshii--	
-	
+
+<!--"Леший"-->
 <specific_character id="sim_Svoboda_specnaz_leshii" team_default = "1">
 		<name>sim_Svoboda_specnaz_leshii_name</name>
 		<icon>ui_npc_u_stalker_sv_hood_9</icon>
@@ -3377,7 +3368,7 @@
 </specific_character>
 
 
-;--Chuchelo--
+<!--"Чучело"-->
 	<specific_character id="sim_stalker_master_chuchelo" team_default = "1">
 		<name>sim_stalker_master_chuchelo_name</name>
 		<icon>ui_npc_u_stalker_neytral_exoskeleton</icon>
@@ -3397,7 +3388,7 @@
 			[spawn] \n
 			wpn_g36 \n
 			ammo_5.56x45_ss190 \n
-			wpn_bm16 \n
+			wpn_bm16_full \n
 			ammo_12x70_kart \n
 #include "gameplay\character_items.xml" \n
 #include "gameplay\character_drugs.xml" \n
@@ -3409,8 +3400,7 @@
 	</specific_character>
 
 
-;--Upir--
-
+<!--"Упырь"-->
 	<specific_character id="sim_stalker_general_upir" team_default = "1">
 		<name>sim_stalker_general_upir_name</name>
 		<icon>ui_npc_u_stalker_neytral_hood_uzor</icon>
@@ -3439,7 +3429,8 @@
 #include "gameplay\character_dialogs_unic.xml"
 	</specific_character>
 	
-	;--Otec Diador--
+
+<!--"отец" Диадор-->
 	<specific_character id="sim_stalker_master_diador" team_default = "1">
 		<name>sim_stalker_master_diador_name</name>
 		<icon>ui_npc_u_stalker_neytral_exoskeleton</icon>
@@ -3460,6 +3451,9 @@
 			[spawn] \n
 			wpn_winchester_m1 \n
 			ammo_12x76_zhekan \n
+			wpn_colt1911 \n
+			ammo_11.43x23_hydro \n
+			
 #include "gameplay\character_items.xml" \n
 #include "gameplay\character_drugs.xml" \n
 #include "gameplay\character_food.xml"
@@ -3469,8 +3463,8 @@
 #include "gameplay\character_dialogs_unic.xml"
 	</specific_character>	
 	
-	;--Zob--
-	
+
+<!--"Зоб"-->	
 	<specific_character id="sim_ecolog_zob" team_default = "1">
 		<name>sim_ecolog_zob_name</name>
 		<icon>ui_npc_u_stalker_ecolog</icon>
@@ -3501,7 +3495,8 @@
 #include "gameplay\character_dialogs_unic.xml"
 	</specific_character>
 	
-	;--Neumeha--
+
+<!--"Неумеха"-->	
 <specific_character id="sim_stalker_novice_neumeha" team_default = "1">
 		<name>sim_stalker_novice_neumeha_name</name>
 		<icon>ui_npc_u_green_stalker_9</icon>
@@ -3527,7 +3522,7 @@
 	</specific_character>
 
 	
-;--Kocherga--
+<!--"Кочерга"-->
 	<specific_character id="sim_bandit_master_kocherga" team_default = "1">
 		<name>sim_bandit_master_kocherga_name</name>
 		<icon>ui_npc_u_stalker_bandit_master</icon>
@@ -3558,8 +3553,8 @@
 #include "gameplay\character_dialogs_unic.xml"
 	</specific_character>	
 	
-	;--Barin--
-	
+
+<!--"Барин"-->
 	<specific_character id="sim_dolg_veteran_barin" team_default = "1">
 		<name>sim_dolg_veteran_barin_name</name>
 		<icon>ui_npc_u_stalker_do_antigas</icon>
@@ -3577,10 +3572,10 @@
 		<crouch_type>0</crouch_type>
 		<supplies>
 			[spawn] \n
-			wpn_akm_akm30_ironsight \n
+			wpn_akm_rpk75_side_rail_kobra \n
 			ammo_7.62x39_fmj \n
-            wpn_sayga12k_sk1 \n
-			ammo_12x70_kart \n
+            wpn_apb_buttstock \n
+			ammo_9x18_fmj \n
 #include "gameplay\character_items.xml" \n
 #include "gameplay\character_drugs.xml" \n
 #include "gameplay\character_food.xml"
@@ -3589,9 +3584,9 @@
 #include "gameplay\character_criticals_6.xml"
 #include "gameplay\character_dialogs_unic.xml"
 	</specific_character>	
-	
-	
-;--Воробей--	
+
+
+<!--"Воробей"-->
 	<specific_character id="sim_stalker_veteran_vorobey" team_default = "1">
 		<name>sim_stalker_veteran_vorobey_name</name>
 		<icon>ui_npc_u_stalker_3_gas</icon>
@@ -3621,9 +3616,9 @@
 #include "gameplay\character_criticals_4.xml"
 #include "gameplay\character_dialogs.xml"
 	</specific_character>	
-	
-	
-;--Stalker "Master"--
+
+
+<!--"Мастер"-->
 	<specific_character id="sim_stalker_master_master" team_default = "1">
 		<name>sim_stalker_master_master_name</name>
 		<icon>ui_npc_u_stalker_neytral_exoskeleton</icon>
@@ -3653,9 +3648,9 @@
 #include "gameplay\character_criticals_2.xml"
 #include "gameplay\character_dialogs.xml"
 	</specific_character>	
-	
-	
-;--Stalker "Prapor"--
+
+
+<!--"Прапор"-->
 	<specific_character id="sim_dolg_veteran_prapor" team_default = "1">
 		<name>sim_dolg_veteran_prapor_name</name>
 		<icon>ui_npc_u_stalker_do_antigas</icon>
@@ -3675,8 +3670,8 @@
 			[spawn] \n
 			wpn_akm_akm30_ironsight \n
 			ammo_7.62x39_fmj \n
-            wpn_sayga12k_sk1 \n
-			ammo_12x70_kart \n
+            wpn_tt \n
+			ammo_7.62x25_p \n
 #include "gameplay\character_items.xml" \n
 #include "gameplay\character_drugs.xml" \n
 #include "gameplay\character_food.xml"
@@ -3687,8 +3682,7 @@
 	</specific_character>
 	
 	
-;--Prut--	
-	
+<!--"Плут"-->
 <specific_character id="sim_svoboda_specnaz_prut" team_default = "1">
 		<name>sim_svoboda_specnaz_prut_name</name>
 		<icon>ui_npc_u_stalker_sv_hood_9</icon>
@@ -3718,8 +3712,9 @@
 #include "gameplay\character_criticals_4.xml"
 #include "gameplay\character_dialogs.xml"
 </specific_character>	
+
 	
-;--Умник--	
+<!--"Умник"-->
 	<specific_character id="sim_stalker_veteran_umnik" team_default = "1">
 		<name>sim_stalker_veteran_umnik_name</name>
 		<icon>ui_npc_u_stalker_4_gas</icon>
@@ -3737,7 +3732,7 @@
 		<crouch_type>-1</crouch_type>
 		<supplies>
 			[spawn] \n
-			wpn_ak74n_ak74n30_ironsight = 1, scope \n
+			wpn_ak74n_ak74n30_side_rail_1p29 = 1, scope \n
 			ammo_5.45x39_fmj \n
 			wpn_toz34 \n
 			ammo_12x70_kart \n
@@ -3749,8 +3744,9 @@
 #include "gameplay\character_criticals_4.xml"
 #include "gameplay\character_dialogs_unic.xml"
 	</specific_character>	
-	
-;--Fraer--
+
+
+<!--"Фраер"-->
 	<specific_character id="sim_bandit_master_fraer" team_default = "1">
 		<name>sim_bandit_master_fraer_name</name>
 		<icon>ui_npc_u_stalker_bandit_master</icon>
@@ -3783,8 +3779,9 @@
 #include "gameplay\character_criticals_4.xml"
 #include "gameplay\character_dialogs_unic.xml"
 	</specific_character>	
-	
-;--Stalker "Полкан"--
+
+
+<!--"Полкан"-->
 	<specific_character id="sim_stalker_master_polkan" team_default = "1">
 		<name>sim_stalker_master_polkan_name</name>
 		<icon>ui_npc_u_stalker_neytral_exoskeleton</icon>

@@ -1,7 +1,5 @@
-wpn_bm16 \n
-ammo_12x70_kart \n
-wpn_akm_akm30_ironsight \n
-ammo_7.62x39_fmj \n
+wpn_ak74n_ak74n30_ironsight \n
+ammo_5.45x39_fmj \n
 grenade_rgd5 = 1, prob = 0.3 \n
 
 harmonica_a = 1, prob = 0.3 \n

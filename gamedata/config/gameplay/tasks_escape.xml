@@ -444,6 +444,7 @@
 		<article>find_flash_3</article>
 		<icon>ui_iconsJek@nflashcard3</icon>
 		<infoportion_complete>fleshka_3_find</infoportion_complete>
+		<infoportion_fail>kulg_band_meet_speech_loose</infoportion_fail>
 	</objective>
 	<objective>
 		<text>find_flash_3_text2_task</text>
@@ -466,6 +467,7 @@
 		<article>find_flash_4</article>
 		<icon>ui_iconsJek@nflashcard4</icon>
 		<infoportion_complete>fleshka_4_find</infoportion_complete>
+		<infoportion_fail>kulg_band_meet_speech_loose</infoportion_fail>
 	</objective>
 	<objective>
 		<text>find_flash_4_text2_task</text>
@@ -496,6 +498,7 @@
 		<article>find_flash_5</article>
 		<icon>ui_iconsJek@nflashcard5</icon>
 		<infoportion_complete>fleshka_5_find</infoportion_complete>
+		<infoportion_fail>kulg_band_meet_speech_loose</infoportion_fail>
 	</objective>
 	<objective>
 		<text>find_flash_5_text2_task</text>

@@ -615,7 +615,7 @@
 <!--ds_nalet_band_1-->
 	<specific_character id="ds_nalet_band_1" team_default = "1">
 		<name>ds_nalet_band_1_name</name>
-		<icon>ui_npc_nalet_bandit</icon>
+		<icon>ui_npc_kulg_band_lider2</icon>
 		<bio>esc_stalker_novice_bio</bio>
 
 		<class>ds_nalet_band_1</class>
@@ -807,7 +807,7 @@
 
 	<specific_character id="iskatel_yuriy" team_default = "1">
 		<name>iskatel_yuriy_name</name>
-		<icon>ui_npc_u_stalker_neytral_rukzak_2</icon>
+		<icon>ui_npc_iskatel_yuriy</icon>
 		<bio>esc_stalker_novice_bio</bio>
 
 		<class>iskatel_yuriy</class>
@@ -871,7 +871,7 @@
 <!--bratstvo_cleaner-->
 	<specific_character id="bratstvo_cleaner" team_default = "1">
 		<name>bratstvo_cleaner_name</name>
-		<icon>ui_npc_missing</icon>
+		<icon>ui_npc_bratstvo_cleaner</icon>
 		<bio>esc_stalker_novice_bio</bio>
 
 		<class>bratstvo_cleaner</class>
@@ -889,6 +889,9 @@
 		[spawn] \n
 			wpn_flame \n
 			ammo_flame \n
+#include "gameplay\character_items.xml"\n
+#include "gameplay\character_food.xml" \n
+#include "gameplay\character_drugs.xml"
 		</supplies>
 		<actor_dialog>dm_help_wounded_medkit_dialog</actor_dialog>
 		<actor_dialog>vrach_agent_dialog_2</actor_dialog>
@@ -897,7 +900,7 @@
 <!--bratstvo_vrach-->
 	<specific_character id="bratstvo_vrach" team_default = "1">
 		<name>bratstvo_vrach_name</name>
-		<icon>ui_npc_missing</icon>
+		<icon>ui_npc_bratstvo_vrach</icon>
 		<bio>esc_stalker_novice_bio</bio>
 
 		<class>bratstvo_vrach</class>
@@ -926,7 +929,7 @@
 <!--bratstvo_orujeinik-->
 	<specific_character id="bratstvo_orujeinik" team_default = "1">
 		<name>bratstvo_orujeinik_name</name>
-		<icon>ui_npc_missing</icon>
+		<icon>ui_npc_bratstvo_orujeinik</icon>
 		<bio>esc_stalker_novice_bio</bio>
 
 		<class>bratstvo_orujeinik</class>
@@ -944,6 +947,9 @@
 		[spawn] \n
 			wpn_flame \n
 			ammo_flame \n
+#include "gameplay\character_items.xml"\n
+#include "gameplay\character_food.xml" \n
+#include "gameplay\character_drugs.xml"
 		</supplies>
 		<actor_dialog>dm_help_wounded_medkit_dialog</actor_dialog>
 		<actor_dialog>orujeinik_zapravka_dialog</actor_dialog>
@@ -952,7 +958,7 @@
 <!--bratstvo_lider-->
 	<specific_character id="bratstvo_lider" team_default = "1">
 		<name>bratstvo_lider_name</name>
-		<icon>ui_npc_missing</icon>
+		<icon>ui_npc_bratstvo_lider</icon>
 		<bio>esc_stalker_novice_bio</bio>
 
 		<class>bratstvo_lider</class>
@@ -970,18 +976,22 @@
 		[spawn] \n
 			wpn_pm \n
 			ammo_9x18_pmm \n
+#include "gameplay\character_items.xml"\n
+#include "gameplay\character_food.xml" \n
+#include "gameplay\character_drugs.xml"
 		</supplies>
 		<start_dialog>bratstvo_lider_start_dialog</start_dialog>
 		<actor_dialog>dm_help_wounded_medkit_dialog</actor_dialog>
 		<actor_dialog>bratstvo_lider_agent_live_dialog</actor_dialog>
 		<actor_dialog>bratstvo_lider_agent_dead_dialog</actor_dialog>
 		<actor_dialog>bratstvo_lider_oruj_dead_dialog</actor_dialog>
+		
 	</specific_character>
 
 <!--ds_patruln-->
 	<specific_character id="ds_patruln" team_default = "1">
 		<name>ds_patruln_name</name>
-		<icon>ui_npc_u_stalker_bandit_1</icon>
+		<icon>ui_npc_kulg_band_patrol2</icon>
 		<bio>esc_stalker_novice_bio</bio>
 
 		<class>ds_patruln</class>
@@ -999,8 +1009,14 @@
 		[spawn] \n
 			wpn_aks74ub_aks74ub30_ironsight \n
 			ammo_5.45x39_fmj \n
+#include "gameplay\character_items.xml"\n
+#include "gameplay\character_food.xml" \n
+#include "gameplay\character_drugs.xml"
 		</supplies>
 		<actor_dialog>dm_help_wounded_medkit_dialog</actor_dialog>
+		<actor_dialog>ds_patruln_dialog1</actor_dialog>
+		<actor_dialog>cit_kulgband_glavar_loose_dialog</actor_dialog>
+		
 	</specific_character>
 
 <!--ds_shesterka-->
@@ -1019,13 +1035,22 @@
 		<snd_config>characters_voice\human_03\bandit\</snd_config>
 		<crouch_type>-1</crouch_type>
 
+		<!--visual>actors\unic\npc_guzzler</visual-->
 		<visual>actors\bandit\stalker_bandit_1</visual>
 		<supplies>
 		[spawn] \n
 			wpn_bm16 \n
 			ammo_12x70_kart \n
+#include "gameplay\character_items.xml"\n
+#include "gameplay\character_food.xml" \n
+#include "gameplay\character_drugs.xml"
 		</supplies>
 		<actor_dialog>dm_help_wounded_medkit_dialog</actor_dialog>
+		<actor_dialog>ds_shesterka_dialog1</actor_dialog>
+		<actor_dialog>ds_shesterka_dialog2</actor_dialog>
+		<actor_dialog>ds_shesterka_dialog3</actor_dialog>
+		<actor_dialog>cit_kulgband_glavar_loose_dialog</actor_dialog>
+		
 	</specific_character>
 
 <!--ds_telohr_2-->
@@ -1048,14 +1073,22 @@
 		<supplies>
 		[spawn] \n
 			wpn_pkm \n
+#include "gameplay\character_items.xml"\n
+#include "gameplay\character_food.xml" \n
+#include "gameplay\character_drugs.xml"
 		</supplies>
 		<actor_dialog>dm_help_wounded_medkit_dialog</actor_dialog>
+		<actor_dialog>ds_telohr_2_dialog1</actor_dialog>
+		<actor_dialog>ds_telohr_2_dialog2</actor_dialog>
+		<actor_dialog>ds_telohr_2_dialog3</actor_dialog>
+		<actor_dialog>cit_kulgband_glavar_loose_dialog</actor_dialog>
+		
 	</specific_character>
 
 <!--ds_telohr_1-->
 	<specific_character id="ds_telohr_1" team_default = "1">
 		<name>ds_telohr_1_name</name>
-		<icon>ui_npc_u_stalker_bandit_veteran</icon>
+		<icon>ds_telohr_1_icon</icon>
 		<bio>esc_stalker_novice_bio</bio>
 
 		<class>ds_telohr_1</class>
@@ -1068,7 +1101,7 @@
 		<snd_config>characters_voice\human_03\bandit\</snd_config>
 		<crouch_type>-1</crouch_type>
 
-		<visual>actors\bandit\stalker_bandit_veteran</visual>
+		<visual>actors\unic\npc_smoker</visual>
 		<supplies>
 		[spawn] \n
 			wpn_akm_akm30_ironsight \n
@@ -1076,12 +1109,15 @@
 		</supplies>
 		<actor_dialog>dm_help_wounded_medkit_dialog</actor_dialog>
 		<actor_dialog>ds_telohr1_give_way_dialog</actor_dialog>
+		<actor_dialog>cit_kulgband_glavar_loose_dialog</actor_dialog>
+		
 	</specific_character>
 
+	
 <!--ds_glavar-->
 	<specific_character id="ds_glavar" team_default = "1">
 		<name>ds_glavar_name</name>
-		<icon>ui_npc_u_stalker_bandit_veteran</icon>
+		<icon>ui_npc_kulg_band_lider</icon>
 		<bio>esc_stalker_novice_bio</bio>
 
 		<class>ds_glavar</class>
@@ -1093,20 +1129,620 @@
 
 		<snd_config>characters_voice\human_03\bandit\</snd_config>
 		<crouch_type>-1</crouch_type>
+		<panic_threshold>0.0</panic_threshold>
 
 		<visual>actors\borov</visual>
 		<supplies>
 		[spawn] \n
-			wpn_pm \n
-			ammo_9x18_pmm \n
+			wpn_tt \n
+			ammo_7.62x25_p \n
+			sigaret \n
+#include "gameplay\character_items.xml"\n
+#include "gameplay\character_food.xml" \n
+#include "gameplay\character_drugs.xml"
 		</supplies>
 		<actor_dialog>dm_help_wounded_medkit_dialog</actor_dialog>
+		
+		<actor_dialog>ds_glavar_dialog1</actor_dialog>
+		<actor_dialog>ds_glavar_dialog1_1</actor_dialog>
+		<actor_dialog>ds_glavar_dialog2</actor_dialog>
+		
+		<actor_dialog>ds_glavar_dialog3</actor_dialog>
+		<actor_dialog>ds_glavar_dialog3_1</actor_dialog>
+		<actor_dialog>ds_glavar_dialog4</actor_dialog>
+		
+		<actor_dialog>ds_glavar_dialog5</actor_dialog>
+		<actor_dialog>ds_glavar_dialog5_1</actor_dialog>
+		<actor_dialog>ds_glavar_dialog5_2</actor_dialog>
+		<actor_dialog>ds_glavar_dialog5_3</actor_dialog>
+		
+		<actor_dialog>ds_glavar_dialog6</actor_dialog>
+		<actor_dialog>ds_glavar_dialog7</actor_dialog>
+		
+		<actor_dialog>ds_glavar_seif_dialog</actor_dialog>
+		
+		<actor_dialog>ds_glavar_dialog8</actor_dialog>
+		<actor_dialog>ds_glavar_dialog9</actor_dialog>
+		<actor_dialog>ds_glavar_dialog10</actor_dialog>
+		<actor_dialog>ds_glavar_dialog11</actor_dialog>
+		<!--actor_dialog>ds_glavar_dialog12</actor_dialog-->
+		<actor_dialog>ds_glavar_dialog13</actor_dialog>
+		<actor_dialog>ds_glavar_dialog14</actor_dialog>
+		
+		
 	</specific_character>
+	
+	
+	<!--ds_glavar2-->
+	<specific_character id="ds_glavar2" team_default = "1">
+		<name>ds_glavar_name</name>
+		<icon>ui_npc_kulg_band_lider</icon>
+		<bio>esc_stalker_novice_bio</bio>
+
+		<class>ds_glavar2</class>
+		<community>kulg_band</community>
+
+		<rank>927</rank>
+		<reputation>-5</reputation>
+		<money min="7200" max="10600" infinitive="0"></money>
+
+		<snd_config>characters_voice\human_03\bandit\</snd_config>
+		<crouch_type>-1</crouch_type>
+		<panic_threshold>0.0</panic_threshold>
+
+		<visual>actors\borov</visual>
+		<supplies>
+		[spawn] \n
+			wpn_tt \n
+			ammo_7.62x25_p \n
+			ds_glavar_bag \n
+#include "gameplay\character_items.xml"\n
+#include "gameplay\character_food.xml" \n
+#include "gameplay\character_drugs.xml"
+		</supplies>
+		
+	</specific_character>
+	
+	
+	<!--kulgband_driver-->
+	<specific_character id="kulgband_driver" team_default = "1">
+		<name>ds_telohr_1_name</name>
+		<icon>ui_npc_u_stalker_bandit_veteran</icon>
+		<bio>esc_stalker_novice_bio</bio>
+
+		<class>kulgband_driver</class>
+		<community>kulg_band</community>
+
+		<rank>327</rank>
+		<reputation>-3</reputation>
+		<money min="4200" max="6600" infinitive="0"></money>
+
+		<snd_config>characters_voice\human_03\bandit\</snd_config>
+		<crouch_type>-1</crouch_type>
+
+		<visual>actors\unic\npc_smoker</visual>
+		<supplies>
+		[spawn] \n
+			wpn_akm_akm30_ironsight \n
+			ammo_7.62x39_ap \n
+#include "gameplay\character_items.xml"\n
+#include "gameplay\character_food.xml" \n
+#include "gameplay\character_drugs.xml"
+		</supplies>
+		<actor_dialog>dm_help_wounded_medkit_dialog</actor_dialog>
+		<actor_dialog>kulgband_driver_dialog1</actor_dialog>
+		<actor_dialog>kulgband_driver_dialog2</actor_dialog>
+		<actor_dialog>kulgband_driver_dialog3</actor_dialog>
+		<actor_dialog>kulgband_driver_dialog4</actor_dialog>
+		<actor_dialog>kulgband_driver_dialog5</actor_dialog>
+		
+	</specific_character>
+	
+	
+	<!--kulgband_looser-->
+	<specific_character id="kulgband_looser" team_default = "1">
+		<name>kulgband_looser_name</name>
+		<icon>ui_npc_u_stalker_bandit_3</icon>
+		<bio>esc_stalker_novice_bio</bio>
+
+		<class>kulgband_looser</class>
+		<community>kulg_band_2</community>
+
+		<rank>127</rank>
+		<reputation>-3</reputation>
+		<money min="4200" max="6600" infinitive="0"></money>
+
+		<snd_config>characters_voice\human_03\bandit\</snd_config>
+		<crouch_type>-1</crouch_type>
+
+		<visual>actors\unic\npc_sprat</visual>
+		<supplies>
+		[spawn] \n
+			wpn_mp40 \n
+			ammo_9x19_fmj \n
+#include "gameplay\character_items.xml"\n
+#include "gameplay\character_food.xml" \n
+#include "gameplay\character_drugs.xml"
+		</supplies>
+		<start_dialog>kulgband_looser_dialog1</start_dialog>
+		<actor_dialog>dm_help_wounded_medkit_dialog</actor_dialog>
+		
+	</specific_character>
+	
+	
+	<specific_character id="kulgband_trader" team_default = "1">
+		<name>kulgband_trader_name</name>
+		<icon>ui_npc_u_stalker_neytral_hood_uzor</icon>
+		<bio>esc_stalker_novice_bio</bio>
+
+		<class>kulgband_trader</class>
+		<community>stalker</community>
+
+		<rank>427</rank>
+		<reputation>-3</reputation>
+		<money min="4000" max="6000" infinitive="1"></money>
+
+		<snd_config>characters_voice\human_01\stalker\</snd_config>
+		<crouch_type>-1</crouch_type>
+
+		<visual>actors\neytral\stalker_neytral_hood_uzor</visual>
+		<supplies>
+		[spawn] \n
+			wpn_ak74n_ak74n30_ironsight \n
+			ammo_5.45x39_fmj \n
+#include "gameplay\character_items.xml"\n
+#include "gameplay\character_food.xml" \n
+#include "gameplay\character_drugs.xml"
+		</supplies>
+		<actor_dialog>dm_help_wounded_medkit_dialog</actor_dialog>
+		<actor_dialog>kulgband_trader_dialog1</actor_dialog>
+		<actor_dialog>kulgband_trader_dialog2</actor_dialog>
+		
+		<actor_dialog>kulgband_trader_dialog3</actor_dialog>
+		<actor_dialog>kulgband_trader_dialog4</actor_dialog>
+		
+	</specific_character>
+	
+	
+	<specific_character id="kulgband_trader_guard1" team_default = "1">
+		<name>kulgband_trader_guard1_name</name>
+		<icon>ui_npc_u_stalker_2_usi</icon>
+		<bio>esc_stalker_novice_bio</bio>
+
+		<class>kulgband_trader_guard1</class>
+		<community>stalker</community>
+
+		<rank>227</rank>
+		<reputation>-3</reputation>
+		<money min="2200" max="7600" infinitive="0"></money>
+
+		<snd_config>characters_voice\human_01\stalker\</snd_config>
+		<crouch_type>-1</crouch_type>
+
+		<visual>actors\neytral\stalker_2_usi</visual>
+		<supplies>
+		[spawn] \n
+			wpn_toz34 \n
+			ammo_12x70_kart \n
+			guitar_a \n
+			vodka \n
+#include "gameplay\character_items.xml"\n
+#include "gameplay\character_food.xml" \n
+#include "gameplay\character_drugs.xml"
+		</supplies>
+		<actor_dialog>dm_help_wounded_medkit_dialog</actor_dialog>
+		
+	</specific_character>
+	
+	
+	<specific_character id="kulgband_trader_guard2" team_default = "1">
+		<name>kulgband_trader_guard2_name</name>
+		<icon>ui_npc_u_stalker_neytral_hood_2</icon>
+		<bio>esc_stalker_novice_bio</bio>
+
+		<class>kulgband_trader_guard2</class>
+		<community>stalker</community>
+
+		<rank>227</rank>
+		<reputation>-3</reputation>
+		<money min="2200" max="7600" infinitive="0"></money>
+
+		<snd_config>characters_voice\human_01\stalker\</snd_config>
+		<crouch_type>-1</crouch_type>
+
+		<visual>actors\neytral\stalker_neytral_hood_2</visual>
+		<supplies>
+		[spawn] \n
+			wpn_aks74ub_aks74ub30_ironsight \n
+			ammo_5.45x39_fmj \n
+			harmonica_a \n
+			bread \n
+#include "gameplay\character_items.xml"\n
+#include "gameplay\character_food.xml" \n
+#include "gameplay\character_drugs.xml"
+		</supplies>
+		<actor_dialog>dm_help_wounded_medkit_dialog</actor_dialog>
+		
+	</specific_character>
+	
+	
+	<specific_character id="kulgband_trader_car_body" team_default = "1">
+		<name>kulgband_trader_car_body_name</name>
+		<icon>ui_npc_u_stalker_2_ochki</icon>
+		<bio>esc_stalker_novice_bio</bio>
+
+		<class>kulgband_trader_car_body</class>
+		<community>stalker</community>
+
+		<rank>227</rank>
+		<reputation>-3</reputation>
+		<money min="2200" max="7600" infinitive="0"></money>
+
+		<snd_config>characters_voice\human_01\stalker\</snd_config>
+		<crouch_type>-1</crouch_type>
+
+		<visual>actors\neytral\stalker_2_ochki</visual>
+		<supplies>
+		[spawn] \n
+			kulg_band_trader_car_key \n
+			interactive_detector_elite \n
+#include "gameplay\character_items.xml"\n
+#include "gameplay\character_food.xml" \n
+#include "gameplay\character_drugs.xml"
+		</supplies>
+		<actor_dialog>dm_help_wounded_medkit_dialog</actor_dialog>
+		
+	</specific_character>
+	
+	
+	<specific_character id="dar_farm_assistant" team_default = "1">
+		<name>dar_farm_assistant_name</name>
+		<icon>kulgband_scout_icon</icon>
+		<bio>esc_stalker_novice_bio</bio>
+
+		<class>dar_farm_assistant</class>
+		<community>kulg_band</community>
+
+		<rank>327</rank>
+		<reputation>-3</reputation>
+		<money min="4200" max="6600" infinitive="0"></money>
+
+		<snd_config>characters_voice\human_03\bandit\</snd_config>
+		<crouch_type>-1</crouch_type>
+
+		<visual>actors\unic\npc_flea</visual>
+		<supplies>
+		[spawn] \n
+			wpn_aks74ub_aks74ub30_ironsight = 1, silencer \n
+			ammo_5.45x39_fmj \n
+#include "gameplay\character_items.xml"\n
+#include "gameplay\character_food.xml" \n
+#include "gameplay\character_drugs.xml"
+		</supplies>
+		<start_dialog>dar_farm_assistant_dialog1</start_dialog>
+		<actor_dialog>dm_help_wounded_medkit_dialog</actor_dialog>
+		<actor_dialog>dar_farm_assistant_dialog2</actor_dialog>
+		<actor_dialog>dar_farm_assistant_dialog3</actor_dialog>
+		<actor_dialog>dar_farm_assistant_dialog4</actor_dialog>
+		<actor_dialog>dar_farm_assistant_dialog5</actor_dialog>
+		
+		<actor_dialog>dar_farm_assistant_dialog6</actor_dialog>
+		<actor_dialog>dar_farm_assistant_dialog7</actor_dialog>
+		<actor_dialog>dar_farm_assistant_dialog8</actor_dialog>
+		
+		<actor_dialog>dar_farm_assistant_dialog9</actor_dialog>
+		
+	</specific_character>
+	
+	
+	<specific_character id="dar_assistant_friend" team_default = "1">
+		<name>GENERATE_NAME_bandit</name>
+		<icon>ui_npc_u_stalker_bandit_antigas</icon>
+		<bio>esc_stalker_novice_bio</bio>
+
+		<class>dar_assistant_friend</class>
+		<community>kulg_band_2</community>
+
+		<rank>127</rank>
+		<reputation>-3</reputation>
+		<money min="4200" max="6600" infinitive="0"></money>
+
+		<snd_config>characters_voice\human_03\bandit\</snd_config>
+		<crouch_type>-1</crouch_type>
+
+		<visual>actors\bandit\stalker_bandit_antigas</visual>
+		<supplies>
+		[spawn] \n
+			wpn_toz34 \n
+			ammo_12x70_kart \n
+			af_medusa_special \n
+#include "gameplay\character_items.xml"\n
+#include "gameplay\character_food.xml" \n
+#include "gameplay\character_drugs.xml"
+		</supplies>
+		
+	</specific_character>
+	
+	
+	<specific_character id="kulgband_bool" team_default = "1">
+		<name>kulgband_bool_name</name>
+		<icon>ui_npc_u_stalker_bandit_master</icon>
+		<bio>esc_stalker_novice_bio</bio>
+
+		<class>kulgband_bool</class>
+		<community>kulg_band_2</community>
+
+		<rank>327</rank>
+		<reputation>-3</reputation>
+		<money min="4200" max="6600" infinitive="0"></money>
+
+		<snd_config>characters_voice\human_03\bandit\</snd_config>
+		<crouch_type>-1</crouch_type>
+
+		<visual>actors\bandit\stalker_bandit_master</visual>
+		<supplies>
+		[spawn] \n
+#include "gameplay\character_items.xml"\n
+#include "gameplay\character_food.xml" \n
+#include "gameplay\character_drugs.xml"
+		</supplies>
+		
+	</specific_character>
+	
+	
+	<specific_character id="mil_monolith_man1" team_default = "1">
+		<name>GENERATE_NAME_stalker</name>
+		<icon>ui_npc_u_stalker_mo_head_1</icon>
+		<map_icon x="3" y="0"></map_icon>
+		<bio>rad_monolith_general_bio</bio>
+
+		<class>mil_monolith_man1</class>
+		<community>monolith</community>
+
+		<rank>418</rank>
+		<reputation>-385</reputation>
+
+		<visual>actors\monolit\stalker_mo_head_1</visual>
+		<snd_config>characters_voice\human_02\monolith\</snd_config>
+  		<crouch_type>-1</crouch_type>
+		<supplies>
+			[spawn] \n
+#include "gameplay\character_equipment\character_monolit_regular.xml"
+		</supplies>
+		
+#include "gameplay\character_criticals_1.xml"
+
+		<start_dialog>mil_monolith_man_dialog</start_dialog>
+
+#include "gameplay\character_dialogs.xml"
+	</specific_character>
+	
+	
+	<specific_character id="mil_monolith_man2" team_default = "1">
+		<name>GENERATE_NAME_stalker</name>
+		<icon>ui_npc_u_stalker_mo_mask</icon>
+		<map_icon x="3" y="0"></map_icon>
+		<bio>rad_monolith_general_bio</bio>
+
+		<class>mil_monolith_man2</class>
+		<community>monolith</community>
+
+		<rank>418</rank>
+		<reputation>-385</reputation>
+
+		<visual>actors\monolit\stalker_mo_mask</visual>
+		<snd_config>characters_voice\human_02\monolith\</snd_config>
+  		<crouch_type>-1</crouch_type>
+		<supplies>
+			[spawn] \n
+#include "gameplay\character_equipment\character_monolit_regular.xml"
+		</supplies>
+		
+#include "gameplay\character_criticals_1.xml"
+
+		<start_dialog>mil_monolith_man_dialog</start_dialog>
+#include "gameplay\character_dialogs.xml"
+	</specific_character>
+	
+	
+	<specific_character id="mil_monolith_man3" team_default = "1">
+		<name>GENERATE_NAME_stalker</name>
+		<icon>ui_npc_u_stalker_mo_hood_9</icon>
+		<map_icon x="3" y="0"></map_icon>
+		<bio>rad_monolith_general_bio</bio>
+
+		<class>mil_monolith_man3</class>
+		<community>monolith</community>
+
+		<rank>418</rank>
+		<reputation>-385</reputation>
+
+		<visual>actors\monolit\stalker_mo_hood_9</visual>
+		<snd_config>characters_voice\human_02\monolith\</snd_config>
+  		<crouch_type>-1</crouch_type>
+		<supplies>
+			[spawn] \n
+#include "gameplay\character_equipment\character_monolit_regular.xml"
+		</supplies>
+		
+#include "gameplay\character_criticals_1.xml"
+
+		<start_dialog>mil_monolith_man_dialog</start_dialog>
+#include "gameplay\character_dialogs.xml"
+	</specific_character>
+	
+	
+	<specific_character id="dar_bridge_kulgband_man1" team_default = "1">
+		<name>dar_bridge_kulgband_man1_name</name>
+		<icon>bandit_deadman_icon</icon>
+		<bio>esc_stalker_novice_bio</bio>
+
+		<class>dar_bridge_kulgband_man1</class>
+		<community>voron_band</community>
+
+		<rank>527</rank>
+		<reputation>-3</reputation>
+		<money min="4200" max="6600" infinitive="0"></money>
+
+		<snd_config>characters_voice\human_03\bandit\</snd_config>
+		<crouch_type>-1</crouch_type>
+
+		<visual>actors\unic\npc_troll</visual>
+		<supplies>
+		[spawn] \n
+			wpn_pm \n
+			ammo_9x18_fmj \n
+		</supplies>
+		<start_dialog>dar_bridge_kulgband_man1_dialog1</start_dialog>
+		<actor_dialog>dm_help_wounded_medkit_dialog</actor_dialog>
+		<actor_dialog>dar_bridge_kulgband_man1_dialog2</actor_dialog>
+		<actor_dialog>dar_bridge_kulgband_man1_dialog3</actor_dialog>
+		
+	</specific_character>
+	
+	<specific_character id="dar_bridge_kulgband_man2" team_default = "1">
+		<name>GENERATE_NAME_bandit</name>
+		<icon>ui_npc_u_stalker_bandit_veteran</icon>
+		<bio>esc_stalker_novice_bio</bio>
+
+		<class>dar_bridge_kulgband_man2</class>
+		<community>voron_band</community>
+
+		<rank>327</rank>
+		<reputation>-3</reputation>
+		<money min="4200" max="6600" infinitive="0"></money>
+
+		<snd_config>characters_voice\human_03\bandit\</snd_config>
+		<crouch_type>-1</crouch_type>
+
+		<visual>actors\bandit\stalker_bandit_veteran</visual>
+		<supplies>
+		[spawn] \n
+			wpn_svu \n
+			ammo_7.62x54_7h1 \n
+		</supplies>
+		<actor_dialog>dm_help_wounded_medkit_dialog</actor_dialog>
+		
+	</specific_character>
+	
+	<specific_character id="dar_bridge_kulgband_man3" team_default = "1">
+		<name>GENERATE_NAME_bandit</name>
+		<icon>ui_npc_u_stalker_bandit_veteran</icon>
+		<bio>esc_stalker_novice_bio</bio>
+
+		<class>dar_bridge_kulgband_man3</class>
+		<community>voron_band</community>
+
+		<rank>527</rank>
+		<reputation>-3</reputation>
+		<money min="4200" max="6600" infinitive="0"></money>
+
+		<snd_config>characters_voice\human_03\bandit\</snd_config>
+		<crouch_type>-1</crouch_type>
+
+		<visual>actors\bandit\stalker_bandit_veteran</visual>
+		<supplies>
+		[spawn] \n
+			wpn_svu \n
+			ammo_7.62x54_7h1 \n
+		</supplies>
+		<actor_dialog>dm_help_wounded_medkit_dialog</actor_dialog>
+		
+	</specific_character>
+	
+	
+	<specific_character id="kulgband_seif_dead_man" team_default = "1">
+		<name>kulgband_trader_car_body_name</name>
+		<icon>ui_npc_u_stalker_2_ochki</icon>
+		<bio>esc_stalker_novice_bio</bio>
+
+		<class>kulgband_seif_dead_man</class>
+		<community>stalker</community>
+
+		<rank>627</rank>
+		<reputation>-3</reputation>
+		<money min="2200" max="7600" infinitive="0"></money>
+
+		<snd_config>characters_voice\human_01\stalker\</snd_config>
+		<crouch_type>-1</crouch_type>
+
+		<visual>actors\neytral\stalker_2_ochki</visual>
+		<supplies>
+		[spawn] \n
+			kulgband_hutor_house_seif_key \n
+
+#include "gameplay\character_items.xml"\n
+#include "gameplay\character_food.xml" \n
+#include "gameplay\character_drugs.xml"
+		</supplies>
+		<actor_dialog>dm_help_wounded_medkit_dialog</actor_dialog>
+		
+	</specific_character>
+	
+	<specific_character id="kulgband_hutor_deadman" team_default = "1">
+		<name>kulgband_hutor_deadman_name</name>
+		<icon>bandit_deadman_icon</icon>
+		<bio>esc_stalker_novice_bio</bio>
+
+		<class>kulgband_hutor_deadman</class>
+		<community>voron_band</community>
+
+		<rank>527</rank>
+		<reputation>-3</reputation>
+		<money min="4200" max="6600" infinitive="0"></money>
+
+		<snd_config>characters_voice\human_03\bandit\</snd_config>
+		<crouch_type>-1</crouch_type>
+
+		<visual>actors\unic\npc_troll</visual>
+		<supplies>
+		[spawn] \n
+			wpn_glock \n
+			ammo_9x18_fmj \n
+		</supplies>
+
+		<actor_dialog>dar_bridge_kulgband_man1_dialog3</actor_dialog>
+		<actor_dialog>dar_bridge_kulgband_man1_dialog4</actor_dialog>
+		<actor_dialog>dar_bridge_kulgband_man1_dialog5</actor_dialog>
+		<actor_dialog>dar_bridge_kulgband_man1_dialog6</actor_dialog>
+		<actor_dialog>dar_bridge_kulgband_man1_dialog7</actor_dialog>
+		
+	</specific_character>
+	
+	
+	<specific_character id="kulgband_informer_assist" team_default = "1">
+		<name>GENERATE_NAME_bandit</name>
+		<icon>ui_npc_u_stalker_bandit_veteran</icon>
+		<bio>esc_stalker_novice_bio</bio>
+
+		<class>kulgband_informer_assist</class>
+		<community>kulg_band_2</community>
+
+		<rank>527</rank>
+		<reputation>-3</reputation>
+		<money min="4200" max="6600" infinitive="0"></money>
+
+		<snd_config>characters_voice\human_03\bandit\</snd_config>
+		<crouch_type>-1</crouch_type>
+
+		<visual>actors\bandit\stalker_bandit_veteran</visual>
+		<supplies>
+		[spawn] \n
+			wpn_beretta \n
+			ammo_9x19_pbp  \n
+		</supplies>
+		<actor_dialog>dm_help_wounded_medkit_dialog</actor_dialog>
+		
+	</specific_character>
+	
+	
+
+	
 
 <!--ds_hunter-->
 	<specific_character id="ds_hunter" team_default = "1">
 		<name>ds_hunter_name</name>
-		<icon>ui_npc_missing</icon>
+		<icon>ui_npc_ds_hunter</icon>
 		<bio>esc_stalker_novice_bio</bio>
 
 		<class>ds_hunter</class>

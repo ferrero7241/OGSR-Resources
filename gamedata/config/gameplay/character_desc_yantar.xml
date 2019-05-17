@@ -516,7 +516,7 @@
 		<crouch_type>1</crouch_type>
 		<supplies>
 			[spawn] \n
-			wpn_val \n
+			wpn_val = 1, silencer \n
 			ammo_9x39_ap \n
 			lab_x16_documents \n
 			outfit_stalker_m1 \n
@@ -606,7 +606,7 @@
 		<crouch_type>0</crouch_type>
 		<supplies>
 			[spawn] \n
-			wpn_rpk74_sk1 \n
+			wpn_rpk74p_rpk45_side_rail_1p29 \n
 			ammo_5.45x39_fmj \n
 			af_gold_fish \n
 			af_fuzz_kolobok \n
@@ -1129,7 +1129,7 @@
 			[spawn] \n
             wpn_akm_akm30_ironsight \n
 			ammo_7.62x39_fmj \n
-			wpn_sayga12k_sk1 \n
+			wpn_spas12 \n
 			ammo_12x70_kart \n
 			device_torch \n
 		</supplies>

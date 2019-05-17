@@ -514,7 +514,7 @@
 	  	<crouch_type>0</crouch_type>
         <supplies>
 			[spawn] \n
-			wpn_fn2000 \n
+			wpn_fn2000 = 1, launcher \n
             ammo_5.56x45_ss190 \n
 			ammo_m209 \n
 			wpn_beretta \n
@@ -547,7 +547,7 @@
 	  	<crouch_type>0</crouch_type>
         <supplies>
 			[spawn] \n
-			wpn_fn2000 \n
+			wpn_fn2000 = 1, launcher \n
             ammo_5.56x45_ss190 \n
 			ammo_m209 \n
 			wpn_beretta \n

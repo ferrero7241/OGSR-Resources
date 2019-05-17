@@ -325,3 +325,108 @@
         <text>find_af_and_vodka_text</text>
     </article>
 	<!-- Мирное получение Форта-15 у майора Кузнецова по заданию Сидоровича -->
+	
+	
+	<article id="kulg_band_hutor_vater_task_article" name="kulg_band_hutor_vater_task_article" article_type="task" group="kulg_band_hutor_vater_task_article">
+        <text>kulg_band_hutor_vater_task_article_text</text>
+    </article>
+	
+	<article id="freezer_bandos_kill_newbie_task_article" name="freezer_bandos_kill_newbie_task_article" article_type="task" group="freezer_bandos_kill_newbie_task_article">
+        <text>freezer_bandos_kill_newbie_task_article_text</text>
+    </article>
+	
+	<article id="meet_kulg_band_task_article" name="meet_kulg_band_task_article" article_type="task" group="meet_kulg_band_task_article">
+        <text>meet_kulg_band_task_article_text</text>
+    </article>
+	
+	<article id="kulgband_kill_looser_task_article" name="kulgband_kill_looser_task_article" article_type="task" group="kulgband_kill_looser_task_article">
+        <text>kulgband_kill_looser_task_article_text</text>
+    </article>
+	
+	<article id="kulgband_trader_task_article" name="kulgband_trader_task_article" article_type="task" group="kulgband_trader_task_article">
+        <text>kulgband_trader_task_article_text</text>
+    </article>
+	
+	<article id="kulgband_trader_car_task_article" name="kulgband_trader_car_task_article" article_type="task" group="kulgband_trader_car_task_article">
+        <text>kulgband_trader_car_task_article_text</text>
+    </article>
+	
+
+	<article id="val_filin_diary_info_article" name="val_filin_diary_info_article_name" article_type="journal" group="Found_PDA">
+	<text>val_filin_diary_info_article_desc</text>
+    </article>
+	
+	<article id="kulgband_filin_task_article" name="kulgband_filin_task_article" article_type="task" group="kulgband_filin_task_article">
+        <text>kulgband_filin_task_article_text</text>
+    </article>
+	
+	<article id="dar_kulgband_assistant_task_article" name="dar_kulgband_assistant_task_article" article_type="task" group="dar_kulgband_assistant_task_article">
+        <text>dar_kulgband_assistant_task_article_text</text>
+    </article>
+	
+	
+	<article id="kulgband_scout_task_article" name="kulgband_scout_task_article" article_type="task" group="kulgband_scout_task_article">
+        <text>kulgband_scout_task_article_text</text>
+    </article>
+	
+	<article id="kulgband_trader_reputation_task_article" name="kulgband_trader_reputation_task_article" article_type="task" group="kulgband_trader_reputation_task_article">
+        <text>kulgband_trader_reputation_task_article_text</text>
+    </article>
+	
+	
+	<article id="rad_kulgband_zapis_info_article" name="rad_kulgband_zapis_info_article_name" article_type="journal" group="Found_PDA">
+	<text>rad_kulgband_zapis_info_article_desc</text>
+    </article>
+	
+	
+	<article id="kulgband_strelka_task_article" name="kulgband_strelka_task_article" article_type="task" group="kulgband_strelka_task_article">
+        <text>kulgband_strelka_task_article_text</text>
+    </article>
+	
+	<article id="kulgband_bridge_scout_pda_task_article" name="kulgband_bridge_scout_pda_task_article" article_type="task" group="kulgband_bridge_scout_pda_task_article">
+        <text>kulgband_bridge_scout_pda_task_article_text</text>
+    </article>
+	
+	<article id="kulgband_deadcity_task1_article" name="kulgband_deadcity_task1_article" article_type="task" group="kulgband_deadcity_task1_article">
+        <text>kulgband_deadcity_task1_article_text</text>
+    </article>
+	
+	<article id="kulgband_deadcity_task2_article" name="kulgband_deadcity_task2_article" article_type="task" group="kulgband_deadcity_task2_article">
+        <text>kulgband_deadcity_task2_article_text</text>
+    </article>
+	
+	<article id="kulgband_scout_task_article2" name="kulgband_scout_task_article2" article_type="task" group="kulgband_scout_task_article2">
+        <text>kulgband_scout_task_article2_text</text>
+    </article>
+	
+	
+	<article id="kulgband_informer_task_article" name="kulgband_informer_task_article" article_type="task" group="kulgband_informer_task_article">
+        <text>kulgband_informer_task1_article_text</text>
+    </article>
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

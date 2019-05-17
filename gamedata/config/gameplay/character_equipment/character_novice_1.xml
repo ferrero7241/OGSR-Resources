@@ -1,7 +1,5 @@
-wpn_bm16_full \n
+wpn_bm16 \n
 ammo_12x70_kart \n
-wpn_aks74ub_aks74ub30_ironsight \n
-ammo_5.45x39_fmj \n
 grenade_rgd5 = 1, prob = 0.3 \n
 
 harmonica_a = 1, prob = 0.3 \n

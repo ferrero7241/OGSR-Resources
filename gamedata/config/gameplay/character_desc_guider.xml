@@ -21,10 +21,10 @@
                 <visual>actors\neytral\stalker_neytral_rukzak_3</visual>
                 <supplies>
                          [spawn] \n 
-                         wpn_pm \n
+                         wpn_apb \n
 						 ammo_9x18_pmm \n
-						 wpn_aks74ub_aks74ub30_ironsight \n
-						 ammo_5.45x39_fmj \n
+						 wpn_aks74ub_ak60_side_rail_1pn51 \n
+						 ammo_5.45x39_ap \n
                 </supplies>
 	            <start_dialog>dialog_guider_2</start_dialog>			 
 #include "gameplay\character_criticals_4.xml"
@@ -51,10 +51,10 @@
                 <visual>actors\militari\stalker_militari_2</visual>
                 <supplies>
                          [spawn] \n 
-                         wpn_pm \n
-						 ammo_9x18_pmm \n
-						 wpn_aks74ub_aks74ub30_ironsight \n
-						 ammo_5.45x39_fmj \n
+                         wpn_glock \n
+						 ammo_9x19_pbp \n
+						 wpn_ak102_ak10230_custom_mtk83_eotech = 1, scope \n
+						 ammo_5.56x45_ap \n
                 </supplies>
 	            <actor_dialog>dm_dialog_guider_pilot</actor_dialog>			 
 #include "gameplay\character_criticals_4.xml"
@@ -82,9 +82,9 @@
                 <visual>actors\soldier\stalker_military_black</visual>
                 <supplies>
                          [spawn] \n 
-                         wpn_beretta \n
+                         wpn_gsh18 \n
 						 ammo_9x19_pbp \n
-						 wpn_spas12 \n
+						 wpn_vepr12custom_vepr8_uso = 1, scope \n
 						 ammo_12x70_kart \n
                 </supplies>
 	            <actor_dialog>dm_dialog_guider_script</actor_dialog>			 
@@ -113,10 +113,10 @@
                 <visual>actors\neytral\stalker_neytral_rukzak_3</visual>
                 <supplies>
                          [spawn] \n 
-                         wpn_beretta \n
+						 wpn_fort \n
 						 ammo_9x19_pbp \n
-						 wpn_spas12 \n
-						 ammo_12x70_kart \n
+						 wpn_sr3m_m30_mtk83_acog \n
+						 ammo_9x39_ap \n
                 </supplies>
 	            <actor_dialog>dm_dialog_guider_script</actor_dialog>				 
 #include "gameplay\character_criticals_4.xml"
@@ -144,9 +144,9 @@
                 <visual>actors\neytral\stalker_neytral_rukzak_3</visual>
                 <supplies>
                          [spawn] \n 
-                         wpn_pm \n
-						 ammo_9x18_pmm \n
-						 wpn_aks74ub_aks74ub30_ironsight \n
+                         wpn_glock \n
+						 ammo_9x19_pbp \n
+						 wpn_sig550 \n
 						 ammo_5.45x39_fmj \n
                 </supplies>
 	            <actor_dialog>dm_dialog_guider_script</actor_dialog>				 

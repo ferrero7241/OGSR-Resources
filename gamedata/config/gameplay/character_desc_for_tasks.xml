@@ -722,7 +722,7 @@
 		<visual>actors\novice\green_stalker_3</visual>
 		<supplies>
 			[spawn] \n
-			wpn_pm \n
+			wpn_pb = 1, silencer \n
 			ammo_9x18_pmm \n
 			wpn_binoc \n
 #include "gameplay\character_items.xml" \n
@@ -974,7 +974,7 @@
 			[spawn] \n
 			wpn_swd_svd10_pso1 = 1, scope \n
 			ammo_7.62x54_7h14 \n
-			wpn_pm \n
+			wpn_pb = 1, silencer \n
 			ammo_9x18_pmm \n
 			wpn_binoc \n
 #include "gameplay\character_items.xml" \n
@@ -1008,7 +1008,7 @@
 			[spawn] \n
 			wpn_swd_svd10_pso1 = 1, scope \n
 			ammo_7.62x54_7h14 \n
-			wpn_pm \n
+			wpn_pb = 1, silencer \n
 			ammo_9x18_pmm \n
 			wpn_binoc \n
 #include "gameplay\character_items.xml" \n
@@ -1223,7 +1223,7 @@
 
 		<supplies>
 			[spawn] \n
-			wpn_sayga12k_sk1 \n
+			wpn_vepr12stok_vepr4_ironsight \n
 			ammo_12x76_zhekan \n
 #include "gameplay\character_items.xml" \n
 #include "gameplay\character_drugs.xml" \n
@@ -1283,7 +1283,7 @@
 			[spawn] \n
 			wpn_pkm \n
 			ammo_7.62x54_ap \n
-			wpn_beretta \n
+			wpn_fort \n
 			ammo_9x19_pbp \n
 			grenade_f1 = 2 \n
 			device_torch \n
@@ -1317,7 +1317,7 @@
 			[spawn] \n
             wpn_spas12 \n
 			ammo_12x70_kart \n
-			wpn_pm \n
+			wpn_apb \n
 			ammo_9x18_pmm \n
 #include "gameplay\character_items.xml"	\n
 #include "gameplay\character_food.xml" \n

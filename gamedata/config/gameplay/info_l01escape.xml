@@ -725,6 +725,72 @@
 	<info_portion id="gunsrepair_mafon_off"></info_portion>
 	<info_portion id="gunsrepair_mafon_broke"></info_portion>
 	
+<info_portion id="sidor_give_esc_gunsrepair_place_info"></info_portion>
+<info_portion id="has_esc_gunsrepair_place_info"></info_portion>
+<info_portion id="found_esc_gunsrepair_place">
+	<!-- <action>k01jan_script.no_locate_esc_guns_remontnik</action> -->
+	<disable>has_esc_gunsrepair_place_info</disable>
+</info_portion>
+
+<info_portion id="esc_gunsrepair_1talk">
+	<!-- <action>k01jan_script.no_locate_esc_guns_remontnik</action> -->
+	<disable>has_esc_gunsrepair_place_info</disable>
+</info_portion>
+
+<info_portion id="esc_gunsrepair_offence">
+		<!-- <action>k01jan_script.offence_esc_guns_remontnik</action> -->
+</info_portion>
+<info_portion id="esc_gunsrepair_help">
+		<!-- <action>k01jan_script.help_esc_guns_remontnik</action> -->
+</info_portion>
+<info_portion id="esc_gunsrepair_go2sidor4scope">
+		<!-- <action>k01jan_script.go2sidor4scope_esc_guns_remontnik</action> -->
+</info_portion>
+
+<info_portion id="odessit_order_grip1_give">	<!--заказ31 принят (запуск таймера, +флаг) предоплата-->
+	<action>k01jan_order.order_grip1_prepay</action>
+</info_portion>
+<info_portion id="odessit_order_grip1_ready">	<!--заказ31 выполнен-->
+</info_portion>
+<info_portion id="odessit_order_grip1_disable">	<!--заказ31 отключен, нельзя повторить-->
+</info_portion>
+<info_portion id="odessit_order_grip1_end">	<!--заказ31 выдан-->
+	<action>k01jan_order.give_order_grip1</action>	<!--отдаём ГГ заказ31 ручку1-->
+	<disable>odessit_order_grip1_ready</disable>	<!--обнуляем-->
+	<disable>odessit_order_grip1_give</disable>		<!--обнуляем-->
+	 <!-- заказ31 включен, можно повторять <disable>odessit_order_grip1_disable</disable> -->
+</info_portion>
+
+<info_portion id="odessit_order_adapter1_enable">		<!--флаг доступности заказа51 МТК-83-->
+</info_portion>
+<info_portion id="odessit_order_adapter1_inprogress">	<!--флаг дубля заказа51 МТК-83-->
+</info_portion>
+
+<info_portion id="odessit_order_pbs1_give">	<!--заказ61 принят (запуск таймера, +флаг) предоплата-->
+	<action>k01jan_order.order_pbs1_prepay</action>
+</info_portion>
+<info_portion id="odessit_order_pbs1_ready">	<!--заказ61 выполнен-->
+</info_portion>
+<info_portion id="odessit_order_pbs1_disable">	<!--заказ61 отключен, нельзя повторить-->
+</info_portion>
+<info_portion id="odessit_order_pbs1_end">	<!--заказ61 выдан-->
+	<action>k01jan_order.give_order_pbs1</action>	<!--отдаём ГГ заказ61 ПБС-1-->
+	<disable>odessit_order_pbs1_ready</disable>	<!--обнуляем-->
+	<disable>odessit_order_pbs1_give</disable>		<!--обнуляем-->
+	 <!-- заказ61 включен, можно повторять <disable>odessit_order_pbs1_disable</disable> -->
+</info_portion>
+
+
+
+
+<info_portion id="odessit_order_pbs7bp_disable">		<!--флаг доступности заказа62 БраМит (револьвер)-->
+</info_portion>
+
+<info_portion id="odessit_order_X_give">		<!--ЗАГЛУШКА заказ_X принят (запуск таймера, +флаг)-->
+</info_portion>
+
+	<!-- k01jan eof -->
+	
 	<info_portion id="actor_set_milstalker"/>
 	
 	<info_portion id="fov_play_start">

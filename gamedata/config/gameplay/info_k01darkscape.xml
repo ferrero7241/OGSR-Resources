@@ -382,6 +382,9 @@
 		<!--action>jekan_work.cheb_help_with_af_dark</action-->
 		<action>jekan_work.cheb_helptip</action>
 	</info_portion>
+	<info_portion id="infa_about_boltun2">
+		<action>jekan_work.give_darskape_farm_boltun_quest</action>
+		</info_portion>
 	<info_portion id="infa_about_boltun">
 		<task>talk_with_hunter</task>
 	</info_portion>
@@ -586,5 +589,194 @@
 	<info_portion id="gar_teleports_correctly_removed"/>
 
 	<info_portion id="kulg_band_hutor_attacked"/>
+	
+	
+	
+	
+	
+	<info_portion id="kulg_band_meet_speech_fail"/>
+	<info_portion id="kulg_band_speech_enemy"/>
+	<info_portion id="kulg_band_hutor_vater_task"><action>jekan_work.spawn_kulg_band_hutor_vater</action><task>kulg_band_hutor_vater_task</task></info_portion>
+	<info_portion id="kulg_band_meet_speech_loose"/>
+	
+	<info_portion id="freezer_bandos_kill_newbie_task"><task>freezer_bandos_kill_newbie_task</task></info_portion>
+	<info_portion id="freezer_bandos_kulg_band_info"><task>meet_kulg_band_task</task></info_portion>
+	<info_portion id="freezer_bandos_kulg_band_info2"></info_portion>
+	<info_portion id="zona_brother2_dead_by_knife"></info_portion>
+	
+	<info_portion id="zona_bro2_pda_info">
+		<action>jekan_work.cheb_birthplace_spawn</action>
+		<action>jekan_work.spawn_chebur</action>
+		<action>jekan_work.spawn_cheb_timer</action>		
+	</info_portion>
+	
+	<info_portion id="kulgband_kill_looser_task"><task>kulgband_kill_looser_task</task></info_portion>
+	<info_portion id="kulgband_actor_name1"/>
+	<info_portion id="kulgband_actor_name2"/>
+	<info_portion id="kulgband_actor_name3"/>
+	<info_portion id="kulgband_looser_alarm"/>
+	<info_portion id="kulgband_looser_deal"/>
+	<info_portion id="kulgband_looser_dead"/>
+	
+	
+	<info_portion id="kulgband_trader_task"><task>kulgband_trader_task</task></info_portion>
+	<info_portion id="kulgband_trader_dead"/>
+	<info_portion id="kulgband_trader_givemoney1"/>
+	<info_portion id="kulgband_trader_givemoney2"/>
+	<info_portion id="kulgband_trader_dialog"/>
+	<info_portion id="kulgband_trader_car_info"><task>kulgband_trader_car_task</task></info_portion>
+	<info_portion id="kulg_band_trader_car_finded"/>
+	<info_portion id="kulg_band_trader_car_run"/>
+	<info_portion id="kulg_band_trader_car_end1"/>
+	<info_portion id="kulg_band_trader_car_end2"/>
+	
+	<info_portion id="kulgband_trader_task_end"><action>jekan_work.spawn_val_trader_npc</action><task>kulgband_filin_task</task></info_portion>
+	<info_portion id="val_filin_diary_info"><article>val_filin_diary_info_article</article></info_portion>
+	<info_portion id="dar_filin_door_try_to_open"/>
+	<info_portion id="dar_kulgband_assistant_job"><task>dar_kulgband_assistant_task</task></info_portion>
+	<info_portion id="dar_filin_door_off"/>
+	
+	<info_portion id="kulgband_scout_meet"><task>kulgband_scout_task</task></info_portion>
+	<info_portion id="mil_assistant_goto_ambush"/>
+	<info_portion id="kulgband_scout_ambush"/>
+	<info_portion id="mil_monolith_squad_go"/>
+	<info_portion id="mil_monolith_man_alarm"/>
+	<info_portion id="mil_monolith_man1_dead"/>
+	<info_portion id="mil_monolith_man2_dead"/>
+	<info_portion id="mil_monolith_man3_dead"/>
+	<info_portion id="mil_monolith_surrend"/>
+	<info_portion id="mil_monolith_man_hit"/>
+	<info_portion id="mil_monolith_man_suicide"/>
+	<info_portion id="mil_monolith_end"/>
+	
+	
+	<info_portion id="kulgband_trader_reputation_task"><task>kulgband_trader_reputation_task</task></info_portion>
+	<info_portion id="drozd_reputation_1"/>
+	<info_portion id="drozd_reputation_2"/>
+	<info_portion id="drozd_reputation_3"/>
+	<info_portion id="drozd_reputation_end"/>
+	
+	
+	<info_portion id="rad_kulgband_assist_goto_forest"/>
+	<info_portion id="rad_kulgband_assist_place1"/>
+	<info_portion id="rad_kulgband_assist_forest_end"/>
+	<info_portion id="rad_kulgband_zapis_info"><article>rad_kulgband_zapis_info_article</article></info_portion>
+	<info_portion id="rad_kulgband_assist_forest_end2"/>
+	<info_portion id="rad_kulgband_assistant_dead"/>
+	
+	<info_portion id="kulgband_strelka_task"><task>kulgband_strelka_task</task></info_portion>
+	<info_portion id="bridge_kulgband_man_shoot"/>
+	<info_portion id="bridge_kulgband_man_shoot2"/>
+	<info_portion id="dar_bridge_kulgband_assist1_dead"/>
+	<info_portion id="dar_bridge_kulgband_assist2_dead"/>
+	<info_portion id="bridge_kulgband_man_info"/>
+	
+	<info_portion id="kulgband_deadmans_info"/>
+	
+	<info_portion id="kulgband_hutor_house_seif_task"><task>kulgband_hutor_house_seif_task</task></info_portion>
+	<info_portion id="kulgband_hutor_house_seif_use"/>
+	<info_portion id="kulgband_hutor_house_seif_open"/>
+	<info_portion id="ds_shesterka_go_out"/>
+	<info_portion id="kulgband_seif_reward"/>
+	<info_portion id="kulgband_hutor_house_seif_task_fail"/>
+
+	<info_portion id="kulgband_strelka_task2"><task>kulgband_strelka_task2</task></info_portion>
+	<info_portion id="bridge_kulgband_glavar_go"/>
+	<info_portion id="bridge_kulgband_glavar_on_place"/>
+	<info_portion id="bridge_kulgband_glavar_go_away"/>
+	<info_portion id="kulgband_scout_deal"><task>kulgband_scout_task2</task></info_portion>
+	<info_portion id="kulgband_scout_fail"/>
+	<info_portion id="kulgband_scout_talk"/>
+	
+	
+	<info_portion id="kulgband_bridge_scout_pda_info"><task>kulgband_bridge_scout_pda_task</task></info_portion>
+	<info_portion id="kulgband_goto_deadcity1"><task>kulgband_deadcity_task1</task></info_portion>
+	<info_portion id="kulgband_deadcity_meet"/>
+	
+	
+	<info_portion id="ds_telohr_2_go_out"/>
+	<info_portion id="kulgband_voron_comeback"/>
+	<info_portion id="kulgband_hutor_deadman_hello"/>
+	<info_portion id="kulgband_informer_task"><task>kulgband_informer_task</task></info_portion>
+	<info_portion id="ds_glavar_blamed"/>
+	
+	<info_portion id="kulgband_informer_hello"/>
+	<info_portion id="kulgband_informer_fight"/>
+	<info_portion id="kulgband_informer_deal"/>
+	<info_portion id="kulgband_informer_dead"/>
+	<info_portion id="kulgband_informer_map_info"/>
+	
+	<info_portion id="kulgband_goto_deadcity2"><task>kulgband_deadcity_task2</task></info_portion>
+	<info_portion id="cit_kulgband_goto_klondike"/>
+	
+	<info_portion id="klondike_acess"/>
+	<info_portion id="spawn_cit_kulgband_car"/>
+	<info_portion id="cit_kulgband_car_go"/>
+	<info_portion id="cit_kulgband_car_dead_function"><action>jekan_work.spawn_cit_kulgband_car_body1</action></info_portion>
+	<info_portion id="cit_kulgband_car_dead"><action>jekan_work.spawn_cit_kulgband_car_body2</action></info_portion>
+	<info_portion id="cit_kulgband_glavar_dead"/>
+	<info_portion id="cit_kulgband_goto_klondike2"/>
+	<info_portion id="cit_kulgband_task_fail"/>
+	<info_portion id="cit_kulgband_glavar_to_klondike"/>
+	<info_portion id="cit_kulgband_glavar_cheat"/>
+	
+	<info_portion id="city_kulgband_assist1_dead"/>
+	<info_portion id="city_kulgband_assist2_dead"/>
+	<info_portion id="cit_kulgband_patruln_dead"/>
+	<info_portion id="cit_kulgband_shesterka_dead"/>
+	<info_portion id="cit_kulgband_telohr1_dead"/>
+	<info_portion id="cit_kulgband_telohr2_dead"/>
+	
+	<info_portion id="af_klondike_1_on"/>
+	<info_portion id="af_klondike_2_on"/>
+	<info_portion id="af_klondike_3_on"/>
+	<info_portion id="af_klondike_4_on"/>
+	<info_portion id="af_klondike_5_on"/>
+	<info_portion id="af_klondike_6_on"/>
+	<info_portion id="af_klondike_7_on"/>
+	<info_portion id="af_klondike_8_on"/>
+	<info_portion id="af_klondike_9_on"/>
+	<info_portion id="af_klondike_10_on"/>
+	<info_portion id="af_klondike_11_on"/>
+	<info_portion id="af_klondike_12_on"/>
+	<info_portion id="af_klondike_13_on"/>
+	<info_portion id="af_klondike_14_on"/>
+	<info_portion id="af_klondike_15_on"/>
+	<info_portion id="af_klondike_16_on"/>
+	<info_portion id="af_klondike_17_on"/>
+	<info_portion id="af_klondike_18_on"/>
+	<info_portion id="af_klondike_19_on"/>
+	<info_portion id="af_klondike_20_on"/>
+	<info_portion id="af_klondike_21_on"/>
+	<info_portion id="af_klondike_22_on"/>
+	
+	<info_portion id="cit_kulgband_enemy"/>
+	<info_portion id="cit_kulgband_car_hit"/>
+	<info_portion id="klondike_pre_acess"/>
+	<info_portion id="klondike_on"/>
+	<info_portion id="cit_kulgband_sniper_spawn"/>
+	<info_portion id="cit_kulgband_glavar2_dead"/>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 </game_information_portions>

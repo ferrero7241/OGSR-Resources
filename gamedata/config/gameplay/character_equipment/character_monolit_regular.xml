@@ -1,9 +1,6 @@
-wpn_sig550 \n
-ammo_m209 \n
+wpn_m16a1_sk1 \n
 ammo_5.56x45_ap \n
-wpn_beretta \n
-ammo_9x19_pbp \n
-grenade_f1 = 2 \n
+grenade_f1 \n
 
 device_torch \n
 

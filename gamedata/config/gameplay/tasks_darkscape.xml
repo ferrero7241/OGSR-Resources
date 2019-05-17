@@ -436,3 +436,531 @@
 		<infoportion_complete>222</infoportion_complete>
 	</objective>
 </game_task>
+
+
+<game_task id="kulg_band_hutor_vater_task">
+	<title>kulg_band_hutor_vater_task_name</title>
+	<objective>
+		<text>kulg_band_hutor_vater_task_desc_title</text>
+		<article>kulg_band_hutor_vater_task_article</article>
+		<icon>ui_iconsTotal_found_thing</icon>
+		<infoportion_fail>kulg_band_hutor_attacked</infoportion_fail>
+		<infoportion_complete>kulg_band_meet_speech_fail</infoportion_complete>
+	</objective>
+	<objective>
+		<text>kulg_band_hutor_vater_task_desc1</text>
+		<map_location_type hint="kulg_band_hutor_vater_task_mark1">green_location</map_location_type>
+		<object_story_id>kulg_band_vater</object_story_id>
+		<function_complete>jekan_work.hawe_kulg_band_hutor_vater</function_complete>
+	</objective>
+	<objective>
+		<text>kulg_band_hutor_vater_task_desc2</text>
+		<map_location_type hint="kulg_band_hutor_vater_task_mark2">green_location</map_location_type>
+		<object_story_id>ds_glavar</object_story_id>
+		<infoportion_complete>222</infoportion_complete>
+	</objective>
+</game_task>
+
+
+<game_task id="freezer_bandos_kill_newbie_task">
+	<title>freezer_bandos_kill_newbie_task_name</title>
+	<objective>
+		<text>freezer_bandos_kill_newbie_task_desc_title</text>
+		<article>freezer_bandos_kill_newbie_task_article</article>
+		<icon>ui_iconsTotal_kill_stalker</icon>
+		<infoportion_fail>freezer_bandos_kulg_band_info2</infoportion_fail>
+		<infoportion_complete>freezer_bandos_kulg_band_info</infoportion_complete>
+	</objective>
+	<objective>
+		<text>freezer_bandos_kill_newbie_task_desc1</text>
+		<map_location_type hint="freezer_bandos_kill_newbie_task_mark1">green_location</map_location_type>
+		<object_story_id>zona_brother2</object_story_id>
+		<infoportion_complete>zona_brother2_dead_by_knife</infoportion_complete>
+	</objective>
+	<objective>
+		<text>freezer_bandos_kill_newbie_task_desc2</text>
+		<map_location_type hint="freezer_bandos_kill_newbie_task_mark2">green_location</map_location_type>
+		<object_story_id>freezer_bandos</object_story_id>
+		<infoportion_complete>freezer_bandos_kulg_band_info</infoportion_complete>
+	</objective>
+</game_task>
+
+
+<game_task id="meet_kulg_band_task">
+	<title>meet_kulg_band_task_name</title>
+	<objective>
+		<text>meet_kulg_band_task_desc_title</text>
+		<article>meet_kulg_band_task_article</article>
+		<icon>ui_iconsTotal_bar_crazy_veterans_quest</icon>
+		<infoportion_fail>kulg_band_hutor_attacked</infoportion_fail>
+		<infoportion_complete>kulg_band_meet_speech_loose</infoportion_complete>
+	</objective>
+	<objective>
+		<text>meet_kulg_band_task_desc1</text>
+		<map_location_type hint="meet_kulg_band_task_mark1">green_location</map_location_type>
+		<object_story_id>ds_glavar</object_story_id>
+		<infoportion_complete>kulg_band_meet_speech_loose</infoportion_complete>
+	</objective>
+</game_task>
+
+
+<game_task id="kulgband_kill_looser_task">
+	<title>kulgband_kill_looser_task_name</title>
+	<objective>
+		<text>kulgband_kill_looser_task_desc_title</text>
+		<article>kulgband_kill_looser_task_article</article>
+		<icon>ui_iconsTotal_kill_stalker</icon>
+		<infoportion_fail>222</infoportion_fail>
+		<infoportion_complete>kulgband_trader_task</infoportion_complete>
+	</objective>
+	<objective>
+		<text>kulgband_kill_looser_task_desc1</text>
+		<map_location_type hint="kulgband_kill_looser_task_mark1">green_location</map_location_type>
+		<object_story_id>kulgband_looser</object_story_id>
+		<infoportion_fail>kulgband_looser_deal</infoportion_fail>
+		<infoportion_complete>kulgband_looser_dead</infoportion_complete>
+	</objective>
+	<objective>
+		<text>kulgband_kill_looser_task_desc2</text>
+		<map_location_type hint="kulgband_kill_looser_task_mark1">green_location</map_location_type>
+		<object_story_id>kulgband_looser</object_story_id>
+		<function_complete>jekan_work.have_kulg_band_cups</function_complete>
+	</objective>
+	<objective>
+		<text>kulgband_kill_looser_task_desc3</text>
+		<map_location_type hint="kulgband_kill_looser_task_mark2">green_location</map_location_type>
+		<object_story_id>ds_glavar</object_story_id>
+		<infoportion_complete>222</infoportion_complete>
+	</objective>
+</game_task>
+
+
+<game_task id="kulgband_trader_task">
+	<title>kulgband_trader_task_name</title>
+	<objective>
+		<text>kulgband_trader_task_desc_title</text>
+		<article>kulgband_trader_task_article</article>
+		<icon>ui_iconsTotal_lost_money</icon>
+		<infoportion_fail>222</infoportion_fail>
+		<infoportion_complete>kulgband_trader_task_end</infoportion_complete>
+	</objective>
+	<objective>
+		<text>kulgband_trader_task_desc1</text>
+		<map_location_type hint="kulgband_trader_task_mark1">green_location</map_location_type>
+		<object_story_id>kulgband_trader_zone</object_story_id>
+		<infoportion_complete>kulgband_trader_dialog</infoportion_complete>
+	</objective>
+	<objective>
+		<text>kulgband_trader_task_desc3</text>
+		<map_location_type hint="kulgband_trader_task_mark2">green_location</map_location_type>
+		<object_story_id>ds_glavar</object_story_id>
+		<infoportion_complete>kulgband_trader_task_end</infoportion_complete>
+	</objective>
+</game_task>
+
+
+<game_task id="kulgband_trader_car_task">
+	<title>kulgband_trader_car_task_name</title>
+	<objective>
+		<text>kulgband_trader_car_task_desc_title</text>
+		<article>kulgband_trader_car_task_article</article>
+		<icon>ui_iconsTotal_technique</icon>
+		<infoportion_fail>kulg_band_trader_car_end2</infoportion_fail>
+		<infoportion_complete>kulg_band_trader_car_end1</infoportion_complete>
+	</objective>
+	<objective>
+		<text>kulgband_trader_car_task_desc1</text>
+		<map_location_type hint="kulgband_trader_car_task_mark1">crlc_mdl</map_location_type>
+		<object_story_id>kulgband_trader_car1</object_story_id>
+		<infoportion_complete>kulg_band_trader_car_finded</infoportion_complete>
+	</objective>
+	<objective>
+		<text>kulgband_trader_car_task_desc2</text>
+		<map_location_type hint="kulgband_trader_car_task_mark2">crlc_mdl</map_location_type>
+		<object_story_id>kulgband_trader_car1</object_story_id>
+		<infoportion_complete>kulg_band_trader_car_run</infoportion_complete>
+	</objective>
+	<objective>
+		<text>kulgband_trader_car_task_desc3</text>
+		<map_location_type hint="kulgband_trader_car_task_mark3">green_location</map_location_type>
+		<object_story_id>kulgband_trader</object_story_id>
+		<infoportion_complete>kulg_band_trader_car_end1</infoportion_complete>
+	</objective>
+</game_task>
+
+
+<game_task id="kulgband_filin_task">
+	<title>kulgband_filin_task_name</title>
+	<objective>
+		<text>kulgband_filin_task_desc_title</text>
+		<article>kulgband_filin_task_article</article>
+		<icon>ui_iconsTotal_bar_darklab_documents2</icon>
+		<infoportion_fail>kulg_band_hutor_attacked</infoportion_fail>
+		<infoportion_complete>kulgband_scout_meet</infoportion_complete>
+	</objective>
+	<objective>
+		<text>kulgband_filin_task_desc1</text>
+		<map_location_type hint="kulgband_filin_task_mark1">green_location</map_location_type>
+		<object_story_id>val_secret_0006</object_story_id>
+		<infoportion_complete>dar_filin_door_try_to_open</infoportion_complete>
+	</objective>
+	<objective>
+		<text>kulgband_filin_task_desc2</text>
+		<infoportion_complete>dar_filin_door_off</infoportion_complete>
+	</objective>
+	<objective>
+		<text>kulgband_filin_task_desc3</text>
+		<map_location_type hint="kulgband_filin_task_mark3">green_location</map_location_type>
+		<object_story_id>val_secret_0006</object_story_id>
+		<infoportion_complete>val_filin_diary_info</infoportion_complete>
+	</objective>
+	<objective>
+		<text>kulgband_filin_task_desc4</text>
+		<map_location_type hint="kulgband_filin_task_mark4">green_location</map_location_type>
+		<object_story_id>ds_glavar</object_story_id>
+		<infoportion_complete>kulgband_scout_meet</infoportion_complete>
+	</objective>
+</game_task>
+
+
+<game_task id="dar_kulgband_assistant_task">
+	<title>dar_kulgband_assistant_task_name</title>
+	<objective>
+		<text>dar_kulgband_assistant_task_desc_title</text>
+		<article>dar_kulgband_assistant_task_article</article>
+		<icon>ui_iconsTotal_artefact</icon>
+		<infoportion_fail>222</infoportion_fail>
+		<infoportion_complete>dar_filin_door_off</infoportion_complete>
+	</objective>
+	<objective>
+		<text>dar_kulgband_assistant_task_desc1</text>
+		<map_location_type hint="dar_kulgband_assistant_task_mark1">green_location</map_location_type>
+		<object_story_id>dar_assistant_friend_zone</object_story_id>
+		<function_complete>jekan_work.have_af_medusa_special</function_complete>
+	</objective>
+	<objective>
+		<text>dar_kulgband_assistant_task_desc2</text>
+		<map_location_type hint="dar_kulgband_assistant_task_mark2">green_location</map_location_type>
+		<object_story_id>val_secret_0006</object_story_id>
+		<infoportion_complete>dar_filin_door_off</infoportion_complete>
+	</objective>
+</game_task>
+
+
+
+<game_task id="kulgband_scout_task">
+	<title>kulgband_scout_task_name</title>
+	<objective>
+		<text>kulgband_scout_task_desc_title</text>
+		<article>kulgband_scout_task_article</article>
+		<icon>ui_iconsTotal_bar_crazy_veterans_quest</icon>
+		<infoportion_fail>mil_monolith_man_alarm</infoportion_fail>
+		<infoportion_complete>kulgband_strelka_task</infoportion_complete>
+	</objective>
+	<objective>
+		<text>kulgband_scout_task_desc1</text>
+		<map_location_type hint="kulgband_scout_task_mark1">green_location</map_location_type>
+		<object_story_id>mil_kulgband_scout_zone</object_story_id>
+		<infoportion_complete>mil_assistant_goto_ambush</infoportion_complete>
+	</objective>
+	<objective>
+		<text>kulgband_scout_task_desc2</text>
+		<map_location_type hint="kulgband_scout_task_mark1">green_location</map_location_type>
+		<object_story_id>kulgband_scout</object_story_id>
+		<infoportion_complete>mil_monolith_end</infoportion_complete>
+	</objective>
+	<objective>
+		<text>kulgband_scout_task_desc3</text>
+		<map_location_type hint="kulgband_scout_task_mark1">green_location</map_location_type>
+		<object_story_id>rad_kulgband_assistant_zone</object_story_id>
+		<infoportion_complete>rad_kulgband_assist_goto_forest</infoportion_complete>
+	</objective>
+	<objective>
+		<text>kulgband_scout_task_desc4</text>
+		<infoportion_complete>rad_kulgband_assist_forest_end2</infoportion_complete>
+		<infoportion_fail>rad_kulgband_assistant_dead</infoportion_fail>
+	</objective>
+	<objective>
+		<text>kulgband_scout_task_desc5</text>
+		<map_location_type hint="kulgband_scout_task_mark2">green_location</map_location_type>
+		<object_story_id>ds_glavar</object_story_id>
+		<infoportion_complete>333</infoportion_complete>
+	</objective>
+</game_task>
+
+
+
+<game_task id="kulgband_trader_reputation_task">
+	<title>kulgband_trader_reputation_task_name</title>
+	<objective>
+		<text>kulgband_trader_reputation_task_desc_title</text>
+		<article>kulgband_trader_reputation_task_article</article>
+		<icon>ui_iconsTotal_found_money</icon>
+		<infoportion_fail>222</infoportion_fail>
+		<infoportion_complete>drozd_reputation_end</infoportion_complete>
+	</objective>
+	<objective>
+		<text>kulgband_trader_reputation_task_desc1</text>
+		<map_location_type hint="kulgband_trader_reputation_task_mark1">green_location</map_location_type>
+		<object_story_id>esc_guns_remontnik</object_story_id>
+		<infoportion_complete>drozd_reputation_3</infoportion_complete>
+	</objective>
+	<objective>
+		<text>kulgband_trader_reputation_task_desc2</text>
+		<map_location_type hint="kulgband_trader_reputation_task_mark2">green_location</map_location_type>
+		<object_story_id>val_trader_npc</object_story_id>
+		<infoportion_complete>drozd_reputation_1</infoportion_complete>
+	</objective>
+	<objective>
+		<text>kulgband_trader_reputation_task_desc3</text>
+		<map_location_type hint="kulgband_trader_reputation_task_mark3">green_location</map_location_type>
+		<object_story_id>bar_bar_osvedomitel</object_story_id>
+		<infoportion_complete>drozd_reputation_2</infoportion_complete>
+	</objective>
+	<objective>
+		<text>kulgband_trader_reputation_task_desc4</text>
+		<map_location_type hint="kulgband_trader_reputation_task_mark4">green_location</map_location_type>
+		<object_story_id>kulgband_trader2</object_story_id>
+		<infoportion_complete>drozd_reputation_end</infoportion_complete>
+	</objective>
+</game_task>
+
+
+<game_task id="kulgband_strelka_task">
+	<title>kulgband_strelka_task_name</title>
+	<objective>
+		<text>kulgband_strelka_task_desc_title</text>
+		<article>kulgband_strelka_task_article</article>
+		<icon>ui_iconsTotal_gar_help_dymon</icon>
+		<infoportion_fail>222</infoportion_fail>
+		<infoportion_complete>kulgband_strelka_task2</infoportion_complete>
+	</objective>
+	<objective>
+		<text>kulgband_strelka_task_desc1</text>
+		<map_location_type hint="kulgband_strelka_task_mark1">green_location</map_location_type>
+		<object_story_id>dar_kulgband_bridge_zone</object_story_id>
+		<infoportion_complete>bridge_kulgband_man_shoot</infoportion_complete>
+	</objective>
+	<objective>
+		<text>kulgband_strelka_task_desc2</text>
+		<map_location_type hint="kulgband_strelka_task_mark2">green_location</map_location_type>
+		<object_story_id>aaa</object_story_id>
+		<infoportion_complete>bridge_kulgband_man_info</infoportion_complete>
+	</objective>
+	<objective>
+		<text>kulgband_strelka_task_desc3</text>
+		<map_location_type hint="kulgband_strelka_task_mark3">green_location</map_location_type>
+		<object_story_id>ds_glavar</object_story_id>
+		<infoportion_complete>kulgband_strelka_task2</infoportion_complete>
+	</objective>
+</game_task>
+
+
+<game_task id="kulgband_hutor_house_seif_task">
+	<title>kulgband_hutor_house_seif_task_name</title>
+	<objective>
+		<text>kulgband_hutor_house_seif_task_desc_title</text>
+		<!--article>kulgband_hutor_house_seif_task_article</article-->
+		<icon>ui_iconsTotal_dar_codedoor_2</icon>
+		<infoportion_fail>kulgband_hutor_house_seif_task_fail</infoportion_fail>
+		<infoportion_complete>kulgband_seif_reward</infoportion_complete>
+	</objective>
+	<objective>
+		<text>kulgband_hutor_house_seif_task_desc1</text>
+		<map_location_type hint="kulgband_hutor_house_seif_task_mark1">green_location</map_location_type>
+		<object_story_id>kulgband_hutor_house_seif</object_story_id>
+		<infoportion_complete>kulgband_hutor_house_seif_use</infoportion_complete>
+	</objective>
+	<objective>
+		<text>kulgband_hutor_house_seif_task_desc2</text>
+		<function_complete>jekan_work.have_kulgband_hutor_house_seif_key</function_complete>
+	</objective>
+	<objective>
+		<text>kulgband_hutor_house_seif_task_desc3</text>
+		<map_location_type hint="kulgband_hutor_house_seif_task_mark1">green_location</map_location_type>
+		<object_story_id>kulgband_hutor_house_seif</object_story_id>
+		<infoportion_complete>kulgband_hutor_house_seif_open</infoportion_complete>
+	</objective>
+	<objective>
+		<text>kulgband_hutor_house_seif_task_desc4</text>
+		<map_location_type hint="kulgband_hutor_house_seif_task_mark4">green_location</map_location_type>
+		<object_story_id>ds_shesterka</object_story_id>
+		<infoportion_complete>kulgband_seif_reward</infoportion_complete>
+	</objective>
+</game_task>
+
+
+<game_task id="kulgband_strelka_task2">
+	<title>kulgband_strelka_task2_name</title>
+	<objective>
+		<text>kulgband_strelka_task2_desc_title</text>
+		<!--article>kulgband_strelka_task2_article</article-->
+		<icon>ui_iconsTotal_gar_help_dymon</icon>
+		<infoportion_fail>222</infoportion_fail>
+		<infoportion_complete>kulgband_scout_talk</infoportion_complete>
+	</objective>
+	<objective>
+		<text>kulgband_strelka_task2_desc1</text>
+		<map_location_type hint="kulgband_strelka_task2_mark1">green_location</map_location_type>
+		<object_story_id>dar_kulgband_bridge_zone</object_story_id>
+		<infoportion_complete>bridge_kulgband_glavar_go</infoportion_complete>
+	</objective>
+	<objective>
+		<text>kulgband_strelka_task2_desc2</text>
+		<infoportion_complete>kulgband_scout_talk</infoportion_complete>
+	</objective>
+</game_task>
+
+
+<game_task id="kulgband_bridge_scout_pda_task">
+	<title>kulgband_bridge_scout_pda_task_name</title>
+	<objective>
+		<text>kulgband_bridge_scout_pda_task_desc_title</text>
+		<article>kulgband_bridge_scout_pda_task_article</article>
+		<icon>ui_iconsTotal_locations</icon>
+		<infoportion_fail>222</infoportion_fail>
+		<infoportion_complete>kulgband_goto_deadcity1</infoportion_complete>
+	</objective>
+	<objective>
+		<text>kulgband_bridge_scout_pda_task_desc1</text>
+		<map_location_type hint="kulgband_bridge_scout_pda_task_mark1">green_location</map_location_type>
+		<object_story_id>kulgband_scout_shron_zone</object_story_id>
+		<function_complete>xr_conditions.have_klondike_key</function_complete>
+	</objective>
+	<objective>
+		<text>kulgband_bridge_scout_pda_task_desc2</text>
+		<map_location_type hint="kulgband_bridge_scout_pda_task_mark2">green_location</map_location_type>
+		<object_story_id>ds_glavar</object_story_id>
+		<infoportion_complete>kulgband_goto_deadcity1</infoportion_complete>
+	</objective>
+</game_task>
+
+
+<game_task id="kulgband_scout_task2">
+	<title>kulgband_scout_task2_name</title>
+	<objective>
+		<text>kulgband_scout_task2_desc_title</text>
+		<article>kulgband_scout_task_article2</article>
+		<icon>ui_iconsGrave_Cross</icon>
+		<infoportion_fail>222</infoportion_fail>
+		<infoportion_complete>kulgband_informer_task</infoportion_complete>
+	</objective>
+	<objective>
+		<text>kulgband_scout_task2_desc1</text>
+		<map_location_type hint="kulgband_scout_task2_mark1">green_location</map_location_type>
+		<object_story_id>ds_telohr_2</object_story_id>
+		<infoportion_complete>kulgband_voron_comeback</infoportion_complete>
+	</objective>
+	<objective>
+		<text>kulgband_scout_task2_desc2</text>
+		<infoportion_complete>ds_glavar_dead</infoportion_complete>
+	</objective>
+	<objective>
+		<text>kulgband_scout_task2_desc3</text>
+		<infoportion_complete>kulgband_informer_task</infoportion_complete>
+	</objective>
+</game_task>
+
+
+
+<game_task id="kulgband_informer_task">
+	<title>kulgband_informer_task_name</title>
+	<objective>
+		<text>kulgband_informer_task_desc_title</text>
+		<article>kulgband_informer_task_article</article>
+		<icon>ui_iconsTotal_kill_stalker</icon>
+		<infoportion_fail>222</infoportion_fail>
+		<infoportion_complete>kulgband_goto_deadcity</infoportion_complete>
+	</objective>
+	<objective>
+		<text>kulgband_informer_task_desc1</text>
+		<map_location_type hint="kulgband_informer_task_mark1">green_location</map_location_type>
+		<object_story_id>kulgband_informer_zone</object_story_id>
+		<infoportion_complete>kulgband_informer_hello</infoportion_complete>
+	</objective>
+	<objective>
+		<text>kulgband_informer_task_desc2</text>
+		<infoportion_complete>kulgband_informer_map_info</infoportion_complete>
+	</objective>
+	<objective>
+		<text>kulgband_informer_task_desc3</text>
+		<map_location_type hint="kulgband_informer_task_mark3">green_location</map_location_type>
+		<object_story_id>kulgband_hutor_deadman</object_story_id>
+		<infoportion_complete>kulgband_goto_deadcity</infoportion_complete>
+	</objective>
+</game_task>
+
+
+<game_task id="kulgband_deadcity_task1">
+	<title>kulgband_deadcity_task1_name</title>
+	<objective>
+		<text>kulgband_deadcity_task1_desc_title</text>
+		<article>kulgband_deadcity_task1_article</article>
+		<icon>ui_iconsTotal_eliminate_lager</icon>
+		<infoportion_fail>cit_kulgband_task_fail</infoportion_fail>
+		<infoportion_complete>333</infoportion_complete>
+	</objective>
+	<objective>
+		<text>kulgband_deadcity_task1_desc1</text>
+		<map_location_type hint="kulgband_deadcity_task1_mark1">green_location</map_location_type>
+		<object_story_id>kulgband_meet_zone</object_story_id>
+		<infoportion_complete>kulgband_deadcity_meet</infoportion_complete>
+	</objective>
+	<objective>
+		<text>kulgband_deadcity_task1_desc2</text>
+		<infoportion_complete>cit_kulgband_goto_klondike</infoportion_complete>
+	</objective>
+	<objective>
+		<text>kulgband_deadcity_task1_desc3</text>
+		<infoportion_complete>klondike_acess</infoportion_complete>
+	</objective>
+	<objective>
+		<text>kulgband_deadcity_task1_desc4</text>
+		<function_complete>xr_conditions.actor_has_klondike_arts</function_complete>
+	</objective>
+	<objective>
+		<text>kulgband_deadcity_task1_desc5</text>
+		<infoportion_complete>222</infoportion_complete>
+	</objective>
+</game_task>
+
+<game_task id="kulgband_deadcity_task2">
+	<title>kulgband_deadcity_task2_name</title>
+	<objective>
+		<text>kulgband_deadcity_task2_desc_title</text>
+		<article>kulgband_deadcity_task2_article</article>
+		<icon>ui_iconsTotal_eliminate_lager</icon>
+		<infoportion_fail>cit_kulgband_task_fail</infoportion_fail>
+		<infoportion_complete>333</infoportion_complete>
+	</objective>
+	<objective>
+		<text>kulgband_deadcity_task2_desc1</text>
+		<map_location_type hint="kulgband_deadcity_task2_mark1">green_location</map_location_type>
+		<object_story_id>kulgband_meet_zone</object_story_id>
+		<infoportion_complete>kulgband_deadcity_meet</infoportion_complete>
+	</objective>
+	<objective>
+		<text>kulgband_deadcity_task2_desc2</text>
+		<map_location_type hint="kulgband_deadcity_task2_mark2">green_location</map_location_type>
+		<object_story_id>klondaik</object_story_id>
+		<infoportion_complete>klondike_acess</infoportion_complete>
+	</objective>
+	<objective>
+		<text>kulgband_deadcity_task2_desc3</text>
+		<function_complete>jekan_work.has_ds_glavar_bag</function_complete>
+	</objective>
+	<objective>
+		<text>kulgband_deadcity_task2_desc4</text>
+		<map_location_type hint="kulgband_deadcity_task2_mark3">green_location</map_location_type>
+		<object_story_id>city_kulgband_telohr2</object_story_id>
+		<infoportion_complete>222</infoportion_complete>
+		<infoportion_fail>cit_kulgband_enemy</infoportion_fail>
+	</objective>
+</game_task>
+
+
+
+
+
+
+
