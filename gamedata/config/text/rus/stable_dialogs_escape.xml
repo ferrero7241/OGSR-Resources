@@ -1165,8 +1165,17 @@
 		<text>Шустрый спасен.</text>
 	</string>
 	<string id="escape_lager_volk_talk_2111">
-		<text>Отлично, друг! Вот, держи лично от меня.</text>
+		<!--text>Отлично, друг! Вот, держи лично от меня.</text-->
+		<text>Отлично, друг! Какой артефакт выбираешь в награду: "Медузу" или "Слизь"?</text>
 	</string>
+	
+	<string id="escape_lager_volk_talk_21111">
+		<text>"Медузу".</text>
+	</string>
+	<string id="escape_lager_volk_talk_21112">
+		<text>"Слизь".</text>
+	</string>
+	
 	<string id="escape_lager_volk_talk_212">
 		<text>Я прошерстил АТП. Там уже чисто.</text>
 	</string>
@@ -3760,6 +3769,58 @@
 	<string id="freezer_bandos_start_dialog_phrase_11">
 		<text>Пошел на!</text>
 	</string>
+	
+	<string id="freezer_bandos_start_dialog_phrase_12">
+		<text>Прикольно! Лохом он жил, по лоховски и помер (новая ветка заданий).</text>
+	</string>
+	<string id="freezer_bandos_start_dialog_phrase_13">
+		<text>Хы-гы... Ты, я зырю, в теме! Слышь, а может сольешь второго пи.орка? Чисто по-приколу. И свидетелей не будет.</text>
+	</string>
+	<string id="freezer_bandos_start_dialog_phrase_14">
+		<text>Легко.</text>
+	</string>
+	<string id="freezer_bandos_start_dialog_phrase_15">
+		<text>Только ты это... Пером его замочи, ствол не свети, громких звуков нам не надо. Кончай его, а я тебе кой-чего прикольного расскажу.</text>
+	</string>
+	<string id="freezer_bandos_start_dialog_phrase_16">
+		<text>Его уже нет.</text>
+	</string>
+	
+	<string id="freezer_bandos_dialog3_phrase_1">
+		<text>Всё, пи..ец ему.</text>
+	</string>
+	<string id="freezer_bandos_dialog3_phrase_2">
+		<text>По-приколу, чувак, по-приколу! Классно ты его уработал. Тушки лохов надо-бы в холодильник этот засунуть, их там долго никто не найдёт... Слыш, а не хочешь на пахана моего поработать? Ему щас люди нужны.</text>
+	</string>
+	<string id="freezer_bandos_dialog3_phrase_3">
+		<text>Что за пахан?</text>
+	</string>
+	<string id="freezer_bandos_dialog3_phrase_4">
+		<text>Кульгавый. Ему недавно инфу козырную сбросили, пацаны базарят, что если выгорит дельце, то маза будет на миллионы, прикинь? Пахан сразу метнулся, взял самых верных пацанов и в Зоне залёг. Сидит тихо, но ухо держит востро! Вот меня сюда направил, чтобы я ему инфу доставал ну и всё такое...</text>
+	</string>
+	<string id="freezer_bandos_dialog3_phrase_5">
+		<text>А как его найти?</text>
+	</string>
+	<string id="freezer_bandos_dialog3_phrase_6">
+		<text>Он в Лощине на хуторке одном чалиться. Ты сидел? Нет? Хреново, потому что он блатной и только блатных уважает... Но ты не будь лохом: при первом с ним базаре прояви уважение и не шестери, тогда всё будет чих-пых, ты понял?</text>
+	</string>
+	<string id="freezer_bandos_dialog3_phrase_7">
+		<text>Понял, спасибо за инфу.</text>
+	</string>
+	
+	
+	<string id="freezer_bandos_dialog4_phrase_1">
+		<text>Всё, пи..ец ему.</text>
+	</string>
+	<string id="freezer_bandos_dialog4_phrase_2">
+		<text>Бля, я ж сказал, что надо его по-тихому, ножом слить! Тогда бы можно было от мокрухи отмазаться. А теперь, если сталкеры их тушки найдут, то будут до.ера вопросов задавать и мне придётся валить атседава нахрен. Зашквар, кароче. Ладно, ща я лохов этих в холодильник запихну, чтоб подольше не нашли. А ты к пахану всё-ж таки загляни, он в Лощине чалится.</text>
+	</string>
+	<string id="freezer_bandos_dialog4_phrase_3">
+		<text>Загляну.</text>
+	</string>
+		
+	
+	
 	<string id="zona_brother2_freezer_dialog_phrase_1">
 		<text>Ты в порядке?</text>
 	</string>
@@ -4783,6 +4844,17 @@
 	<string id="stalin_start_dialog_phrase_12">
 		<text>Я пошел. У меня есть дела поважнее.</text>
 	</string>
+<!-- охранник Сидора Сталин - презентация оружейных аддонов (увеличенный магазин и МТК-83 на  АКМСе) -->
+	<string id="stalin_start_dialog_phrase_addons">
+		<text>Отставить, я - на марше! \nДоложи-ка лучше, "старослужащий", что за вид неуставной.. у ствола твоего?</text>
+	</string>
+	<string id="stalin_start_dialog_phrase_training">
+		<text>Молодец, воин, Устав твёрдо помнишь. \nЧто, нравится обвес-то? Ещё бы! Видишь, на стандартное крепление поставил планку-переходник, чтобы не только наши, но и "потенциальных друзей" прицелы использовать можно было.</text>
+	</string>
+	<string id="stalin_start_dialog_phrase_goodbye">
+		<text>Ясно. Ну, мне пора. До свидания.</text>
+	</string>
+<!-- // -->
 	<string id="stalin_propusk_dialog_phrase_1">
 		<text>Открой дверь, мне к Сидоровичу надо.</text>
 	</string>
