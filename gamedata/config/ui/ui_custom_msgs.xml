@@ -522,3 +522,19 @@
 		<texture>ui\hud_pricel</texture>
 	</hud_cross_wpn>
 </header>
+
+	<dar_kulg_band_trader_car_think x="530" y="10" width="105" height="160" stretch="1">
+		<text x="-130" y="160" r="255" g="225" b="118" a="158" font="graffiti22">dar_kulg_band_trader_car_think_text</text>
+	</dar_kulg_band_trader_car_think>
+	
+	<mil_monolith_grenade_think x="530" y="10" width="105" height="160" stretch="1">
+		<text x="-130" y="160" r="255" g="225" b="118" a="158" font="graffiti22">mil_monolith_grenade_think_text</text>
+	</mil_monolith_grenade_think>
+	
+	
+	<kulgband_seif_think x="530" y="10" width="105" height="160" stretch="1">
+		<text x="-130" y="160" r="255" g="225" b="118" a="158" font="graffiti22">kulgband_seif_think_text</text>
+	</kulgband_seif_think>
+	<kulgband_seif_think2 x="530" y="10" width="105" height="160" stretch="1">
+		<text x="-130" y="160" r="255" g="225" b="118" a="158" font="graffiti22">kulgband_seif_think_text2</text>
+	</kulgband_seif_think2>

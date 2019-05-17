@@ -18,7 +18,7 @@
 	<texture id="ui_iconsLesnik_Zaharich" x="497" y="423" width="83" height="47" />
 	<texture id="ui_iconsOsoznanie" x="415" y="893" width="83" height="47" />
 	
-	
+	<texture id="ui_iconsGrave_Cross" x="0" y="752" width="83" height="47" />
 
 
     <texture id="ui_iconsTotal_found_money" x="0" y="0" width="83" height="47" />
@@ -39,7 +39,7 @@
     <texture id="ui_iconsTotal_locations" x="0" y="705" width="83" height="47" />
 
 
-    <texture id="ui_iconsTotal_toHelpFree_lancer" x="0" y="799" width="83" height="47"/>
+	<texture id="ui_iconsTotal_toHelpFree_lancer" x="0" y="799" width="83" height="47"/>
 
     <texture id="ui_iconsTotal_storyline_eliminate_gunslinger" x="83" y="0" width="83" height="47" />
     <texture id="ui_iconsTotal_tutorial_find_artefact" x="83" y="47" width="83" height="47" />

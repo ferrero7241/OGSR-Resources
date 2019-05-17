@@ -1,5 +1,25 @@
 <ui_texture>
     <file_name>ui\ui_npc_unique</file_name>
+	
+	
+	
+	
+	
+	<texture id="ui_npc_kulg_band_lider" x="1485" y="1188" width="165" height="108" />
+	<texture id="ui_npc_kulg_band_lider2" x="1650" y="1188" width="165" height="108" />
+	<texture id="ui_npc_kulg_band_patrol2" x="1156" y="1405" width="165" height="108" />
+	<texture id="ui_npc_iskatel_yuriy" x="1815" y="1188" width="165" height="108" />
+	<texture id="ui_npc_ds_hunter" x="1155" y="1296" width="165" height="108" />
+	<texture id="ui_npc_bratstvo_lider" x="1321" y="1296" width="165" height="108" />
+	<texture id="ui_npc_bratstvo_cleaner" x="1485" y="1296" width="165" height="108" />
+	<texture id="ui_npc_bratstvo_vrach" x="1651" y="1296" width="165" height="108" />
+	<texture id="ui_npc_bratstvo_orujeinik" x="1816" y="1296" width="165" height="108" />
+	<texture id="ds_telohr_1_icon" x="1320" y="1404" width="165" height="108" />
+	<texture id="freezer_bandos_icon" x="1485" y="1406" width="165" height="108" />
+	<texture id="bandit_deadman_icon" x="1651" y="1406" width="165" height="108" />
+	<texture id="kulgband_scout_icon" x="1817" y="1406" width="165" height="108" />
+	
+	
 	<texture id="ui_npc_digger" x="1320" y="1188" width="165" height="108" />
 	<texture id="ui_npc_mordaty" x="1155" y="1188" width="165" height="108" />
 	<texture id="ui_npc_duplet" x="1485" y="1080" width="165" height="108" />
