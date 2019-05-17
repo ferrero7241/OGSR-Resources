@@ -56,7 +56,6 @@ local protected_objects = { --Имена объектов, которые зап
 	[ "bun_grenade_f1_0007" ] = true,
 	[ "bun_grenade_f1_0008" ] = true,
 	[ "kat_wpn_ak74n_rpk45_side_rail_kobra" ] = true,
-	[ "kat_gunslinger_ak" ] = true,
 	[ "rad_wpn_vintorez" ] = true,
 	[ "cit_wpn_ak74_0000" ] = true,
 	[ "cit_wpn_ak74_0001" ] = true,

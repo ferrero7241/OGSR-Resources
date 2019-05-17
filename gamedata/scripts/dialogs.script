@@ -1147,7 +1147,7 @@ function is_from_novice_village(actor, npc)
 	return false
 end
 
--- апгрейд оружия (k01jan ствол д/б В РУКАХ актора)
+-- апгрейд оружия
 function has_money_for_ak74()
 	if db.actor:money() >= 2500 then
 		return true
@@ -1167,51 +1167,21 @@ function has_no_money_for_ak102()
 	return not has_money_for_ak102()
 end
 function is_stok_ak102_in_slot()
-	--local it = db.actor:item_in_slot(2)
-	local it = db.actor:active_item()
+	local it = db.actor:item_in_slot(2)
 	if it and string.find(it:section(), "wpn_ak102") and string.find(it:section(), "stok") then
 		return true
 	end
 	return false
 end
-function has_money_for_ak102sale()
-	if db.actor:money() >= 3500 then
-		return true
-	end
-	return false
-end
-function has_no_money_for_ak102sale()
-	return not has_money_for_ak102sale()
-end
-function has_money_for_vepr12()
-	if db.actor:money() >= 6000 then
-		return true
-	end
-	return false
-end
-function has_no_money_for_vepr12()
-	return not has_money_for_vepr12()
-end
-function is_stok_vepr12_in_slot()
-	--local it = db.actor:item_in_slot(2)
-	local it = db.actor:active_item()
-	if it and string.find(it:section(), "wpn_vepr12") and string.find(it:section(), "stok") then
-		return true
-	end
-	return false
-end
---function is_stok_ak74_in_slot(repaired_slot) -- не катит (из диалога параметр не передать :(
 function is_stok_ak74_in_slot()
-	--local it = db.actor:item_in_slot(2) 	-- 0-холодное, 1-короткое, 2-длинное: в ОГСР слоты РАВНОЗНАЧНЫЕ
-	local it = db.actor:active_item()		-- не катит (при диалоге оружие УБИРАЕТСЯ из рук в слот - правим bind_stalker.script :)
+	local it = db.actor:item_in_slot(2)
 	if it and (string.find(it:section(), "wpn_akm") or string.find(it:section(), "wpn_ak74") or string.find(it:section(), "wpn_aks74")) and string.find(it:section(), "ironsight") then
 		return true
 	end
 	return false
 end
 function is_no_proper_gun_in_slot()
-	--local it = db.actor:item_in_slot(2)
-	local it = db.actor:active_item()
+	local it = db.actor:item_in_slot(2)
 	if it then
 		if string.find(it:section(), "wpn_akm") or string.find(it:section(), "wpn_ak74") or string.find(it:section(), "wpn_aks74") then
 			return false
@@ -1223,12 +1193,8 @@ function is_no_proper_gun_in_slot()
 	end
 end
 function is_upgraded_gun_in_slot()
-	--local it = db.actor:item_in_slot(2)
-	local it = db.actor:active_item()
+	local it = db.actor:item_in_slot(2)
 	if it and string.find(it:section(), "wpn_ak102") and not string.find(it:section(), "stok") then
-		return true
-	end
-	if it and string.find(it:section(), "wpn_vepr12") and not string.find(it:section(), "stok") then
 		return true
 	end
 	if it and (string.find(it:section(), "wpn_akm") or string.find(it:section(), "wpn_ak74") or string.find(it:section(), "wpn_aks74")) and not string.find(it:section(), "ironsight") then
@@ -1238,8 +1204,7 @@ function is_upgraded_gun_in_slot()
 end
 
 function modify_weapon(old, new)
-	--local it = db.actor:item_in_slot(2)
-	local it = db.actor:active_item()
+	local it = db.actor:item_in_slot(2)
 	if it then
 		local s_cur_weapon = alife():object(it:id())
 		local sect = it:section()
@@ -1288,20 +1253,8 @@ end
 function attach_side_rail()
 	modify_weapon("ironsight", "side_rail_kobra")
 	db.actor:give_money(-2500)
-	news_manager.relocate_money(db.actor, "out", 2500)
 end
 function attach_custom_kit()
 	modify_weapon("stok", "custom")
 	db.actor:give_money(-5000)
-	news_manager.relocate_money(db.actor, "out", 5000)
-end
-function attach102_custom_kit()
-	modify_weapon("stok", "custom")
-	db.actor:give_money(-3500)
-	news_manager.relocate_money(db.actor, "out", 3500)
-end
-function attach12_barrel_custom_kit()
-	modify_weapon("stok", "custom")
-	db.actor:give_money(-6000)
-	news_manager.relocate_money(db.actor, "out", 6000)
 end

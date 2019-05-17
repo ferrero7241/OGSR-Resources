@@ -1095,7 +1095,7 @@ end
 function give_reward_on_kvest_killers_mined(first_speaker, second_speaker)
 	local t = {
 		["grenade_f1"] 		= 7,
-		["wpn_vepr12stok_vepr4_ironsight"] = 1,
+		["wpn_saiga12c_m1"] = 1,
 	}
 	this.give_reward(second_speaker, 2000, t)
 end

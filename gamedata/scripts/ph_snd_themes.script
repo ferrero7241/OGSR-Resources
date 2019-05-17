@@ -165,13 +165,13 @@ potsik_talk = {[[characters_voice\scenario\potsik_talk]]}
 
 freedom_speech_normal = {
 	[[characters_voice\scenario\military\freedom_megafon\freedom_megafon_music_1]],
-	[[characters_voice\scenario\bar\radio_music\radio_music_1]],
+	[[characters_voice\scenario\military\freedom_megafon\freedom_megafon_music_2]],
 	[[characters_voice\scenario\military\freedom_megafon\freedom_megafon_music_3]],
-	[[characters_voice\scenario\bar\radio_music\bar_music_13]],
+	[[characters_voice\scenario\military\freedom_megafon\freedom_megafon_music_4]],
 	[[characters_voice\scenario\military\freedom_megafon\freedom_megafon_music_5]],
-	[[characters_voice\scenario\bar\radio_music\bar_music_8]],
+	[[characters_voice\scenario\military\freedom_megafon\freedom_megafon_music_6]],
 	[[characters_voice\scenario\military\freedom_megafon\freedom_megafon_music_7]],
-	[[characters_voice\scenario\bar\radio_music\bar_music_10]],
+	[[characters_voice\scenario\military\freedom_megafon\freedom_megafon_music_9]],
 	[[characters_voice\scenario\military\freedom_megafon\freedom_megafon_music_10]],
 	[[characters_voice\scenario\military\freedom_megafon\freedom_megafon_music_11]],
 }
@@ -501,132 +501,3 @@ no_music = {
 	[[characters_voice\scenario\escape\radio\no_sound]],
 	[[characters_voice\scenario\escape\radio\no_sound]],
 }
-
-patrol_bored = {
-	[[characters_voice\scenario\patrol_bored\bandit_idle_1]],
-	[[characters_voice\scenario\patrol_bored\bandit_idle_2]],
-	[[characters_voice\scenario\patrol_bored\bandit_idle_3]],
-	[[characters_voice\scenario\patrol_bored\bandit_idle_4]],
-	[[characters_voice\scenario\patrol_bored\bandit_idle_5]],
-	[[characters_voice\scenario\patrol_bored\bandit_idle_6]],
-	[[characters_voice\scenario\patrol_bored\bandit_idle_7]],
-	[[characters_voice\scenario\patrol_bored\bandit_idle_8]],
-	[[characters_voice\scenario\patrol_bored\bandit_idle_9]],
-	[[characters_voice\scenario\patrol_bored\bandit_idle_10]],
-	[[characters_voice\scenario\patrol_bored\bandit_idle_11]],
-	[[characters_voice\scenario\patrol_bored\bandit_idle_12]],
-	[[characters_voice\scenario\patrol_bored\bandit_idle_13]],
-	[[characters_voice\scenario\patrol_bored\bandit_idle_14]],
-	[[characters_voice\scenario\patrol_bored\bandit_idle_15]],
-}
-
-
-
-car_engine_work = {[[car\niva]]}
-
-kulgband_trader_car_snd = {[[characters_voice\scenario\kulgband_trader_car_snd]]}
-bridge_kulgband_shoot = {[[characters_voice\human_01\killer\fight\enemy\enemy_7]]}
-bridge_kulgband_glavar_talk1 = {[[characters_voice\human_01\stalker\reactions\story\final_tragic_2]]}
-bridge_kulgband_glavar_talk2 = {[[characters_voice\human_01\stalker\reactions\story\fear_1]]}
-bridge_kulgband_glavar_talk3 = {[[characters_voice\human_01\stalker\reactions\story\wonder_5]]}
-bridge_kulgband_speech = {[[characters_voice\human_01\killer\fight\attack\attack_4]]}
-kulgband_hutor_deadman_hello = {[[characters_voice\scenario\kulgband_hutor_deadman_hello]]}
-
-kulgband_hutor_radio_snd = {
-	[[characters_voice\scenario\kulgband_hutor_radio_snd_1]],
-	[[characters_voice\scenario\kulgband_hutor_radio_snd_2]],
-	[[characters_voice\scenario\kulgband_hutor_radio_snd_3]],
-}
-
-drunk = {
-	[[characters_voice\scenario\bar\bar_veteran\bar_veteran_1]],
-	[[characters_voice\scenario\bar\bar_veteran\bar_veteran_2]],
-	[[characters_voice\scenario\bar\bar_veteran\bar_veteran_3]],
-	[[characters_voice\scenario\bar\bar_veteran\bar_veteran_4]],
-}
-
-kulgband_scout_hush = {[[characters_voice\scenario\kulgband_scout_hush]]}
-kulgband_informer_deal1 = {[[characters_voice\scenario\kulgband_informer_deal1]]}
-kulgband_informer_deal2 = {[[characters_voice\scenario\kulgband_informer_deal2]]}
-
-bandit_fight = {
-	[[characters_voice\human_01\bandit\fight\enemy\enemy_1]],
-	[[characters_voice\human_01\bandit\fight\enemy\enemy_2]],
-	[[characters_voice\human_01\bandit\fight\enemy\enemy_3]],
-	[[characters_voice\human_01\bandit\fight\enemy\enemy_4]],
-	[[characters_voice\human_01\bandit\fight\enemy\enemy_5]],
-	[[characters_voice\human_01\bandit\fight\enemy\enemy_6]],
-	[[characters_voice\human_01\bandit\fight\enemy\enemy_7]],
-	[[characters_voice\human_01\bandit\fight\enemy\enemy_8]],
-	[[characters_voice\human_01\bandit\fight\enemy\enemy_9]],
-	[[characters_voice\human_01\bandit\fight\enemy\enemy_10]],
-	[[characters_voice\human_01\bandit\fight\enemy\enemy_11]],
-}
-
-bandit_idle = {
-	[[characters_voice\human_01\bandit\states\idle\idle_1]],
-	[[characters_voice\human_01\bandit\states\idle\idle_2]],
-	[[characters_voice\human_01\bandit\states\idle\idle_3]],
-	[[characters_voice\human_01\bandit\states\idle\idle_4]],
-	[[characters_voice\human_01\bandit\states\idle\idle_5]],
-	[[characters_voice\human_01\bandit\states\idle\idle_6]],
-	[[characters_voice\human_01\bandit\states\idle\idle_7]],
-	[[characters_voice\human_01\bandit\states\idle\idle_8]],
-	[[characters_voice\human_01\bandit\states\idle\idle_9]],
-	[[characters_voice\human_01\bandit\states\idle\idle_10]],
-	[[characters_voice\human_01\bandit\states\idle\idle_11]],
-	[[characters_voice\human_01\bandit\states\idle\idle_12]],
-	[[characters_voice\human_01\bandit\states\idle\idle_13]],
-	[[characters_voice\human_01\bandit\states\idle\idle_14]],
-	[[characters_voice\human_01\bandit\states\idle\idle_15]],
-	[[characters_voice\human_01\bandit\states\idle\idle_16]],
-	[[characters_voice\human_01\bandit\states\idle\idle_17]],
-	[[characters_voice\human_01\bandit\states\idle\idle_18]],
-	[[characters_voice\human_01\bandit\states\idle\idle_19]],
-	[[characters_voice\human_01\bandit\states\idle\idle_20]],
-	[[characters_voice\human_01\bandit\states\idle\idle_21]],
-	[[characters_voice\human_01\bandit\states\idle\idle_22]],
-	[[characters_voice\human_01\bandit\states\idle\idle_23]],
-	[[characters_voice\human_01\bandit\states\idle\idle_24]],
-	[[characters_voice\human_01\bandit\states\idle\idle_25]],
-	[[characters_voice\human_01\bandit\states\idle\idle_26]],
-	[[characters_voice\human_01\bandit\states\idle\idle_27]],
-	[[characters_voice\human_01\bandit\states\idle\idle_28]],
-	[[characters_voice\human_01\bandit\states\idle\idle_29]],
-	[[characters_voice\human_01\bandit\states\idle\idle_30]],
-	[[characters_voice\human_01\bandit\states\idle\idle_31]],
-	[[characters_voice\human_01\bandit\states\idle\idle_32]],
-}
-
-cit_kulgband_glavar_klondike_action = {[[characters_voice\human_01\bandit\states\idle\idle_18]]}
-cit_kulgband_glavar_klondike_action2 = {[[characters_voice\characters_voice\scenario\kulgband_lider_goodloot]]}
-
-
-
-
-
-gar_dm_bandit_backoff1 = {[[characters_voice\scenario\dramatic_garbage\dramatic_bandits_back_off_1_1]]}
-gar_dm_bandit_backoff2 = {[[characters_voice\scenario\dramatic_garbage\dramatic_bandits_back_off_2_1]]}
-gar_dm_bandit_demand = {
-	[[characters_voice\scenario\dramatic_garbage\dramatic_bandits_demand_1]],
-	[[characters_voice\scenario\dramatic_garbage\dramatic_bandits_demand_3]],
-	[[characters_voice\scenario\dramatic_garbage\dramatic_bandits_demand_4]],
-}
-gar_dm_newbie_no_money = {
-	[[characters_voice\scenario\dramatic_garbage\dramatic_newbie_no_money_1]],
-	[[characters_voice\scenario\dramatic_garbage\dramatic_newbie_no_money_3]],
-	[[characters_voice\scenario\dramatic_garbage\dramatic_newbie_no_money_3]],
-}
-gar_dm_newbie_help_me = {[[characters_voice\scenario\dramatic_garbage\dramatic_newbie_help_me_1]]}
-gar_dm_newbie_thank_you = {[[characters_voice\scenario\dramatic_garbage\dramatic_newbie_thank_you_1]]}
-
-
-
-
-
-
-
-
-
-
-
