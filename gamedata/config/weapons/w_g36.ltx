@@ -154,8 +154,8 @@ strap_bone0					= bip01_spine2
 strap_bone1					= bip01_spine1
 
 startup_ammo   		        = 90
-visual         		        = weapons\g36\wpn_g36k.ogf
-;цевьё G36 - 6 щелей, G36K - 4, G36C - 2
+visual         		        = weapons\g36\wpn_g36k.ogf		;затычка
+;цевьё G36 - 6 щелей (G36K - 4, G36C - 2)
 	
 light_color					= 0.6,0.5,0.3
 light_range					= 5
@@ -270,6 +270,9 @@ orientation         = 2, 3, 0
 ;position 				= 0, 0, 0
 position            = 0.13,-0.01,0.13
 visual 				= weapons\g36\g36grip_hud.ogf
+;10(4 -6 прицелы для унификации анимаций) костей свободно (2магазины+1патроны, +1уник.ночник, смен.стволы, сошки, склад.приклад)
+;цевьё G36 - 6 щелей, штатная ручка с комбинированным прицелом (G36K - 4, G36C - 2)
+
 
 ;grenade_bone 			= grenade
 grenade_bone           = wpn_grenade
@@ -289,6 +292,7 @@ anim_idle_sprint	= idle_sprint_w_gl			;idle_sprint
 anim_idle_g				= idle_grenade
 anim_idle_g_aim			= idle_grenade_aim		;idle_grenade
 anim_reload_g			= reload_grenade
+anim_reload_g_speed_k    = 1.5					;ПРОВЕРИТЬ
 anim_shoot_g			= shoot_grenade
 anim_switch_grenade_on	= switch_on
 anim_switch_grenade_off	= switch_off
@@ -308,11 +312,13 @@ anim_shoot_gl			= shoot_w_gl
 ;;;;;;;;;;;;;;;;;;;;;;Альтернативное прицеливание ОГСР через встроенный коллиматор 36 (штатный механический прицел)
 ;смещения HUD для режима приближения (прицеливание через коллиматор, без увеличения)
 ;ствол без установленного гранатомёта
-second_zoom_offset							= -0.137900,0.028500,-0.226000
+;-second_zoom_offset							= -0.137900,0.028500,-0.226000
+second_zoom_offset			= -0.137600,0.028500,-0.226000
 second_zoom_rotate_x						= 0.060700
 second_zoom_rotate_y						= 0.035080
 ;ствол с установленным гранатомётом в основном режиме (ствол)
-second_grenade_normal_zoom_offset			= -0.137900,0.028500,-0.226000	
+;-second_grenade_normal_zoom_offset			= -0.137600,0.028500,-0.226000
+second_grenade_normal_zoom_offset			= -0.137600,0.028500,-0.226000
 second_grenade_normal_zoom_rotate_x		= 0.060700
 second_grenade_normal_zoom_rotate_y		= 0.035080
 ;режим подствольника (положение д/б одинаковым - у подствола свой прицел)
@@ -321,12 +327,14 @@ second_grenade_zoom_rotate_x				= 0.061600
 second_grenade_zoom_rotate_y				= 0.058400
 ;;;;;;;;;;;;;;;;;;;;;;Прицеливание через оптику (перекрывается текстуроЙ)
 ;прицеливание по умолчанию (по-старому, через "оптику" - ТЕКСТУРОЙ), альтернативное ОГСЕ (мех.прицел, МОДЕЛЬЮ) сбрасывается при установке любого аддона, включая ПЫС-подствол)
-zoom_offset			= -0.136900,0.061000,-0.402998
+;-zoom_offset			= -0.136900,0.061000,-0.402998
+zoom_offset			= -0.137100,0.060500,-0.402998
 zoom_rotate_x		= 0.052700
 zoom_rotate_y		= 0.034080
 
 ;режим ствола
-grenade_normal_zoom_offset		= -0.136900,0.061000,-0.402998
+;-grenade_normal_zoom_offset		= -0.136900,0.061000,-0.402998
+grenade_normal_zoom_offset		= -0.137100,0.060500,-0.402998
 grenade_normal_zoom_rotate_x		= 0.052700
 grenade_normal_zoom_rotate_y		= 0.034080
 ;режим подствольника (положение д/б одинаковым - у подствола свой прицел)
@@ -338,8 +346,8 @@ grenade_zoom_rotate_y			= 0.058400
 zoom_hide_crosshair		= true
 
 ;время поворота HUD (сек)
-zoom_rotate_time		= 0.4
-rotate_time			= 0.4
+zoom_rotate_time	= 0.2
+rotate_time			= 0.2
 
 [wpn_g36base_repair]
 tech_complication = 1000
@@ -384,6 +392,7 @@ repair_compatibility = g36
 ;+надо 3D-линзу вторую делать (С и БЕЗ метки) ??на отдельной кости
 ;  	s5			ночник (с ACOG, EOTech)
 ;На рукоятку переноски может устанавливаться ночной модуль NSA-80, таким образом, что его оптический выход совмещается с объективом оптического прицела, давая возможность использовать штатную прицельную марку.
+;  	s6			ИК
 ;
 ;может устанавливаться гранатомёт HK AG36 или штык-нож (копия штык ножа автомата АКМ)
 ;
@@ -631,6 +640,8 @@ hud                      	= wpn_g36rail_hud
 
 [wpn_g36rail_hud]:wpn_g36base_hud
 visual 				= weapons\g36\g36rail_hud.ogf
+;10(4 -6 прицелы для унификации анимаций) костей свободно (2магазины+1патроны, +1уник.ночник, смен.стволы, сошки, склад.приклад)
+;цевьё G36 - 6 щелей, ручка с рельсой под сменные прицелы (G36K - 4, G36C - 2)
 
 ;смещения HUD для режима приближения (прицеливание через мех.прицел, без увеличения)
 ;здесь не работает disable_second_scope = true 					
