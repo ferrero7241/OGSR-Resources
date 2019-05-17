@@ -440,6 +440,8 @@ visual				= equipments\motion_tracker.ogf
 description			= enc_equipment_devic_minefinder
 radius				= 7
 
+slot			= 12
+
 inv_name			= detector_minefinder
 inv_name_short		= detector_minefinder_s
 inv_weight			= 0.3
@@ -572,7 +574,7 @@ hud					= interactive_detector_simple_hud
 [interactive_detector_advanced]:interactive_detectors_common
 $spawn				= "devices\id_advanced"
 
-visual				= detectors\i_detector_2.ogf  
+visual				= detectors\i_detector_3.ogf  
 description			= enc_id_advanced
 inv_name			= id_advanced
 inv_name_short		= id_advanced
@@ -590,7 +592,7 @@ hud					= interactive_detector_advanced_hud
 [interactive_detector_elite]:interactive_detectors_common
 $spawn				= "devices\id_elite"
 
-visual				= detectors\i_detector_3.ogf  
+visual				= detectors\i_detector_2.ogf  
 description			= enc_id_elite
 inv_name			= id_elite
 inv_name_short		= id_elite
@@ -1126,7 +1128,7 @@ inv_grid_x		= 21
 inv_grid_y		= 12
 cost			= 7500
 
-; Противогаз ГП-5
+; Респиратор
 [af_maska_1]:bio
 GroupControlSection	= spawn_group
 $spawn 			= "artifacts\af_maska_1"
@@ -1135,7 +1137,7 @@ $npc			= off				; option for Level Editor
 cform           = skeleton
 class   		= ARTEFACT
 
-visual			= equipments\gasmask1.ogf
+visual			= equipments\gasmask3.ogf
 inv_name		= af_maska_1
 inv_name_short	= af_maska_1
 description		= enc_zone_af_maska_1
@@ -1169,10 +1171,10 @@ chemical_burn_immunity = 0.75
 explosion_immunity = 1.0
 fire_wound_immunity  = 1.0
 
-; Противогаз XM-40
+; Противогаз ГП-5
 [af_maska_2]:af_maska_1
 $spawn 			= "artifacts\af_maska_2"
-visual			= equipments\gasmask3.ogf
+visual			= equipments\gasmask1.ogf
 description		= enc_zone_af_maska_2
 inv_name		= af_maska_2
 inv_name_short	= af_maska_2
@@ -1197,9 +1199,9 @@ class			= II_FOOD
 cform           = skeleton
 visual          = equipments\item_pda.ogf
 radius			= 1
-description  	= Телепортатор
-inv_name   		= Телепортатор
-inv_name_short  = Телепортатор
+description  	= teleport
+inv_name   		= teleport
+inv_name_short  = teleport
 inv_weight   	= 0.2
 inv_grid_width		= 2
 inv_grid_height		= 1
@@ -1230,7 +1232,8 @@ $npc			= off				; option for Level Editor
 ;$prefetch 		= 3
 cform           = skeleton
 class   		= ARTEFACT
-visual			= weapons\binoculars\wpn_binoculars.ogf
+;-visual			= weapons\binoculars\wpn_binoculars.ogf
+visual			= weapons\binoculars\wpn_binoculars_m1.ogf
 inv_name		= item_pnv_1
 inv_name_short	= item_pnv_1
 description		= item_pnv_1_description
@@ -1253,7 +1256,8 @@ attach_bone_name			= bip01_root
 animation_slot				= 11
 belt						= false
 
-nightvision_sect            = effector_nightvision_good
+;nightvision_sect            = effector_nightvision_good
+nightvision_sect	= effector_nightvision
 
 ;скорости увеличения (уменьшения) 
 health_restore_speed = 0.0			
@@ -1286,6 +1290,7 @@ anim_activate				= activate
 
 [device_pnv_2]:device_pnv_1
 $spawn 			= "device\device_pnv_2"
+visual          = weapons\upgrade\pvs.ogf
 inv_name		= item_pnv_2
 inv_name_short	= item_pnv_2
 description		= item_pnv_2_description
@@ -1299,13 +1304,13 @@ nightvision_sect    = effector_nightvision_grey
 
 [device_termovizor]:device_pnv_1
 $spawn 			= "device\device_termovizor"
+visual          = weapons\upgrade\irnv.ogf
 inv_name		= item_termovizor
 inv_name_short	= item_termovizor
 description		= item_termovizor_description
 inv_weight		= 1.2
-
-inv_grid_x		= 18
-inv_grid_y		= 29
+inv_grid_x		= 14	;18
+inv_grid_y		= 24	;29
 cost			= 15000
 
 nightvision_sect    = thermal
