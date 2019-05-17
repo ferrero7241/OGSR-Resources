@@ -2,7 +2,8 @@
 active = sr_idle@idle_sound
 
 [sr_idle@idle_sound]
-on_info = {=actor_near_klondike_zone -klondike_activated} sr_particle@idle_particle 
+;on_info = {=actor_near_klondike_zone -klondike_activated} sr_particle@idle_particle 
+on_info = {=have_klondike_key -klondike_activated +klondike_acess} sr_particle@idle_particle 
 on_info2 = {+klondike_activated} sr_idle@disabled
 
 [sr_particle@idle_particle]

@@ -17,9 +17,7 @@ on_signal = arrived | remark@smeh2 %=make_invulnerable%
 anim = smeh
 snd = freezer_smeh
 snd_anim_sync = true
-;no_move = true
 target = 7084
-;meet = no_meet
 combat_ignore_cond = always
 danger = danger_condition
 reactions  = ignore
@@ -34,6 +32,9 @@ combat_ignore_cond = always
 danger = danger_condition
 on_timer = 30000 | remark@smeh2
 on_info = {+bro2_on_place} walker@house
+on_info2 = {+freezer_bandos_kulg_band_info =dist_to_actor_ge(20)} %=release%
+on_info3 = {+freezer_bandos_kulg_band_info2 =dist_to_actor_ge(20)} %=release%
+
 
 [walker@house]
 path_walk = freezer_bandos_walk2
@@ -45,8 +46,6 @@ on_signal       = arrived | remark@beat1  %+freez_band_terror_start =unmake_invu
 
 [remark@beat1]
 anim = boxing
-;snd = freezer_terror
-;snd_anim_sync = true
 no_move = true
 target = 7085
 meet = no_meet
@@ -54,12 +53,10 @@ combat_ignore_cond = always
 reactions  = ignore
 on_info = {+bro2_finish} camper@house, {+zona_brother2_dead} nil
 on_timer = 2600 | remark@beat2
-;on_signal = anim_end | remark@beat2
 
 [remark@beat2]
 anim = punch
 snd = freezer_terror
-;snd_anim_sync = true
 no_move = true
 target = 7085
 meet = no_meet
@@ -67,7 +64,6 @@ combat_ignore_cond = always
 reactions  = ignore
 on_info = {+bro2_finish} camper@house, {+zona_brother2_dead} nil
 on_timer = 2600 | remark@beat1
-;on_signal = anim_end | remark@beat1
 
 
 [camper@house]

@@ -131,4 +131,12 @@ ignore_monster = 0
 combat_ignore = always
 
 [death]
-on_info = %+zona_brother2_dead%
+on_info = {=killed_by_actor =actor_armed_knife} %+zona_brother2_dead_by_knife =give_items(zona_bro2_pda)%, {=killed_by_actor !actor_armed_knife} %+zona_brother2_dead =give_items(zona_bro2_pda)%
+
+
+
+
+
+
+
+

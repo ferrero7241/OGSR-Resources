@@ -18,36 +18,36 @@ trunk_door              = back_door, 500, 3, 0
 
 ;------ Factory parameters of Engine -------------------------------------------
 
-fuel_tank         		= 45         	; L
-fuel_consumption  		= 10		    ; L / (100k R); liters per 100 000 rotations
-engine_power      		= 80	        ; horse_power (kW=hp*0.808) max power
-max_power_rpm     		= 5400        	; (nominal rpm ) on this rpm value engine power reaches maximum
-max_torque_rpm    		= 3000       	; on this rpm engine torque reaches maximum
+fuel_tank         		= 80         	; L
+fuel_consumption  		= 5	       	; L / (100k R); liters per 100 000 rotations
+engine_power      		= 175        	; horse_power (kW=hp*0.808) max power
+max_power_rpm     		= 3500        	; (nominal rpm ) on this rpm value engine power reaches maximum, must be within every diapason 	- shift down/ shift up
+max_torque_rpm    		= 2500       	; on this rpm engine torque reaches maximum
 
 power_increment_factor	= 0.02
 power_decrement_factor	= 0.1
-rpm_increment_factor	= 0.1
+rpm_increment_factor	= 0.05
 rpm_decrement_factor	= 0.3
 m_power_neutral_factor	= 0.75
 
 ; additional engine parameters
 
-max_engine_rpm    		= 6000			; rpm (5000) rpm will never be more
-idling_engine_rpm		= 900       	; rpm (750) min rpm - starts from this rpm value
+max_engine_rpm    		= 5000			; rpm (5000) rpm will never be more
+idling_engine_rpm		= 850       	; rpm (750) min rpm - starts from this rpm value
 
 ;------ Adjustment a wheel -----------------------------------------------------
 
-reference_radius  		= 0.35		; Радиус колеса, используемый при просчёте двигателя
-axle_friction     		= 0.00001	; Ослабление скорости в неетральной позиции. (N*m)
-steering_speed    		= 0.9       ; Время поворота рулевого колеса, в максимум. rps (1)
-steering_torque   		= 90000		; Сила гидроусилителя руля. (N*m)
-break_torque      		= 0.045      ; Сила тормозных колодок. (N*m)
-break_time        		= 1.0       ; время нарастания силы торможения до максимума, при подтормаживании (стрелка назад)
-hand_break_torque 		= 0.04     ; сила торможения пробелом (по умолчанию = break_torque)
+reference_radius  		= 0.48			; Радиус колеса, используемый при просчёте двигателя
+axle_friction     		= 0.001      	; Ослабление скорости в неетральной позиции. (N*m)
+steering_speed    		= 0.6         	; Время поворота рулевого колеса, в максимум. rps (1)
+steering_torque   		= 90000    	    ; Сила гидроусилителя руля. (N*m)
+break_torque      		= 0.07       	; Сила тормозных колодок. (N*m)
+break_time        		= 1.0         	; время нарастания силы торможения до максимума, при подтормаживании (стрелка назад)
+hand_break_torque 		= 0.06        	; сила торможения пробелом (по умолчанию = break_torque)
 
 ;------ Gearbox ----------------------------------------------------------------
 
-main_gear_ratio    		= 21        	; Передаточное отношение
+main_gear_ratio    		= 8.63        	; Передаточное отношение
 auto_transmission  		= on            ; Автоматическая коробка (on/off)
 
 [transmission_gear_ratio]
@@ -151,8 +151,8 @@ wound_immunity        	= 0.0
 radiation_immunity    	= 0.0
 telepatic_immunity    	= 0.0
 chemical_burn_immunity 	= 0.0
-explosion_immunity    	= 0.2
-fire_wound_immunity   	= 0.06
+explosion_immunity    	= 0.15
+fire_wound_immunity   	= 0.04
 
 ;----------------explosion params-----------------------------------------------
 
