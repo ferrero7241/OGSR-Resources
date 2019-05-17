@@ -4,10 +4,10 @@
 [trader]
 buy_condition = {+digger_offence} digger_offence_buy, sidor_generic_buy
 sell_condition = sidor_generic_sale
-buy_supplies = {+esc_kvest_sdelka_with_mils_complete} sidor_generic_supplies, sidor_generic_supplies_no_car_used
+buy_supplies = {+esc_kvest_sdelka_with_mils_complete +esc_gunsrepair_go2sidor4scope} sidor_full_supplies, {+esc_kvest_sdelka_with_mils_complete} sidor_generic_supplies, {+esc_gunsrepair_go2sidor4scope} sidor_scope_supplies, sidor_generic_supplies_no_car_used
 
-;------------------------- œŒ ”œ ¿ ≈—À» Ã€ Œ¡»ƒ≈À» ƒ»√√≈–¿ -----------------------
-[digger_offence_buy]:unic_buy, weapons_buy_notrade
+;------------------------- œŒ ”œ ¿ ≈—À» Ã€ Œ¡»ƒ≈À» ƒ»√√≈–¿ -----------------------weapons_buy_notrade
+[digger_offence_buy]:unic_buy, all_weapons_buy_notrade, ammo_buy_notrade, all_addons_buy_notrade
 ;¿ÚÂÙ‡ÍÚ˚
 af_medusa				;NO TRADE
 af_cristall_flower		;NO TRADE
@@ -179,8 +179,6 @@ wpn_toz34_short			= 0.3,	0.1
 wpn_toz34				= 0.3,	0.1
 wpn_wincheaster1300		= 0.3,	0.1
 wpn_spas12				= 0.3,	0.1
-wpn_saiga12c			= 0.3,	0.1
-wpn_sayga12k_sk1		= 0.3,	0.1
 
 ;—Ì‡ÈÔÂÒÍËÂ ‚ËÌÚÓ‚ÍË
 wpn_sg550sr_sk1         = 0.3,	0.1
@@ -189,7 +187,6 @@ wpn_vintorez			= 0.3,	0.1
 wpn_gauss			    = 0.3,	0.1
 
 ;œÛÎÂÏÂÚ˚
-wpn_rpk74_sk1			= 0.3,	0.1
 wpn_pkm				    = 0.3,	0.1
 
 ;ƒÛ„ÓÂ
@@ -209,6 +206,15 @@ wpn_addon_scope_1pn51	    = 0.5,	0.3
 wpn_addon_scope_eotech	    = 0.5,	0.3
 wpn_addon_scope_pso1m21	    = 0.5,	0.3
 wpn_addon_scope_1p59	    = 0.5,	0.3
+wpn_addon_scope_long	    	= 0.5,	0.3
+wpn_addon_scope_pu	    		= 0.5,	0.3
+wpn_addon_scope_pgo7	    	= 0.5,	0.3
+wpn_addon_scope_aimpoint	    = 0.5,	0.3
+wpn_addon_scope_irnv	    	= 0.5,	0.3
+wpn_addon_zenitka	    		= 0.5,	0.3
+wpn_addon_magnifier	    		= 0.5,	0.3
+wpn_addon_nightvision	    	= 0.5,	0.3
+wpn_addon_irnv	    			= 0.5,	0.3
 
 wpn_addon_silencer	    = 0.5,	0.3
 wpn_9mm_nato_silencer	= 0.5,	0.3
@@ -219,13 +225,25 @@ wpn_addon_sil_762_tgp-v	= 0.5,	0.3
 wpn_addon_sil_545_pbs4	= 0.5,	0.3
 wpn_addon_sil_545_tgp-a	= 0.5,	0.3
 wpn_addon_sil_545_atg	= 0.5,	0.3
+wpn_addon_apb_silencer		= 0.5,	0.3
+wpn_addon_sil_m1895			= 0.5,	0.3
+wpn_addon_sil_pb			= 0.5,	0.3
+wpn_addon_sil_545_atg		= 0.5,	0.3
+wpn_addon_sil_939			= 0.5,	0.3
 
 wpn_addon_grenade_launcher		= 0.5,	0.3
 wpn_addon_grenade_launcher_m203 = 0.5,	0.3
+wpn_addon_grenade_launcher_ag36 = 0.5,	0.3
 
 wpn_addon_grip = 0.5,	0.3
+wpn_addon_afg  = 0.5,	0.3
 wpn_addon_mtk83  = 0.5,	0.3
+wpn_addon_prail  = 0.5,	0.3
+wpn_addon_g36rail  = 0.5,	0.3
 wpn_addon_svd_scheek  = 0.5,	0.3
+wpn_addon_gp_galoscha	= 0.5,	0.3
+wpn_addon_apb_buttstock		= 0.5,	0.3
+wpn_addon_mauser_buttstock  = 0.5,	0.3
 
 wpn_addon_mag_akm30         = 0.5,	0.3
 wpn_addon_mag_rpk40         = 0.5,	0.3
@@ -237,6 +255,16 @@ wpn_addon_mag_svd10         = 0.5,	0.3
 wpn_addon_mag_svd20         = 0.5,	0.3
 wpn_addon_mag_ak10230       = 0.5,	0.3
 wpn_addon_mag_cmag100       = 0.5,	0.3
+wpn_addon_mag_mk6       = 0.5,	0.3
+wpn_addon_mag_usp8      = 0.5,	0.3
+wpn_addon_mag_usp15     = 0.5,	0.3
+wpn_addon_mag_vepr4     = 0.5,	0.3
+wpn_addon_mag_vepr8     = 0.5,	0.3
+wpn_addon_mag_glock19   = 0.5,	0.3
+wpn_addon_mag_glock33   = 0.5,	0.3
+wpn_addon_mag_vss10   	= 0.5,	0.3
+wpn_addon_mag_as20   	= 0.5,	0.3
+wpn_addon_mag_vsk20   	= 0.5,	0.3
 
 ;ƒÂÚ‡ÎË ÏÓÌÒÚÓ‚
 mutant_flesh_eye		= 0.7,	0.5
@@ -305,9 +333,7 @@ wpn_eagle_m1			= 1,	0.5
 wpn_colt_m1				= 1,	0.5
 wpn_mp5_m2				= 1,	0.5
 wpn_sig_m2				= 1,	0.5
-wpn_saiga12c_m1		    = 1,	0.5
 wpn_m_134				= 1,	0.5
-wpn_mac10_m1			= 1,	0.5
 wpn_vintorez_m1			= 1,	0.5
 
 ;------------------------- ¿——Œ–“»Ã≈Õ“ -----------------------
@@ -328,15 +354,13 @@ ammo_12x70_kart		= 7,	0.8
 ammo_7.62x39_fmj	= 8,	0.8
 ammo_7.62x39_ap	    = 6,	0.5
 ammo_5.45x39_fmj	= 6,	0.4	
-ammo_7.62x54_ap		= 6,	0.9  
+ammo_7.62x54_ap		= 6,	0.9
 
-wpn_aks74ub_aks74ub30_ironsight		    = 1,	0.7
-wpn_ak74n_ak74n30_ironsight		    = 1,	0.6
-wpn_ppsh41		= 1,	0.8
-wpn_bm16_full		= 1,	0.7
-wpn_bm16			= 1,	0.8
-wpn_toz34			= 1,	0.7
-wpn_toz34_short		= 1,	0.8
+wpn_ppsh41		= 1,	0.9
+wpn_bm16_full		= 1,	1
+wpn_bm16			= 2,	0.8
+wpn_toz34			= 1,	0.6
+wpn_toz34_short		= 2,	0.8
 
 bandage			    = 6,	1
 medkit			    = 7,	0.6
@@ -359,13 +383,21 @@ kartoshka			= 4,	0.9
 
 hand_radio_f		= 1,	0.6
 wpn_binoc			= 1,	1
-wpn_knife		= 1,	1
-device_pnv_1	= 1,	1
-device_torch = 1,1
-treasure_item = 3,1
+wpn_knife			= 1,	1
+device_pnv_1		= 1,	1
+device_torch		= 1,	1
+treasure_item		= 3,	1
 
 [sidor_generic_supplies]:sidor_generic_supplies_no_car_used
-explosive_mobiltank = 2,1
+explosive_mobiltank	= 2,	1
+
+[sidor_scope_supplies]:sidor_generic_supplies_no_car_used
+wpn_addon_scope				= 1,	1
+wpn_addon_scope_1p29		= 2,	0.8
+wpn_addon_scope_kobra		= 2,	0.8
+
+[sidor_full_supplies]:sidor_scope_supplies, sidor_generic_supplies
+
 
 ;------------------------- œ–Œƒ¿∆¿ -----------------------
 [sidor_generic_sale]:unic_sale
@@ -423,10 +455,10 @@ ammo_m208a			= 1,	4
 ammo_flame			= 1,	3
 
 ;ŒÛÊËÂ
-wpn_akm_akm30_ironsight		= 1,	4	   
+wpn_akm_akm30_ironsight				= 1,	4	   
 wpn_ak74n_ak74n30_ironsight			= 1,	4
-wpn_aks74ub_aks74ub30_ironsight			= 1,	4
-wpn_swd_svd10_pso1         = 1,	4
+wpn_aks74ub_aks74ub30_ironsight		= 1,	4
+wpn_swd_svd10_pso1         			= 1,	4
 wpn_ak102_ak10230_stok_kobra           = 1,	4
 
 wpn_bm16			= 1,	3
@@ -445,9 +477,6 @@ wpn_pb				= 1,	4
 wpn_pkm				= 1,	4
 wpn_ppsh41		= 1,	4
 wpn_rpg7			= 1,	4
-wpn_rpk74_sk1		= 1,	4
-wpn_saiga12c		= 1,	4
-wpn_sayga12k_sk1	= 1,	4
 wpn_sig550			= 1,	4
 wpn_spas12			= 1,	4
 wpn_svu				= 1,	4
@@ -464,9 +493,14 @@ wpn_awm				;NO TRADE
 
 ;ADDONS
 wpn_addon_scope		= 1,	4
-wpn_addon_scope_susat	= 1,	4
+wpn_addon_scope_pso1m21		= 2,	4
+wpn_addon_scope_susat	= 1.5,	4
 wpn_addon_acog		= 1,	4
 wpn_zf4             = 1,	3
+wpn_addon_scope_long	    	= 2,	4
+wpn_addon_scope_aimpoint	    = 1.5,	4
+wpn_addon_magnifier	    		= 2,	4
+wpn_addon_nightvision	    	= 2,	4
 
 wpn_addon_silencer		= 1,	4
 wpn_9mm_nato_silencer	= 1,	4
@@ -477,9 +511,40 @@ wpn_addon_sil_762_tgp-v	= 1,	4
 wpn_addon_sil_545_pbs4	= 1,	4
 wpn_addon_sil_545_tgp-a	= 1,	4
 wpn_addon_sil_545_atg	= 1,	4
+wpn_addon_apb_silencer		= 1,	4
+wpn_addon_sil_m1895			= 1,	4
+wpn_addon_sil_pb			= 1,	4
+wpn_addon_sil_545_atg		= 1,	4
 
 wpn_addon_grenade_launcher	= 1,	4
 wpn_addon_grenade_launcher_m203 = 1,	4
+
+wpn_addon_grip = 1,	4
+wpn_addon_afg  = 1,	4
+wpn_addon_mtk83  = 1,	4
+wpn_addon_prail  = 1,	4
+wpn_addon_svd_scheek  = 1,	4
+wpn_addon_gp_galoscha	= 1,	4
+wpn_addon_apb_buttstock		= 1,	4
+wpn_addon_mauser_buttstock  = 1,	4
+
+wpn_addon_mag_akm30         = 1,	4
+wpn_addon_mag_rpk40         = 1,	4
+wpn_addon_mag_rpk75         = 1,	4
+wpn_addon_mag_ak7430        = 1,	4
+wpn_addon_mag_rpk7445       = 1,	4
+wpn_addon_mag_ak10560       = 1,	4
+wpn_addon_mag_svd10         = 1,	4
+wpn_addon_mag_svd20         = 1,	4
+wpn_addon_mag_ak10230       = 1,	4
+wpn_addon_mag_cmag100       = 1,	4
+wpn_addon_mag_mk6       = 1,	4
+wpn_addon_mag_usp8      = 1,	4
+wpn_addon_mag_usp15     = 1,	4
+wpn_addon_mag_vepr4     = 1,	4
+wpn_addon_mag_vepr8     = 1,	4
+wpn_addon_mag_glock19   = 1,	4
+wpn_addon_mag_glock33   = 1,	4
 
 ;ÃÂ‰ËÍ‡ÏÂÌÚ˚
 bandage				= 1,	3
@@ -523,9 +588,9 @@ matras              = 1,	2
 amk_metka           = 1,	2
 wpn_binoc			= 1,	2
 wpn_knife		= 1,	3
-device_pnv_1	= 1,	2
-device_pnv_2	= 1,	3
-device_termovizor	= 1,	4
+device_pnv_1	= 1.5,	2
+device_pnv_2	= 1.5,	3
+device_termovizor	= 1.5,	4
 device_torch = 1,4
 treasure_item = 1,4
 

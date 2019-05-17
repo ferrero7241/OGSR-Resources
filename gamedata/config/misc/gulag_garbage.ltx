@@ -1203,7 +1203,8 @@ danger = danger_condition@gar_dram_bandit_1
 snd = gar_dm_bandit_demand
 anim = claim
 target = 104
-on_signal = sound_end | walker1@gar_dram_bandit_1 %+gar_dm_newbie_no_money%
+;on_signal = sound_end | walker1@gar_dram_bandit_1 %+gar_dm_newbie_no_money%
+on_timer = 5000 | walker1@gar_dram_bandit_1 %+gar_dm_newbie_no_money%
 on_info = {+gar_dm_novice_asked_for_help -gar_dm_bandit_warned_plr} remark1@gar_dram_bandit_1 %+gar_dm_bandit_warned_plr%
 on_info2 = {+gar_dm_novice_dead} %+gar_dm_bandits_change_st%, {+gar_dm_bandit2_warn_plr -gar_dm_bandit2_warned_plr =gar_dm_2nd_nearest_bandit} remark2@gar_dram_bandit_1 %+gar_dm_bandit2_warned_plr%
 ;reactions = ignore
@@ -1214,7 +1215,8 @@ danger = danger_condition@gar_dram_bandit_1
 target = actor
 snd = gar_dm_bandit_backoff1
 anim = backoff
-on_signal = sound_end | %+gar_dm_bandit2_warn_plr%
+;on_signal = sound_end | %+gar_dm_bandit2_warn_plr%
+on_timer = 4000 | %+gar_dm_bandit2_warn_plr%
 on_info = {+gar_dm_novice_dead} %+gar_dm_bandits_change_st%
 ;reactions = ignore
 danger = danger_condition@gar_dram_bandit_1
@@ -1261,7 +1263,8 @@ danger = danger_condition@gar_dram_bandit_1
 target = 104
 snd = gar_dm_bandit_demand
 anim = claim
-on_signal = sound_end | walker1@gar_dram_bandit_2 %+gar_dm_newbie_no_money%
+;on_signal = sound_end | walker1@gar_dram_bandit_2 %+gar_dm_newbie_no_money%
+on_timer = 4000 | walker1@gar_dram_bandit_2 %+gar_dm_newbie_no_money%
 on_info = {+gar_dm_novice_asked_for_help -gar_dm_bandit_warned_plr} remark1@gar_dram_bandit_2 %+gar_dm_bandit_warned_plr%
 on_info2 = {+gar_dm_novice_dead} %+gar_dm_bandits_change_st%, {+gar_dm_bandit2_warn_plr -gar_dm_bandit2_warned_plr =gar_dm_2nd_nearest_bandit} remark2@gar_dram_bandit_2 %+gar_dm_bandit2_warned_plr%
 ;reactions = ignore
@@ -1271,7 +1274,8 @@ danger = danger_condition@gar_dram_bandit_1
 snd = gar_dm_bandit_backoff1
 anim = backoff
 target = actor
-on_signal = sound_end | %+gar_dm_bandit2_warn_plr%
+;on_signal = sound_end | %+gar_dm_bandit2_warn_plr%
+on_timer = 5000 | %+gar_dm_bandit2_warn_plr%
 on_info = {+gar_dm_novice_dead} %+gar_dm_bandits_change_st%
 ;reactions = ignore
 danger = danger_condition@gar_dram_bandit_1
@@ -1313,7 +1317,8 @@ danger = danger_condition@gar_dram_bandit_1
 target = 104
 snd = gar_dm_bandit_demand
 anim = claim
-on_signal = sound_end | walker1@gar_dram_bandit_3 %+gar_dm_newbie_no_money%
+;on_signal = sound_end | walker1@gar_dram_bandit_3 %+gar_dm_newbie_no_money%
+on_timer = 4000 | walker1@gar_dram_bandit_3 %+gar_dm_newbie_no_money%
 on_info = {+gar_dm_novice_asked_for_help -gar_dm_bandit_warned_plr} remark1@gar_dram_bandit_3 %+gar_dm_bandit_warned_plr%
 on_info2 = {+gar_dm_novice_dead} %+gar_dm_bandits_change_st%, {+gar_dm_bandit2_warn_plr -gar_dm_bandit2_warned_plr =gar_dm_2nd_nearest_bandit} remark2@gar_dram_bandit_3 %+gar_dm_bandit2_warned_plr%
 ;reactions = ignore
@@ -1323,7 +1328,8 @@ danger = danger_condition@gar_dram_bandit_1
 target = actor
 snd = gar_dm_bandit_backoff1
 anim = backoff
-on_signal = sound_end| %+gar_dm_bandit2_warn_plr%
+;on_signal = sound_end| %+gar_dm_bandit2_warn_plr%
+on_timer = 4000 | %+gar_dm_bandit2_warn_plr%
 on_info = {+gar_dm_novice_dead} %+gar_dm_bandits_change_st%
 ;reactions = ignore
 danger = danger_condition@gar_dram_bandit_1
@@ -1383,7 +1389,8 @@ meet = no_meet
 target = 102
 snd = gar_dm_newbie_no_money
 anim = refuse
-on_signal = action_end | walker1@gar_dram_novice %=gar_dm_bandit_demand%
+on_timer = 7000 | walker1@gar_dram_novice %=gar_dm_bandit_demand%
+;on_signal = action_end | walker1@gar_dram_novice %=gar_dm_bandit_demand%
 on_info = {+gar_dm_bandit1_dead +gar_dm_bandit2_dead +gar_dm_bandit3_dead} remark@after_fight_gar_dram_novice
 on_info2 = {+gar_dm_end} %=gar_dm_bandits_fight%
 on_actor_dist_le_nvis = 12 | remark1@gar_dram_novice
@@ -1395,7 +1402,8 @@ meet = no_meet
 anim = hello
 snd = gar_dm_newbie_help_me
 target = actor
-on_signal = sound_end | remark2@gar_dram_novice %+gar_dm_novice_asked_for_help%
+on_timer = 7000 | remark2@gar_dram_novice %+gar_dm_novice_asked_for_help%
+;on_signal = sound_end | remark2@gar_dram_novice %+gar_dm_novice_asked_for_help%
 on_info = {+gar_dm_bandit1_dead +gar_dm_bandit2_dead +gar_dm_bandit3_dead} remark@after_fight_gar_dram_novice
 on_info2 = {+gar_dm_end} %=gar_dm_bandits_fight%
 reactions = ignore

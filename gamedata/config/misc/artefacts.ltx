@@ -36,6 +36,19 @@ af_cristall = handmade_zone_zharka_static, 5, 100, 1
 
 af_mine	= zone_mine_field, 2.0, 75 ;мины. нужно для подставления на землю...
 
+af_medusa_special	= af_medusa_special_zone, 3.0, 1.0, 1 ;для квеста.
+
+
+[af_activation_medusa_special]
+;----------------------------------------------------------------------------------------------------------------------------------------
+;format:		time(sec), sound_name, 		light_R, G, B, 	light_range, particle_name, 			af_animation_name
+;----------------------------------------------------------------------------------------------------------------------------------------
+starting		= 5.0, 	anomaly\gravi_idle00, 	  0.5, 1.0, 1.5,  5.0, "anomaly2\artefact_gravi_blast_start", 	   "idle"
+flying			= 2.0, 	anomaly\gravi_idle01, 	  0.8, 1.0, 1.2,  3.0, "anomaly2\artefact\artefact_gravi", 	   "idle"
+idle_before_spawning	= 5.0, 	anomaly\gravi_blowout5,   1.0, 1.0, 1.0,  0.0, "anomaly2\artefact_gravi_blast_finished",   "idle"				
+spawning		= 1.0, 	anomaly\gravity_entrance, 0.9, 1.1, 1.01, 0.0, "", 
+
+
 [af_activation_gravi]
 ;----------------------------------------------------------------------------------------------------------------------------------------
 ;format:		time(sec), sound_name, 		light_R, G, B, 	light_range, particle_name, 			af_animation_name
@@ -1638,3 +1651,56 @@ telepatic_immunity = 1.0
 chemical_burn_immunity = 1.0
 explosion_immunity = 1.0
 fire_wound_immunity  = 1.0
+
+
+
+
+; Медуза специальная, для квеста:
+[af_medusa_special]:af_medusa
+description			= af_medusa_special_descr
+inv_name			= af_medusa_special_name
+inv_name_short		= af_medusa_special_name
+inv_weight			= 0.5
+slot				= 1
+inv_grid_x			= 60
+inv_grid_y			= 33
+
+cost				= 1400
+quest_item			= true
+
+
+
+
+; Лапа браконьера:
+[af_mobkiller]:af_base
+$spawn 			= "artifacts\af_midas"
+visual				= physics\anomaly\af_midas.ogf
+
+description			= af_mobkiller_desc
+inv_name			= af_mobkiller_name
+inv_name_short		= af_mobkiller_name
+inv_weight			= 0.5
+
+inv_grid_x         = 61
+inv_grid_y         = 33
+cost				= 40000
+jump_height			= 0.1
+
+lights_enabled = true
+trail_light_color = 255,111,124
+trail_light_range = 1.0
+hit_absorbation_sect = af_mobkiller_absorbation
+
+[af_mobkiller_absorbation]
+burn_immunity = 1.0				;коэффициенты иммунитета 
+strike_immunity = 0.8
+shock_immunity = 1.0
+wound_immunity = 0.8		
+radiation_immunity = 1.0
+telepatic_immunity = 1.0
+chemical_burn_immunity = 1.0
+explosion_immunity = 1.0
+fire_wound_immunity  = 1.0
+
+
+
