@@ -92,17 +92,13 @@
 		<menu_music>music\ogse_music</menu_music>
 	</menu_sound>
 	
-	<static_version x="15" y="720" width="100" height="30">
+	<static_version x="15" y="740" width="100" height="30">
 		<text align="l" font="graffiti22" r="255" g="255" b="255" complex_mode="0"/>
 	</static_version>	
 	
-	<ogsm_version x="15" y="700" width="100" height="30">
+	<ogsm_version x="15" y="720" width="100" height="30">
 		<text align="l" font="graffiti22" r="255" g="255" b="255" complex_mode="0"/>
-	</ogsm_version>	0
-	
-	<dlc_version x="15" y="740" width="100" height="30">
-		<text align="l" font="graffiti22" r="255" g="255" b="255" complex_mode="0">dlc_version_text</text>
-	</dlc_version>
+	</ogsm_version>	
 	
 	<txt_press_any_key x="0" y="0" width="1024" height="768" light_anim="ui_press_any_key_warning" la_cyclic="1" la_texture="0" la_text="1" la_alpha="1">
 		<texture>ui\ui_load</texture>
