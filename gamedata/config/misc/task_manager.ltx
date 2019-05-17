@@ -29,13 +29,13 @@ tm_defend_camp_1
 tm_monster_part_1
 tm_monster_part_2
 tm_monster_part_3
-;--хвост вожака стаи tm_monster_part_4
+;tm_monster_part_4
 
 ;--------Barmen----------------------------------------------------------
 ;-----------Eliminate Camp--------
 barmen_eliminate_camp_1
 barmen_eliminate_camp_2
-;--очистить хутор от бандитов barmen_eliminate_camp_3
+;--barmen_eliminate_camp_3
 barmen_eliminate_camp_4
 barmen_eliminate_camp_5
 barmen_eliminate_camp_6
@@ -55,7 +55,7 @@ barmen_kill_stalker_5
 ;---------Find Item-----------
 barmen_find_item_1
 barmen_find_item_2
-;--найти модифицированный Винторез barmen_find_item_3
+;barmen_find_item_3
 ;---------Monster Part-----------
 barmen_monster_part_1
 barmen_monster_part_2
@@ -102,7 +102,7 @@ dolg_eliminate_lager_10
 dolg_eliminate_lager_11
 dolg_eliminate_lager_12
 dolg_eliminate_lager_13
-; гулага НЕТ dolg_eliminate_lager_14
+;dolg_eliminate_lager_14
 ;----------Kill Staker-------
 dolg_kill_stalker_1
 ;----------Find Item---------
@@ -135,7 +135,7 @@ freedom_defend_lager_2
 ;tasks for zastava_commander
 zastava_commander_eliminate_lager
 ;tasks for wolf  
-;логово кабанов wolf_eliminate_lager_1
+;wolf_eliminate_lager_1
 wolf_eliminate_lager_2
 ;tasks for petrenko 
 petrenko_kill_stalker
@@ -227,7 +227,7 @@ reward_reputation = -700
 [pri_kill_dolg]
 type = storyline
 reward_reputation = -1000
-
+; Dark Dealer
 
 ;time = 86400 - 1 день (86400 секунд).
 ;time = 172800 - 2 дня.
@@ -460,7 +460,7 @@ target = sim_stalker_veteran_gusarov
 reward_reputation = -25
 ;reward_money = 12000
 reward_rank = 4
-reward_item = wpn_ak102_ak10230_custom_kobra 
+reward_item = wpn_ak102_ak10230_custom_grip_kobra, wpn_addon_grenade_launcher, wpn_addon_scope 
 time = 259200
 idle_time = 2592000
 prior = 5
@@ -601,7 +601,7 @@ idle_time = 2592000
 reward_item = ammo_7.62x39_ap, ammo_7.62x39_ap, ammo_7.62x39_ap, ammo_7.62x39_ap, ammo_7.62x39_ap
 prior = 3
 
-;хвост вожака стаи [tm_monster_part_4]
+;[tm_monster_part_4]
 ;type = monster_part
 ;community = actor
 ;text = tm_monster_part_3_text
@@ -649,7 +649,7 @@ time = 259200
 idle_time = 2592000
 prior = 6
 
-;--очистить хутор от бандитов [barmen_eliminate_camp_3]
+;--[barmen_eliminate_camp_3]
 ;--type = eliminate_lager
 ;--community = actor
 ;--text = barmen_eliminate_camp_3_text
@@ -672,7 +672,7 @@ reward_money = 16500
 reward_reputation = +40
 reward_relation = dolg, +25
 reward_rank = 7
-;reward_item = grenade_f1, grenade_f1, grenade_f1
+;reward_item = ammo_5.45x39_ap, ammo_5.45x39_ap, ammo_5.45x39_ap, ammo_5.45x39_ap
 time = 259200
 idle_time = 2592000
 prior = 4
@@ -690,7 +690,7 @@ target = ros_smart_monster1
 reward_reputation = +35
 reward_relation = dolg, +15
 reward_rank = 5
-reward_item = grenade_f1, grenade_f1
+reward_item = grenade_f1, grenade_f1, ammo_5.45x39_ap, ammo_5.45x39_ap, ammo_5.45x39_ap, ammo_5.45x39_ap
 time = 259200
 idle_time = 518400
 prior = 3
@@ -725,7 +725,7 @@ target = val_snork_lair_1
 reward_reputation = +35
 reward_relation = dolg, +15
 reward_rank = 6
-reward_item = medkit_scientic, antirad, antirad
+reward_item = grenade_f1, grenade_f1, grenade_f1, ammo_vog-25p, ammo_vog-25p, ammo_vog-25p, wpn_addon_scope_1p29
 time = 259200
 idle_time = 518400
 prior = 5
@@ -805,7 +805,7 @@ reward_reputation = +40
 reward_rank = 7
 time = 172800
 idle_time = 2592000
-reward_item = medkit_scientic, medkit_scientic, antirad
+reward_item = wpn_addon_grenade_launcher_m203, wpn_addon_scope_susat, wpn_addon_silencer
 prior = 5
 
 [barmen_kill_stalker_1]
@@ -868,7 +868,7 @@ target = sim_stalker_general_upir
 reward_money = 17000
 reward_reputation = +10
 reward_rank = 4
-;reward_item = af_fireball
+;reward_item = af_fireball, ammo_5.45x39_ap, ammo_5.45x39_ap, ammo_5.45x39_ap
 time = 259200
 idle_time = 2592000
 prior = 2
@@ -884,7 +884,7 @@ target = sim_stalker_veteran_vorobey
 reward_money = 15500
 reward_reputation = -35
 reward_rank = 5
-;reward_item = af_electra_moonlight
+;reward_item = af_electra_moonlight, ammo_5.45x39_ap, ammo_5.45x39_ap, ammo_5.45x39_ap
 time = 172800
 idle_time = 2592000
 prior = 4
@@ -914,17 +914,17 @@ reward_reputation = +35
 reward_rank = 6
 prior = 1
 
-;--найти модифицированный Винторез [barmen_find_item_3]
-;--type = find_item
-;--community = actor
-;--text = barmen_find_item_3_text
-;--description = barmen_find_item_3_descr
-;--parent = barman
-;--target = wpn_vintorez_m1
-;--reward_money = 8500
-;--reward_reputation = +40
-;--reward_rank = 8
-;--prior = 3
+[barmen_find_item_3]
+type = find_item
+community = actor
+text = barmen_find_item_3_text
+description = barmen_find_item_3_descr
+parent = barman
+target = wpn_vintorez_m1
+reward_money = 8500
+reward_reputation = +40
+reward_rank = 8
+prior = 3
 
 [barmen_monster_part_1]
 type = monster_part
@@ -1404,7 +1404,7 @@ target = mil_village
 reward_reputation = +10
 reward_relation = dolg, +100, freedom, -100
 reward_rank = 8
-reward_item = wpn_addon_grenade_launcher, ammo_vog-25, ammo_vog-25, ammo_vog-25, ammo_vog-25
+reward_item = wpn_val, ammo_9x39_ap, ammo_9x39_ap, ammo_9x39_ap, ammo_9x39_ap, ammo_9x39_ap, ammo_9x39_ap, ammo_9x39_ap
 time = 172800
 idle_time = 2592000
 prior = 3
@@ -1539,7 +1539,7 @@ target = wpn_colt_m1
 reward_reputation = +50
 reward_rank = 6
 reward_relation = dolg, +50
-reward_item = wpn_oz33, ammo_9x18_fmj, ammo_9x18_fmj
+reward_item = wpn_vintorez, ammo_9x39_ap, ammo_9x39_ap, ammo_9x39_ap, ammo_9x39_ap
 time = 172800
 idle_time = 2592000
 prior = 1
@@ -2142,7 +2142,7 @@ reward_item = ammo_5.56x45_ap, ammo_5.56x45_ap, ammo_5.56x45_ap
 time = 86400
 
 ;tasks for wolf  
-; логово кабанов [wolf_eliminate_lager_1]
+; [wolf_eliminate_lager_1]
 ; type = eliminate_lager
 ; community = actor
 ; text = wolf_eliminate_lager_1_text
