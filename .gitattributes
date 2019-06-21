@@ -1,9 +1,5 @@
 # Custom
 *.script  text=crlf linguist-language=Lua
 *.ltx     text=crlf linguist-language=INI
-*.ps      text=crlf linguist-language=HLSL
-*.vs      text=crlf linguist-language=HLSL
-*.s       text=crlf linguist-language=Lua
 *.puddles text=crlf linguist-language=INI
 *.seq     text=crlf linguist-language=INI
-*.h       text=crlf linguist-language=HLSL
