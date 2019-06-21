@@ -38,19 +38,19 @@
 
 
 <!-- breath -->
-  <hud_blur1 x="0" y="0" width="1024" height="768" stretch="1" priority="-100">
+  <hud_blur1 x="0" y="0" width="1024" height="768" stretch="1" priority="-80">
     <texture>hud\breath1</texture>
   </hud_blur1>
-  <hud_blur2 x="0" y="0" width="1024" height="768" stretch="1" priority="-100">
+  <hud_blur2 x="0" y="0" width="1024" height="768" stretch="1" priority="-80">
     <texture>hud\breath2</texture>
   </hud_blur2>
-  <hud_blur3 x="0" y="0" width="1024" height="768" stretch="1" priority="-100">
+  <hud_blur3 x="0" y="0" width="1024" height="768" stretch="1" priority="-80">
     <texture>hud\breath5</texture>
   </hud_blur3>
-  <hud_blur4 x="0" y="0" width="1024" height="768" stretch="1" priority="-100">
+  <hud_blur4 x="0" y="0" width="1024" height="768" stretch="1" priority="-80">
     <texture>hud\breath3</texture>
   </hud_blur4>
-  <hud_blur5 x="0" y="0" width="1024" height="768" stretch="1" priority="-100">
+  <hud_blur5 x="0" y="0" width="1024" height="768" stretch="1" priority="-80">
     <texture>hud\breath4</texture>
   </hud_blur5>
   
