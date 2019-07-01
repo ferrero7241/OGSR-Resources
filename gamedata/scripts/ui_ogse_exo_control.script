@@ -32,8 +32,8 @@ function use_exo(use_object)
 			local outfit_item = db.actor:item_in_slot(6)
 			if outfit_item and alife():object(outfit_item:id()) and
 				not sys_ini:line_exist(outfit_item:section(), "without_exoskeleton") and
-				sys_ini:line_exist(outfit_item:section(), exoskeleton_type) 
-				then
+				get_string(outfit_item:section(), exoskeleton_type) 
+			then
 				local outfit_with_exo_section = sys_ini:r_string(outfit_item:section(), exoskeleton_type)
 				if outfit_with_exo_section then
 					-- уф, прошли все проверки - конвертим
