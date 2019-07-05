@@ -130,6 +130,7 @@ function wpn_binder:__init (obj) super(obj)
 		--sd.ironsight_desc = {}
 	end
 	self.sm = ogse_signals.get_mgr()
+	--self.first_update = false
 end
 ----------------------------------------------------------------------------------------------------------------------
 function wpn_binder:reinit()
@@ -243,6 +244,13 @@ function wpn_binder:update_hud_addons_visibility()
 		end
 	end
 	self.need_initialize_hud = false
+end
+
+function wpn_binder:update()
+	--if not self.first_update then
+	--	self.first_update = true
+		self:update_hud_addons_visibility() --Всё же надо апдейтить всегда, на всякий случай
+	--end
 end
 
 function wpn_binder:on_second_scope_switch( enabled )
