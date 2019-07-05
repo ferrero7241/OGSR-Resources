@@ -37,6 +37,8 @@ function on_spawn()
 	fix_rostok_zone_zharka_static_average()
 	--
 	fix_zone_flame_small2()
+	--
+	fix_viewport_near()
 end
 
 function on_first_update()
@@ -363,6 +365,15 @@ function aem_fix()
 	end
 end
 
+function fix_viewport_near()
+	if ogse.var_exists("fix_viewport_near") then return end
+	--
+	cmd("r_viewport_near 0.1")
+	cmd("cfg_save")
+	log3("--[%s] fixed viewport_near!", script_name())
+	--
+	ogse.save_var("fix_viewport_near", true)
+end
 
 function del_buggy_objects() --Удаление из игры глючных объектов
 	local names = {
