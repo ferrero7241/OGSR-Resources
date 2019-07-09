@@ -366,13 +366,13 @@ function aem_fix()
 end
 
 function fix_viewport_near()
-	if ogse.var_exists("fix_viewport_near") then return end
+	--if ogse.var_exists("fix_viewport_near") then return end
 	--
-	cmd("r_viewport_near 0.1")
-	cmd("cfg_save")
-	log3("--[%s] fixed viewport_near!", script_name())
+	cmd("r_viewport_near 0.05") --Это только для огсе!!! Чтоб тыщу стволов не перенастраивать. Больше нигде нельзя юзать настолько маленькое значение. Минимум - 0.1, а лучше вообще стандартное 0.2
+	--cmd("cfg_save")
+	--log3("--[%s] fixed viewport_near!", script_name())
 	--
-	ogse.save_var("fix_viewport_near", true)
+	--ogse.save_var("fix_viewport_near", true)
 end
 
 function del_buggy_objects() --Удаление из игры глючных объектов

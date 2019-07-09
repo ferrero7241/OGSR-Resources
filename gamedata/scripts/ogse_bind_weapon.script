@@ -223,6 +223,8 @@ function wpn_binder:update_hud_addons_visibility()
 			else
 				level.set_blender_mode_main(0)
 			end
+		else
+			level.set_blender_mode_main(0)
 		end
 	end
 
