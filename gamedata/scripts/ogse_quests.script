@@ -214,9 +214,10 @@ function give_accum_to_screw(first_speaker, second_speaker)
 	local n = 0
 	db.actor:iterate_inventory(function(_, item) 
 		if item:section() == "af_dummy_battery" then
-			ogse.remove_item_from_inventory(item)
 			n = n + 1
-			if n == 3 then return end
+			if n <= 3 then
+				ogse.remove_item_from_inventory(item)
+			end
 		end
 	end)
 end
@@ -249,10 +250,9 @@ function actor_have_battery_for_accum()
 	db.actor:iterate_inventory(function(_, item) 
 		if item:section() == "af_dummy_battery" then
 			n = n + 1
-			if n == 3 then return true end
 		end
 	end)
-	return false
+	return n >= 3
 end
 
 function actor_have_depleted_accum_and_battery()

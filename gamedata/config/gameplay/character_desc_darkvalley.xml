@@ -671,6 +671,7 @@
 		
 #include "gameplay\character_criticals_6.xml"
 		<start_dialog>hello_dialog</start_dialog>		
+		<actor_dialog>val_escort_nap1_21_dialog</actor_dialog>
 		<actor_dialog>bar_dolg_base_guard_acces</actor_dialog>	
 #include "gameplay\character_dialogs_unic.xml"		
 	</specific_character>

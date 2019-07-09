@@ -147,6 +147,8 @@ function trade_init( npc, cfg )
       }
       if tt.resuply_time then --Его может не быть, если инитим торговлю впервые.
         s.timeout = time_global() + ( ( tt.resuply_time:diffSec( game.get_game_time() )  * 1000 )  / ogse.game_time_factor )
+      else
+        tt.skip_updates = 10
       end
       binder[ script_name() .. ".subscribed" ] = s
       sm:subscribe( s )
@@ -230,6 +232,12 @@ end
 function update_buy_supplies( npc )
   local tt = trade_manager[ npc:id() ]
   ASSERT( tt, "trade_manager[ npc:id() ] npc found: %s", npc:name() )
+  --
+  --Инициализацию торговли передвинул на 10-й апдейт. Иначе не обновляется ассортимен у торговцев, которые телепортируются на свое место, типа Сахарова.
+  if tt.skip_updates and tt.skip_updates > 0 then
+    tt.skip_updates = tt.skip_updates - 1
+    return
+  end
   --
   if tt.resuply_time and tt.resuply_time > game.get_game_time() then return end --KRodin: костыль для своевременного обновления торговли после сейв-лоада, чтобы опять менеджер сигналов не править, лучше пусть будет так.
   --
