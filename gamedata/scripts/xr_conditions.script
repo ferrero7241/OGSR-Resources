@@ -1583,7 +1583,7 @@ end
 
 function actor_armed_knife()
 local knife = db.actor:item_in_slot(0)
-	if (knife and knife:section() == "wpn_knife" or knife:section() == "wpn_knife_m9" or knife:section() == "wpn_knife_m1" or knife:section() == "wpn_knife_6x2" or knife:section() == "wpn_knife_arena" ) then
+	if knife and ( knife:section() == "wpn_knife" or knife:section() == "wpn_knife_m9" or knife:section() == "wpn_knife_m1" or knife:section() == "wpn_knife_6x2" or knife:section() == "wpn_knife_arena" ) then
 	return true
 	end
 end
@@ -1827,11 +1827,11 @@ local obj2 = level_object_by_sid(story_ids.lc_cit_to_mil)
 end
 
 function klondike_is_near()
-	local car = level_object_by_sid(story_ids.klondaik)
-	if car then
+	local obj = level_object_by_sid(story_ids.klondaik)
+	if obj then
 		local act_pos = db.actor:position()
-		local car_pos = car:position()
-		if car_pos:distance_to(act_pos) <= 20 then
+		local obj_pos = obj:position()
+		if obj_pos:distance_to(act_pos) <= 20 then
 			return true
 		end
 	end
@@ -1839,11 +1839,11 @@ function klondike_is_near()
 end
 
 function klondike_is_too_far()
-	local car = level_object_by_sid(story_ids.klondaik)
-	if car then
+	local obj = level_object_by_sid(story_ids.klondaik)
+	if obj then
 		local act_pos = db.actor:position()
-		local car_pos = car:position()
-		if car_pos:distance_to(act_pos) > 55 then
+		local obj_pos = obj:position()
+		if obj_pos:distance_to(act_pos) > 55 then
 			return true
 		end
 	end
@@ -1858,3 +1858,52 @@ function cit_kulgband_car_health_low()
 	end
 	return false
 end
+
+
+
+function actor_behind_filin_shron_door()
+	local obj = level_object_by_sid(story_ids.dar_filin_shron_door)
+	if obj then
+		local act_pos = db.actor:position()
+		local obj_pos = obj:position()
+		if obj_pos:distance_to(act_pos) <= 20 then
+			return true
+		end
+	end
+	return false
+end
+
+
+function actor_in_samogon_trance_zones()
+if ( xr_conditions.actor_in_zone(nil,nil,{"dar_samogon_trance_zone1"}) or
+	xr_conditions.actor_in_zone(nil,nil,{"dar_samogon_trance_zone2"}) or
+	xr_conditions.actor_in_zone(nil,nil,{"dar_samogon_trance_zone3"}) or
+	xr_conditions.actor_in_zone(nil,nil,{"dar_samogon_trance_zone4"}) or
+	xr_conditions.actor_in_zone(nil,nil,{"dar_samogon_trance_zone5"}) or
+	xr_conditions.actor_in_zone(nil,nil,{"dar_samogon_trance_zone6"}) or
+	xr_conditions.actor_in_zone(nil,nil,{"dar_samogon_trance_zone7"}) or
+	xr_conditions.actor_in_zone(nil,nil,{"dar_samogon_trance_zone8"}) or
+	xr_conditions.actor_in_zone(nil,nil,{"dar_samogon_trance_zone9"}) or
+	xr_conditions.actor_in_zone(nil,nil,{"dar_samogon_trance_zone10"}) ) then
+		return true
+	end
+	return false
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

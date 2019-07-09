@@ -49,6 +49,11 @@ function disable_ui(actor, npc)
     level.hide_indicators()
 end
 
+function disable_ui2(actor, npc)
+    bind_stalker.hide_weapon()
+    level.hide_indicators()
+end
+
 function enable_ui(actor, npc)
     level.show_indicators()
     level.enable_input()
@@ -3199,7 +3204,7 @@ local obj = level_object_by_sid(story_ids.moonshine_apparat)
 local pos = obj:position()
 local snd_obj = xr_sound.get_safe_sound_object([[ambient\x16\x16_brain_run]])
 snd_obj:play_at_pos(obj, obj:position(), 0, sound_object.s3d)
-jekan_work.spawn_glassful_on_table()
+--jekan_work.spawn_glassful_on_table()
 end
 
 function moonshine_apparat_use2()
@@ -3214,6 +3219,10 @@ end
 
 function city_tower_box_use()
 jekan_devices2.city_tower_box()
+end
+
+function spawn_glassful_on_table()
+jekan_work.spawn_glassful_on_table()
 end
 
 function spawn_apparat_on_table()
@@ -4214,3 +4223,42 @@ function klondike_arts_special_spawn()
 		spawned_idxs[art_idx] = true
 	end
 end
+
+
+
+function teleport_actor_to_samogon_transe_zone1()
+db.actor:set_actor_position(patrol("dar_samogon_trance_zone1_point"):point(0))
+end
+
+function teleport_actor_to_samogon_transe_zone2()
+db.actor:set_actor_position(patrol("dar_samogon_trance_point_end"):point(0))
+ogse_st_mgr.start_timer("a112", 7, script_name()..".dar_samogon_think2")
+end
+
+
+function dar_samogon_think_timer()
+ogse_st_mgr.start_timer("a111", 5, script_name()..".dar_samogon_think1")
+jekan_work.dar_samogon_think1()
+end
+
+function dar_samogon_think1()
+	jekan_work.kill_mutants_around()
+	--jekan_work.companion_goodbye()
+end
+
+function dar_samogon_think2()
+	soundtrack.head_pain()
+end
+
+function kill_mutants_around_actor()
+	jekan_work.kill_mutants_around()
+end
+
+
+
+
+
+
+
+
+

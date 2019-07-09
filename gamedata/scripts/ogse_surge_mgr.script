@@ -59,6 +59,7 @@ function can_start_surge_now()
 	   (lname == "l12u_control_monolith") or 
 	   (lname == "l12_stancia") or 
 	   (lname == "l12_stancia_2") or
+	   (lname == "k01_darkscape_ogse" and has_alife_info("dar_samogon_trance") ) or
 	   (lname == "l13_generators_ogse") 
 	)
 end

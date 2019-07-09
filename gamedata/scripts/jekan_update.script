@@ -41,8 +41,14 @@ local pda =
 {
 	-- Первач Лесника:	
 	["glassful"] 		= function ()
-		if db.actor:dont_has_info("pervach_info") then
-			db.actor:give_info_portion ("pervach_info")
+	local level_name = level.name()
+		if level_name == "k01_darkscape_ogse" then
+			if db.actor:dont_has_info("dar_samogon_trance_start") then
+				db.actor:give_info_portion ("dar_samogon_trance_start")
+			end
+			soundtrack.kordon_samogon_drink()
+		elseif level_name ~= "k01_darkscape_ogse" then
+			soundtrack.actor_no()
 		end
 	end,
 
@@ -128,6 +134,9 @@ local pda =
 	
 	-- ПДА Щукина:
 	["zona_bro2_pda"] 			= "zona_bro2_pda_info",
+	
+	
+	
 }
 
 ----------------------------------------------------------------------------------------------------

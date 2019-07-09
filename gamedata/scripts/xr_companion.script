@@ -1050,6 +1050,7 @@ end
 ----------------------------------------------------------------------------------------------------------------------
 
 function beh_walk(mode, npc)
+if db.actor:dont_has_info("dar_samogon_trance") then
 
 	--log1("COMP_EXEC_GO "..tostring(npc:name()).." ACT "..tostring(mode))
 
@@ -1224,6 +1225,7 @@ function beh_walk(mode, npc)
 	elseif (mode == "simple_c" or mode == "ignore_c" or mode == "simple_c_la") then	
 		xr_sound.set_sound(npc, nil) 
 	end							
+end
 end
 
 function beh_wait(mode, npc)
@@ -1576,6 +1578,7 @@ act_companion_run = act_base + 2
 
 -- Добавляем в планировщик нашу схему
 function add_to_binder(object, char_ini, scheme, section, st)
+if db.actor:dont_has_info("dar_samogon_trance") then
 
 	local manager = object:motivation_action_manager()
 	
@@ -1628,6 +1631,7 @@ function add_to_binder(object, char_ini, scheme, section, st)
 
 	action = manager:action(stalker_ids.action_retreat_from_enemy)
 	action:add_precondition(world_property(property_need_companion, false))
+end
 end
 
 -- Функции включения/выключения схемы

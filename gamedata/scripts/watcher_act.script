@@ -167,6 +167,7 @@ local bad_items = {
 	["yan_sold_generator"] = true,
 	["amk_metka"] = true,
 	["bolt"] = true,
+	["ufo_part"] = true,
 }
 
 function do_not_touch(item)

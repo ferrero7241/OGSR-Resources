@@ -2597,8 +2597,12 @@ function city_tower_box_1:InitControls()
 	self.btn_2:Enable(false)
 
 	-- определяем доступность кнопок
-	self.btn_1:Enable(true)
-	self.btn_2:Enable(true)
+	if db.actor:object("wpn_montirovka") ~= nil then
+		self.btn_1:Enable(true)
+	end
+	if db.actor:object("cit_tow_box_keys") ~= nil then
+		self.btn_2:Enable(true)
+	end
 end
 
 function city_tower_box_1:InitCallBacks()
@@ -2629,3 +2633,11 @@ function tower_box1_1()
 end
 
 --------------------------------------
+
+
+
+
+
+
+
+

@@ -619,3 +619,17 @@ gar_dm_newbie_no_money = {
 }
 gar_dm_newbie_help_me = {[[characters_voice\scenario\dramatic_garbage\dramatic_newbie_help_me_1]]}
 gar_dm_newbie_thank_you = {[[characters_voice\scenario\dramatic_garbage\dramatic_newbie_thank_you_1]]}
+
+
+dar_samogon_trance = {
+	[[characters_voice\scenario\dar_samogon_trance_snd_1]],
+	[[characters_voice\scenario\dar_samogon_trance_snd_2]],
+}
+
+
+
+
+
+
+
+

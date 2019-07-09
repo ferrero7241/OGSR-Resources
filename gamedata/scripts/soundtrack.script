@@ -454,6 +454,32 @@ function cit_tow_box_open()            s_play([[ambient\x18\h_or_metal_large]]) 
 function cit_tow_box_dont_open()       s_play([[ambient\x18\h_tal_grate_impact_hard2]]) end
 function play_strike()				   s_play([[weapons\knife\knife_1]]) end
 
+
 function ds_glavar_hello()				s_play([[script_sound\talk\abuse\soldier\soldier_abuse_11]]) end
 function ds_glavar_speech1()			s_play([[script_replics\stalker_1\talk\stalker_talk_9]]) end
 function ds_glavar_getlost()			s_play([[script_replics\stalker_1\talk\stalker_talk_24]]) end
+
+function head_pain()				s_play([[characters_voice\scenario\bar\psycho\psycho_talks_1]]) end
+
+
+
+local actor_no_snds = {
+	[[characters_voice\scenario\actor_no_1]],
+	[[characters_voice\scenario\actor_no_2]],
+	[[characters_voice\scenario\actor_no_3]],
+}
+function actor_no() 
+	play_random_from_tbl(actor_no_snds)
+end
+
+
+
+
+
+
+
+
+
+
+
+

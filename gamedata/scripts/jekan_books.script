@@ -57,6 +57,7 @@ books.first_neutral_planshet =
 books.book_7  = {file = 'book_visual_device_7' , tag = 'book_visual_device_7' , rect = { 30,30,852,752}}
 -- "Блокнот учёного":
 books.book_8  = {file = 'book_visual_device_8' , tag = 'book_visual_device_8' , rect = { 30,30,852,752}}
+
 -- "Записка жителя Мертвого города":
 books.book_9  = {file = 'book_visual_device_9' , tag = 'book_visual_device_9' , rect = { 20,30,852,652}}
 -- "Рапорт майора из Мертвого города":
