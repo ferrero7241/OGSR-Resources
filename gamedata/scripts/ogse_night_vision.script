@@ -22,6 +22,7 @@ function attach(sm)
 	sm:subscribe({ signal = "on_destroy",		fun = this.on_destroy })
 	sm:subscribe({ signal = "on_save",			fun = this.on_save })
 	sm:subscribe({ signal = "on_info",			fun = this.on_info })
+	sm:subscribe({ signal = "on_update",		fun = this.on_update, queued = true })
 end
 
 --==========================================================Настройки=================================================================
@@ -150,7 +151,7 @@ function call_pnv(key, bind) --Действие при нажатии клави
 	return true
 end
 
---==========================================Режим прицеливания через оптику===========================================
+--==========================================Режим прицеливания через "текстурную" оптику===========================================
 local night_vision_fx_store = false --с помощью этого флага будем восстанавливать работу прибора ПНВ после прицеливания.
 function on_sniper_mode() --Вошли в режим прицеливания. Вызывается из ogse_hud_control
 	if turn_off_pnv_in_sniper_mode then --Если включено отключение прибора ПНВ при прицеливании
@@ -416,3 +417,22 @@ function turn_off_scope_color() --Выключаем цветокоррекци�
 	scope_colored = false
 end
 --********************************************************************************************************************************************
+
+function on_update() --Режим рендеринга в 3Д прицелах для активного ствола выставляем тут (не оптимально, да, но лень выдумавать что-то получше.)
+	local act_itm = db.actor:active_item()
+	if act_itm and act_itm:is_weapon_magazined() then
+		local scope_sect = get_active_scope_section(act_itm)
+		if scope_sect then
+			if get_bool( scope_sect, "thermo_vision_enabled", false ) then
+				level.set_blender_mode_main(2)
+			elseif get_bool( scope_sect, "night_vision_enabled", false ) then
+				level.set_blender_mode_main(1)
+			else
+				level.set_blender_mode_main(0)
+			end
+		else
+			level.set_blender_mode_main(0)
+		end
+	end
+	ogse_signals.get_mgr():reschedule( 1000 )
+end

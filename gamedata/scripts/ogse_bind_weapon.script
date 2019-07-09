@@ -86,7 +86,6 @@ local addon_templates = {
 class "wpn_binder" (object_binder)
 ----------------------------------------------------------------------------------------------------------------------
 function wpn_binder:__init (obj) super(obj)
-	--self.spawned = false
 	self.wpn_binder = true
 	self.need_initialize_hud = false
 	local obj_section = obj:section()
@@ -127,10 +126,7 @@ function wpn_binder:__init (obj) super(obj)
 		local def_zrx = get_float(hud_section, "zoom_rotate_x")
 		local def_zry = get_float(hud_section, "zoom_rotate_y")
 		sd.default_hud_rotate = vector2():set(def_zrx, def_zry)
-		--sd.ironsight_desc = {}
 	end
-	self.sm = ogse_signals.get_mgr()
-	--self.first_update = false
 end
 ----------------------------------------------------------------------------------------------------------------------
 function wpn_binder:reinit()
@@ -203,22 +199,13 @@ function wpn_binder:update_addons_visibility()
 end
 
 function wpn_binder:update_hud_addons_visibility()
-	--log1("wpn_binder:update_hud_addons_visibility")
-	
+	--log3("~~[wpn_binder:update_hud_addons_visibility] called for [%s]", self.object:name())
 
 	if self.need_initialize_hud then
 		-- гасим по умолчанию все управляемые скриптами кости
 		self:set_hud_bones_visibility(self.managed_bones, false)
 	end
 	for des_name,desc in pairs(self.addon_descriptors) do
-		if self.is_gl and desc.extra_actions then -- восстанавливаем смещение худа после выхода из режима подствольника
-			local gl_mode = ogse_wpn_utils.get_gl_mode(self.object)
-			-- на первом апдейте после перехода в обычный режим
-			if not gl_mode and self.gl_mode ~= gl_mode then
-				desc.extra_actions(self.object, desc)
-			end
-			self.gl_mode = gl_mode
-		end
 		local addon_attached = desc.addon_attached_fun(self.object)
 		if desc.hud_attached ~= addon_attached or self.need_initialize_hud then
 			desc.hud_attached = addon_attached
@@ -246,11 +233,32 @@ function wpn_binder:update_hud_addons_visibility()
 	self.need_initialize_hud = false
 end
 
+function wpn_binder:force_update_extra_actions()
+	for des_name, desc in pairs(self.addon_descriptors) do
+		if desc.extra_actions then
+			desc.extra_actions(self.object, desc)
+		end
+	end
+end
+
 function wpn_binder:update()
-	--if not self.first_update then
-	--	self.first_update = true
-		self:update_hud_addons_visibility() --Всё же надо апдейтить всегда, на всякий случай
-	--end
+	local parent = self.object:parent()
+	if not parent or not parent:is_actor() or not parent:is_in_slot(self.object) then
+		return
+	end
+	--
+	if self.need_initialize_hud then
+		self:update_hud_addons_visibility()
+	end
+	--
+	if self.is_gl then -- восстанавливаем смещение худа после выхода из режима подствольника
+		local gl_mode = ogse_wpn_utils.get_gl_mode(self.object)
+		-- на первом апдейте после перехода в обычный режим
+		if not gl_mode and self.gl_mode ~= gl_mode then
+			self:force_update_extra_actions()
+		end
+		self.gl_mode = gl_mode
+	end
 end
 
 function wpn_binder:on_second_scope_switch( enabled )
@@ -260,9 +268,6 @@ function wpn_binder:on_second_scope_switch( enabled )
 	end
 	--
 	if not enabled and not ( self.object:is_weapon_gl() and self.object:get_gl_mode() ) then 
-		self.need_initialize_hud = true
-		self:update_hud_addons_visibility() --подумать, может тут апдейтить не всё, а только оффсет? Хотя, пусть так и будет - нормально.
+		self:force_update_extra_actions()
 	end
-	--self.sm:call("on_second_scope_switch", enabled)
 end
-
