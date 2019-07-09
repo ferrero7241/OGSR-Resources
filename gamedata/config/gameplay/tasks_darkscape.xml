@@ -415,25 +415,53 @@
 		<text>hunter_samogon_quest_text_task</text>
 		<article>hunter_samogon_quest</article>
 		<icon>ui_iconsLesnik_Zaharich</icon>
-		<infoportion_complete>222</infoportion_complete>
+		<infoportion_complete>dar_samogon_task_end</infoportion_complete>
 	</objective>
 	<objective>
-		<text>hunter_samogon_quest_text2_task</text>
+		<text>hunter_samogon_quest_desc1</text>
+		<map_location_type hint="hunter_samogon_quest_mark1">crlc_mdl</map_location_type>
+		<object_story_id>city_samogon_zapiska_zone1</object_story_id>
+		<infoportion_complete>city_samogon_info1</infoportion_complete>
+	</objective>
+	<objective>
+		<text>hunter_samogon_quest_desc1_1</text>
+		<map_location_type hint="hunter_samogon_quest_mark1">crlc_mdl</map_location_type>
+		<object_story_id>city_samogon_zapiska_zone2</object_story_id>
+		<infoportion_complete>city_samogon_info2</infoportion_complete>
+	</objective>
+	<objective>
+		<text>hunter_samogon_quest_desc1_1</text>
+		<map_location_type hint="hunter_samogon_quest_mark1">crlc_mdl</map_location_type>
+		<object_story_id>city_samogon_zapiska_zone3</object_story_id>
+		<infoportion_complete>city_samogon_info3</infoportion_complete>
+	</objective>
+	<objective>
+		<text>hunter_samogon_quest_desc1_1</text>
+		<map_location_type hint="hunter_samogon_quest_mark1">crlc_mdl</map_location_type>
+		<object_story_id>city_samogon_zapiska_zone4</object_story_id>
 		<infoportion_complete>city_samogon_info4</infoportion_complete>
 	</objective>
 	<objective>
-		<text>hunter_samogon_quest_text3_task</text>
+		<text>hunter_samogon_quest_desc2</text>
+		<map_location_type hint="hunter_samogon_quest_mark1">crlc_mdl</map_location_type>
+		<object_story_id>city_samogon_treasure</object_story_id>
 		<function_complete>jekan_work.samogon_apparat_finded</function_complete>
 	</objective>
 	<objective>
-		<text>hunter_samogon_quest_text4_task</text>
+		<text>hunter_samogon_quest_desc3</text>
 		<map_location_type hint="talk_with_hunter2_text_task">green_location</map_location_type>
 		<object_story_id>ds_hunter</object_story_id>
 		<infoportion_complete>hunter_samogon_quest_done</infoportion_complete>
 	</objective>
 	<objective>
-		<text>hunter_samogon_quest_text5_task</text>
-		<infoportion_complete>222</infoportion_complete>
+		<text>hunter_samogon_quest_desc4</text>
+		<infoportion_complete>dar_samogon_trance_end</infoportion_complete>
+	</objective>
+	<objective>
+		<text>hunter_samogon_quest_desc5</text>
+		<map_location_type hint="talk_with_hunter2_text_task">green_location</map_location_type>
+		<object_story_id>ds_hunter</object_story_id>
+		<infoportion_complete>dar_samogon_task_end</infoportion_complete>
 	</objective>
 </game_task>
 
@@ -492,7 +520,8 @@
 		<text>meet_kulg_band_task_desc_title</text>
 		<article>meet_kulg_band_task_article</article>
 		<icon>ui_iconsTotal_bar_crazy_veterans_quest</icon>
-		<infoportion_fail>kulg_band_hutor_attacked</infoportion_fail>
+		<!--infoportion_fail>kulg_band_hutor_attacked</infoportion_fail-->
+		<function_fail>jekan_work.meet_kulg_band_task_failure</function_fail>
 		<infoportion_complete>kulg_band_meet_speech_loose</infoportion_complete>
 	</objective>
 	<objective>
@@ -566,7 +595,8 @@
 		<article>kulgband_trader_car_task_article</article>
 		<icon>ui_iconsTotal_technique</icon>
 		<infoportion_fail>kulg_band_trader_car_end2</infoportion_fail>
-		<infoportion_complete>kulg_band_trader_car_end1</infoportion_complete>
+		<!--infoportion_complete>kulg_band_trader_car_end1</infoportion_complete-->
+		<function_complete>jekan_work.kulgband_trader_car_task_end</function_complete>
 	</objective>
 	<objective>
 		<text>kulgband_trader_car_task_desc1</text>
@@ -897,7 +927,8 @@
 		<text>kulgband_deadcity_task1_desc_title</text>
 		<article>kulgband_deadcity_task1_article</article>
 		<icon>ui_iconsTotal_eliminate_lager</icon>
-		<infoportion_fail>cit_kulgband_task_fail</infoportion_fail>
+		<!--infoportion_fail>cit_kulgband_task_fail</infoportion_fail-->
+		<function_fail>jekan_work.kulgband_klondike_task_failure</function_fail>
 		<infoportion_complete>333</infoportion_complete>
 	</objective>
 	<objective>

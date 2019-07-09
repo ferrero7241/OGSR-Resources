@@ -101,12 +101,13 @@
 
 
 
-<!--  вест с самогонным аппаратом -->
+<!--  квест с самогонным аппаратом -->
 	<info_portion id="hunter_samogon_quest"><task>hunter_samogon_quest</task></info_portion>
 	<info_portion id="city_samogon_info1"><action>jekan_work.spawn_city_major_raport</action></info_portion>
 	<info_portion id="city_samogon_info2"><action>jekan_work.spawn_city_sergant_zapis</action></info_portion>
-	<info_portion id="city_samogon_info3"><action>jekan_work.spawn_city_tower_box</action><action>jekan_work.spawn_cit_tow_box_keys</action></info_portion>
+	<info_portion id="city_samogon_info3"><action>jekan_work.spawn_city_tower_box</action></info_portion>
 	<info_portion id="city_samogon_info4"><action>jekan_work.spawn_apparat</action></info_portion>
+	<info_portion id="cit_tower_box_open"></info_portion>
 	<info_portion id="cit_tow_key1"></info_portion>
 	<info_portion id="cit_tow_key2"></info_portion>
 	<info_portion id="cit_tow_key3"></info_portion>
@@ -115,7 +116,11 @@
 	<info_portion id="cit_tow_key6"></info_portion>
 
 	<info_portion id="hunter_samogon_quest_done"></info_portion>
-	<info_portion id="pervach_info"></info_portion>
+	<info_portion id="dar_samogon_trance_start"></info_portion>
+	<info_portion id="dar_samogon_trance"></info_portion>
+	<info_portion id="dar_samogon_trance_end"></info_portion>
+	<info_portion id="dar_samogon_task_end"></info_portion>
+	
 	
 
 <!--  вест с ’оз€ином и остальные мелочи -->	

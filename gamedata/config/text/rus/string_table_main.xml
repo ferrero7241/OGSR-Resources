@@ -186,6 +186,9 @@
 	<string id="voron_band">
         	<text>Банда Ворона</text>
 	</string>
+	<string id="quest_monolith">
+        	<text>Монолит</text>
+	</string>
 	
 	
 	<string id="kulgband_hutor_house_seif_use1">
@@ -276,12 +279,18 @@
         	<text>Этот артефакт образовался слабым и почти лишенным свойств.</text>
 	</string>
 	
+	<string id="zapiska_use">
+        	<text>Поднять листок</text>
+	</string>
+	
+	<string id="city_tower_box_use">
+        	<text>Тайник в башне</text>
+	</string>
 	
 	
-	
-	
-	
-	
+	<string id="dar_samogon_think1_text">
+        	<text>Истина... Я должен найти её.</text>
+	</string>
 	
 	
 	

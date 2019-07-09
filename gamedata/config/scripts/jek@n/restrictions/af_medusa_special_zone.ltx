@@ -2,7 +2,8 @@
 active = sr_idle@1
 
 [sr_idle@1]
-on_info = {=actor_in_zone(dar_filin_shron_door_zone)} sr_idle@2 %=disable_ui%, {!actor_in_zone(dar_filin_shron_door_zone)} sr_idle@3 %=disable_ui%
+;on_info = {=actor_in_zone(dar_filin_shron_door_zone)} sr_idle@2 %=disable_ui%, {!actor_in_zone(dar_filin_shron_door_zone)} sr_idle@3 %=disable_ui%
+on_info = {=actor_behind_filin_shron_door} sr_idle@2 %=disable_ui%, {!actor_behind_filin_shron_door} sr_idle@3 %=disable_ui%
 
 
 ; Условия подходящие:

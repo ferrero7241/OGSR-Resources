@@ -193,6 +193,9 @@
 		<action>jekan_work.lesop_band_iskatel_fight_reznya10</action>
 		<action>jekan_work.lesop_band_iskatel_fight_reznya11</action>
 	</info_portion>
+	
+	<info_portion id="lesop_band_iskatel_fight_reznya"/>
+	
 	<info_portion id="kulg_band_surrend">
 		<action>jekan_work.delete_bloha</action>
 	</info_portion>
@@ -382,11 +385,9 @@
 		<!--action>jekan_work.cheb_help_with_af_dark</action-->
 		<action>jekan_work.cheb_helptip</action>
 	</info_portion>
-	<info_portion id="infa_about_boltun2">
-		<action>jekan_work.give_darskape_farm_boltun_quest</action>
-		</info_portion>
 	<info_portion id="infa_about_boltun">
-		<task>talk_with_hunter</task>
+		<!--task>talk_with_hunter</task-->
+		<action>jekan_work.give_darskape_farm_boltun_quest</action>
 	</info_portion>
 	<info_portion id="dik_and_dog_release">
 		<action>jekan_work.drifter_body_release_1</action>

@@ -1,9 +1,8 @@
 [smart_terrains]
 none = true
 
-
 [logic]
-active = {+kulgband_hutor_deadman_hello} walker@5, walker@begin
+active = {+kulgband_informer_map_info} walker@5, {+kulgband_hutor_deadman_hello} walker@5, walker@begin
 ;combat_ignore = combat_ignore
 danger = danger_ignore
 on_death = death
@@ -41,6 +40,7 @@ path_walk =	telohr_2_walk2
 path_look =	telohr_2_look2
 meet = no_meet
 combat_ignore_cond = always
+on_info = {+kulgband_hutor_deadman_hello} walker@5
 on_signal       = arrived|walker@2 %=play_snd_on_me(characters_voice\scenario\telohr_2_on_place)%
 
 [walker@2]
@@ -77,14 +77,6 @@ path_walk =	telohr_2_walk
 path_look =	telohr_2_look
 meet = no_meet
 combat_ignore_cond = always
-
-
-
-
-
-
-
-
 
 
 

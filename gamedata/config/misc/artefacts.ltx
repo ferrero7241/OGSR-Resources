@@ -1704,3 +1704,40 @@ fire_wound_immunity  = 1.0
 
 
 
+; Кусок НЛО(или же "Фигня"):
+[ufo_part]:af_base
+visual				= physics\anomaly\af_midas.ogf
+
+description			= ufo_part_desc
+inv_name			= ufo_part_name
+inv_name_short		= ufo_part_name
+inv_weight			= 0.1
+
+inv_grid_x         = 41
+inv_grid_y         = 36
+cost				= 1
+jump_height			= 0.1
+particles			= anomaly2\artefact\artefact_mincer
+
+quest_item = true
+
+lights_enabled = false
+;trail_light_color = 255,111,124
+;trail_light_range = 2.0
+hit_absorbation_sect = ufo_part_absorbation
+
+[ufo_part_absorbation]
+burn_immunity = 1.0				;коэффициенты иммунитета 
+strike_immunity = 1.0
+shock_immunity = 1.0
+wound_immunity = 1.0		
+radiation_immunity = 1.0
+telepatic_immunity = 1.0
+chemical_burn_immunity = 1.0
+explosion_immunity = 1.0
+fire_wound_immunity  = 1.0
+
+
+
+
+

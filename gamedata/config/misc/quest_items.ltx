@@ -2614,25 +2614,23 @@ inv_grid_x			= 6
 inv_grid_y			= 13
 cost				= 0
 
-[ufo_part]:identity_immunities
-GroupControlSection		= spawn_group
-discovery_dependency		= 
-;$prefetch 			= 32
-class				= II_ATTCH
-cform				= skeleton
-visual				= monster_items\poltergeist_glas.ogf
-radius				= 1
-description			= ufo_part_desc
-inv_name			= ufo_part_name
-inv_name_short			= ufo_part_name
-inv_weight = 		0.7
-inv_grid_width		= 1
-inv_grid_height		= 1
-inv_grid_x		= 41
-inv_grid_y		= 36
-cost				= -50
-;can_trade			= true ;при quest_item = true - ни на что не влияет.
-quest_item			= true
+;[ufo_part]:identity_immunities
+;GroupControlSection		= spawn_group
+;discovery_dependency		= 
+;class				= II_ATTCH
+;cform				= skeleton
+;visual				= monster_items\poltergeist_glas.ogf
+;radius				= 1
+;description			= ufo_part_desc
+;inv_name			= ufo_part_name
+;inv_name_short			= ufo_part_name
+;inv_weight = 		0.7
+;inv_grid_width		= 1
+;inv_grid_height		= 1
+;inv_grid_x		= 41
+;inv_grid_y		= 36
+;cost				= 1
+;quest_item			= true
 
 [loader_box]:identity_immunities
 GroupControlSection		= spawn_group
@@ -2658,7 +2656,8 @@ can_trade			= false
 GroupControlSection		= spawn_group
 discovery_dependency		=
 $spawn				= "devices\mobile_changer"
-visual				= equipments\item_psi_protection.ogf
+;visual				= equipments\klu4_selflight.ogf
+visual				= equipments\klyu4.ogf
 $prefetch			= 32
 cform				= skeleton
 radius				= 1
@@ -2686,7 +2685,7 @@ radius				= 1
 description			= apparat_desc
 inv_name			= apparat_name
 inv_name_short			= apparat_name
-inv_weight = 		20
+inv_weight = 		5
 inv_grid_width		= 2
 inv_grid_height		= 2
 inv_grid_x		= 58

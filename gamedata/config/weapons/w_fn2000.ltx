@@ -1,7 +1,60 @@
 ; 5,56-мм модульный стрелково-гранатомётный комплекс Fabrique Nationale Herstal F2000
 ;Mari для NLC7, модели и текстуры DICE, анимации Anim_rouge, пересобрал для ОГСЕ k01jan
 ;--------------------------------------
-[wpn_fn2000base]:identity_immunities,base_wpn_zoom
+
+;-----------------------------------------------------------------------------------
+;Сменные аддоны ОГСЕ
+;-----------------------------------------------------------------------------------
+;управляемые В СЕКЦИЯХ АДДОНОВ кости (64=57+7s) с привязкой by k01jan:
+;  wpn_body					FN F2000
+;  cevie					цевьё FN F2000 (убирается анимкой, когда одет подствол, на мировой ВИДНА)
+;  lock						фиксатор магазина
+;  mag						маг 30
+;  	ammo					2 патрона в магазине
+;  muzzle					мех.прицел (съёмная мушка +откидной целик)
+;  slide					рукоять взведения (разобщена с затвором)
+;  trigger					спуск ствола
+;  wpn_grenade_launcher		подствольный гранатомёт FN GL1
+;  	launcher_sight1			прицел подствола
+;  	launcher_sight2			прицел подствола
+;  	launcher_slide			ствол подствола
+;  	wpn_grenade				m433
+;  	grenade_shell			гильза m433
+;  	launcher_trigger		спуск подствола 
+;  wpn_scope				- (движковая, д/б пустая)
+		;-1  scope1			штатный прицельный модуль (3D)
+		;-2  scope2			ACOG TA31-CH х4 (3D)
+		;-3  scope3			EOTech  552.A65 х1
+		;-4  scope4			- ? увеличитель				(костыль: фейк-ручка)
+		;-5  scope5			- ? НВ						(костыль: фейк-ручка)
+		;-6  scope3			- ? ИК
+		;-7  scope4			- ? длинный ЗУМ
+;  wpn_silencer				глушак GEMTECH G5 5,56mm NATO +адаптер MultiMount
+
+;? или цевья сменные лучше сделать вместо костыльных насадков?
+;- фонарь/лцу можно на подствол сбоку прицепить - тоже через костыли?
+
+;-------------------------------------------------------------------------------------------
+; служебные секции описателей аддонов
+;при установленном аддоне кости bones показываются, bones_hide скрываются
+;-----------------------------------------------------------------------------------
+; штатный оптический прицельный модуль FN F2000 х1,6
+[f2000_scope]
+;тест мех.прицела +3D
+force_remove_texture = true
+bones			= wpn_scope
+bones_hide = muzzle
+;штатный оптический прицельный модуль, 3D
+zoom_offset			= -0.102610,-0.012500,-0.221500
+zoom_rotation		= -0.009500,0.000600
+
+[f2000_scope_p]
+; движковый прицел
+scope_name               = wpn_addon_scope_fn2000
+scope                    = f2000_scope
+
+
+[wpn_fn2000base]:identity_immunities,base_wpn_zoom,f2000_scope_p
 GroupControlSection	= spawn_group
 discovery_dependency = 
 $spawn                   = "weapons\fn-2000"
@@ -46,8 +99,8 @@ inv_weight		         = 3.6
 
 inv_grid_width			= 4
 inv_grid_height			= 2
-inv_grid_x				= 16		;16	баллистический
-inv_grid_y				= 24		;22	модуль
+inv_grid_x				= 5		;прицельный
+inv_grid_y				= 9		;модуль
 
 kill_msg_x					= 131
 kill_msg_y					= 123
@@ -113,7 +166,9 @@ rpm                      	= 850
 use_aim_bullet			= false			;Поддерживается ли первая суппер пуля
 time_to_aim				= 0.01	
 
-hud                      = wpn_fn2000base_hud
+;hud                      = wpn_fn2000base_hud
+hud = wpn_fn2000_hud
+
 normal                   = 0, 1, 0
 position                 = -0.026, -0.132, 0.0
 orientation              = 0, 0, 0
@@ -137,9 +192,9 @@ script_binding			= ogse_bind_weapon.init
 managed_bones = wpn_silencer
 
 ;addons
-scope_status				= 2
+scope_status				= 1;2
 silencer_status				= 2			;+2
-grenade_launcher_status		= 2
+grenade_launcher_status		= 1;2
 
 scope_mount_status		= 0
 grip_status				= 0
@@ -152,6 +207,12 @@ scope_y 					= 10
 zoom_enabled			= true
 ;прицелы на штатную планку
 wpn_addon_scope_fn2000    	= wpn_fn2000
+
+scope_lense_fov_factor = 4
+; Худ фов во время прицеливания, чтобы ствол был близко к камере и не залазил в камеру при выстреле
+scope_lense_hud_fov    = 0.15
+; Инерция мышки в прицеле
+scope_inertion_factor  = 2
 
 silencer_name  				= wpn_addon_sil_556_ar
 silencer_x 					= 152
@@ -172,10 +233,10 @@ silencer_light_time 		= 0.2
 grenade_launcher_name	= wpn_addon_grenade_launcher_fn2000
 grenade_launcher_x 		= 95
 grenade_launcher_y 		= 40
-;grenade_vel					= 76
+grenade_vel					= 76
 
 ;ПРОБУЕМ пока один набор на всех прописать напрямую (ВРЕМЕННО, пока KRodin в движок всё перенести не раздуплится)
-highlight_addons = fake_wpn_addon_grenade_launcher_fn2000, fake_wpn_addon_scope_fn2000
+;highlight_addons = fake_wpn_addon_grenade_launcher_fn2000, fake_wpn_addon_scope_fn2000
 ;при торговле обрабатывает не все аддоны из списка, а только те прицелы, что в секции ствола.
 ;С патронами, глушаками и подстволами всё нормально - они же движковые (не имеют фейков).
 ;Магазины, прицельные планки и ручки почему-то не обрабатываются. 
@@ -305,79 +366,14 @@ tech_complication = 1000
 repair_compatibility = fn2000
 
 
-
-;-----------------------------------------------------------------------------------
-;Сменные аддоны ОГСЕ
-;-----------------------------------------------------------------------------------
-;управляемые В СЕКЦИЯХ АДДОНОВ кости (64=57+7s) с привязкой by k01jan:
-;  wpn_body					FN F2000
-;  cevie					цевьё FN F2000 (убирается анимкой, когда одет подствол, на мировой ВИДНА)
-;  lock						фиксатор магазина
-;  mag						маг 30
-;  	ammo					2 патрона в магазине
-;  muzzle					мех.прицел (съёмная мушка +откидной целик)
-;  slide					рукоять взведения (разобщена с затвором)
-;  trigger					спуск ствола
-;  wpn_grenade_launcher		подствольный гранатомёт FN GL1
-;  	launcher_sight1			прицел подствола
-;  	launcher_sight2			прицел подствола
-;  	launcher_slide			ствол подствола
-;  	wpn_grenade				m433
-;  	grenade_shell			гильза m433
-;  	launcher_trigger		спуск подствола 
-;  wpn_scope				- (движковая, д/б пустая)
-		;-1  scope1			штатный прицельный модуль (3D)
-		;-2  scope2			ACOG TA31-CH х4 (3D)
-		;-3  scope3			EOTech  552.A65 х1
-		;-4  scope4			- ? увеличитель				(костыль: фейк-ручка)
-		;-5  scope5			- ? НВ						(костыль: фейк-ручка)
-		;-6  scope3			- ? ИК
-		;-7  scope4			- ? длинный ЗУМ
-;  wpn_silencer				глушак GEMTECH G5 5,56mm NATO +адаптер MultiMount
-
-;? или цевья сменные лучше сделать вместо костыльных насадков?
-;- фонарь/лцу можно на подствол сбоку прицепить - тоже через костыли?
-
-
-
-
-
-;-------------------------------------------------------------------------------------------
-; служебные секции описателей аддонов
-;при установленном аддоне кости bones показываются, bones_hide скрываются
-;-----------------------------------------------------------------------------------
-; штатный оптический прицельный модуль FN F2000 х1,6
-[f2000_scope]
-;тест мех.прицела +3D
-force_remove_texture = true
-bones			= wpn_scope
-bones_hide = muzzle
-;штатный оптический прицельный модуль, 3D
-zoom_offset			= -0.102610,-0.012500,-0.221500
-zoom_rotation		= -0.009500,0.000600
-[f2000_scope_p]
-; движковый прицел
-scope_name               = wpn_addon_scope_fn2000
-scope                    = f2000_scope
-
-
-
-
-
 ;---------------------------------;со штатным оптическим модулем
-[wpn_fn2000]:wpn_fn2000base,f2000_scope_p
-;-----затычка (не готовы аддоны на рельсу)
-scope_status				= 1
-scope_lense_fov_factor = 10.0
-inv_grid_x				= 5		;прицельный
-inv_grid_y				= 9		;модуль
-;-----
+[wpn_fn2000]:wpn_fn2000base
 ;секция при снятом прицеле 
-scope_removed_section	 = wpn_fn2000base
-hud = wpn_fn2000_hud
+;scope_removed_section	 = wpn_fn2000base
+
 [wpn_fn2000_hud]:wpn_fn2000base_hud
 ;модуль
-zoom_offset			= -0.102610,-0.012500,-0.221500
+zoom_offset			= -0.102670,-0.012630,-0.221500
 zoom_rotate_x		= -0.009500
 zoom_rotate_y		= 0.000600
 second_zoom_offset		= -0.102500,-0.048000,-0.207500
@@ -389,10 +385,5 @@ grenade_normal_zoom_rotate_y		= 0.000600
 second_grenade_normal_zoom_offset		= -0.102500,-0.048000,-0.207500
 second_grenade_normal_zoom_rotate_x		= -0.009500
 second_grenade_normal_zoom_rotate_y		= 0.000600
+
 [wpn_fn2000_repair]:wpn_fn2000base_repair
-
-
-
-
-
-

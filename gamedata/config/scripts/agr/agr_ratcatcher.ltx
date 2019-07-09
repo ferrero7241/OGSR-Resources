@@ -14,10 +14,12 @@ meet = meet
 path_walk = agr_ratcatcher_walk_way
 path_look = agr_ratcatcher_way_look
 danger = danger_condition
-combat_ignore_cond = {=dist_to_enemy_ge(10)}
+combat_ignore_cond = {=fighting_dist_ge_20} always
+;combat_ignore_cond = always
 
 [danger_condition]
 ignore_distance = 0
+
 
 [meet]
 meet_state     =	15| wait

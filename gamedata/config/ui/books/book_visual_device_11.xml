@@ -2,8 +2,9 @@
 
 <book_visual_device_11>	
 
-	<page1 x="250" y="90" width="290" height="480" stretch="1">
-		<texture x="0" y="0" width="510" height="1020">ui\bookpages\book_11_text_1</texture>
+	<page1 x="300" y="120" width="230" height="400" stretch="1">
+		<texture x="0" y="0" width="420" height="690">ui\bookpages\book_11_text_1</texture>
+		<infoportion>city_samogon_info3</infoportion>
 	</page1>
 
 	<btn_quit x="430" y="600" width="117" height="29">

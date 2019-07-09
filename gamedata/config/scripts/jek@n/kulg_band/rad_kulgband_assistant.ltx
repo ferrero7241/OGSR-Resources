@@ -2,7 +2,7 @@
 none = true
 
 [logic]
-active = walker@begin
+active = {+rad_kulgband_assist_forest_end2} walker@4, walker@begin
 danger = danger_ignore
 on_death = death
 ;on_combat = combat
@@ -51,6 +51,7 @@ def_state_moving1 = run
 def_state_moving2 = run
 def_state_moving3 = run
 meet = no_meet
+on_info = {=dist_to_actor_ge(40)}%=release%
 
 
 

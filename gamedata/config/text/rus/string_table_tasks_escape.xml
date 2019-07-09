@@ -699,13 +699,35 @@
 	<string id="kulgband_informer_task_mark3">
 		<text>Решало</text>
 	</string>
-	<string id="kulgband_informer_task_article_text">
+	<string id="kulgband_informer_task1_article_text">
 		<text>"Ключ" от Клондайка уже в распоряжении банды, теперь осталось вычислить, где сам Клондайк. По-идее чухан Тролль должен быть в курсах, потому нужно расколоть этого штриха и побыстрее.</text>
 	</string>
 	
 	
 	
 	
+	
+	<string id="hunter_samogon_quest_desc1">
+		<text>Найти информацию о самогонном аппарате</text>
+	</string>
+	<string id="hunter_samogon_quest_desc1_1">
+		<text>Продолжить поиск информации</text>
+	</string>
+	<string id="hunter_samogon_quest_desc2">
+		<text>Найти самогонный аппарат</text>
+	</string>
+	<string id="hunter_samogon_quest_desc3">
+		<text>Доставить самогонный аппарат Захарычу</text>
+	</string>
+	<string id="hunter_samogon_quest_desc4">
+		<text>Познать одну из тайн Зоны</text>
+	</string>
+	<string id="hunter_samogon_quest_desc5">
+		<text>Поговорить с лесником</text>
+	</string>
+	<string id="hunter_samogon_quest_mark1">
+		<text>Область поисков</text>
+	</string>
 	
 	
 	

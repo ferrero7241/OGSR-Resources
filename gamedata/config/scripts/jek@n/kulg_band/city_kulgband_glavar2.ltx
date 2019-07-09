@@ -3,7 +3,6 @@ none = true
 
 [logic]
 active = walker@begin
-;threshold = threshold@city_kulgband_glavar2_threshold
 on_death = death
 
 [walker@begin]
@@ -18,7 +17,7 @@ combat_ignore_cond = always
 on_info = {+cit_kulgband_goto_klondike} walker@2
 
 
-; Двигаем к месту засады:
+;Двигаем к месту засады:
 [walker@2]
 path_walk =	city_kulgband_glavar_walk2
 path_look =	city_kulgband_glavar_look2
@@ -33,8 +32,7 @@ path_look =	city_kulgband_glavar_look2
 meet = no_meet
 on_timer = 10000|walker@4 %+cit_kulgband_glavar_to_klondike%
 
-
-; Идём к Клондайку:
+;Идём к Клондайку:
 [walker@4]
 path_walk =	city_kulgband_glavar_walk3
 path_look =	city_kulgband_glavar_look3
@@ -54,8 +52,7 @@ path_look =	city_kulgband_glavar_look3
 combat_ignore_cond = always
 on_info = {+klondike_pre_acess} walker@7 %=disable_ui =run_postprocess(agr_u_fade)%
 
-
-; Влезаем в Клондайк:
+;Влезаем в Клондайк:
 [walker@7]
 path_walk =	city_kulgband_glavar_look3
 path_look =	city_kulgband_glavar_walk3
@@ -121,11 +118,6 @@ path_walk =	city_kulgband_glavar_walk3
 path_look =	city_kulgband_glavar_look3
 combat_ignore_cond = always
 
-
-
-[threshold@city_kulgband_glavar2_threshold]
-max_ignore_distance = 10
-ignore_monster = 0
 
 [death]
 on_info = {+klondike_on} %+cit_kulgband_glavar2_dead =give_items(ds_glavar_bag)%

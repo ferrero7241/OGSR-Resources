@@ -812,7 +812,7 @@
 		<text>Ключи сержанта</text>
 	</string>
 	<string id="cit_tow_box_keys_desc">
-		<text>Связка из шести ржавых ключей.</text>
+		<text>Связка из шести ржавых ключей. %c[100,50,250,50]Используйте предмет, чтобы выбрать тот или иной ключ из связки.%c[default]</text>
 	</string>
 	<string id="apparat_name">
 		<text>Самогонный аппарат</text>

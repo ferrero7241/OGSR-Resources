@@ -3,6 +3,7 @@
 ;-------------------------------------------------------------------------------------------------
 ;------- общий лагерь
 [logic@mil_fneutral_stalker]
+;danger = danger_ignore
 active = kamp@mil_fneutral_stalker
 
 [kamp@mil_fneutral_stalker]
@@ -138,6 +139,17 @@ victim_wpn = 2|actor
 meet_state = 2|wait@talk_hello
 meet_state_wpn = 2|wait@talk_hello
 synpairs = wait@talk_hello
+
+
+[danger_ignore]
+ignore_distance = 10
+ignore_distance_sound = 10
+danger_inertion_time_sound = 100
+danger_expiration_time = 300
+
+
+
+
 
 
 

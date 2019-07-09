@@ -2,7 +2,7 @@
 none = true
 
 [logic]
-active = {+cit_kulgband_task_fail} nil, {+cit_kulgband_glavar_dead} nil, walker@begin
+active = {+cit_kulgband_car_dead} nil, {+cit_kulgband_task_fail} nil, {+cit_kulgband_glavar_dead} nil, walker@begin
 ;threshold = threshold@city_kulgband_shesterka_threshold
 on_death = death
 
@@ -54,6 +54,7 @@ anim_sprint = sprint
 meet = no_meet
 combat_ignore_cond = always
 on_info = {+cit_kulgband_task_fail} nil
+on_info2 = {+cit_kulgband_car_dead} nil
 
 
 ; За Решалу:

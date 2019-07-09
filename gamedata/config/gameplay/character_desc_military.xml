@@ -280,7 +280,7 @@
 		<actor_dialog>btr_quest_actor_think</actor_dialog>
 		<actor_dialog>btr_quest_actor_done</actor_dialog>
 		<actor_dialog>find_mikluha_dialog</actor_dialog>
-		<actor_dialog>find_mikluha_dialog_alt</actor_dialog>
+		<!--actor_dialog>find_mikluha_dialog_alt</actor_dialog-->
 		<actor_dialog>find_mikluha_dialog_2</actor_dialog>
 		<actor_dialog>scalp_dialog</actor_dialog>
 		<actor_dialog>find_mikluha_dialog_no_klondike</actor_dialog>
@@ -576,10 +576,10 @@
 		<visual>actors\dolg\stalker_do_exoskeleton</visual>
 		<supplies>
 			[spawn] \n
-			wpn_ak74n \n
-			ammo_5.45x39_ap \n
-			wpn_pm \n
-			ammo_9x18_pmm \n
+			wpn_akm_akm30_ironsight = 1, silencer \n
+			ammo_7.62x39_fmj \n
+			wpn_pb = 1, silencer \n
+			ammo_9x18_fmj \n
 #include "gameplay\character_items.xml" \n
 #include "gameplay\character_drugs.xml" \n
 #include "gameplay\character_food.xml"

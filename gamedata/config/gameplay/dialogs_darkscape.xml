@@ -998,6 +998,39 @@
 			</phrase>
 		</phrase_list>
 	</dialog>
+	
+	<dialog id="yuriy_all_band_killed_dialog2">
+		<dont_has_info>kulg_band_dead</dont_has_info>
+		<has_info>lesop_band_iskatel_fight_reznya</has_info>
+		<has_info>ds_nalet_band_1_dead</has_info>
+		<has_info>ds_nalet_band_2_dead</has_info>
+		<has_info>ds_nalet_band_3_dead</has_info>
+		<has_info>ds_nalet_band_4_dead</has_info>
+		<has_info>ds_nalet_band_5_dead</has_info>
+		<has_info>ds_nalet_band_6_dead</has_info>
+		<has_info>ds_nalet_band_7_dead</has_info>
+		<has_info>first_planshet_info</has_info>
+		<phrase_list>
+			<phrase id="0">
+				<text>yuriy_all_band_killed_dialog1_phrase_1</text>
+				<next>1</next>
+			</phrase>
+			<phrase id="1">
+				<text>yuriy_all_band_killed_dialog1_phrase_2</text>
+				<next>2</next>
+			</phrase>
+			<phrase id="2">
+				<text>yuriy_all_band_killed_dialog1_phrase_3</text>
+				<next>3</next>
+			</phrase>
+			<phrase id="3">
+				<text>yuriy_all_band_killed_dialog1_phrase_4_1</text>
+				<give_info>kulg_band_dead</give_info>
+				<action>jekan_work.yuriy_reward_good</action>
+			</phrase>
+		</phrase_list>	
+	</dialog>	
+	
 	<dialog id="yuriy_reward_dialog">
 		<dont_has_info>kulg_band_dead</dont_has_info>
 		<has_info>ds_nalet_band_1_dead</has_info>
@@ -1459,6 +1492,7 @@
 			<phrase id="3">
 				<text>prof_start_dialog_phrase_4</text>
 				<action>jekan_work.lesop_band_iskatel_fight_reznya</action>
+				<give_info>lesop_band_iskatel_fight_reznya</give_info>
 			</phrase>
 			<phrase id="3_1">
 				<text>prof_start_dialog_phrase_3_1</text>
@@ -1645,7 +1679,8 @@
 	</dialog>
 	<dialog id="prof_surrend_dialog">
 		<has_info>plenniy_shron_info</has_info>
-		<has_info>infa_about_boltun</has_info>
+		<!--has_info>infa_about_boltun</has_info-->
+		<precondition>jekan_work.have_prof_zapiska</precondition>
 		<dont_has_info>kulg_band_surrend</dont_has_info>
 		<!--precondition>jekan_work.have_prof_zapiska</precondition-->
 		<phrase_list>
@@ -3678,6 +3713,7 @@
 				<text>hunter_about_ufo_dialog1_phrase_21</text>
 				<give_info>hunter_samogon_quest</give_info>
 				<action>jekan_work.random_spawn_zapiska1</action>
+				<action>jekan_work.ufo_part_out</action>
 			</phrase>
 			<phrase id="21">
 				<text>hunter_about_ufo_dialog1_phrase_22</text>
@@ -3685,6 +3721,7 @@
 			</phrase>
 		</phrase_list>
 	</dialog>
+	
 	<dialog id="hunter_about_ufo_dialog2">
 		<precondition>jekan_work.samogon_apparat_finded</precondition>
 		<dont_has_info>hunter_samogon_quest_done</dont_has_info>
@@ -3716,6 +3753,56 @@
 			<phrase id="6">
 				<text>hunter_about_ufo_dialog2_phrase_7</text>
 				<give_info>hunter_samogon_quest_done</give_info>
+				<action>jekan_work.samogon_quest_items_release</action>
+				<action>jekan_work.samogon_aparat_out</action>
+			</phrase>
+		</phrase_list>
+	</dialog>
+	
+	<dialog id="hunter_about_ufo_dialog3">
+		<has_info>dar_samogon_trance_end</has_info>
+		<dont_has_info>dar_samogon_task_end</dont_has_info>
+		<phrase_list>
+			<phrase id="0">
+				<text>hunter_about_ufo_dialog3_phrase_1</text>
+				<next>1</next>
+			</phrase>
+			<phrase id="1">
+				<text>hunter_about_ufo_dialog3_phrase_2</text>
+				<next>2</next>
+			</phrase>
+			<phrase id="2">
+				<text>hunter_about_ufo_dialog3_phrase_3</text>
+				<next>3</next>
+			</phrase>
+			<phrase id="3">
+				<text>hunter_about_ufo_dialog3_phrase_4</text>
+				<next>4</next>
+			</phrase>
+			<phrase id="4">
+				<text>hunter_about_ufo_dialog3_phrase_5</text>
+				<next>5</next>
+			</phrase>
+			<phrase id="5">
+				<text>hunter_about_ufo_dialog3_phrase_6</text>
+				<next>6</next>
+			</phrase>
+			<phrase id="6">
+				<text>hunter_about_ufo_dialog3_phrase_7</text>
+				<next>7</next>
+			</phrase>
+			<phrase id="7">
+				<text>hunter_about_ufo_dialog3_phrase_8</text>
+				<next>8</next>
+			</phrase>
+			<phrase id="8">
+				<text>hunter_about_ufo_dialog3_phrase_9</text>
+				<action>jekan_work.samogon_quest_reward</action>
+				<next>9</next>
+			</phrase>
+			<phrase id="9">
+				<text>hunter_about_ufo_dialog3_phrase_10</text>
+				<give_info>dar_samogon_task_end</give_info>
 			</phrase>
 		</phrase_list>
 	</dialog>
@@ -3723,9 +3810,10 @@
 	
 	
 	
+	
 	<dialog id="ds_glavar_dialog1">
 		<precondition>jekan_work.have_some_klondike_flashes</precondition>
-		<has_info>first_quest_info</has_info>
+		<has_info>first_planshet_info</has_info>
 		<dont_has_info>klondaik_find</dont_has_info>
 		<dont_has_info>freezer_bandos_kulg_band_info</dont_has_info>
 		<dont_has_info>kulg_band_meet_speech_fail</dont_has_info>
@@ -3928,7 +4016,7 @@
 			</phrase>
 			<phrase id="44">
 				<text>ds_glavar_dialog1_phrase_45</text>
-				<next>45</next>
+				<next>46</next>
 			</phrase>
 			<phrase id="45">
 				<text>ds_glavar_dialog1_phrase_46</text>
@@ -3949,7 +4037,7 @@
 	<dialog id="ds_glavar_dialog1_1">
 		<precondition>jekan_work.have_some_klondike_flashes</precondition>
 		<has_info>freezer_bandos_kulg_band_info</has_info>
-		<has_info>first_quest_info</has_info>
+		<has_info>first_planshet_info</has_info>
 		<dont_has_info>klondaik_find</dont_has_info>
 		<dont_has_info>kulg_band_meet_speech_fail</dont_has_info>
 		<dont_has_info>kulg_band_hutor_attacked</dont_has_info>
@@ -5139,7 +5227,7 @@
 				<next>11_1</next>
 			</phrase>
 			<phrase id="9">
-			<precondition>xr_conditions.has_less_then100000</precondition>
+			<precondition>jekan_work.has_less_then100000</precondition>
 				<text>ds_glavar_dialog5_3_phrase_10</text>
 				<next>10</next>
 			</phrase>

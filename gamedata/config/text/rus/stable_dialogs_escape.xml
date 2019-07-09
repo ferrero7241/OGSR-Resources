@@ -2803,6 +2803,9 @@
 	<string id="yuriy_all_band_killed_dialog1_phrase_4">
 		<text>Не думаю, что они пришлют подмогу. Место здесь глухое, а Банда Кульгавого не слишком многочисленна.</text>
 	</string>
+	<string id="yuriy_all_band_killed_dialog1_phrase_4_1">
+		<text>Не думаю, что они пришлют подмогу. Место здесь глухое, а Банда Кульгавого не слишком многочисленна. Это тебе за помощь:</text>
+	</string>
 	<string id="yuriy_bandits_surrend_dialog_phrase_1">
 		<text>Все, Юрий. Бандиты ушли.</text>
 	</string>
@@ -4880,7 +4883,7 @@
 		<text>Где нашел?</text>
 	</string>
 	<string id="hunter_about_ufo_dialog1_phrase_3">
-		<text>В одном из твоих схронов. Что это за фигня?</text>
+		<text>У тебя во дворе. Что это за фигня?</text>
 	</string>
 	<string id="hunter_about_ufo_dialog1_phrase_4">
 		<text>Так, дай-ка гляну глазам своими близорукими... А, это штука бесполезная. Выбрось ее.</text>
@@ -4949,10 +4952,10 @@
 		<text>Интересно, как это ты смог предугадать, что я этот аппарат найду?</text>
 	</string>
 	<string id="hunter_about_ufo_dialog2_phrase_4">
-		<text>Такой сталкер как ты, что хочешь найдет! Вот нагоню первачок - тебе перваому пробовать.</text>
+		<text>Такой сталкер как ты, что хочешь найдет! Вот нагоню первачок - тебе первому пробовать.</text>
 	</string>
 	<string id="hunter_about_ufo_dialog2_phrase_5">
-		<text>Ну успехов в этом нелегком деле. Слушай, так что ты мне не договорил об этих осколках метеорита? Каким образом они очутились в сталкерских схронах, почему люди их собирали?</text>
+		<text>Ну успехов в этом нелегком деле. Слушай, так что ты мне не договорил об этих осколках метеорита? Каким образом они очутились в Лощине, почему люди их собирали?</text>
 	</string>
 	<string id="hunter_about_ufo_dialog2_phrase_6">
 		<text>Меченый, я тебе все расскажу, как есть, просто подожди, пока я дело сделаю. Хорошо?</text>
@@ -4960,6 +4963,39 @@
 	<string id="hunter_about_ufo_dialog2_phrase_7">
 		<text>Хорошо, не буду мешать. Потом подойду.</text>
 	</string>
+	
+	<string id="hunter_about_ufo_dialog3_phrase_1">
+		<text>Захарыч... Что со мной произошло?</text>
+	</string>
+	<string id="hunter_about_ufo_dialog3_phrase_2">
+		<text>Ну как что? бабахнул ты первачку моего да и прикорнул на диване часок. А чего ты так взбаламутился-то, может куда спешил да проспал?</text>
+	</string>
+	<string id="hunter_about_ufo_dialog3_phrase_3">
+		<text>Какое там, меня накрыло конкретно. Какие-то глюки пошли.</text>
+	</string>
+	<string id="hunter_about_ufo_dialog3_phrase_4">
+		<text>Ах во-о-от оно что... Значит, фокус прошел. Хе-хе.</text>
+	</string>
+	<string id="hunter_about_ufo_dialog3_phrase_5">
+		<text>Не понял я... А ну-ка давай колись, чего ты там мне в самогонку подмешал?!</text>
+	</string>
+	<string id="hunter_about_ufo_dialog3_phrase_6">
+		<text>Да не кипятись, Меченый, а лучше порадуйся. Ведь открыли мы с тобой новый сорт самогона. Нареку его "Чернобыльской захаровкой" по имени изобретателя, значится... А добавил я в брагу щепотку той самой "фигни", что ты мне намедни приносил. И не зря, как видишь!</text>
+	</string>
+	<string id="hunter_about_ufo_dialog3_phrase_7">
+		<text>Захарыч, ты... Большой оригинал!!!</text>
+	</string>
+	<string id="hunter_about_ufo_dialog3_phrase_8">
+		<text>Да успокойся уже, я знал что делал. Дам тебе для утешения одну вещь... почитать. Заодно и тайну Зоны очередную раскроешь, хе-хе.</text>
+	</string>
+	<string id="hunter_about_ufo_dialog3_phrase_9">
+		<text>Что это? Надеюсь, не Карлос Кастанеда?</text>
+	</string>
+	<string id="hunter_about_ufo_dialog3_phrase_10">
+		<text>Какая ещё костанеда? Это про меня один журналистик написал. Почитай, короче. И не забывай старика.</text>
+	</string>
+	
+	
 	<string id="kuznetsov_about_job_0">
 		<text>Так ты, значит, за деньги пропускаешь?</text>
 	</string>

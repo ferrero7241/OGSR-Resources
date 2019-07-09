@@ -837,6 +837,7 @@
 		<actor_dialog>yuriy_after_reward_dialog3</actor_dialog>
 		<actor_dialog>yuriy_all_band_killed_dialog</actor_dialog>
 		<actor_dialog>yuriy_all_band_killed_dialog1</actor_dialog>
+		<actor_dialog>yuriy_all_band_killed_dialog2</actor_dialog>
 	</specific_character>
 
 <!--iskatel_shaman-->
@@ -1497,7 +1498,8 @@
 		<bio>rad_monolith_general_bio</bio>
 
 		<class>mil_monolith_man1</class>
-		<community>monolith</community>
+		<!--community>monolith</community-->
+		<community>quest_monolith</community>
 
 		<rank>418</rank>
 		<reputation>-385</reputation>
@@ -1525,7 +1527,8 @@
 		<bio>rad_monolith_general_bio</bio>
 
 		<class>mil_monolith_man2</class>
-		<community>monolith</community>
+		<!--community>monolith</community-->
+		<community>quest_monolith</community>
 
 		<rank>418</rank>
 		<reputation>-385</reputation>
@@ -1552,7 +1555,8 @@
 		<bio>rad_monolith_general_bio</bio>
 
 		<class>mil_monolith_man3</class>
-		<community>monolith</community>
+		<!--community>monolith</community-->
+		<community>quest_monolith</community>
 
 		<rank>418</rank>
 		<reputation>-385</reputation>
@@ -1773,7 +1777,8 @@
 
 		<actor_dialog>hunter_about_ufo_dialog1</actor_dialog>
 		<actor_dialog>hunter_about_ufo_dialog2</actor_dialog>
-
+		<actor_dialog>hunter_about_ufo_dialog3</actor_dialog>
+		
 	</specific_character>
 
 <specific_character id="ds_bandit_1" team_default = "1">

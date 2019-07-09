@@ -538,3 +538,7 @@
 	<kulgband_seif_think2 x="530" y="10" width="105" height="160" stretch="1">
 		<text x="-130" y="160" r="255" g="225" b="118" a="158" font="graffiti22">kulgband_seif_think_text2</text>
 	</kulgband_seif_think2>
+
+	<dar_samogon_think1 x="530" y="10" width="105" height="160" stretch="1">
+		<text x="-130" y="160" r="255" g="225" b="118" a="158" font="graffiti22">dar_samogon_think1_text</text>
+	</dar_samogon_think1>
