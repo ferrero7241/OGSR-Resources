@@ -1574,6 +1574,7 @@ function actor_armed_speccrossbow()
 			return true
 		end
 	end
+	return false
 end
 
 function actor_not_armed_speccrossbow()
