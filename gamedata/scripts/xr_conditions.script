@@ -1568,17 +1568,16 @@ function is_yan_soldier_dead()
 end
 
 function actor_armed_speccrossbow()
-local speccrossbow = db.actor:item_in_slot(2)
-	if (speccrossbow and speccrossbow:section() == "wpn_crossbow_cpec") then
-	return true
+	for slot = 1, 2 do
+		local speccrossbow = db.actor:item_in_slot(slot)
+		if (speccrossbow and speccrossbow:section() == "wpn_crossbow_cpec") then
+			return true
+		end
 	end
 end
 
 function actor_not_armed_speccrossbow()
-local speccrossbow = db.actor:item_in_slot(2)
-	if (speccrossbow and speccrossbow:section() ~= "wpn_crossbow_cpec") then
-	return true
-	end
+	return not actor_armed_speccrossbow()
 end
 
 function actor_have_dark_art_1()
