@@ -198,14 +198,6 @@ function wpn_binder:update_addons_visibility()
 	end
 end
 
-
-local function get_active_scope_section( wpn ) --Получить секцию прицела у оружия
-	local scope_status = ogse_wpn_utils.get_scope_flag( wpn )
-	if scope_status then
-		return get_string( wpn:section(), "scope_name" )
-	end
-end
-
 function wpn_binder:update_hud_addons_visibility()
 	--log3("~~[wpn_binder:update_hud_addons_visibility] called for [%s]", self.object:name())
 
