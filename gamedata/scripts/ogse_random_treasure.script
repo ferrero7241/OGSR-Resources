@@ -283,8 +283,8 @@ end
 function random_treasure:get_item(item)
 	local time_array = {}
 		if self.order[1] == "weapons" and (item == "addons" or item == "ammo") then
-			if item == "addons" then time_array["section"] = self:get_addon_to_weapon()
-			elseif item == "ammo" then time_array["section"] = self:get_ammo_to_weapon() end 
+			--[=[if item == "addons" then time_array["section"] = self:get_addon_to_weapon() --Из за этого вылеты из за несовместимости с системой аддонов.
+			else--]=]if item == "ammo" then time_array["section"] = self:get_ammo_to_weapon() end 
 		else if #self.level_reward[item] ~= 0 then time_array["section"] = self.level_reward[item][math.random(#self.level_reward[item])] end end
 		
 		if item ~= "ammo" then
