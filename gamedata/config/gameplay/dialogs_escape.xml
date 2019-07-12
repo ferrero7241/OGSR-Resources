@@ -4476,6 +4476,8 @@
 			</phrase>
 		</phrase_list>
 	</dialog>
+	
+	
 	<dialog id="digger_start_dialog">
 		<dont_has_info>digger_seif_task</dont_has_info>
 		<phrase_list>
@@ -5520,6 +5522,9 @@
 			</phrase>
 		</phrase_list>
 	</dialog>
+	
+	
+	
 	<dialog id="digger_weapon_dialog1">
 		<has_info>digger_give_info</has_info>
 		<dont_has_info>digger_weapon_quest1</dont_has_info>
@@ -5596,6 +5601,7 @@
 	<dialog id="sinyak_weapon_dialog1">
 		<has_info>digger_weapon_quest1</has_info>
 		<dont_has_info>digger_weapon_quest2</dont_has_info>
+		<dont_has_info>digger_weapon_quest5</dont_has_info>
 		<dont_has_info>sinyak_work</dont_has_info>
 		<dont_has_info>sinyak_goodbye</dont_has_info>
 		<precondition>jekan_work.has_diggers_weapon</precondition>
@@ -5643,6 +5649,7 @@
 		<has_info>sinyak_finish</has_info>
 		<dont_has_info>sinyak_goodbye</dont_has_info>
 		<dont_has_info>digger_weapon_quest2</dont_has_info>
+		<dont_has_info>digger_weapon_quest5</dont_has_info>
 		<phrase_list>
 			<phrase id="0">
 				<text>sinyak_weapon_dialog2_phrase_1</text>
@@ -5659,6 +5666,7 @@
 			</phrase>
 		</phrase_list>
 	</dialog>
+	
 	<dialog id="digger_weapon_dialog2">
 		<has_info>sinyak_goodbye</has_info>
 		<dont_has_info>digger_weapon_quest2</dont_has_info>
@@ -5754,11 +5762,20 @@
 			</phrase>
 		</phrase_list>
 	</dialog>
+	
+	
 	<dialog id="digger_weapon_dialog5">
-		<has_info>digger_weapon_quest2</has_info>
-		<has_info>sinyak_goodbye2</has_info>
+		<!--has_info>digger_weapon_quest2</has_info-->
+		<!--has_info>sinyak_goodbye2</has_info-->
+		<!--dont_has_info>digger_weapon_quest5</dont_has_info-->
+		<!--dont_has_info>digger_offence</dont_has_info-->
+		
+		
+		<has_info>digger_weapon_quest1</has_info>
+		<has_info>sinyak_goodbye</has_info>
 		<dont_has_info>digger_weapon_quest5</dont_has_info>
 		<dont_has_info>digger_offence</dont_has_info>
+		
 		<phrase_list>
 			<phrase id="0">
 				<text>digger_weapon_dialog5_phrase_1</text>

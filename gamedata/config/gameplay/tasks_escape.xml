@@ -804,7 +804,7 @@
 		<article>digger_weapon_quest</article>
 		<icon>ui_iconsTotal_weapons</icon>
 		<infoportion_complete>111</infoportion_complete>
-		<infoportion_fail>digger_weapon_quest2</infoportion_fail>
+		<infoportion_fail>digger_weapon_quest5</infoportion_fail>
 		<function_fail>jekan_work.check_digger_weapon_quest_fail</function_fail>
 	</objective>
 	<objective>

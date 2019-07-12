@@ -333,7 +333,7 @@
 		<actor_dialog>digger_second_dialog</actor_dialog>
 
 		<actor_dialog>digger_weapon_dialog1</actor_dialog>
-		<actor_dialog>digger_weapon_dialog2</actor_dialog>
+		<!--actor_dialog>digger_weapon_dialog2</actor_dialog-->
 
 		<actor_dialog>digger_weapon_dialog5</actor_dialog>
 	</specific_character>

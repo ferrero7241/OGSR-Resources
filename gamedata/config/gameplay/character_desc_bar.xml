@@ -26,7 +26,7 @@
 		<actor_dialog>sinyak_weapon_dialog1</actor_dialog>
 		<actor_dialog>sinyak_weapon_dialog2</actor_dialog>
 
-		<actor_dialog>sinyak_weapon_dialog3</actor_dialog>
+		<!--actor_dialog>sinyak_weapon_dialog3</actor_dialog-->
 		<actor_dialog>sinyak_weapon_dialog4</actor_dialog>
 
 		<actor_dialog>sinyak_weapon_dialog9</actor_dialog>
