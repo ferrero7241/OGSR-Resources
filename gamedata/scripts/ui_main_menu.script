@@ -46,6 +46,8 @@ function main_menu:InitControls()
 
 	self.xml:InitStatic("ogsm_version",   self):SetText("Mod version: " .. sys_ini:r_string_wq("mod_ver", "mod_ver"))
 	self.xml:InitStatic("static_version", self):SetText("Engine version: " .. _G.main_menu.get_main_menu():GetGSVer())
+	self.xml:InitStatic("dlc_version",   self):SetText("+ Kulgband quest DLC")
+	
 end
 
 function main_menu:Update()
