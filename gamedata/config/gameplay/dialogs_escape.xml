@@ -3999,7 +3999,7 @@
 			</phrase>
 			<phrase id="2111">
 				<text>escape_lager_volk_talk_2111</text>
-				<action>escape_dialog.transfer_wolf_reward</action>
+				<!--action>escape_dialog.transfer_wolf_reward</action-->
 				<give_info>esc_kill_bandits_quest_done</give_info>
 				<give_info>esc_petruha_great</give_info>
 				<next>21111</next>
