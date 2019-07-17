@@ -226,7 +226,7 @@ end
 
 --k01jan: настройка прицела худового оружия (Rastaman_VIP74)
 function main_menu:setup_wpn_position()
-	if not ogse.is_developer_mode() then return end --KRodin: должно работать только в режиме разработчика.
+	if not ogse.check_game() or not ogse.is_developer_mode() then return end --KRodin: должно работать только в режиме разработчика.
 	--
 	if get_con_bool("hud_adjust_mode") then
 		cmd("hud_adjust_mode 0")
