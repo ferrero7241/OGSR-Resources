@@ -99,7 +99,7 @@ bones         = s2
 ;zoom_offset		= -0.154750,0.087000,0.008000
 ;zoom_rotation		= 0.030500,0.034800
 ;СКВОЗНОЙ 3D (со сдвигом)
-zoom_offset			= -0.154750,0.050000,-0.287498
+zoom_offset			= -0.155400,0.049830,-0.287498
 zoom_rotation		= 0.030500,0.034800
 [masterkey_acog_p]
 ; движковый прицел
@@ -180,14 +180,21 @@ disable_second_scope = true
 
 
 ;+насадок-увеличитель 3х (ставится только на eotech) (ТЕСТ 3D)
+;KRodin: параметры зума здесь не устанавливаются скриптом, т.к. эта секция указывается как grip. Надо указывать как scope, чтобы работало, но неизвестно, что это сломает. Поэтому оставляю так.
 [masterkey_magnifier]
 bones = s5
-zoom_offset			= -0.161250,0.058000,-0.216999
-zoom_rotation		= 0.047500,0.049300
+zoom_offset			= -0.159220,0.050470,-0.150990
+zoom_rotation		= 0.032500,0.044800
 [masterkey_magnifier_p]
 grip_name         = wpn_addon_magnifier
 grip              = masterkey_magnifier
-scope_lense_fov_factor = 30.0				--+ТЕСТ
+
+scope_lense_fov_factor = 10 ;FOV в 3D прицеле
+; Худ фов во время прицеливания, чтобы ствол был близко к камере и не залазил в камеру при выстреле
+scope_lense_hud_fov    = 0.15
+; Инерция мышки в прицеле
+;scope_inertion_factor  = 2
+
 ;_второй прицел ОГСР не надо сдвигать, а second_ тут не работают.. 
 disable_second_scope = true
 

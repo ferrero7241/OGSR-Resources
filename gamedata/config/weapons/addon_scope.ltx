@@ -15,6 +15,11 @@ inv_weight		= 0.001
 ;-scope_zoom_factor		= 1.0					;ставить для 3D-прицелов, должен быть равен ironsight_zoom_factor (НАСЛЕДУЕТСЯ =1) 
 ;-scope_lense_fov_factor 	= 1.0					;пробуем для сменных 3D-прицелов (потом откорректируется прицелом, а тонкая подстройка - в секции ствола)
 
+;KRodin: заткнул вылеты, хз почему вылетает
+inv_grid_width		= 2
+inv_grid_height		= 1
+inv_grid_x			= 74
+inv_grid_y			= 11
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;Оптический прицел ПСО-1
@@ -119,9 +124,11 @@ scope_zoom_factor	= 1.0		;для 3D-оптики (увеличение - в линзе, определяется scop
 ;!!!Д/Б ЕДИНСТВЕННАЯ ИДЕАЛЬНО РОВНАЯ СПЕЦЛИНЗА С НУЖНОЙ ТЕКСТУРОЙ и шейдером models_lense_scope
 ;******************************************************************************
 ;ПОПРАВЛЕНО KRodin - НАСЛЕДУЕТСЯ от прицела (отсюда)
-scope_lense_fov_factor = 16.0		
+scope_lense_fov_factor = 10.0		
 ;4 ~ 1х, 9 ~ 2х
 ;KRodin: Поднесём колиматор поближе к морде актора - и scope_lense_fov_factor ~ scope_zoom_factor
+scope_lense_hud_fov    = 0.15
+scope_inertion_factor  = 3
 ;******************************************************************************
 ;разрешить ПНВ (тест открытой сетки)
 nightvision_lock	= false
@@ -611,11 +618,12 @@ inv_grid_y			= 37
 scope_texture		= wpn\scopes\scope_ps
 ;scope_zoom_factor	= 3.0
 scope_zoom_factor	= 1.0		;для 3D-оптики (увеличение - в линзе, определяется scope_lense_fov_factor)	;для старой текстурной оптики ОГСЕ д/б 3.0
+
 ;ПОПРАВЛЕНО KRodin - НАСЛЕДУЕТСЯ от прицела (отсюда)
-scope_lense_fov_factor = 12.0
-;4 ~ 1х, 9 ~ 2х, 13 ~ 3,5х, 16 ~ 4х
-;-Увеличение – переменное от 2х до 4х				
-;-ТЕСТ 3D-Zoom'а
+scope_lense_fov_factor = 10.0
+scope_lense_hud_fov    = 0.25
+scope_inertion_factor  = 3
+
 scope_dynamic_zoom = true
 ;тест оттенка оптики (линза с синим оттенком)
 scope_color_sect = 0,0,1,0.75
