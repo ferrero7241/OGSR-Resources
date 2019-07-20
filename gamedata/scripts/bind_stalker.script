@@ -44,6 +44,8 @@ function actor_binder:net_spawn(data)
 	actor_stats.add_to_ranking(self.object:id())
 
 -----------------------------------------------------------
+	cmd("r2_ls_bloom_threshold 1.") --Избавляемся от пересветов
+	cmd("r2_gloss_factor 1.") --Избавляемся от пересветов
 	cmd("r2_rain_drops_control on") --капли на стекле
 	--cmd("r2_lens_dirt_control on") --грязь на линзе
 	cmd("cam_inert 0") --сбрасываем инерцию камеры в 0
