@@ -69,7 +69,7 @@ function generic_object_binder:net_spawn(sobject)
 			s_obj.offline_dead = game.time()+(1*24*60*60*1000)
 		elseif s_obj.offline_dead > 1 and s_obj.offline_dead <= game.time() then
 			if self.object:position():distance_to( db.actor:position() ) > alife():switch_distance() / 2 then --Удаляем только вдалеке от актора
-				--log3("--[%s] Released trup: [%s]", script_name(), s_obj:name())
+				log3("--[%s] Released trup: [%s]", script_name(), s_obj:name())
 				alife():release(s_obj, true)
 			end
 		end

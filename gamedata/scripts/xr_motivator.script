@@ -327,7 +327,7 @@ function motivator_binder:net_spawn(sobject)
 				not death_manager.offline_dead_quest_check(self.object)
 				and self.object:position():distance_to( db.actor:position() ) > ( alife():switch_distance() / 2 ) --Удаляем только вдалеке от актора
 			then
-				--log3("--[%s] Released trup: [%s]", script_name(), s_obj:name())
+				log3("--[%s] Released trup: [%s]", script_name(), s_obj:name())
 				alife():release(s_obj, true)
 			end
 		end

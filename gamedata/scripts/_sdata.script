@@ -327,10 +327,11 @@ function info_about_npc()
 				"level_vertex: "..target_obj:level_vertex_id()..", game_vertex: "..target_obj:game_vertex_id().."\\n"..
 				"visual name: "..tostring(target_obj:get_visual_name()):gsub("%\\", "\\ ")
 		else
-			local scheme1, scheme2
+			local scheme1, scheme2, scheme3
 			if db.storage[target_obj:id()] then
 				scheme1 = tostring(db.storage[target_obj:id()].active_section)
 				scheme2 = tostring(db.storage[target_obj:id()].section_logic)			
+				scheme3 = tostring(db.storage[target_obj:id()].ini_filename)			
 			end
 			LogicText = LogicText..
 				"obj: section: "..target_obj:section().."\\n"..
@@ -342,7 +343,7 @@ function info_about_npc()
 				"coords: X "..target_obj:position().x..", Y "..target_obj:position().y..", Z "..target_obj:position().z.."\\n"..
 				"dir: X "..target_obj:direction().x..", Y "..target_obj:direction().y..", Z "..target_obj:direction().z.."\\n"..
 				"Active logic: "..tostring(scheme2).."\\n"..
-				"Logic Section: "..tostring(scheme1).."\\n"..
+				"Logic Section: "..tostring(scheme1)..", ini_filename: "..tostring(scheme3).."\\n"..
 				"level_vertex: "..target_obj:level_vertex_id().."\\n"..
 				"game_vertex: "..target_obj:game_vertex_id()
 
