@@ -77,10 +77,11 @@ function remove_m134() --Чтобы М134 можно было использов
 
 	for slot = 1, 2 do
 	local m134 = db.actor:item_in_slot(slot)
-	if m134 and m134:section() == "wpn_m_134" then
+	if m134 and ( m134:section() == "wpn_m_134" or m134:section() == "wpn_dshkm" ) then
 		local outfit = db.actor:get_current_outfit()
 		if not outfit or not string.find( outfit:section(), "_exo" ) then
 			db.actor:move_to_ruck(m134) --db.actor:mark_item_dropped( m134 )
+			update_inventory_window()
 			if counter == 0 then
 				news_text = game.translate_string("dinhud_gatling_text")
 				db.actor:give_game_news(news_text, "ui\\ui_iconsTotal", Frect():set(0,188,83,47), 0, 3000)
