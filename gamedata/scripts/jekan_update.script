@@ -20,6 +20,7 @@ function attach(sm)
 	sm:subscribe({ signal = "on_item_to_belt",	fun = this.magnit_part_work_from_belt })
 	sm:subscribe({ signal = "on_take",			fun = this.af_puzir_destroy })
 	sm:subscribe({ signal = "on_take",			fun = this.af_light_destroy })
+	sm:subscribe({ signal = "on_update",	fun = this.dar_samogon_bonus })
 end
 
 -- Список используемых из инвентаря квестовых предметов
@@ -42,16 +43,29 @@ local pda =
 	-- Первач Лесника:	
 	["glassful"] 		= function ()
 	local level_name = level.name()
-		if level_name == "k01_darkscape_ogse" then
-			if db.actor:dont_has_info("dar_samogon_trance_start") then
-				db.actor:give_info_portion ("dar_samogon_trance_start")
+		-- до выполнения квеста:
+		if db.actor:dont_has_info("dar_samogon_task_end") then
+			if level_name == "k01_darkscape_ogse" then
+				if db.actor:dont_has_info("dar_samogon_trance_start") then
+					db.actor:give_info_portion ("dar_samogon_trance_start")
+				end
+				soundtrack.kordon_samogon_drink()
+			elseif level_name ~= "k01_darkscape_ogse" then
+				soundtrack.actor_no()
 			end
-			soundtrack.kordon_samogon_drink()
-		elseif level_name ~= "k01_darkscape_ogse" then
-			soundtrack.actor_no()
+		-- после выполнения квеста:
+		elseif db.actor:has_info("dar_samogon_task_end") then
+			if db.actor:dont_has_info("dar_samogon_bonus") then
+				db.actor:give_info_portion ("dar_samogon_bonus")
+				--ogse_st_mgr.start_timer("a052", 30, script_name()..".dar_drozd_company_pda_tip")
+				ogse_st_mgr.start_visual_timer("dar_samogon_bonus_logo", 30, script_name()..".disable_dar_samogon_info")
+				soundtrack.dar_samogon_snd()
+				--soundtrack.kordon_samogon_drink()
+				jekan_work.actor_disable_inventory()
+			end
 		end
 	end,
-
+	
 	-- Ключи сержанта из МГ:	
 	["cit_tow_box_keys"] 		= function ()
 		jekan_work.use_cit_tow_box_keys()
@@ -684,6 +698,24 @@ function thunderbird_visual_effect()
 	end
 end
 
+
+-- Эффект самогона от Захарыча: ----------------------------------------------------------------------
+
+function dar_samogon_bonus()
+if db.actor and has_alife_info("dar_samogon_bonus") and db.actor:alive() then
+	db.actor.health = 0.001
+	level.add_pp_effector("death1.ppe", 799, false)
+	local st = get_hud():GetCustomStatic("dar_samogon_effect") or get_hud():AddCustomStatic("dar_samogon_effect",true)
+	st.m_endTime = time_global()/1000 + 1
+end
+end
+
+function disable_dar_samogon_info()
+	db.actor:disable_info_portion("dar_samogon_bonus")
+	db.actor:disable_info_portion("dar_apparat_recharge")
+end
+
+
 -- Ржавчина ----------------------------------------------------------------------------------------
 function check_subscribe_strange_zone_effects()
 	for n = 1, 7 do
@@ -807,3 +839,26 @@ function update_little_pseudogiant_sound(giant)
 		last_playing_time = game.get_game_time()
 	end
 end]]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -4254,7 +4254,10 @@ function kill_mutants_around_actor()
 	jekan_work.kill_mutants_around()
 end
 
-
+function dar_samogon_think3()
+	local st = get_hud():GetCustomStatic("dar_samogon_think1") or get_hud():AddCustomStatic("dar_samogon_think1",true)
+	st.m_endTime = time_global()/1000 + 10
+end
 
 
 

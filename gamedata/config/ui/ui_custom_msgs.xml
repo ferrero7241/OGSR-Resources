@@ -517,13 +517,9 @@
 	 <text x="40" y="0" r="255" g="128" b="0" a="200" font="graffiti22">Blowout!</text>
 </blow>
 
-<!-- adjust_mode HUD -->		
-	<hud_cross_wpn x="0" y="0" width="1024" height="768" stretch="1">
-		<texture>ui\hud_pricel</texture>
-	</hud_cross_wpn>
-</header>
 
-	<dar_kulg_band_trader_car_think x="530" y="10" width="105" height="160" stretch="1">
+
+<dar_kulg_band_trader_car_think x="530" y="10" width="105" height="160" stretch="1">
 		<text x="-130" y="160" r="255" g="225" b="118" a="158" font="graffiti22">dar_kulg_band_trader_car_think_text</text>
 	</dar_kulg_band_trader_car_think>
 	
@@ -542,3 +538,16 @@
 	<dar_samogon_think1 x="530" y="10" width="105" height="160" stretch="1">
 		<text x="-130" y="160" r="255" g="225" b="118" a="158" font="graffiti22">dar_samogon_think1_text</text>
 	</dar_samogon_think1>
+	
+	<dar_samogon_effect x="530" y="10" width="105" height="160" stretch="1">
+		<text x="-130" y="160" r="255" g="225" b="118" a="158" font="graffiti22">dar_samogon_bonus_logo</text>
+	</dar_samogon_effect>
+
+
+<!-- adjust_mode HUD -->		
+	<hud_cross_wpn x="0" y="0" width="1024" height="768" stretch="1">
+		<texture>ui\hud_pricel</texture>
+	</hud_cross_wpn>
+</header>
+
+	

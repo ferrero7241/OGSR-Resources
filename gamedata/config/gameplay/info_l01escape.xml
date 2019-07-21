@@ -793,6 +793,10 @@
 	
 	<info_portion id="actor_set_milstalker"/>
 	
+	<info_portion id="dar_samogon_bonus"/>
+	<info_portion id="dar_apparat_recharge"/>
+	
+	
 	<info_portion id="fov_play_start">
 		<disable>fov_play_end</disable>
 	</info_portion>

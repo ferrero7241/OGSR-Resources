@@ -473,7 +473,7 @@ function actor_no()
 end
 
 
-
+function dar_samogon_snd()				s_play([[characters_voice\scenario\dar_samogon_snd]]) end
 
 
 
