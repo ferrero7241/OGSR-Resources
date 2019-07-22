@@ -4268,9 +4268,8 @@ function dar_samogon_think3()
 	st.m_endTime = time_global()/1000 + 10
 end
 
-
-
-
-
-
-
+function run_samogon_postprocess()
+	level.remove_pp_effector(2964)
+	level.add_pp_effector("whiteblack.ppe", 2964, false)
+	--level.set_pp_effector_factor(2964, 0.9)
+end
