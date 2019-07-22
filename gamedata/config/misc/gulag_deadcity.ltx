@@ -162,7 +162,8 @@ path_look = nardyman3_look
 meet = no_meet
 no_move = true
 combat_ignore_cond = always
-on_info = {+master_quest_helmet_given} %=remove_item(psy_helmet_a)% walker@deadcity_bar_nardyman
+;on_info = {+master_quest_helmet_given} %=remove_item(psy_helmet_a)% walker@deadcity_bar_nardyman
+on_info = {+master_quest_helmet_given} %=remove_item_from_npc(psy_helmet_a)% walker@deadcity_bar_nardyman
 
 [death@deadcity_bar_nardyman]
 on_info = %+master_quest_colonel_dead%

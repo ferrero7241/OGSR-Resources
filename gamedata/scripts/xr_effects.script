@@ -388,6 +388,15 @@ function remove_item(actor, npc, p)
 	--news_manager.relocate_item(db.actor, "out", item)
 end
 
+function remove_item_from_npc(actor, npc, p)
+    if p[1] and npc:object(p[1]) then
+		local sobj = alife():object(npc:object(p[1]):id())
+		if sobj then
+			alife():release(sobj)
+		end
+    end
+end
+
 function give_items(actor, npc, p)
     local pos, lv_id, gv_id, npc_id = npc:position(), npc:level_vertex_id(), npc:game_vertex_id(), npc:id()
 	for i, v in pairs(p) do
