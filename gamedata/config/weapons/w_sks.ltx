@@ -122,9 +122,11 @@ light_disabled					= true
 ph_mass			 			= 3
 
 ;addons
-scope_status 			 	= 0
+scope_status 			 	= 2 ;0
 silencer_status				= 2
 grenade_launcher_status		= 0
+
+highlight_addons = fake_wpn_addon_scope_pu
 
 scope_name 					= wpn_addon_scope_pu
 ;Сменные аддоны ОГСЕ д/б: scope_name = wpn_scope
@@ -132,6 +134,8 @@ scope_x 					= 60
 scope_y 					= 6
 
 zoom_enabled				= true
+
+use_scope_zoom = true ;чтоб работал scope_zoom_offset
 
 silencer_name  				= wpn_addon_sil_762_tgp-v
 silencer_x 					= 223
@@ -185,11 +189,14 @@ anim_idle_moving				= move
 zoom_hide_crosshair				= true
 zoom_rotate_time				= 0.30
 
-;W.A.S.P. далеко zoom_offset					= -0.130700,0.081250,-0.065000
 zoom_offset					= -0.130700,0.081250,-0.257000
 zoom_rotate_x				= 0.003700
 zoom_rotate_y				= 0.000200
-
+;;;;;;;;;;;;;;;;;;;;;;Прицеливание через оптику
+;прицеливание по умолчанию (по-старому, через "оптику" - ТЕКСТУРОЙ), альтернативное ОГСЕ (мех.прицел, МОДЕЛЬЮ) сбрасывается при установке любого аддона, включая ПЫС-подствол)
+scope_zoom_offset			= -0.131410,0.054060,-0.205000
+scope_zoom_rotate_x		= 0.002200
+scope_zoom_rotate_y		= 0.000900
 
 ;------------------------------------------------------------------------------------
 [wpn_sks_repair]
@@ -234,6 +241,10 @@ snd_silncer_shot1				= weapons\val\val_9x39_shotbullet_1
 snd_silncer_shot2				= weapons\val\val_9x39_shotbullet_2
 snd_silncer_shot3				= weapons\val\val_9x39_shotbullet_3
 
+highlight_addons = ;
+
+use_scope_zoom = false
+
 scope_status 			 = 0			;1 - для второго (ОГСР) режима прицеливания будет использоваться текстура (ПЫС-вариант); 0 -  3D оптика ОГСР (сквозная, модель+шейдер)
 ;для несъёмного - не наследуется! 
 scope_texture				= wpn\scopes\crosshair_pu
@@ -241,7 +252,7 @@ scope_texture				= wpn\scopes\crosshair_pu
 ;******************************************************************************
 ;для ПЫС-оптики (без 3D) ставить scope_zoom_factor = 3.5
 scope_zoom_factor 					= 1.0	;ставить для 3D-прицелов
-scope_lense_fov_factor = 8 ;FOV в 3D прицеле
+scope_lense_fov_factor = 6 ;FOV в 3D прицеле
 ; Худ фов во время прицеливания, чтобы ствол был близко к камере и не залазил в камеру при выстреле
 scope_lense_hud_fov    = 0.15
 ; Инерция мышки в прицеле
