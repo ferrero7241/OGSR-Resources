@@ -4273,3 +4273,24 @@ function run_samogon_postprocess()
 	level.add_pp_effector("whiteblack.ppe", 2964, false)
 	--level.set_pp_effector_factor(2964, 0.9)
 end
+
+
+
+function cit_kulgband_klondike_fail_snd()
+if ( db.actor:dont_has_info("city_kulgband_assist1_dead") 
+	and db.actor:dont_has_info("city_kulgband_assist2_dead") 
+	and db.actor:dont_has_info("cit_kulgband_patruln_dead")
+	and db.actor:dont_has_info("cit_kulgband_shesterka_dead") 
+	and db.actor:dont_has_info("cit_kulgband_telohr1_dead") 
+	and db.actor:dont_has_info("cit_kulgband_telohr2_dead") ) then
+		soundtrack.kulgband_klondike_fail_snd()
+end
+end
+
+
+
+
+
+
+
+

@@ -6105,7 +6105,8 @@
 	<dialog id="ds_shesterka_dialog1">
 		<has_info>kulg_band_meet_speech_loose</has_info>
 		<dont_has_info>ds_shesterka_go_out</dont_has_info>
-		<dont_has_info>kulgband_goto_deadcity</dont_has_info>
+		<dont_has_info>kulgband_goto_deadcity1</dont_has_info>
+		<dont_has_info>kulgband_goto_deadcity2</dont_has_info>
 		<phrase_list>
 			<phrase id="0">
 				<text>ds_shesterka_dialog1_phrase_1</text>
@@ -6130,7 +6131,8 @@
 	<dialog id="ds_shesterka_dialog2">
 		<has_info>ds_shesterka_go_out</has_info>
 		<dont_has_info>kulgband_hutor_house_seif_task</dont_has_info>
-		<dont_has_info>kulgband_goto_deadcity</dont_has_info>
+		<dont_has_info>kulgband_goto_deadcity1</dont_has_info>
+		<dont_has_info>kulgband_goto_deadcity2</dont_has_info>
 		<phrase_list>
 			<phrase id="0">
 				<text>ds_shesterka_dialog2_phrase_1</text>
@@ -6172,7 +6174,8 @@
 		<has_info>kulgband_hutor_house_seif_open</has_info>
 		<dont_has_info>kulgband_hutor_house_seif_task_fail</dont_has_info>
 		<precondition>jekan_work.hawe_af_mobkiller</precondition>
-		<dont_has_info>kulgband_goto_deadcity</dont_has_info>
+		<dont_has_info>kulgband_goto_deadcity1</dont_has_info>
+		<dont_has_info>kulgband_goto_deadcity2</dont_has_info>
 		<phrase_list>
 			<phrase id="0">
 				<text>ds_glavar_seif_dialog_phrase_1</text>
@@ -6516,6 +6519,7 @@
 			</phrase>
 			<phrase id="14">
 				<text>ds_glavar_dialog10_phrase_15</text>
+				<action>jekan_work.kulgband_bridge_scout_pda_out</action>
 				<give_info>kulgband_goto_deadcity1</give_info>
 			</phrase>
 		</phrase_list>
@@ -7040,6 +7044,7 @@
 	<dialog id="dar_bridge_kulgband_man1_dialog7">
 		<has_info>klondike_on</has_info>
 		<dont_has_info>cit_kulgband_sniper_spawn</dont_has_info>
+		<!--precondition>xr_conditions.actor_has_klondike_arts</precondition-->
 		<phrase_list>
 			<phrase id="0">
 				<text>dar_bridge_kulgband_man1_dialog7_phrase_1</text>

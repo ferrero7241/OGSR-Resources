@@ -520,6 +520,7 @@
 		<article>go_to_klondaik_task</article>
 		<icon>ui_iconsTotal_sar_monolith</icon>
 		<infoportion_complete>klondaik_find</infoportion_complete>
+		<infoportion_fail>kulg_band_meet_speech_loose</infoportion_fail>
 	</objective>
 	<objective>
 		<text>klondaik_ending_task_text_2</text>
@@ -527,12 +528,14 @@
 		<map_location_type hint="find_klondaik_key_task">crlc_small</map_location_type>
 		<object_story_id>filin_flash_hideout</object_story_id>
 		<infoportion_complete>klondaik_key_find</infoportion_complete>
+		<infoportion_fail>kulg_band_meet_speech_loose</infoportion_fail>
 	</objective>
 	<objective>
 		<text>klondaik_ending_task_text_3</text>
 		<map_location_type hint="find_klondaik_task">crlc_small</map_location_type>
 		<object_story_id>klondaik</object_story_id>
 		<infoportion_complete>klondaik_find</infoportion_complete>
+		<infoportion_fail>kulg_band_meet_speech_loose</infoportion_fail>
 	</objective>
 </game_task>
 

@@ -474,7 +474,7 @@ end
 
 
 function dar_samogon_snd()				s_play([[characters_voice\scenario\dar_samogon_snd]]) end
-
+function kulgband_klondike_fail_snd()				s_play([[characters_voice\scenario\cit_kulgband_task_fail]]) end
 
 
 

@@ -297,7 +297,9 @@
 	</string>
 	
 	
-	
+	<string id="ds_glavar_bag_opened">
+        	<text>%c[100,50,250,50]Кейс с артефактами открыт.%c[default]</text>
+	</string>
 	
 	
 	

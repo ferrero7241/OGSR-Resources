@@ -900,7 +900,7 @@
 		<article>kulgband_informer_task_article</article>
 		<icon>ui_iconsTotal_kill_stalker</icon>
 		<infoportion_fail>222</infoportion_fail>
-		<infoportion_complete>kulgband_goto_deadcity</infoportion_complete>
+		<infoportion_complete>kulgband_goto_deadcity2</infoportion_complete>
 	</objective>
 	<objective>
 		<text>kulgband_informer_task_desc1</text>
@@ -916,7 +916,7 @@
 		<text>kulgband_informer_task_desc3</text>
 		<map_location_type hint="kulgband_informer_task_mark3">green_location</map_location_type>
 		<object_story_id>kulgband_hutor_deadman</object_story_id>
-		<infoportion_complete>kulgband_goto_deadcity</infoportion_complete>
+		<infoportion_complete>kulgband_goto_deadcity2</infoportion_complete>
 	</objective>
 </game_task>
 

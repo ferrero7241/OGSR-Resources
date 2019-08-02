@@ -5461,6 +5461,12 @@ function kulgband_seif_reward2(first_speaker, second_speaker)
 	dialogs.relocate_item_section(second_speaker, "af_fireball", "in")
 end
 
+function kulgband_bridge_scout_pda_out(first_speaker, second_speaker)
+	dialogs.relocate_item_section(second_speaker, "kulgband_bridge_scout_pda", "out")
+	dialogs.relocate_money(second_speaker, 5000, "in")
+end
+
+
 function spawn_dar_deadband_company2()
 	db.actor:set_actor_position(vector():set(182.46, -1.28, 579.63))
 	level.add_pp_effector("deadcity_wake_old.ppe", 2007, false)
