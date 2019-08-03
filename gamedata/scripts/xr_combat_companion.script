@@ -547,6 +547,7 @@ end
 
 local high_recoil_rapid_weapon = {
 	["wpn_m_134"] = true,
+	["wpn_dshkm"] = true,
 }
 
 function IsHighRecoilRapidFire(object)

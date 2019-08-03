@@ -45,17 +45,10 @@ function start_timer_finish_btr()
 end
 
 function give_reward_btr()
-	--if db.actor:has_info("btr_targeting_computer") then --в будущем, прописать в награду альтернативный ствол и раскомментировать.
-		dialogs.relocate_item_section(db.actor, "ammo_5.56x45_ss190", "in")
-		dialogs.relocate_item_section(db.actor, "ammo_5.56x45_ss190", "in")
-		dialogs.relocate_item_section(db.actor, "ammo_5.56x45_ss190", "in")
-		dialogs.relocate_item_section(db.actor, "wpn_m_134", "in")
-	--[[else	
-		dialogs.relocate_item_section(db.actor, "ammo_7.62x51_fmj", "in")
-		dialogs.relocate_item_section(db.actor, "ammo_7.62x51_fmj", "in")
-		dialogs.relocate_item_section(db.actor, "ammo_7.62x51_fmj", "in")		
-		dialogs.relocate_item_section(db.actor, "wpn_mg3", "in")
-	end]]
+	dialogs.relocate_item_section(db.actor, "ammo_12.7x108", "in")
+	dialogs.relocate_item_section(db.actor, "ammo_12.7x108", "in")
+	dialogs.relocate_item_section(db.actor, "ammo_12.7x108", "in")
+	dialogs.relocate_item_section(db.actor, "wpn_dshkm", "in")
 
 	dialogs.relocate_item_section(db.actor, "quest_btr_keys", "out")
 	dialogs.relocate_item_section(db.actor, "af_transmut_2", "in")

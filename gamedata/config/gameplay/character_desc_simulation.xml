@@ -3636,8 +3636,8 @@
 		<visual>actors\stalker_neytral\stalker_light_exo_gazmask</visual>
 		<supplies>
 			[spawn] \n
-			wpn_m_134 \n
-			ammo_5.56x45_ss190 \n
+			wpn_dshkm \n
+			ammo_12.7x108 \n
 			wpn_pm \n
 			ammo_9x18_pmm \n
 #include "gameplay\character_items.xml" \n

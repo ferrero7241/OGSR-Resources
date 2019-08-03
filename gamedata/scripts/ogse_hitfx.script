@@ -51,6 +51,7 @@ local effect_for_wpn = {
 	["wpn_gauss"] = "hit_fx\\hit_gauss",
 	["wpn_pkm"] = "hit_fx\\hit_pblow",
 	["wpn_m_134"] = "hit_fx\\hit_pblow",
+	["wpn_dshkm"] = "hit_fx\\hit_pblow",
 	["wpn_rpg7"] = "hit_fx\\hit_expl",
 	["wpn_awm"] = "hit_fx\\hit_pblow",
 }
