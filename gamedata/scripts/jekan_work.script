@@ -5538,23 +5538,31 @@ function kulgband_informer_weapons_out()
 end
 
 function release_all_weapons_around_actor()
-	local sim = alife()
-	for i=1,65534 do
-	local sobj = sim:object(i)
-		if sobj and ( isWeapon(sobj) or isKnife(sobj) ) and sobj.position:distance_to(db.actor:position()) < 50 and sobj.position:distance_to(db.actor:position()) > 0.01 then
-		sim:release(sobj,true)
+	for i = 1, 65534 do
+		local obj = level.object_by_id(i)
+		if obj then
+			local sobj = alife():object(i)
+			if sobj and ( isWeapon(sobj) or isKnife(sobj) ) and obj:position():distance_to(db.actor:position()) < 50 then
+				if not obj:parent() or obj:parent():is_actor() then
+					alife():release(sobj)
+				end
+			end
 		end
 	end
 end
 
 function release_all_outfits_around_actor()
-local sim = alife()
-for i=1,65534 do
-local sobj = sim:object(i)
-	if sobj and isOutfit(sobj) and sobj.position:distance_to(db.actor:position()) < 50 and sobj.position:distance_to(db.actor:position()) > 0.01 	then
-		alife():release(sobj, true)
+	for i = 1, 65534 do
+		local obj = level.object_by_id(i)
+		if obj then
+			local sobj = alife():object(i)
+			if sobj and isOutfit(sobj) and obj:position():distance_to(db.actor:position()) < 50 then
+				if not obj:parent() or obj:parent():is_actor() then
+					alife():release(sobj)
+				end
+			end
+		end
 	end
-end
 end
 
 function spawn_cit_kulgband_car_body1()
