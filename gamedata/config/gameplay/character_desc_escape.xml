@@ -498,7 +498,7 @@
 		<visual>actors\unic\npc_wolf</visual>
 		<supplies>
 			[spawn] \n
-			wpn_sig550 \n
+			wpn_m16a1_sk1 \n
 			ammo_5.56x45_ss190 \n
 			wpn_wincheaster1300 \n
 			ammo_12x70_kart \n

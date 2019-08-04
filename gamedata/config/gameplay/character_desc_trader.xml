@@ -90,7 +90,7 @@
 	[spawn] \n
 	wpn_spas12 \n
 	ammo_12x70_kart \n
-	wpn_sig550 \n
+	wpn_m16a1_sk1 \n
 	ammo_5.56x45_ss190 \n
 	device_torch \n
 #include "gameplay\character_drugs.xml"

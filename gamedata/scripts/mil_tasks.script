@@ -50,10 +50,6 @@ function mil_test_task_rg6_have ()
     return db.actor:object ("mil_m202") ~= nil
 end
 
-function mil_test_task_lr300_have ()
-    return db.actor:object ("wpn_sig550") ~= nil
-end    
-
 function mil_task_rg6_have (task_id, subtask)
     local obj = db.actor:object ("mil_m202")
 	if obj ~= nil then

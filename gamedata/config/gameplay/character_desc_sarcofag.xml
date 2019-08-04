@@ -450,7 +450,7 @@
 	  	<crouch_type>0</crouch_type>
         <supplies>
 			[spawn] \n
-			wpn_sig550 \n
+			wpn_m16a1_sk1 \n
 			ammo_5.56x45_ss190 \n
 			wpn_beretta \n
 			ammo_9x19_pbp \n
@@ -482,7 +482,7 @@
 	  	<crouch_type>0</crouch_type>
         <supplies>
 			[spawn] \n
-			wpn_sig550 \n
+			wpn_m16a1_sk1 \n
 			ammo_5.56x45_ss190 \n
 			wpn_beretta \n
 			ammo_9x19_pbp \n

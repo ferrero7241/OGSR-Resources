@@ -126,7 +126,7 @@
 		<visual>actors\svoboda\stalker_sv_hood_91</visual>
 		<supplies>
 		[spawn] \n
-			wpn_sig550 \n
+			wpn_m16a1_sk1 \n
 			ammo_5.56x45_ss190 \n
 		</supplies>
 		<actor_dialog>dm_help_wounded_medkit_dialog</actor_dialog>
@@ -151,7 +151,7 @@
 		<visual>actors\svoboda\stalker_sv_rukzak_3_1</visual>
 		<supplies>
 		[spawn] \n
-			wpn_sig550 \n
+			wpn_m16a1_sk1 \n
 			ammo_5.56x45_ss190 \n
 		</supplies>
 		<actor_dialog>dm_help_wounded_medkit_dialog</actor_dialog>
@@ -1463,7 +1463,7 @@
 			[spawn] \n
 			wpn_spas12 \n
 			ammo_12x70_kart \n
-			wpn_sig550 \n
+			wpn_m16a1_sk1 \n
 			ammo_5.56x45_ss190 \n
 #include "gameplay\character_drugs.xml" \n
 #include "gameplay\character_items.xml" \n

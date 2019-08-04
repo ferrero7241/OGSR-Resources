@@ -715,8 +715,8 @@
 		<visual>actors\killer\stalker_ki_mask</visual>
 		<supplies>
 			[spawn] \n
-			wpn_sg550sr_sk1 \n
-			ammo_5.56x45_ap \n
+			wpn_awm \n
+			ammo_8.6x70_lm \n
 			ammo_9x19_pbp \n
 			wpn_mp5 \n
 #include "gameplay\character_items.xml" \n

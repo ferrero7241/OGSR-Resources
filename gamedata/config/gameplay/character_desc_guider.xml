@@ -146,8 +146,8 @@
                          [spawn] \n 
                          wpn_glock \n
 						 ammo_9x19_pbp \n
-						 wpn_sig550 \n
-						 ammo_5.45x39_fmj \n
+						 wpn_m16a1_sk1 \n
+						 ammo_5.56x45_ap \n
                 </supplies>
 	            <actor_dialog>dm_dialog_guider_script</actor_dialog>				 
 #include "gameplay\character_criticals_4.xml"

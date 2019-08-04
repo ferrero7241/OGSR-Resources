@@ -648,8 +648,10 @@ end
 
 function band_kill_iskateli_reward(first_speaker, second_speaker)
     dialogs.relocate_item_section(second_speaker, "bandit_plash_m1", "in")
-    dialogs.relocate_item_section(second_speaker, "wpn_sg550sr_sk1", "in")
+    dialogs.relocate_item_section(second_speaker, "wpn_m16a1_sk1", "in")
     dialogs.relocate_item_section(second_speaker, "ammo_5.56x45_ap", "in")
+    dialogs.relocate_item_section(second_speaker, "wpn_masterkey", "in")
+    dialogs.relocate_item_section(second_speaker, "ammo_12x70_kart", "in")
 end
 
 function bloha_arts_have()

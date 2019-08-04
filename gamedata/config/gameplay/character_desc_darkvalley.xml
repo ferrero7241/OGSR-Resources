@@ -78,7 +78,7 @@
 		<crouch_type>1</crouch_type>
 		<supplies>
 			[spawn] \n
-			wpn_sig550 \n
+			wpn_m16a1_sk1 \n
 			ammo_5.56x45_ss190 \n
 			wpn_toz34_short \n
 			ammo_12x70_kart \n
@@ -410,7 +410,7 @@
 		<crouch_type>1</crouch_type>
 		<supplies>
 			[spawn] \n
-			wpn_sig550 \n
+			wpn_m16a1_sk1 \n
 			ammo_5.56x45_ss190 \n
 			wpn_toz34_short \n
 			ammo_12x70_kart \n
@@ -441,7 +441,7 @@
 		<crouch_type>1</crouch_type>
 		<supplies>
 			[spawn] \n
-			wpn_sig550 \n
+			wpn_m16a1_sk1 \n
 			ammo_5.56x45_ss190 \n
 			wpn_toz34_short \n
 			ammo_12x70_kart \n

@@ -946,7 +946,7 @@
 
 		<supplies>
 			[spawn] \n
-			wpn_sig550 \n
+			wpn_m16a1_sk1 \n
 			ammo_5.56x45_ss190 \n
 			wpn_toz34_short \n
 			ammo_12x70_kart \n
@@ -1245,7 +1245,7 @@
 
 		<supplies>
 			[spawn] \n
-			wpn_sig550 \n
+			wpn_m16a1_sk1 \n
 			ammo_5.56x45_ss190 \n
 			wpn_toz34_short \n
 			ammo_12x70_kart \n
@@ -1670,7 +1670,7 @@
 			[spawn] \n
 			wpn_spas12 \n
 			ammo_12x70_kart \n
-			wpn_sig550 \n
+			wpn_m16a1_sk1 \n
 			ammo_5.56x45_ss190 \n
 			bar_lucky_pda \n
 #include "gameplay\character_items.xml" \n
@@ -2680,7 +2680,7 @@
 		<crouch_type>-1</crouch_type>
 		<supplies>
 			[spawn] \n
-			wpn_sig550 \n
+			wpn_m16a1_sk1 \n
 			ammo_5.56x45_ss190 \n
 			wpn_toz34_short \n
 			ammo_12x70_kart \n
@@ -2746,7 +2746,7 @@
 		<crouch_type>0</crouch_type>
 		<supplies>
 			[spawn] \n
-			wpn_sig550 \n
+			wpn_m16a1_sk1 \n
 			ammo_5.56x45_ss190 \n
 			wpn_toz34_short \n
 			ammo_12x70_kart \n
@@ -2812,7 +2812,7 @@
 		<crouch_type>0</crouch_type>
 		<supplies>
 			[spawn] \n
-			wpn_sig550 \n
+			wpn_m16a1_sk1 \n
 			ammo_5.56x45_ss190 \n
 			wpn_toz34_short \n
 			ammo_12x70_kart \n
@@ -3073,8 +3073,8 @@
 		<crouch_type>-1</crouch_type>
 		<supplies>
 			[spawn] \n
-			wpn_sg550sr_sk1 \n
-			ammo_5.56x45_ap \n
+			wpn_awm \n
+			ammo_8.6x70_lm \n
 			ammo_9x19_pbp \n
 			wpn_mp5 \n
 #include "gameplay\character_items.xml"\n
@@ -3106,8 +3106,8 @@
 		<crouch_type>-1</crouch_type>
 		<supplies>
 			[spawn] \n
-			wpn_sg550sr_sk1 \n
-			ammo_5.56x45_ap \n
+			wpn_awm \n
+			ammo_8.6x70_lm \n
 			ammo_9x19_pbp \n
 			wpn_mp5 \n
 #include "gameplay\character_items.xml"\n

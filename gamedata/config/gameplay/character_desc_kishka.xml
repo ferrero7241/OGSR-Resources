@@ -631,7 +631,7 @@
 		<visual>actors\banda1</visual>
 		<supplies>
 		[spawn] \n
-			wpn_sig550 \n
+			wpn_m16a1_sk1 \n
 			ammo_5.56x45_ss190 \n
 		</supplies>
 		<start_dialog>prof_start_dialog</start_dialog>
@@ -3609,7 +3609,7 @@
 			[spawn] \n
 			wpn_fort \n
 			ammo_9x18_fmj = 1 \n
-			wpn_sig550 \n
+			wpn_m16a1_sk1 \n
 			ammo_5.56x45_ss190 = 1 \n
 			device_torch \n
 #include "gameplay\character_drugs.xml"
@@ -3641,7 +3641,7 @@
 			[spawn] \n
 			wpn_fort \n
 			ammo_9x18_fmj \n
-			wpn_sig550 \n
+			wpn_m16a1_sk1 \n
 			ammo_5.56x45_ss190 \n
 			device_torch \n
 #include "gameplay\character_drugs.xml"
@@ -3672,7 +3672,7 @@
 			[spawn] \n
 			wpn_fort \n
 			ammo_9x18_fmj = 1 \n
-			wpn_sig550 \n
+			wpn_m16a1_sk1 \n
 			ammo_5.56x45_ss190 \n
 			device_torch \n
 #include "gameplay\character_drugs.xml"
@@ -3704,7 +3704,7 @@
 			[spawn] \n
 			wpn_fort \n
 			ammo_9x18_fmj = 1 \n
-			wpn_sig550 \n
+			wpn_m16a1_sk1 \n
 			ammo_5.56x45_ss190 = 1 \n
 			device_torch \n
 #include "gameplay\character_drugs.xml"
@@ -3828,7 +3828,7 @@
 			[spawn] \n
 			wpn_fort \n
 			ammo_9x18_fmj \n
-			wpn_sig550 \n
+			wpn_m16a1_sk1 \n
 			ammo_5.56x45_ss190 \n
 			device_torch \n
 #include "gameplay\character_drugs.xml"
@@ -4032,7 +4032,7 @@
 			[spawn] \n
 			wpn_fort \n
 			ammo_9x18_fmj = 1 \n
-			wpn_sig550 \n
+			wpn_m16a1_sk1 \n
 			ammo_5.56x45_ss190 = 1 \n
 
 			device_torch \n

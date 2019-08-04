@@ -104,7 +104,6 @@ local bad_items = {
 	["wpn_eagle_m1"] = true,
 	["wpn_fort_m1"] = true,
 	["wpn_colt_m1"] = true,
-	["wpn_sig_m1"] = true,
 	["zapiska"] = true,
 	["zapiska_m1"] = true,
 	["zapiska_m2"] = true,
