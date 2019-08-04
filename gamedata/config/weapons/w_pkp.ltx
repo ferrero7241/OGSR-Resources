@@ -30,7 +30,7 @@ holder_range_modifier	= 1.0
 holder_fov_modifier		= 1.0
 ;-----------------------------------------------------------------------------------
 
-cost					= 10400				; the price of the item
+cost					= 18000				; the price of the item
 weapon_class			= assault_rifle		; the type of the box that will be used in buy-menu in multiplayer mode	
 	
 ammo_elapsed			= 100				; obsolete
@@ -169,7 +169,7 @@ script_binding  = ogse_bind_weapon.init
 ;скрытые (управляемые) кости: 
 managed_bones = eotech
 ;прицелы на штатную планку
-wpn_addon_scope_1p29    	= wpn_pkp_1p29
+;wpn_addon_scope_1p29    	= wpn_pkp_1p29
 
 zoom_enabled			= true		; (on,off)zoom mode (right mouse button)
 
@@ -271,6 +271,26 @@ rotate_time			= 0.3
 tech_complication 		= 800
 repair_compatibility 	= pkm
 
+
+;========================================================================================
+;KRodin: стандартный ПКМ тоже на ПКП заменим, у старого уж больно страшная модель и руки.
+[wpn_pkm]:wpn_pkm_digger
+cost           = 14000
+
+description    = enc_weapons1_wpn-pkm
+inv_name       = wpn-pkm_name
+inv_name_short = wpn-pkm_name
+
+inv_grid_width  = 6	 ; position and size of the icon that will be used to display weapon in the inventory menu
+inv_grid_height = 2	 ; all icons are on the texture ui_icon_equipment.dds,   
+inv_grid_x      = 0	 ; position and size are in terms of 64x64 squares
+inv_grid_y      = 39
+
+ammo_mag_size  = 100
+rpm            = 650
+
+keep_visual = true ;Костыль чтоб старые сейвы работали
+;========================================================================================
 
 
 ;-----------------------------------------------------------------------------------
