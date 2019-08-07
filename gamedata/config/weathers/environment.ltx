@@ -2,23 +2,18 @@
 #include "flares.ltx"
 #include "thunderbolt.ltx"
 
-#include "weather_test.ltx"
 #include "weather_map.ltx"
-#include "weather_surge.ltx"
 #include "weather_indoor.ltx"
 #include "weather_foggy.ltx"
 #include "weather_foggy_rain.ltx"
-#include "weather_ogsm.ltx"
 #include "weather_dynamic.ltx"
 
 #include "fx_surge_day.ltx"
 #include "fx_surge_night.ltx"
-#include "weather_rain.ltx"
 #include "weather_script.ltx"
 
 [weathers]
 map		= sect_map
-;test		= sect_test
 default		= ogse_script_weather ; sect_clear_weather
 indoor          = sect_indoor
 indoor_x18      = sect_indoor
@@ -34,8 +29,6 @@ sarkofag        = sect_indoor
 ;stancia2_x      = sect_clear_weather
 ;yantar          = sect_clear_weather
 ;yantar_indoor   = sect_indoor
-;ogsm            = sect_ogsm
-;rain_test       = rain_test_kd
 ogse_script_weather = ogse_script_weather
 flares_init     = flares_init
 
@@ -48,9 +41,6 @@ flares_init     = flares_init
 
 
 [weather_effects]
-;surge_day	= sect_surge_day
-;p_surge_day    	= sect_p_surge_day
-
 surge_day_ogse	= sect_ogse_surge_day
 surge_night_ogse	= sect_ogse_surge_night
 
