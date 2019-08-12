@@ -694,7 +694,11 @@ function start_game_callback()
 
 	m_netpk.attach()
 
-	dialog_manager.fill_phrase_table()	
+	dialog_manager.fill_phrase_table()
+	--
+	stdfs.recursive_directory_iterator( getFS():update_path( "$game_config$",  "" ), function( file ) log3("~~[%s]", file.full_filename) end )
+	stdfs.recursive_directory_iterator( getFS():update_path( "$game_scripts$", "" ), function( file ) log3("~~[%s]", file.full_filename) end )
+	stdfs.recursive_directory_iterator( getFS():update_path( "$game_shaders$", "" ), function( file ) log3("~~[%s]", file.full_filename) end )
 end
 
 
