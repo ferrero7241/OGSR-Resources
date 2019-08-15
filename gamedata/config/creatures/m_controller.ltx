@@ -40,6 +40,17 @@ weapon_usage		 = 0						; boolean
 Spawn_Inventory_Item_Section = mutant_hand_kontroler
 Spawn_Inventory_Item_Probability = 0.8
 
+;------------------------------------------------------------------------
+; Influences
+;------------------------------------------------------------------------
+psy_linear_factor		=	1.0 ;1.5
+psy_quadratic_factor	=	0
+psy_max_distance		=	25 ;33.0
+psy_max_power			=	6.4
+psy_sound				=	monsters\controller\controller_presence_l_2 ;anomaly\psy_voices_1_l
+psy_pp_effector_name	= 	postprocess_psi_aura ;psy_antenna
+psy_pp_highest_at		= 	0.05
+
 ;---------------------------------------------------------------------
 ; Physics
 ;---------------------------------------------------------------------
@@ -253,26 +264,6 @@ control_effector			= controller_control_effector
 
 Friend_Community_Overrides	= monolith
 
-;------------------------------------------------------------------------- 
-; Psy Aura
-;-------------------------------------------------------------------------
-PsyAura_HeadSound			= monsters\controller\controller_control1
-PsyAura_SoundLeftPath		= monsters\controller\controller_presence_l_2
-PsyAura_SoundRightPath		= monsters\controller\controller_presence_r_2
-PsyAura_Radius				= 25
-PsyAura_Damage				= 0.06
-
-aura_effector				= controller_aura_pp_effector_section
-aura_effector_hit			= controller_aura_pp_hit_effector_section
-
-PsyAura_Fake_Duration		= 3000
-PsyAura_Fake_Delay			= 8000
-PsyAura_Fake_MaxAddDist		= 40
-PsyAura_Fake_MinAddDist		= 20
-PsyAura_HitDelay			= 1500
-PsyAura_PPHitDelay			= 300
-;------------------------------------------------------------------------- 
-
 Control_Hit					= weapons\generic_weapon_controler
 
 ;species of monster
@@ -357,35 +348,6 @@ ce_time				= 0.45 ;time
 ce_amplitude		= -15.0 
 ce_period_number	= 1.5 ;2.0 
 ce_power			= 1.5 ;0.7 ; power 
-
-;=========================================================================================
-; Aura PP Effector
-;=========================================================================================
-[controller_aura_pp_effector_section]
-;duality_h		= 0.001
-;duality_v		= 0.001
-;blur			= 10
-;gray			= 0.5
-;noise_intensity = 1.0 ;0.5
-;noise_grain		= 1
-;noise_fps		= 5
-;color_base		= 0.999,0.433,0.0999
-;color_gray		= 0.333,0.3330,0.3330
-;color_add		= 0.999,0.433,0.0999 ;0.00,0.01,0.00
-
-duality_h		= 0.00
-duality_v		= 0.00
-blur			= 10
-gray			= 0.0
-noise_intensity = 10.0
-noise_grain		= 1
-noise_fps		= 25
-;color_base		= 0.5,0.5,0.5;0.2,0.2,0.2
-;color_gray		= 0.33,0.33,0.33
-;color_add		= 0.30,0.30,0.30
-color_base		= 0.9,0.9,1.0
-color_gray		= 0.33,0.330,0.33
-color_add		= 0.00,0.00,0.015
 
 ;===========================================================================
 ; Attack Animation Parameters
@@ -538,9 +500,7 @@ eye_range			= 100
 tube_damage			= 0.4
 sound_die			= characters_voice\scenario\dic_the_drifter\idle_1
 
-PsyAura_Radius				= 40
-PsyAura_Fake_MaxAddDist		= 50
-PsyAura_Fake_MinAddDist		= 20
+psy_max_distance	= 40
 
 bones_particles 	= brodyaga_dik_particles
 immunities_sect	= brodyaga_dik_immunities
