@@ -1,14 +1,7 @@
 ### Что это? ###
-Это адаптация OGSE 2.10R под [новый движок](https://github.com/OGSR/OGSR-Engine) с исправлением ошибок, оптимизацией скриптов, и многими другими изменениями.
+Это адаптация OGSE 2.10R под [новый движок](https://github.com/OGSR/OGSR-Engine) с исправлением ошибок, оптимизацией скриптов, новым оружием, квестами и многими другими изменениями.
 
 ### Как запустить? ###
-* Установить OGSE 2.10R, удалить папки bin и gamedata
-* Распаковать [основную часть](https://yadi.sk/d/BRL_BNZWQOMscw) в папку с игрой
-* Распаковать [текущий фикс](https://yadi.sk/d/JxHR_vr5Ha7YqA) (регулярно обновляется!) в папку с игрой.
-* Играть.
-
-### О вылетах и проблемах можно сообщать [сюда](https://github.com/OGSR/OGSR-Resources/issues). ###
-
-### [Список изменений](https://yadi.sk/i/Krfakw5AYfiLOQ) ###
-
-### Изначально я вообще делал проект лично для себя. Если вы запустили и какие-то изменения вам не понравились - это ваши проблемы. ###
+* Установить библиотеки, если не установлены: https://drive.google.com/drive/folders/1GUlUGHLtxdSrKZZaO6-BRpd1MXylaZyj
+* Скачать, распаковать мод ( https://yadi.sk/d/CrdxeowjRFsK7Q или https://drive.google.com/drive/folders/1I4c7B-bzwJV_XLWQctcuFe9y70HVP-Ts )
+* Запуск мода через `OGSE_Configurator.exe`.
