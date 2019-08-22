@@ -1547,7 +1547,7 @@ end
 
 
 function is_developer_mode()
-	return string.find( command_line(), "-dbg" )
+	return string.find( command_line(), "-dev" )
 end
 
 function on_spawn()
