@@ -52,7 +52,7 @@ ogse.spawn_item_in_inv("wpn_addon_mag_mk6")
 
 --level.set_blender_mode_main(1) --Включить ночной режим для пнв в прицелах
 
---Аддоны в торговлю
+--[=[ --Аддоны в торговлю
 
 local t = {}
 
@@ -87,3 +87,5 @@ for s in pairs(t) do
 	res_str = res_str..s.." = 1, 1\n"
 end
 log1(res_str)
+
+--]=]

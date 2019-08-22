@@ -11,7 +11,6 @@ addons = {
 	"ogse_hideouts", --Должен быть перед менеджером аномалий!
 	"ogse_anomaly",
 	"ogse",
-	"ogse_dbg_teleport",
 	"ogse_rebind_key",
 	"ogse_detectors",
 	"ogse_addons",
@@ -105,4 +104,8 @@ if rx_gl then
 end
 if rx_wmgr then
 	table.insert( addons, "rx_wmgr" )
+end
+
+if ogse_dbg_teleport then
+	table.insert( addons, "ogse_dbg_teleport" )
 end
