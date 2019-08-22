@@ -1,6 +1,6 @@
 -- -*- mode: lua; coding: windows-1251-dos -*-
 
---TODO: Удалить все вызовы этого скрипта из диалогов!!!
+--TODO: Удалить все вызовы этого скрипта из диалогов, has_30000 и relocate_30000 используются в диалоге bar_informator_enter_bandit, перенести куда-нибудь.
 
 --------------------------------------------------------------------------------------------------------
 function has_1000(actor, npc)
@@ -16,7 +16,7 @@ function has_20000(actor, npc)
 end
 
 function has_30000(actor, npc)
-	return false
+	return actor:money() >= 30000
 end
 
 function has_40000(actor, npc)
@@ -47,6 +47,7 @@ function relocate_20000(trader, actor)
 end
 
 function relocate_30000(trader, actor)
+	dialogs.relocate_money(actor, 30000, "out")
 end
 
 function relocate_40000(trader, actor)
