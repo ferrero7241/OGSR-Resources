@@ -5,7 +5,7 @@
 		<article>talk_with_hunter</article>
 		<icon>ui_iconsLesnik_Zaharich</icon>
 		<infoportion_complete>hunter_about_boltun</infoportion_complete>
-		<infoportion_fail>ds_hunter_dead</infoportion_fail>
+		<infoportion_fail>kulg_band_meet_speech_loose</infoportion_fail>
 	</objective>
 	<objective>
 		<text>talk_with_hunter_text_task</text>
