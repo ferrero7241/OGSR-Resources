@@ -1,10 +1,15 @@
 ; Квестовые предметы
-[flash_unif]:identity_immunities
+
+[base_quest_item]:identity_immunities
+ph_heavy         = true  ;Чтоб гиганты/полтеры не раскидывали предметы.
+use_ai_locations = false ;Чтоб предметы не проваливались под землю.
+
+
+[flash_unif]:base_quest_item
 GroupControlSection	= spawn_group
 discovery_dependency = 
 visual				= equipments\item_minipda.ogf
 ;$prefetch 			= 32
-;script_binding		= stalker.object_init
 quest_item			= true ;квестовые предметы (true) нельзя выложить/выкинуть
 class				= II_ATTCH
 cform				= skeleton
@@ -16,7 +21,7 @@ inv_grid_x			= 11
 inv_grid_y			= 23
 cost				= 0
 
-[pda_unif]:identity_immunities
+[pda_unif]:base_quest_item
 GroupControlSection	= spawn_group
 discovery_dependency = 
 ;$prefetch 			= 32
@@ -24,7 +29,6 @@ class				= II_ATTCH
 cform				= skeleton
 visual				= equipments\item_pda.ogf
 radius				= 1
-;script_binding		= stalker.object_init
 quest_item			= true
 inv_weight			= 0.2
 inv_grid_width		= 2
@@ -33,7 +37,7 @@ inv_grid_x			= 6
 inv_grid_y			= 13
 cost				= 0
 
-[case_unif]:identity_immunities
+[case_unif]:base_quest_item
 GroupControlSection	= spawn_group
 discovery_dependency = 
 ;$prefetch 			= 32
@@ -41,7 +45,6 @@ class				= II_ATTCH
 cform				= skeleton
 visual				= equipments\item_merger.ogf
 radius				= 1
-;script_binding		= stalker.object_init
 quest_item			= true
 inv_weight			= 2.5
 inv_grid_width		= 2
@@ -50,7 +53,7 @@ inv_grid_x			= 8
 inv_grid_y			= 18
 cost				= 0
 
-[doc_unif]:identity_immunities
+[doc_unif]:base_quest_item
 GroupControlSection	= spawn_group
 discovery_dependency = 
 ;$prefetch 			= 32
@@ -58,7 +61,6 @@ class				= II_ATTCH
 cform				= skeleton
 visual				= equipments\item_document_2.ogf
 radius				= 1
-;script_binding		= stalker.object_init
 quest_item			= true
 inv_weight			= 0.1
 inv_grid_width		= 2
@@ -3280,14 +3282,3 @@ inv_grid_height		= 2
 inv_grid_x			= 58
 inv_grid_y			= 31
 cost				= 1000
-
-
-
-
-
-
-
-
-
-
-
