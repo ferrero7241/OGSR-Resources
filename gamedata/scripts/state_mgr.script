@@ -563,17 +563,10 @@ end
 
 function state_manager:update()
 	--log1("Update called")
-	self.animstate:update()
-	self.animation:update()
-	local last_pl_id = nil
-	--
-	local res, err = pcall(function() self.planner:update() end)
-	if not res then
-		log3("!![%s] fatal error in state manager of [%s] : %s", script_name(), self.npc:name(), err)
-		amkii_equip.refit_npc( self.npc, self.npc:id() )
-		return
-	end
-	--
+	self.animstate:update()	
+	self.animation:update()	
+	local last_pl_id = nil	
+	self.planner:update()
 	if not self.planner:initialized() then return end
 
 	local pl_id = self.planner:current_action_id()
