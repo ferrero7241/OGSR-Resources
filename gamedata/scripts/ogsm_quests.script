@@ -140,8 +140,8 @@ end
 function zombie_hand_research(first_speaker, second_speaker)
 db.actor:give_info_portion("zombie_hand_research")
 dialogs.relocate_item_section(first_speaker, "wpn_svu_m1", "in")
-dialogs.relocate_item_section(first_speaker, "ammo_7.62x54_7h14", "in")
-dialogs.relocate_item_section(first_speaker, "ammo_7.62x54_7h14", "in")
+dialogs.relocate_item_section(first_speaker, "ammo_8.6x70_lm", "in")
+dialogs.relocate_item_section(first_speaker, "ammo_8.6x70_lm", "in")
 end
 
 -- Проверка, пьян ли актор
