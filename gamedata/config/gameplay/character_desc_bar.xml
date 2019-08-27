@@ -1345,7 +1345,7 @@
 
 		<supplies>
 			[spawn] \n
-            wpn_ak74n \n
+            wpn_ak74n_ak74n30_ironsight \n
             ammo_5.45x39_ap \n
 			wpn_pm \n
 			ammo_9x18_pmm \n
@@ -1393,7 +1393,7 @@
 
 		<supplies>
 			[spawn] \n
-            wpn_ak74n \n
+            wpn_ak74n_ak74n30_ironsight \n
             ammo_5.45x39_ap \n
 			wpn_pm \n
 			ammo_9x18_pmm \n
@@ -1473,7 +1473,7 @@
 
 		<supplies>
 			[spawn] \n
-            wpn_ak74n \n
+            wpn_ak74n_ak74n30_ironsight \n
             ammo_5.45x39_ap \n
 			wpn_pm \n
 			ammo_9x18_pmm \n
@@ -1799,7 +1799,7 @@
 
 		<supplies>
 			[spawn] \n
-            wpn_ak74n \n
+            wpn_ak74n_ak74n30_ironsight \n
             ammo_5.45x39_fmj \n
 			wpn_pm \n
 			ammo_9x18_pmm \n
@@ -1996,7 +1996,7 @@
 		<crouch_type>0</crouch_type>
 		<supplies>
 			[spawn] \n
-            wpn_ak74n \n
+            wpn_ak74n_ak74n30_ironsight \n
             ammo_5.45x39_fmj \n
 			wpn_pm \n
 			ammo_9x18_pmm \n
@@ -2096,7 +2096,7 @@
 		<crouch_type>0</crouch_type>
 		<supplies>
 			[spawn] \n
-            wpn_ak74n \n
+            wpn_ak74n_ak74n30_ironsight \n
             ammo_5.45x39_fmj \n
 			wpn_pm \n
 			ammo_9x18_pmm \n

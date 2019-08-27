@@ -535,7 +535,7 @@
 			[spawn] \n
 			wpn_akm_akm30_ironsight \n
 			ammo_7.62x39_fmj \n
-			wpn_vepr12tor \n
+			wpn_vepr12stok_vepr8_ironsight \n
 			ammo_12x70_kart \n
 #include "gameplay\character_items.xml"\n
 #include "gameplay\character_food.xml" \n
@@ -567,7 +567,7 @@
 			[spawn] \n
             wpn_akm_akm30_ironsight \n
 			ammo_7.62x39_fmj \n
-            wpn_vepr12tor \n
+            wpn_vepr12stok_vepr8_ironsight \n
 			ammo_12x70_kart \n
 #include "gameplay\character_items.xml"\n
 #include "gameplay\character_food.xml" \n
@@ -600,7 +600,7 @@
 			[spawn] \n
             wpn_akm_akm30_ironsight \n
 			ammo_7.62x39_fmj \n
-            wpn_vepr12tor \n
+            wpn_vepr12stok_vepr8_ironsight \n
 			ammo_12x70_kart \n
 #include "gameplay\character_items.xml"\n
 #include "gameplay\character_food.xml" \n
@@ -662,7 +662,7 @@
 			[spawn] \n
 			wpn_akm_akm30_ironsight = 1, scope \n
 			ammo_7.62x39_fmj \n
-			wpn_vepr12tor \n
+			wpn_vepr12stok_vepr8_ironsight \n
 			ammo_12x70_kart \n
 #include "gameplay\character_items.xml"\n
 #include "gameplay\character_food.xml" \n

@@ -52,7 +52,7 @@
 		<visual>actors\dolg\stalker_do_balon_8</visual>
 		<supplies>
 			[spawn] \n
-            			wpn_ak74n \n
+            			wpn_ak74n_ak74n30_ironsight \n
             			ammo_5.45x39_ap \n
 #include "gameplay\character_food.xml"
 		</supplies>
