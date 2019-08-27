@@ -477,7 +477,6 @@ function repair_dialog:rep_btn()
 		self:GetHolder():start_stop_menu(self.message_box, true)
 		return
 	else
-	log1(tostring(rep_slot))
 		if use_repair_kit(rep_slot,destr_item) then --если ремонт прошел удачно
 			successful_repair = true
 			self.msgbox_id = 1
@@ -494,9 +493,20 @@ end
 
 function repair_dialog:OnKeyboard(dik, keyboard_action)
 	CUIScriptWnd.OnKeyboard(self,dik,keyboard_action)
+	--log3("--Called OnKeyboard. key: [%s], action: [%s]", dik, keyboard_action)
 	if keyboard_action == ui_events.WINDOW_KEY_PRESSED then
 		if dik == DIK_keys.DIK_ESCAPE then --на выход повесим Esc
 			self:on_quit()
+		end
+	elseif keyboard_action == ui_events.WINDOW_KEY_RELEASED then
+		if dik == DIK_keys.DIK_ESCAPE then
+			if self.msgbox_id == 1 then 
+				if need_close == 1 then
+					need_close = 0
+					self:on_quit()
+					--log1("--Repair menu closed by esc!")
+				end
+			end
 		end
 	end
 	return true
