@@ -1239,7 +1239,7 @@
 		<has_info>infa_about_boltun</has_info>
 		<dont_has_info>hunter_about_boltun</dont_has_info>
 		<dont_has_info>kulg_band_meet_speech_loose</dont_has_info>
-		<dont_has_info>freezer_bandos_kulg_band_info</dont_has_info>
+		<!--dont_has_info>freezer_bandos_kulg_band_info</dont_has_info-->
 		<phrase_list>
 			<phrase id="0">
 				<text>hunter_about_boltun_dialog_phrase_1</text>
@@ -4419,7 +4419,7 @@
 				<text>ds_glavar_dialog3_phrase_30</text>
 				<give_info>kulgband_kill_looser_task</give_info>
 				<action>dialogs.break_dialog</action>
-
+				<action>jekan_work.spawn_kulgband_looser</action>
 			</phrase>
 			<phrase id="30">
 				<text>ds_glavar_dialog3_phrase_31</text>

@@ -5077,6 +5077,12 @@ function ds_glavar_flash_reward2(first_speaker, second_speaker)
 end
 
 
+function spawn_kulgband_looser()
+	local sim = alife()
+	local sobj = sim:create("kulgband_looser", vector():set (-598.38,-1.70,-403.79), 1375, 3241)
+	sim:assign_story_id(sobj.id, story_ids.kulgband_looser)
+end
+
 function spawn_kulgband_car1()
 	local sim = alife()
 	local sobj = sim:create("kulgband_looser", vector():set (-598.38,-1.70,-403.79), 1375, 3241)
