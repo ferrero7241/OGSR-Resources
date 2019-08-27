@@ -81,7 +81,7 @@
 <objective>
 <text>barman_document_text3_task</text>
 <map_location_type hint="barman_document_text4_task">blue_location</map_location_type>
-<object_story_id>bar_dolg_guard_commander</object_story_id>
+<object_story_id>val_borov</object_story_id>
 <infoportion_complete>barman_document_done</infoportion_complete> 
 </objective>
 </game_task>
