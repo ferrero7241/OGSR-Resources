@@ -2024,7 +2024,7 @@
 	</objective>
 </game_task>
 
-<game_task id="question_of_immortality_fisrt_part">
+<game_task id="question_of_immortality_fisrt_part" show_all_objectives="1">
 	<title>question_of_immortality_fisrt_part_title</title>
 	<objective>
 		<icon>ui_iconsTotal_artefact</icon>
