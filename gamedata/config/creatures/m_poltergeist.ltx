@@ -335,17 +335,11 @@ explosion_immunity 	= 1.0
 fire_wound_immunity = 1.0
 
 
-[m_poltergeist_normal]:m_poltergeist_e
-$spawn               = "monsters\old\poltergeist_normal"
-spec_rank			= normal
-rank				= 401
-community			= poltergeist
-
 ;===========================================================================
 ; TELE
 ;===========================================================================
 
-[m_poltergeist_normal_tele]:m_poltergeist_normal
+[m_poltergeist_normal_tele]:m_poltergeist_e
 $spawn               = "monsters\poltergeists\poltergeist_normal_tele"
 
 type							= telekinetic
@@ -390,16 +384,17 @@ Invisible_Energy_Decline_Velocity = 0.025
 
 [m_poltergeist_tele_outdoor]:m_poltergeist_normal_tele
 $spawn               = "monsters\poltergeists\poltergeist_tele_outdoor"
-
 Tele_Find_Radius				= 20
 
+
+[m_poltergeist_normal]:m_poltergeist_tele_outdoor
 
 
 ;===========================================================================
 ; FLAMER
 ;===========================================================================
 
-[m_poltergeist_normal_flame]:m_poltergeist_normal
+[m_poltergeist_normal_flame]:m_poltergeist_e
 $spawn               = "monsters\poltergeists\poltergeist_normal_flame"
 
 type					= flamer
