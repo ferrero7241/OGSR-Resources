@@ -3262,7 +3262,7 @@
 	</dialog>
 	<dialog id="find_mikluha_dialog">
 		<dont_has_info>spawn_rad_zomb_company</dont_has_info>
-		<dont_has_info>freezer_bandos_kill_newbie_task</dont_has_info>
+		<!--dont_has_info>freezer_bandos_kill_newbie_task</dont_has_info-->
 		<has_info>agr_knockdown</has_info>
 		<has_info>first_planshet_info</has_info>
 		<phrase_list>
@@ -3296,7 +3296,8 @@
 	<dialog id="find_filin_dialog">
 		<dont_has_info>fleshka_5_find</dont_has_info>
 		<dont_has_info>talked_with_lukash_about_flash</dont_has_info>
-		<dont_has_info>freezer_bandos_kill_newbie_task</dont_has_info>
+		<!--dont_has_info>freezer_bandos_kill_newbie_task</dont_has_info-->
+		<dont_has_info>kulg_band_meet_speech_loose</dont_has_info>
 		<has_info>lukash_mikluha_reward</has_info>
 		<has_info>agr_knockdown</has_info>
 		<has_info>first_planshet_info</has_info>
