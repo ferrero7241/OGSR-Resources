@@ -5096,19 +5096,27 @@
 			</phrase>
 			<phrase id="9">
 				<text>ds_glavar_dialog5_1_phrase_10</text>
-				<next>10</next>
+				<next>10_1</next>
 			</phrase>
 			<phrase id="10">
 				<text>ds_glavar_dialog5_1_phrase_11</text>
 				<next>11</next>
 			</phrase>
+			<phrase id="10_1">
+				<text>ds_glavar_dialog5_1_phrase_11_1</text>
+				<next>15</next>
+			</phrase>
 			<phrase id="11">
 				<text>ds_glavar_dialog5_1_phrase_12</text>
-				<next>15</next>
+				<next>12</next>
 			</phrase>
 			<phrase id="12">
 				<text>ds_glavar_dialog5_1_phrase_13</text>
 				<give_info>kulgband_trader_task_end</give_info>
+			</phrase>
+			<phrase id="12_1">
+				<text>ds_glavar_dialog5_1_phrase_13</text>
+				<next>15</next>
 			</phrase>
 			<phrase id="13">
 				<text>ds_glavar_dialog5_1_phrase_14</text>
