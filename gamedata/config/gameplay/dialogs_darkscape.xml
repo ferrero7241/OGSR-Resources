@@ -5084,12 +5084,13 @@
 				<next>8</next>
 			</phrase>
 			<phrase id="7">
+				<precondition>jekan_work.has_more_then45000</precondition>
 				<text>ds_glavar_dialog5_1_phrase_8</text>
-				<action>jekan_work.actor30000out</action>
+				<action>jekan_work.actor45000out</action>
 				<next>13</next>
 			</phrase>
 			<phrase id="8">
-				<precondition>xr_conditions.has_less_then30000</precondition>
+				<precondition>jekan_work.has_less_then45000</precondition>
 				<text>ds_glavar_dialog5_1_phrase_9</text>
 				<next>9</next>
 			</phrase>
@@ -5111,7 +5112,7 @@
 			</phrase>
 			<phrase id="13">
 				<text>ds_glavar_dialog5_1_phrase_14</text>
-				<next>10</next>
+				<next>14</next>
 			</phrase>
 			<phrase id="14">
 				<text>ds_glavar_dialog5_1_phrase_15</text>

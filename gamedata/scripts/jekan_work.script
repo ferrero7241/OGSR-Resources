@@ -5196,7 +5196,7 @@ function actor100000money_out(first_speaker, second_speaker)
 end
 
 function actor35000money_in(first_speaker, second_speaker)
-    dialogs.relocate_money(second_speaker, 35000, "out")
+    dialogs.relocate_money(second_speaker, 35000, "in")
 end
 
 
@@ -5220,12 +5220,16 @@ function kulgband_trader_car_reward2(first_speaker, second_speaker)
 	ogse.remove_item_from_inventory(db.actor:object("kulg_band_trader_car_key"), db.actor)
 end
 
-function actor30000out(first_speaker, second_speaker)
-    dialogs.relocate_money(second_speaker, 30000, "out")
+function actor45000out(first_speaker, second_speaker)
+    dialogs.relocate_money(second_speaker, 45000, "out")
 end
 
-function has_less_then30000(actor, npc)
-    return actor:money() < 300000
+function has_less_then45000(actor, npc)
+    return actor:money() < 450000
+end
+
+function has_more_then45000(actor, npc)
+    return actor:money() > 450000
 end
 
 function active_suit_delete()
