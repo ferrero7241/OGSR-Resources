@@ -1891,19 +1891,6 @@ if ( xr_conditions.actor_in_zone(nil,nil,{"dar_samogon_trance_zone1"}) or
 end
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+function is_it_fanat(actor, npc)
+	return npc:profile_name() == "esc_fanat"
+end
