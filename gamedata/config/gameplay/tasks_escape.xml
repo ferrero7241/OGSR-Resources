@@ -586,7 +586,7 @@
 	</objective>
 </game_task>
 
-<game_task id="secret_villager_task">
+<game_task id="secret_villager_task" show_all_objectives="1">
 	<title>secret_villager_task_text_task</title>
 	<!-- заголовок квеста -->
 	<objective>
