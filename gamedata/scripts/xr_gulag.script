@@ -445,7 +445,7 @@ function gulag:removeObject( obj_id )
 	self.Object[obj_id] = nil
 	self:clear_restrictors_info( obj_id )
 	self.population = self.population - 1
-	if not self.npc_info[obj_id].exclusive then
+	if not ( self.npc_info[ obj_id ] and self.npc_info[ obj_id ].exclusive ) then
 		self.population_non_exclusive = self.population_non_exclusive - 1
 	end
 end
@@ -1090,15 +1090,16 @@ function gulag:free_obj( obj_id )
 		--
 
 		self.ObjectJobPathName[obj_id] = nil
-		
-		local npc = self.npc_info[obj_id].se_obj
 
-		if npc then
-			self:setup_job_online( npc, nil )
-		end
+		if self.npc_info[ obj_id ] then
+			local sobj = self.npc_info[obj_id].se_obj
+			if sobj then
+				self:setup_job_online( sobj, nil )
 
-		if npc and self:get_stype( obj_id ) == modules.stype_mobile then
-			npc:smart_terrain_task_deactivate()
+				if self:get_stype( obj_id ) == modules.stype_mobile then
+					sobj:smart_terrain_task_deactivate()
+				end
+			end
 		end
 
 		if self.Object[obj_id] ~= true
