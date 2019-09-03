@@ -1279,9 +1279,9 @@ local function spawn_single_object_internal(res, spawn_item)
 		-- на самом деле в этой проверке нет смысла. Ситуации, когда объект создать не удалось, а выполнение продолжилось,
 		-- просто не бывает. В этих случаях всегда идёт вылет. Но пусть будет
 		ASSERT(sobj, "[spawn_single_object_internal] cannot create object, sec = '%s'", spawn_item.sec)
-		if spawn_item.use_ai_location == false or spawn_item.use_ai_location == "false" then
+		if spawn_item.use_ai_locations == false then
 			alife():use_ai_locations(sobj, false)
-		elseif spawn_item.use_ai_location == true or spawn_item.use_ai_location == "true" then
+		elseif spawn_item.use_ai_locations == true then
 			alife():use_ai_locations(sobj, true)
 		end
 		if spawn_item.sid then
