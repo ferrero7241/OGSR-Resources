@@ -306,6 +306,8 @@ function evaluator_reload_gl:__init(npc,name,storage) super (nil,name)
 end
 function evaluator_reload_gl:evaluate()
 	local npc = self.object
+	if not alife():object(npc:id()) then return end
+
 	if self.st.charged then
 		return false
 	end
