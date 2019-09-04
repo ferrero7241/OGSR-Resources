@@ -1215,7 +1215,7 @@ script_spawn_registry = {
 	spawn_plastinki = {
 		plastinka_1 = {sec = "plastinka_1", pos = {141.40, 3.35, 336.23}, lvid = 443919, gvid = 230, use_ai_locations = false},	-- Дом Лиса
 		plastinka_2 = {sec = "plastinka_2", pos = {39.31, 4.90, -82.11}, lvid = 223607, gvid = 1111, use_ai_locations = false},	-- Боров
-		plastinka_3 = {sec = "plastinka_3", pos = {139.88, -5.28, 45.96}, lvid = 309357, gvid = 422, use_ai_locations = false},	-- Свалка логово Диггера
+		plastinka_3 = {sec = "plastinka_3", pos = {138.978, -4.821, 46.142}, lvid = 309357, gvid = 422, use_ai_locations = false},	-- Свалка логово Диггера
 		plastinka_4 = {
 			{sec = "plastinka_4", pos = {-53.14, 3.10, -69.68}, lvid = 404663, gvid = 3657, use_ai_locations = false},	-- МГ
 			{sec = "plastinka_4", pos = {-42.16, 2.30, -64.97}, lvid = 426764, gvid = 3655, use_ai_locations = false},	-- МГ
