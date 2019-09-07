@@ -138,7 +138,23 @@ local forbidden_profiles = {    -- запретные профили и имен
   [ "rad_kulgband_shron_guard2"   ] = true,
   [ "rad_kulgband_shron_guard3"   ] = true,
   [ "kulgband_informer_assist3"   ] = true,
-  
+
+-- Персонажи под рестрикторами не рассчитаны на скриптовую боевку. Только лаги от них.
+  [ "bar_dolg_leader" ] = true,
+  [ "bar_dolg_bunker_0001" ] = true,
+  [ "bar_dolg_bunker_0002" ] = true,
+  [ "bar_dolg_bunker_2" ] = true,
+  [ "bar_bar_guard_2" ] = true,
+}
+
+local forbidden_gulags = {
+-- Бандиты на базе в ТД. Сидят под рестрикторами, в результате боевке очень тяжело для них просчитать каверы, и начинаются сильные лаги.
+   [ "val_watchtower1" ] = true,
+   [ "val_watchtower2" ] = true,
+   [ "val_watchtower3" ] = true,
+   [ "val_watchtower4" ] = true,
+   [ "val_watchtower5" ] = true,
+   [ "val_lager_bandits" ] = true,
 }
 
 local forbidden_by_lname = {
@@ -493,6 +509,19 @@ end
 
 
 function action_altcombat:execute()
+  local pt = profile_timer()
+  pt:start()
+
+  self:_execute()
+
+  pt:stop()
+  if pt:time() > 30000 then
+    local gulag = xr_gulag.get_npc_gulag(self.object)
+    log3( "~~[%s]: [%s](%s): action_altcombat:execute() too slow: [%.2f s.]", script_name(), self.object:name(), gulag and gulag.name or "", pt:time() / 1e+6 )
+  end
+end
+
+function action_altcombat:_execute()
   action_base.execute( self )
   local npc = self.object
 
@@ -686,7 +715,7 @@ function action_altcombat:execute()
 
   process_combat_sound( npc )
 
-  if npc:see( be ) and ( not is_armor( be ) ) and knife_scheme[ npc:id() ] then
+  if npc:see_right_now( be ) and ( not is_armor( be ) ) and knife_scheme[ npc:id() ] then
     npc:set_mental_state( anim.danger )
     assist_point = select_enemy_pos_fanatic( npc, be )
     last_algorythm = "enemy_vertex"
@@ -719,7 +748,7 @@ function action_altcombat:execute()
   local cur_situation   = 0
 
   if
-    ( npc:see( be ) and be:see( npc ) )
+    ( npc:see_right_now( be ) and be:see( npc ) )
     or ( is_armor( be ) and get_armor_vis( be, npc ) )
   then
     -- если видим врага и он видит нас - стреляем, ищем укрытие
@@ -742,7 +771,7 @@ function action_altcombat:execute()
     choose_idle_scheme( npc, "attack" )
 
   elseif
-    ( npc:see( be ) and not be:see( npc ) )
+    ( npc:see_right_now( be ) and not be:see( npc ) )
     or ( is_armor( be ) and not get_armor_vis( be, npc ) )
   then
     -- если видим врага и он НЕ видит нас - стреляем, маневрируя
@@ -777,7 +806,7 @@ function action_altcombat:execute()
     end
     choose_idle_scheme( npc, "attack_notsee" )
 
-  elseif ( not npc:see( be ) ) and be:see( npc ) then
+  elseif ( not npc:see_right_now( be ) ) and be:see( npc ) then
     -- если НЕ видим врага и он видит нас - убегаем, ищем укрытие
     time_hide[ npc:id() ] = nil
     if is_fanatic( npc ) then
@@ -1432,10 +1461,12 @@ function death_place( obj, who )
       death_places[ k ] = nil
     end
   end
-  death_places[ vertex ] = {
-    killer = who:id(),
-    ttl    = time_global() + 300000,
-  }
+  if who:is_stalker() or who:is_actor() then
+    death_places[ vertex ] = {
+      killer = who:id(),
+      ttl    = time_global() + 30000,
+    }
+  end
   local check = active_grenades[ npc:id() ]
   if check then
     grenka_already_blow[ check.grenade ] = true
@@ -2677,7 +2708,7 @@ function set_weapons_fire( npc, enemy, weapon, override_vis, npc_rank )
     end
     local distance = npc_pos:distance_to( be_pos )
 
-    local rq = npc:see( enemy )
+    local rq = npc:see_right_now( enemy )
     if is_armor( enemy ) and armor_alive( enemy ) then
       rq           = false
       type_of_fire = object.fire1
@@ -2694,12 +2725,14 @@ function set_weapons_fire( npc, enemy, weapon, override_vis, npc_rank )
     end
 
     if rq then
+      type_of_fire = object.fire1 -- по умолчанию можем стрелять
+
+--[=[ --Тормозная проверка FF не нужна - FF игнорируется неписями в мотиваторе.
       local dir_enemy = utils.vector_copy_by_val( be_pos ):sub( npc_pos )
       dir_enemy:normalize()
       rq = level.ray_query(
         npc_pos, dir_enemy, distance + 5, rq_target.rqtBoth, npc
       )
-      type_of_fire = object.fire1 -- по умолчанию можем стрелять
       if rq.result then
         local obj = rq.object
         local is_alive_mob = obj and ( IsStalker( obj ) or IsMonster( obj ) )
@@ -2709,6 +2742,8 @@ function set_weapons_fire( npc, enemy, weapon, override_vis, npc_rank )
           type_of_fire = object.aim1
         end
       end
+--]=]
+
     end
 
     if type_of_fire == object.fire1 then
@@ -3690,6 +3725,8 @@ function add_to_binder( object, ini, scheme, section, storage )
   local lname = level.name()
   local comm  = object:character_community()
   local forbidden_by_comm = community_forbidden_locations[ comm ]
+  local gulag = xr_gulag.get_npc_gulag(object)
+
   if
     ( not object:alive() )
     or forbidden_comms[ comm ]
@@ -3705,6 +3742,7 @@ function add_to_binder( object, ini, scheme, section, storage )
         or string.find( object:name(), "roof" )
       )
     )
+	or ( gulag and forbidden_gulags[ gulag.name ] )
   then
     manager:add_evaluator(
       properties.alt_combat_enabled, property_evaluator_const( false )
