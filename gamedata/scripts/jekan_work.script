@@ -12,35 +12,7 @@ end
 
 local spawn_db = ogse_spawn_db.script_spawn_registry.jekan_quests
 
---[=[
-function cheat_start()
-	local items = { "grenade_light", "matras", "device_torch", "first_neutral_planshet",
-		--"af_resine", "af_sparks", "af_candle", "af_heart", "af_ray", "af_steam", "af_polter", "af_uley",
-		--"af_puzir", "af_doll", "af_jar", "af_bottle", "af_plate", "af_spoon", "afscanner", "af_mincer_meat",
-		--"af_cristall_flower",
-	}
-	---local objs = { --"karlik", "vehicle_zaz968",
-	--}
-	for _, section in ipairs(items) do
-		ogse.spawn_item_in_inv(section, db.actor)
-	end
-	--for _, section in ipairs(objs) do
-	--	alife():create(section, db.actor:position(), db.actor:level_vertex_id(), db.actor:game_vertex_id())
-	--end
--- jekan_work.spawn_human_pervert()
--- jekan_work.spawn_catgirl()
--- bind_statpkm.create_stat_pkm_on_actor()
--- db.actor:give_info_portion ("strangezones_on")
--- db.actor:give_info_portion ("atp_band_access")
--- test_stalker_spawn()
--- db.actor:give_info_portion ("seif5_task")
--- spawn_caravan_loader()
--- spawn_caravan_guard()
-end
---]=]
-
 -- То, что должно быть заспавнено в начале игры ----------------------------------------------------
-
 function spawn_on_start() --Вызывается из конфигов
 	set_ds_hunter_invulnerable()
 	set_bratstvo_orujeinik_invulnerable()
@@ -4994,7 +4966,7 @@ function have_some_klondike_flashes()
 	or db.actor:object("klondaik_flash_3") ~= nil
 	or db.actor:object("klondaik_flash_4") ~= nil
 	or db.actor:object("klondaik_flash_5") ~= nil
-	or db.actor:object("first_neutral_planshet") ~= nil
+	or db.actor:has_info("first_planshet_in")
 end
 
 function spawn_kulg_band_hutor_vater()
