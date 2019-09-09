@@ -314,6 +314,12 @@ end
 function dolg_zahvat(obj)
 	if obj:section() == "klondaik_flash_2_fake" then
 		jekan_work.actor_dolg_zahvat()
+
+		local wnd = level.get_car_body_wnd()
+		if wnd then --Закроем окно обыска
+			level.start_stop_menu(wnd, true)
+		end
+
 		ogse.remove_item_from_inventory(db.actor:object("klondaik_flash_2_fake"))
 		return true
 	end
