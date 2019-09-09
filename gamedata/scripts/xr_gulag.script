@@ -521,7 +521,7 @@ end
 function gulag:can_obj_begin_job( obj_id, obj )
 	local jobN = self.ObjectJob[obj_id]
 
-	if jobN and not self.Object_begin_job[obj_id] then
+	if jobN and self.Job[jobN] and not self.Object_begin_job[obj_id] then
 		local job = self.Job[jobN]
 		
 		--' Спешл кейс, проверка только по вертексам графа
