@@ -176,11 +176,11 @@ function dsh_respawner:init_respawn_params() --Вычитываем настро
   ASSERT(self.respawn_section, "RESPAWN: [%s] field 'respawn_section' doesn't exist.", self.name)
   self.spawn_once = get_bool("respawn", "spawn_once", false, ini) --Спавнится ли предмет однократно. В огсе таких нет, но для совместимости оставлю проверку.
   self.min_count = get_float("respawn", "min_count", 0, ini)
-  self.max_count = get_float("respawn", "max_count", -1, ini)
+  self.max_count = -1 --get_float("respawn", "max_count", -1, ini) --KRodin: пусть будет неограничено, не вижу смысла в ограничениях. Респавнеры всё равно не заспавнят больше, чем смарты смогут принять.
   if self.min_count > self.max_count and self.max_count ~= -1 then
     abort("RESPAWN: [%s] min_count > max_count", self.name)
   end
-  self.max_spawn = get_float("respawn", "max_spawn", 1, ini)
+  self.max_spawn = math.max(3, get_float("respawn", "max_spawn", 1, ini)) --Максимальное кол-во мобов, которое респавнер может заспавнить за ОДИН раз.
   local str_conditions = get_string("respawn", "conditions", 100, ini) 
   self.conditions = xr_logic.parse_condlist(self.object, "respawn", "conditions", str_conditions)
 --В оригинале использовалось для проверки расстояния до актора при онлайновом апдейте. Здесь этого нет, поэтому закомментировал. Может, пригодится ещё.
@@ -191,9 +191,10 @@ function dsh_respawner:init_respawn_params() --Вычитываем настро
   self.parent = get_float("respawn", "parent", nil, ini)
   self.item_spawn = get_bool("respawn", "item_spawn", false, ini)
   --
-  if not self.item_spawn and self.max_spawn > 1 then
-    self.max_spawn = self.max_spawn * 2 --KRodin: увеличил в два раза, чтоб даже теоретически не было проблем с неполным заполнением некоторых смартов.
-  end
+  --KRodin: я тут увеличивал, но походу зря. От этого мобы идут к гулагу толпами порой по 10+ мобов.
+  --if not self.item_spawn and self.max_spawn > 1 then
+  --  self.max_spawn = self.max_spawn * 2
+  --end
 end
 
 function dsh_respawner:read_spawned_obj()
