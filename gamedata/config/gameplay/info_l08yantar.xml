@@ -19,7 +19,7 @@
 	<info_portion id="give_actor_bioradar"/>
 
 	<info_portion id="horror_time_has_ecolog_story">
-		<article>about_horror_time_ecolog</article>
+		<!--article>about_horror_time_ecolog</article-->
 	</info_portion>
 
 	<info_portion id="die"/>
