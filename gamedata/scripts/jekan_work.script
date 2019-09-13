@@ -4645,7 +4645,7 @@ end
 
 function spawn_apparat()
 	--ogse.spawn_object(spawn_db.apparat)
-	alife():create("apparat", vector():set (-100.57,11.92,511.71), 328649, 3265)
+	--alife():create("apparat", vector():set (-100.57,11.92,511.71), 328649, 3265)
 end
 
 function samogon_apparat_finded(stalker, player)
