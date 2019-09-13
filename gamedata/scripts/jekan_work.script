@@ -5,6 +5,11 @@
 
 function attach(sm)
 	sm:subscribe({signal = "on_drop", fun = this.check_generator})
+	sm:subscribe({signal = "on_take", fun = function(obj)
+		if obj:section() == "cit_tow_box_keys" then
+			level.map_remove_object_spot( obj:id(), "crlc_mdl" )
+		end
+	end})
 	--
 	sm:subscribe({signal = "on_first_update", fun = this.check_subscribe_bind_avail_six_anom_house_items})
 	sm:subscribe({signal = "on_info", fun = this.info_check_subscribe_bind_avail_six_anom_house_items})
