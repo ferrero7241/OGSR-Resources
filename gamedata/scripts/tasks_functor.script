@@ -3538,12 +3538,16 @@ end
 
 function fix_art(art_id, bone)
 	local obj = level.object_by_id(art_id)
-	if obj == nil then return end
+	if not obj then return end
 	local ph_shell = obj:get_physics_shell()
-	if ph_shell == nil then return end
-	ph_element = ph_shell:get_element_by_bone_name(bone)
+	if not ph_shell then return end
+	local ph_element = ph_shell:get_element_by_bone_name(bone)
 	if not ph_element then return end
-	ph_element:fix()
+
+	local bone_id = obj:get_bone_id( bone )
+	if bone_id ~= 65535 then
+		ph_element:fix()
+	end
 end
 
 
