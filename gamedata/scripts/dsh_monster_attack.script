@@ -149,7 +149,7 @@ function psy_burer_attack( obj )
 		zh.draftsman = obj
 		zh.type = hit.telepatic
 		zh.direction = obj:position():sub(db.actor:position())
-		zh:bone( "BI_NONE" )
+		zh:bone( get_string( db.actor:section(), "bone_torso", "bip01_spine" ) ) -- чтобы учитывалась броня
 		zh.power = 0.1
 		for k,v in pairs(psy_burer_sound) do
 			if not v.sound_name:playing() then
@@ -183,7 +183,7 @@ function electro_himera_attack( obj )
 			zh.draftsman = obj
 			zh.type = hit.shock
 			zh.direction = posit:sub(enemy:position())
-			zh:bone( "BI_NONE" )
+			zh:bone( get_string( enemy:section(), "bone_torso", "bip01_spine" ) ) -- чтобы учитывалась броня
 			zh.power = 0.15
 			zh.impulse = 0.1
 			enemy:hit(zh)
@@ -316,7 +316,7 @@ function dog_attack( obj )
   h.type      = hit.telepatic
   h.power     = 0.01 + 0.02 * master_koef * math.random(0.11, 1.11)
   h.impulse   = 0.0
-  h:bone( "BI_NONE" )
+  h:bone( get_string( enemy:section(), "bone_torso", "bip01_spine" ) ) -- чтобы учитывалась броня
   h.draftsman = obj
   h.direction = obj:direction()
   enemy:hit( h )
@@ -391,7 +391,7 @@ function zombie_plague_attack( obj )
       zh.draftsman = obj
       zh.type      = hit.chemical_burn
       zh.direction = obj:position():sub( actor )
-      zh:bone( "BI_NONE" )
+      zh:bone( get_string( db.actor:section(), "bone_torso", "bip01_spine" ) ) -- чтобы учитывалась броня
       zh.power     = 2.5
       zh.impulse   = 1.0
       db.actor:hit( zh )
@@ -437,7 +437,7 @@ function blow_zombie(p_obj)
 	if enemy and p_obj:position():distance_to(enemy:position()) < 5 and may_attack() then
 		local zh = hit()
 		zh.type = hit.explosion
-		zh:bone( get_string( enemy:section(), "bone_torso", "bip01_spine" ) )
+		zh:bone( get_string( enemy:section(), "bone_torso", "bip01_spine" ) ) -- чтобы учитывалась броня
 		zh.power = 1.5
 		zh.impulse = 5
 		zh.draftsman = p_obj
