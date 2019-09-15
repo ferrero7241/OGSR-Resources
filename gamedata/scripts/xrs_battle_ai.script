@@ -989,7 +989,7 @@ function action_altcombat:check_objects( bw, enemy )
     end
   end
 
-  can_fire[ npc:id() ] = bw and bw:is_weapon() and bw:get_weapon():ready_to_kill()
+  can_fire[ npc:id() ] = bw and bw:is_weapon_magazined() and bw:get_ammo_total() > 0
 end
 
 
