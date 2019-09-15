@@ -3537,6 +3537,7 @@ end
 function dar_bridge_kulgband_man2shoot()
 		local npc1 = level_object_by_sid(story_ids.dar_bridge_kulgband_man2)
 		local npc2 = level_object_by_sid(story_ids.dar_bridge_kulgband_assist1)
+		if not npc2 then return end --ћожет к примеру погибнуть в аномалии.
 		local bw = rx_utils.get_weapon(npc1)
 		npc1:set_sight(look.fire_point, npc2:position())
 		npc1:set_item(object.fire1, bw, 1, 5000)
@@ -3551,6 +3552,7 @@ end
 function dar_bridge_kulgband_man3shoot()
 		local npc1 = level_object_by_sid(story_ids.dar_bridge_kulgband_man3)
 		local npc2 = level_object_by_sid(story_ids.dar_bridge_kulgband_assist2)
+		if not npc2 then return end --ћожет к примеру погибнуть в аномалии.
 		local bw = rx_utils.get_weapon(npc1)
 		npc1:set_sight(look.fire_point, npc2:position())
 		npc1:set_item(object.fire1, bw, 1, 5000)
