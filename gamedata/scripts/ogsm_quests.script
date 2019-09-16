@@ -75,15 +75,15 @@ function fraer_dead(sid)
 	return not fraer_alive(sid)
 end 
 
--- Устанавливаем нейтральность для Круглова
-function kruglov_neutral(sid)
-if has_alife_info("actor_set_bandit") or has_alife_info("actor_set_zombied") then
-    local npc = level_object_by_sid (story_ids.bar_ecolog_professor)
-    if npc ~= nil and npc:alive () == true then
-    ogse.set_npc_relation(npc,target,"neutral")
-    end
+-- Устанавливаем нейтральность для Круглова если актор к нему враждебен
+function kruglov_neutral()
+	if has_alife_info("actor_set_bandit") or has_alife_info("actor_set_zombied") then
+		local npc = level_object_by_sid(story_ids.bar_ecolog_professor)
+		if npc and npc:alive() then
+			ogse.set_npc_relation(npc, db.actor, "neutral")
+		end
+	end
 end
-end 
 
 -- Проверка помощи Круглову
 function kruglov_help_chek()
