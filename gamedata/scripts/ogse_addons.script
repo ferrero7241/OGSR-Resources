@@ -840,6 +840,7 @@ function on_item_to_ruck(obj, sobj)
 				if wpn and wpn:is_weapon_magazined() then
 					local new_wpn_section = get_string(wpn:section(), "scope_removed_section")
 					local s_cur_weapon = sim:object(wpn:id())
+					if not s_cur_weapon then return end -- Такое удалось поймать при ремонте СВД ремкомплектом
 					--
 					local cur_wpn = s_cur_weapon:get_weapon()
 					local cur_wpn_ammo_type = cur_wpn.ammo_type
