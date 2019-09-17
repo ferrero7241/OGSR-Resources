@@ -1940,7 +1940,7 @@ end
 
 function heli_set_enemy_actor(actor, npc)
 	local st = db.storage[npc:id()]
-	if not st.combat.enemy_id and actor:alive() then
+	if not st.combat.enemy_id and actor:alive() and db.actor:character_community() ~= "mil_stalker" then
 		st.combat.enemy_id = actor:id()
 
 		heli_snd.play_snd( st, "see_enemy", 1 )
