@@ -129,7 +129,7 @@ end
 function af_teleport_trap_binder:reinit()
 	telekill_case_id = ogse.var_exists("telekill_case_id") and ogse.load_var("telekill_case_id") or false
 
-	if not ogse.var_exists("dead_zone_id") then
+	if has_alife_info("ogse_teleport_trap_research_art_actor_finish_dead_zone") then
 		set_item_untakeable(self.object)
 	end
 
