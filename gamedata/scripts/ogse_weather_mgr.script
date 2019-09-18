@@ -147,67 +147,11 @@ function get_weather_mgr()
 	return wm
 end
 
-local enabled = true
-ASSERT(enabled == true, "") --Отключать нельзя! Для чего сделана эта опция - понятия не имею.
-
--- параметры погодного имитатора. На данный момент этот алгоритм НЕ используется.
-local A0 = -0.35  -- общее смещение, нулевой уровень, больше нуля - больше дождя в целом, ниже нуля, больше ясной погоды
-local T0 = 1     -- период дневных колебаний (всегда 1)
-local S0 = 0.667 -- смещение по фазе дневных колебаний, 0.5 +1/6 - 2 часа дня - максимум ясно, 2 ночи - максимум дождя
-local K0 = 0.6     -- размах дневных колебаний, чем выше, тем более длинные периды экстремальной погоды, только ясно или только шторм
-local T1 = 1.2   -- период погодных смещений, несколько дней
-local S1 = 0.0   -- смещение по фазе большого цикла, при старте игры задаётся случайным образом в диапазоне [0 - T1]
-local K1 = 0.7   -- размах погодных смещений (0 - колебание только дневного цикла)
-local weather_preset = sys_ini:r_s32("options","weather_type")
-
--- по значению абстрактной интенсивности получить имя погодного цикла
--- интенсивность меняется от 0 до 1. 0 - ясная погода, 1 - шторм
--- фактически может быть больше 1 и меньше 0, но за пределами интервала принимаем постоянное значение
--- изменение прописанных здесь пределов также влияет на выбор фактической погоды
--- здесь можно сделать нелинейное распределение диапазонов, которое сложно достичь простой тригонометрией
-local cycles_ranges = {
-	{"clear"           , 0.0},
-	{"clear_alt"       , 0.2},
-	{"cloudy_light"    , 0.4},
-	{"cloudy_light_rain", 0.5},
-	{"cloudy_dark"     , 0.6},
-	{"cloudy_dark_rain", 0.8},
-	{"storm"           , 0.9},
-}
-local function cycle_by_intensity(v)
-	for _, cycle in ipairs(cycles_ranges) do
-		if cycle[2] > v then
-			return cycle[1]
-		end
-	end
-	return "storm"
-end
--- аргумент - время в формате game.CTime
--- результат - имя цикла для этого времени
-local function get_weather_by_time(t)
-	-- вычисляем время в дробных днях, прошедщих с начала 2000 г.
-	local t2000 = game.CTime()
-	t2000:set(2000, 1, 1, 0, 0, 0, 0) -- 01/01/2000, 00:00:00:000
-	local ts = t:diffSec(t2000) -- время с начала 2000 в секундах
-	local td = ts / (24 * 3600) -- время с начала 2000 в дробных днях
-	-- интенсивность облачности и осадков
-	local v = A0 + K0 * math.sin((td - S0) / T0 * math.pi)^2 + K1 * math.sin((td - S1) / T1 * math.pi * 2)
-	-- собственно имя цикла
-	return cycle_by_intensity(v)
-end
+local enabled = true --Отключать нельзя! Для чего сделана эта опция - понятия не имею.
 
 ------------------< алгоритм выбора погоды, имитирующий исходный из Atmosfear >---------------------
 -- end_w - вес для вычисления вероятности соскочить с данного цикла
 -- tr_w - таблица со списком возможных циклов (для перехода с данного) и их весов
--- local weather_transitions = {
-	-- storm             = {end_w = 133, tr_w = {cloudy_dark_rain = 70, cloudy_light_rain = 30, }},
-	-- clear             = {end_w = 119, tr_w = {cloudy_light     = 50, cloudy_dark       = 50, }},
-	-- clear_alt         = {end_w = 137, tr_w = {cloudy_light     = 50, cloudy_dark       = 50, }}, 
-	-- cloudy_dark       = {end_w =  68, tr_w = {cloudy_dark_rain = 20, cloudy_light_rain = 20, clear_alt    = 20, cloudy_light = 20, clear = 20,}},
-	-- cloudy_dark_rain  = {end_w =  98, tr_w = {storm            = 33, cloudy_dark       = 33, cloudy_light = 33, }},
-	-- cloudy_light      = {end_w =  84, tr_w = {cloudy_dark_rain = 20, cloudy_light_rain = 20, clear_alt    = 20, cloudy_light = 20, clear = 20,}},
-	-- cloudy_light_rain = {end_w = 101, tr_w = {storm            = 33, cloudy_dark       = 33, cloudy_light = 33, }},
--- }
 
 local weather_transitions_common = {
 	storm             = {end_w =  70, tr_w = {cloudy_dark = 10, cloudy_light_rain = 10, clear_alt    = 30, cloudy_light = 20, clear = 30,}},
@@ -239,6 +183,7 @@ local weather_transitions_bright = {
 	cloudy_dark_rain  = {end_w = 308, tr_w = {cloudy_dark = 20, clear = 20, clear_alt    = 30, cloudy_dark_rain = 10, storm = 20,}},
 }
 
+local weather_preset = sys_ini:r_s32("options","weather_type")
 local weather_transitions = nil
 
 do
@@ -455,35 +400,7 @@ function StaticForecast:to_strings(max_lines)
 	end
 	return t
 end
-local weather_transitions_2_idx = {
-	clear             = 0,
-	clear_alt         = 1,
-	cloudy_light      = 2,
-	cloudy_dark       = 3,
-	cloudy_light_rain = 4,
-	cloudy_dark_rain  = 5,
-	storm             = 6,
-}
 
-function StaticForecast:to_strings2()
-	if #self.forecast == 0 then return {} end
-	local t = {}
-	local fist_point_time = self.forecast[1].time
-	local prev_time = 0
-	local sum = 0
-	local prev_cycle_idx = 0
-	for i,point in ipairs(self.forecast) do
-		local cur_time = point.time:diffSec(fist_point_time) / (3600*24)
-		local dt = cur_time - prev_time
-		local cycle_idx = weather_transitions_2_idx[point.cycle]
-		sum = sum + 0.5 * (prev_cycle_idx + cycle_idx) * dt
-		local s = string.format("%.2f\t%d\t%f", cur_time, cycle_idx, sum / (cur_time > 1e-6 and cur_time or 1))
-		prev_time = cur_time
-		prev_cycle_idx = cycle_idx
-		table.insert(t, s)
-	end
-	return t
-end
 local function build_forecast_point(day_start_time, frame_point_data, cycle_name)
 	-- формируем точку фрейма как время начала суток + время фрейма
 	local point_time = game.CTime()
@@ -646,7 +563,6 @@ function StaticForecast:update(arg_forecast_time) -- аргумент только для отладоч
 		local min_next_time = last_point.time + min_transition_time
 		-- вычисляем погодный цикл для этого момента
 		----------------------------------------------------------------------------
-		--local next_cycle = get_weather_by_time(min_next_time)
 		local next_cycle = self:aux_choose_next_weather()
 		-- здесь имеем в переменной next_cycle как результат работы алгоритма выбора строку - имя нового цикла
 		-- теперь надо фактически вставить новую точку в конец прогноза из выбранного цикла
@@ -1272,93 +1188,16 @@ function WeatherManager:update_forecast()
 	--self:dump_forecast()
 	ogse_surge_mgr.surge_log("WeatherManager:update_forecast - END")
 end
---[=[ --old
-local valid_weather_params = {
-	sun_shafts          = true,
-	sun_shafts_length   = true,
-	rain_max_drop_angle = true,
-	flares              = true,
-	sky_texture         = true,
-	sky_rotation        = true,
-	sky_color           = true,
-	clouds_texture      = true,
-	clouds_color        = true,
-	far_plane           = true,
-	fog_distance        = true,
-	fog_color           = true,
-	fog_density         = true,
-	rain_density        = true,
-	rain_color          = true,
-	rain_increase_speed = true,
-	moon_road_intensity = true,
-	thunderbolt         = true,
-	bolt_period         = true,
-	bolt_duration       = true,
-	wind_velocity       = true,
-	wind_direction      = true,
-	ambient             = true,
-	--lmap_color          = true,
-	hemi_color          = true,
-	sun_color           = true,
-	sun_dir             = true,
-	env_ambient         = true,
-}
--- заполняем таблицу на основе данных секции
-local function get_weather_cycle(section)
-	local t = {}
-	for i=0,sys_ini:line_count(section)-1 do
-		local res,k,v = sys_ini:r_line(section, i)
-		if valid_weather_params[k] then
-			t[k] = v
-		end
-	end
-	if t.rain_density then
-		t.rain_density = math.clamp( tonumber( t.rain_density ), 0, 1 )
-	end
-	return t
-end
 
--- расчет exec_time для точки
-local function calc_exec_time(point_data)
-	local y,m,d,h,min,sec,ms = point_data.time:get()
-	return (h * 3600.0 + min * 60.0 + sec + ms / 1000.0) -- или может быть point_data.data.time_orig
-end
-
--- задать параметры границы фрейма и вернуть в виде специальной таблицы
-local function compile_frame_point(point_data)
-	local y,m,d,h,min,sec,ms = point_data.time:get()
-	local tab = get_weather_cycle(point_data.data.section)
-	tab.exec_time = (h * 3600.0 + min * 60.0 + sec + ms / 1000.0) -- или может быть point_data.data.time_orig
-	local az,za = sun_pos.sunpos_table(h,min,sec)
-	-- позицию солнца берём из глобального конфига
-	tab.sun_dir = string.format("%f,%f", az,za)
-	return tab
-end
---]=]
 function WeatherManager:compile_frame_point( env_desc, point_data )
   local env = level.environment()
   env_desc:load( point_data.data.time, point_data.data.section, env )
-  --local tab = get_weather_cycle( point_data.data.section )
-  --if --В огсе это, вроде как, не нужно.
-  --  tab.env_ambient
-  --  and not string.find( tab.env_ambient, "blowout", 1, true )
-  --then
-  --  env_desc:set_env_ambient( tab.env_ambient .. self.lvl_suffix, env )
-  --end
 end
 
 -- установить текущий погодный фрейм в движке
 function WeatherManager:setup_frame( p1, p2 )
 	ogse_surge_mgr.surge_log("setup_frame: %s - %s", p1.data.section, p2.data.section)
 	ASSERT("ogse_script_weather" == level.get_weather(), "")
-	--
-	----local t1 = compile_frame_point(p1)
-	----local t2 = compile_frame_point(p2)
-	----log3("--[SetEnvDescData]: %s, %s", t1, t2)
-	----SetEnvDescData(t1, t2)
-	--
-	-- KD: теперь не нужно читать параметры из скрипта, движок сам загрузит стандартной функцией. Надо дать ему времена запуска и имя секций для загрузки.
-	--SetEnvDescData(p1.data.section, p2.data.section, calc_exec_time(p1), calc_exec_time(p2))
 	--
 	local env = level.environment()
 	self:compile_frame_point( env:getCurrentWeather( 0 ), p1 )
