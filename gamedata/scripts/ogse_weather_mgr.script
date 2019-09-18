@@ -481,13 +481,13 @@ function StaticForecast:update(arg_forecast_time) -- аргумент только для отладоч
 	ogse_surge_mgr.surge_log("StaticForecast:update")
 
 	local current_time = game.get_game_time() -- текущее время
+
+	if self.forecast[1] and self.forecast[1].time > current_time then -- если первая точка вдруг оказалась в будущем, чего быть по идее не может
+		self.forecast[1].time = self.forecast[1].time - seconds2ctime(60 * 10)
+	end
+
 	-- сперва удаляем уже отработавшие точки
 	while self.forecast[1] do -- пока имеется хотя бы одна точка
-		if self.forecast[1].time > current_time then -- если первая точка вдруг оказалась в будущем, чего быть по идее не может
-			--self.forecast = {} -- на всякий случай чистим прогноз совсем
-			fail("First point of forecast is in the future. Check the logic!")
-			break
-		end
 		-- проверяем ситуацию, когда в прогнозе осталась одна точка. 
 		-- такое теоретически может случиться, когда спали дольше, чем имеем прогноз или конец сна
 		-- попал в последний кадр прогноза. Тогда последняя точка прогноза в процессе удаления 
