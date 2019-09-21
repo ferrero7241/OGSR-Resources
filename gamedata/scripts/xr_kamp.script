@@ -317,7 +317,7 @@ function CKampManager:getDestVertex( npc )
     self:reassign_seats()
   end
   local st = self.npc[ npc:id() ]
-  return self.active_seats[ st.seat ].vertex
+  return self.active_seats and self.active_seats[ st.seat ].vertex or npc:level_vertex_id() --KRodin: если уж совсем нет свободных мест - пускай сталкер сидит на своей текущей позиции.
 end
 
 
@@ -1027,10 +1027,9 @@ function CKampManager:reassign_seats()
     end
     if found_seats then break end
   end
-  ASSERT(
-    found_seats,
-    "[%s]: can't find active_seats for %s", script_name(), self.kamp_name
-  )
+  if not found_seats then
+    log3( "!![%s]: can't find active_seats for %s", script_name(), self.kamp_name )
+  end
   for npc_id, st in pairs( self.npc ) do
     st.seat = nil
   end
@@ -1038,8 +1037,10 @@ function CKampManager:reassign_seats()
   if self.preferred_seats then
     table.insert( avail_seats, self.preferred_seats )
   end
-  for i = found_seats, table.getn( accessible_seats ) do
-    table.insert( avail_seats, accessible_seats[ i ] )
+  if found_seats then
+    for i = found_seats, table.getn( accessible_seats ) do
+      table.insert( avail_seats, accessible_seats[ i ] )
+    end
   end
   for _, seats in ipairs( avail_seats ) do
     self.active_seats = seats
@@ -1078,10 +1079,9 @@ function CKampManager:reassign_seats()
     end
     if self.seats_assigned then break end
   end
-  ASSERT(
-    self.seats_assigned,
-    "[%s]: [%s]: can't reassign seats", script_name(), self.kamp_name
-  )
+  if not self.seats_assigned then
+    log3( "!![%s]: [%s]: can't reassign seats", script_name(), self.kamp_name )
+  end
 end
 
 
