@@ -42,7 +42,7 @@ function on_update( obj, delta )
       if v.give_dmg and v.target then
         if
           v:get_pos():distance_to(
-            v.target:bone_position( "bip01_spine" )
+            v.target:bone_position( get_string( v.target:section(), "bone_torso", "bip01_spine" ) )
           ) < 1
         then
           local h = hit()

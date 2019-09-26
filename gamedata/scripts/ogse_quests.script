@@ -1769,7 +1769,7 @@ function nuke_burn_everyone()
 			dsh_particles.play_particle(npc, {
 				obj=npc,
 				particle="damage_fx\\body_burn_02",
-				bone="bip01_spine"
+				bone = get_string( npc:section(), "bone_torso", "bip01_spine" )
 			})
 
 			local blast_pos = vector():set(20.762310028076,34.853042602539,-250.56936645508)
@@ -1790,7 +1790,7 @@ function nuke_burn_everyone()
 				dir:add(vector():set(0,20000,0))
 				local ps = npc:get_physics_shell()
 				if ps then 
-					local bone = ps:get_element_by_bone_name("bip01_spine")
+					local bone = ps:get_element_by_bone_name( get_string( npc:section(), "bone_torso", "bip01_spine" ) )
 					if bone then bone:apply_force(constant*dir.x,constant*dir.y,constant*dir.z) end	
 				end
 			end
@@ -1851,7 +1851,7 @@ function nuke_kill_everyone()
 			dir:add(vector():set(0,20000,0))
 			local ps = npc:get_physics_shell()
 			if ps then 
-				local bone = ps:get_element_by_bone_name("bip01_spine")
+				local bone = ps:get_element_by_bone_name( get_string( npc:section(), "bone_torso", "bip01_spine" ) )
 				if bone then bone:apply_force(constant*dir.x,constant*dir.y,constant*dir.z) end	
 			end
 		end

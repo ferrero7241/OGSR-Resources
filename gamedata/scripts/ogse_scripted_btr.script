@@ -435,8 +435,8 @@ function check_npc_on_fire_line(car, obj)
 			local target_dist = be:position():distance_to(gun_pos)
 			local check_dist = obj:position():distance_to(gun_pos)
 			
-			local enemy_pos = be:bone_position("bip01_spine")
-			local check_pos = obj:bone_position("bip01_spine")
+			local enemy_pos = be:bone_position( get_string( be:section(), "bone_torso", "bip01_spine" ) )
+			local check_pos = obj:bone_position( get_string( obj:section(), "bone_torso", "bip01_spine" ) )
 			
 			local dangerang = 1./target_dist
 			local ang = horz_angle(check_pos:sub(gun_pos), enemy_pos:sub(gun_pos))
