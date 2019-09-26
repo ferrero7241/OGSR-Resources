@@ -12,7 +12,8 @@ end
 
 function bind_to_keys( bind, return_names ) --Если второй аргумент == true, то функция возвратит имена клавиш. В противном случае возвратит коды.
   local dik = bind_to_dik( bind )
-  ASSERT( dik, "bind_to_dik not found: %s", bind )
+  if dik == 0 then return end
+
   local t = return_names and { dik_to_name(dik) } or { dik }
   --[=[ --KRodin: Это вообще не нужно, на самом деле.
   for k, v in pairs( dik_key_to_name ) do

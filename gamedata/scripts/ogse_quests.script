@@ -431,19 +431,28 @@ function set_btr_nonworking() --при отсутствии у ГГ аккумулятора, при влезании в
 	local btr = level_object_by_sid( story_ids.dead_city_btr_real )
 	if btr and btr:id() == ogse_car_control.current_car:id() then
 		if not ogse.var_exists( "turn_engine_keys" ) then
-			ogse.save_var( "turn_engine_keys", ogse_rebind_key.bind_to_keys( key_bindings.kENGINE, true ), "array" ) --сохраняем в хранилище клавиши запуска двигателя
-			cmd( "unbind", "turn_engine" ) --и разбиндиваем их, чтобы сидя в неисправном бтр нельзя было запустить движок
-			cmd( "unbind_sec", "turn_engine" )
+			local keys = ogse_rebind_key.bind_to_keys( key_bindings.kENGINE, true )
+			if keys then
+				ogse.save_var( "turn_engine_keys", keys, "array" ) --сохраняем в хранилище клавиши запуска двигателя
+				cmd( "unbind", "turn_engine" ) --и разбиндиваем их, чтобы сидя в неисправном бтр нельзя было запустить движок
+				cmd( "unbind_sec", "turn_engine" )
+			end
 		end
 		if not ogse.var_exists( "quit_keys" ) then
-			ogse.save_var( "quit_keys", ogse_rebind_key.bind_to_keys( key_bindings.kQUIT, true ), "array" )
-			cmd( "unbind", "quit" ) --Кнопку выхода в меню тоже разбиндиваем, чтобы актор сидя в БТР не мог загружаться или выходить из игры (после этого слетят настройки некоторых клавиш)
-			cmd( "unbind_sec", "quit" )
+			local keys = ogse_rebind_key.bind_to_keys( key_bindings.kQUIT, true )
+			if keys then
+				ogse.save_var( "quit_keys", keys, "array" )
+				cmd( "unbind", "quit" ) --Кнопку выхода в меню тоже разбиндиваем, чтобы актор сидя в БТР не мог загружаться или выходить из игры (после этого слетят настройки некоторых клавиш)
+				cmd( "unbind_sec", "quit" )
+			end
 		end
 		if not ogse.var_exists( "QUICK_LOAD_keys" ) then
-			ogse.save_var( "QUICK_LOAD_keys", ogse_rebind_key.bind_to_keys( key_bindings.kQUICK_LOAD, true ), "array" )
-			cmd( "unbind", "QUICK_LOAD" ) --Кнопку быстрой загрузки игры разбиндиваем по той же причине.
-			cmd( "unbind_sec", "QUICK_LOAD" )
+			local keys = ogse_rebind_key.bind_to_keys( key_bindings.kQUICK_LOAD, true )
+			if keys then
+				ogse.save_var( "QUICK_LOAD_keys", keys, "array" )
+				cmd( "unbind", "QUICK_LOAD" ) --Кнопку быстрой загрузки игры разбиндиваем по той же причине.
+				cmd( "unbind_sec", "QUICK_LOAD" )
+			end
 		end
 	end
 end
@@ -1869,19 +1878,28 @@ end
 
 function block_use_hotkeys() --Вызывается из tasks_functor.actor_switch_to_trade (которая вызывается в нескольких местах из config\gameplay\dialogs_tasks.xml)
 	if not ogse.var_exists( "quit_keys" ) then
-		ogse.save_var( "quit_keys", ogse_rebind_key.bind_to_keys( key_bindings.kQUIT, true ), "array" )
-		cmd( "unbind", "quit" )
-		cmd( "unbind_sec", "quit" )
+		local keys = ogse_rebind_key.bind_to_keys( key_bindings.kQUIT, true )
+		if keys then
+			ogse.save_var( "quit_keys", keys, "array" )
+			cmd( "unbind", "quit" )
+			cmd( "unbind_sec", "quit" )
+		end
 	end
 	if not ogse.var_exists( "use_keys" ) then
-		ogse.save_var( "use_keys", ogse_rebind_key.bind_to_keys( key_bindings.kUSE, true ), "array" )
-		cmd( "unbind", "use" )
-		cmd( "unbind_sec", "use" )
+		local keys = ogse_rebind_key.bind_to_keys( key_bindings.kUSE, true )
+		if keys then
+			ogse.save_var( "use_keys", keys, "array" )
+			cmd( "unbind", "use" )
+			cmd( "unbind_sec", "use" )
+		end
 	end
 	if not ogse.var_exists( "QUICK_LOAD_keys" ) then
-		ogse.save_var( "QUICK_LOAD_keys", ogse_rebind_key.bind_to_keys( key_bindings.kQUICK_LOAD, true ), "array" )
-		cmd( "unbind", "QUICK_LOAD" )
-		cmd( "unbind_sec", "QUICK_LOAD" )
+		local keys = ogse_rebind_key.bind_to_keys( key_bindings.kQUICK_LOAD, true )
+		if keys then
+			ogse.save_var( "QUICK_LOAD_keys", keys, "array" )
+			cmd( "unbind", "QUICK_LOAD" )
+			cmd( "unbind_sec", "QUICK_LOAD" )
+		end
 	end
 end
 
