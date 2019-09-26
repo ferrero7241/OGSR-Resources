@@ -1225,7 +1225,7 @@ script_spawn_registry = {
 		plastinka_5 = {sec = "plastinka_5", pos = {-135.17, 10.75, -202.27}, lvid = 104772, gvid = 637, use_ai_locations = false},	-- Агро
 		plastinka_6 = {sec = "plastinka_6", pos = {-17.85, -4.00, -15.64}, lvid = 290384, gvid = 1657, use_ai_locations = false},	--Свобода
 		plastinka_7 = {
-			{sec = "plastinka_7", pos = {-77.48, 1.29, -258.26}, lvid = 302653, gvid = 3048, use_ai_locations = false},	-- Лощина
+			{sec = "plastinka_7", pos = {-180.339, 1.672, 555.837}, lvid = 196934, gvid = 2950, use_ai_locations = false},	-- Лощина
 		--	{sec = "plastinka_7", pos = {-157.43, 2.60, -46.50}, lvid = 238687, gvid = 3836, use_ai_locations = false},	-- МГ
 		--	{sec = "plastinka_7", pos = {-53.96, 7.90, -74.94}, lvid = 402255, gvid = 3680, use_ai_locations = false},	-- МГ
 			{sec = "plastinka_7", pos = {-192.35, -15.10, 381.20}, lvid = 133794, gvid = 1923, use_ai_locations = false},	-- Милитари
