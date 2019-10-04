@@ -5347,6 +5347,8 @@
 	
 	
 	<dialog id="ds_glavar_dialog6">
+		<has_info>kulg_band_meet_speech_loose</has_info>
+		<has_info>dar_filin_door_off</has_info>
 		<has_info>val_filin_diary_info</has_info>
 		<dont_has_info>kulgband_scout_meet</dont_has_info>
 		<phrase_list>
