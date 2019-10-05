@@ -32,14 +32,26 @@ function se_stalker:__init (section) super (section)
 	self.s_storage = "_"
 end
 --------------------
+function se_stalker:dsh_get_spawner_cond()
+  local cond
+  local dsh_sect = "dsh.se_stalker." .. self:name() .. ".spawner"
+  if sys_ini:section_exist( dsh_sect ) then
+    cond = get_string( dsh_sect, "cond" )
+  end
+  if not cond and self.ini:section_exist( "spawner" ) then
+    cond = get_string( "spawner", "cond", nil, self.ini )
+  end
+  if cond then
+    return xr_logic.parse_condlist( db.actor_proxy, "spawner", "cond", cond )
+  end
+end
+
 function se_stalker:get_ini()
 	if not self.ini_initialized then
 		self.ini             = self:spawn_ini ()
 		self.ini_initialized = true
 
-		if self.ini:section_exist("spawner") then
-			self.spawner = xr_logic.parse_condlist(db.actor_proxy, "spawner", "cond", self.ini:r_string("spawner", "cond"))
-		end
+		self.spawner = self:dsh_get_spawner_cond()
 	end
 end
 --------------------
@@ -71,30 +83,33 @@ function se_stalker:can_switch_offline()
 end
 --------------------
 function se_stalker:can_switch_online()
+	local can_be_online = false
 	if self.force_offline then
-		return false
+		can_be_online = false
 	end
 	if xr_companion.is_companion(self.id) and (db.actor_proxy.online and db.actor:position():distance_to(self.position) < COMPANION_SWITCH_DISTANCE) then
-		return true
+		can_be_online = true
 	end		
 
 	if self:get_job_online() ~= nil then
-		return self:get_job_online()
+		can_be_online = self:get_job_online()
 	end
 
 	if self.ini == nil or self.spawner == nil then
-		return cse_alife_human_stalker.can_switch_online(self)
+		can_be_online = cse_alife_human_stalker.can_switch_online(self)
 	end
-    
+
 	if db.actor_proxy.online and not db.actor:alive() then --?
-		return self.online
+		can_be_online = self.online
 	end
-    
+
 	if self.online == false then
-	    return (xr_logic.pick_section_from_condlist(db.actor_proxy, self, self.spawner) ~= nil) and cse_alife_human_stalker.can_switch_online(self)
-    else
-        return xr_logic.pick_section_from_condlist(db.actor_proxy, self, self.spawner) ~= nil
-    end    	    
+		can_be_online = (xr_logic.pick_section_from_condlist(db.actor_proxy, self, self.spawner) ~= nil) and cse_alife_human_stalker.can_switch_online(self)
+	else
+		can_be_online = xr_logic.pick_section_from_condlist(db.actor_proxy, self, self.spawner) ~= nil
+	end
+	--
+	return can_be_online
 end
 --------------------
 function se_stalker:STATE_Write (packet)
