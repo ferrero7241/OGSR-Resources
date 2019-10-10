@@ -3493,6 +3493,7 @@ function question_of_immortality_fisrt_part_prepare_spawn_firefly()
 end
 
 local firefly_upd_signal = false
+local anom_status = ""
 
 function on_first_update_firefly()
 	if not db.actor:has_info("dead_stalker_question_of_immortality_first_part_start") or
@@ -3506,13 +3507,17 @@ function on_first_update_firefly()
 	firefly_upd_signal = { signal = "on_update", fun = this.on_firefly_update, queued = true }
 	ogse_signals.get_mgr():subscribe( firefly_upd_signal )
 
-	if ogse.var_exists("art_firefly_id") then
-		local art_id = ogse.load_var("art_firefly_id")
-		level.client_spawn_manager():add( art_id, -1, function() fix_art(art_id, "root") end )
+	--KRodin: будем респавнить арт после каждой загрузки сейва
+	local art_spawned = ogse.var_exists("art_firefly_id")
+	if art_spawned then
+		question_of_immortality_fisrt_part_delete_firefly()
+	end
+	if anom_status ~= "common" then
+		question_of_immortality_fisrt_part_green(false)
+		anom_status = "common"
 	end
 end
 
-local anom_status = ""
 function on_firefly_update()
 	ogse_signals.get_mgr():reschedule(math.random(5000, 10000))
 
@@ -3567,6 +3572,7 @@ function question_of_immortality_fisrt_part_spawn_firefly()
 	local green_anom = alife():object(ogse.load_var("green_anomaly_id"))
 	ASSERT(green_anom, "green_anom ~= nil")
 	local art = alife():create("af_firefly", green_anom.position, green_anom.m_level_vertex_id, green_anom.m_game_vertex_id)
+	alife():use_ai_locations( art, false ) --ћожет поможет от проваливани€
 	ogse.save_var("art_firefly_id", art.id, "u16")
 	level.client_spawn_manager():add( art.id, -1, function() fix_art(art.id, "root") end )
 end
