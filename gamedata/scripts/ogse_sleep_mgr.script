@@ -158,6 +158,8 @@ function begin_sleep(desired_sleep_time)
 	end
 	-- привет мир
 	ogse_signals.get_mgr():call("on_sleep_finished")
+	--
+	dsh.exec_on_update( news_manager.autosave, "Пробуждение. " .. game.translate_string( level.name() ) )
 end
 
 function break_sleep() -- принудительное прерывание сна

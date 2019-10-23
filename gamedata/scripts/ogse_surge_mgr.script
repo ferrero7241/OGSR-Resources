@@ -549,7 +549,9 @@ function surge_final()
 	db.actor:disable_info_portion("surge_process_stage_13")
 	db.actor:disable_info_portion("surge_process_stage_14")
 	db.actor:disable_info_portion("surge_process_stage_15")
-	ogse_weather_mgr.get_weather_mgr():prepare_new_surge() -- тут вставл€ем перезапуск выброса в погодном менеджере		
+	ogse_weather_mgr.get_weather_mgr():prepare_new_surge() -- тут вставл€ем перезапуск выброса в погодном менеджере
+	--
+	dsh.timeout( 10000, news_manager.autosave, "¬ыброс. " .. game.translate_string( level.name() ) )
 end
 
 --------------------------------- ѕарсер единичного действи€ ---------------------------------------

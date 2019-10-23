@@ -94,28 +94,18 @@ local snds = {
     pri_followers_leader_phrase1_3  = [[characters_voice\scenario\pri\followers_leader_phrase1_3_p]],
 }
 
-local news = {}
-local function get_snd(t, k)
-	--log3("getting sound: %s", tostring(k))
-	if snds[k] ~= nil then
+local function get_snd(k)
+	--log3("--[%s] getting sound: [%s]", script_name(), k)
+	if snds[k] then
 		return xr_sound.get_safe_sound_object(snds[k])
-	else
-		return nil
 	end
 end
-local function set_snd(t, k, v)
-	--log1("error! we don't do this!")
-end
-local mt = {}
-mt.__index = get_snd
-mt.__newindex = set_snd
-setmetatable(news, mt)
---
-pda_news = xr_sound.get_safe_sound_object([[device\pda\pda_news]])
-pda_tips = xr_sound.get_safe_sound_object([[device\pda\pda_tip]])
-pda_task = xr_sound.get_safe_sound_object([[device\pda\pda_objective]])
 
-tips_icons = {
+local pda_news = xr_sound.get_safe_sound_object([[device\pda\pda_news]])
+pda_tips = xr_sound.get_safe_sound_object([[device\pda\pda_tip]])
+local pda_task = xr_sound.get_safe_sound_object([[device\pda\pda_objective]])
+
+local tips_icons = {
 	default  = { 0, 658},
 	trader	 = { 332, 893},
 	dolg     = { 0, 658},
@@ -176,8 +166,8 @@ function send_tip(actor, news_id, timeout, sender, showtime, sender_id)
 	if pda_tips then
 		pda_tips:play(db.actor, timeout, sound_object.s2d)
 	end
-	local news_snd = news[news_id]
-	if news_snd ~= nil then
+	local news_snd = get_snd(news_id)
+	if news_snd then
 		--' Играем звук забитый
 		news_snd:play(db.actor, timeout+1, sound_object.s2d)
 
@@ -198,8 +188,9 @@ function send_tip(actor, news_id, timeout, sender, showtime, sender_id)
 	actor:give_game_news(news_text, "ui\\ui_iconsTotal", Frect():set(x,y,83,47), timeout*1000, showtime)
 	return true
 end
+
 function send_tip_nosound(actor, news_id, timeout, sender)
-	if news_id == nil then return end
+	if not news_id then return end
 
 	timeout = 0
 
@@ -207,9 +198,8 @@ function send_tip_nosound(actor, news_id, timeout, sender)
 	if pda_tips then
 		pda_tips:play(db.actor, timeout, sound_object.s2d)
 	end
-	local news_sound = news[news_id]
 
-	return news_sound
+	return get_snd(news_id)
 end
 
 local action_descr_by_type = {
@@ -218,9 +208,48 @@ local action_descr_by_type = {
 	complete = "general_complete_task",
 	fail = "general_fail_task"
 }
+
+--------------------------------------------------------------------------
+local cycle_task = {
+	["eliminate_lager"] = true,
+	["defend_lager"] = true,
+	["kill_stalker"] = true,
+	["artefact"] = true,
+	["monster_part"] = true,
+	["find_item"] = true
+}
+
+local StartTime
+local function getStartTime()
+  local d = string.explode( ".", get_string( "alife", "start_date" ), true )
+  StartTime = game.CTime()
+  StartTime:set( tonumber( d[ 3 ] ), tonumber( d[ 2 ] ), 1, 0, 0, 0, 0 )
+  local temp = game.CTime()
+  temp:setHMS( 24, 0, 0 )
+  StartTime = StartTime - temp
+end
+local function game_seconds()
+	if not StartTime then getStartTime() end
+	return game.get_game_time():diffSec(StartTime)
+end
+local function game_days()
+	return math.floor(game_seconds() / 86400)
+end
+
+local autosave_t
+function autosave( text )
+	text = text:clear():gsub( '[%(%)]*', "" ):trim() --Вырезаем неподдерживаемые FS символы и пробелы по краям.
+	text = "День " .. game_days() .. ". " .. text
+	if text:len() > 60 then
+		text = text:sub( 1, 58 ) .. "..."
+	end
+	cmd( "save " .. text )
+end
+--------------------------------------------------------------------------
+
 function send_task(actor, type, task, objective)
 	if not db.actor then return false end
-	
+
 	--' Берем координаты из текстуры таска
     local task_texture, task_rect = get_texture_info("ui_iconsTotal_"..task:get_id(), "ui_iconsTotal_locations")
         
@@ -243,16 +272,40 @@ function send_task(actor, type, task, objective)
 		end
 		news_text = game.translate_string(task:get_objective(objective:get_idx() + 1):get_description())
 	end
-
+--------------------------------------------------------------------------
+	local task_title = task:get_title()
+	--log3("~~[%s] task_title is [%s]", script_name(), task_title)
+	local task_time = task_title:find("\\n", 1, true)
+	if task_time then
+		task_title = task_title:sub(1, task_time - 1)
+	end
+	-- автосохранение только при получении и сдаче задания. циклические задания игнорируются.
+	if not cycle_task[task_title] then
+		local news_text_save = game.translate_string( task_title )
+		if type == "complete" then
+			news_text_save = news_text_save.." - завершено"
+		end
+		-- удаляем предыдущий таймер на сохранение при сдаче/получении
+		-- нескольких квестов в одном диалоге
+		-- сохраняем только самый последний автосейв по завершении диалога
+		if type == "new" or type == "complete" then
+			if autosave_t then autosave_t:stop() end
+			autosave_t = dsh.wait_condition(
+				function() return ogse.check_game() and not level.main_input_receiver() end,
+				function() autosave( news_text_save ); autosave_t = nil; end,
+				function() ogse_signals.get_mgr():reschedule( math.random( 1500, 3000 ) ) end
+			)
+		end
+	end
+--------------------------------------------------------------------------
 	local hud = get_hud()
 	hud:AddCustomStatic("main_task", true)
-	hud:GetCustomStatic("main_task"):wnd():SetTextST(news_text)
+	hud:GetCustomStatic("main_task"):wnd():SetText(news_text)
 	hud:GetCustomStatic("main_task").m_endTime = time_global()/1000 + 5
 end
 
 function send_encyclopedy(type, title)
 	if type == "Diary" then
-
 		if pda_news then
 			pda_news:play(db.actor, 0, sound_object.s2d)
 		end
@@ -267,8 +320,8 @@ function send_encyclopedy(type, title)
 		end	
 	end
 end
-function send_treasure(name)
 
+function send_treasure(name)
 	if pda_news then
 		pda_news:play(db.actor, 0, sound_object.s2d)
 	end
@@ -301,7 +354,8 @@ function get_inv_name(section)
 end
 
 function relocate_item(actor, type, item)
-	if db.actor == nil then return false end
+	if not db.actor then return false end
+
 	--' Играем дефолтный звук
 	if type == "in" then
 		local task_texture, task_rect = get_texture_info("ui_iconsTotal_found_thing")
@@ -320,11 +374,10 @@ function relocate_item(actor, type, item)
 			db.actor:give_game_news(news_text, task_texture, task_rect, 0, 3000)
 		end		
 	end
-	
 end
-function relocate_money(actor, type, amount)
-	if db.actor == nil then return false end
 
+function relocate_money(actor, type, amount)
+	if not db.actor then return false end
 
 	--' Играем дефолтный звук
 	if type == "in" then
@@ -346,5 +399,4 @@ function relocate_money(actor, type, amount)
 			db.actor:give_game_news(news_text, task_texture, task_rect, 0, 3000)
 		end		
 	end
-	
 end
