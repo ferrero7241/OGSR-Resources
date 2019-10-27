@@ -1217,8 +1217,8 @@ script_spawn_registry = {
 		plastinka_2 = {sec = "plastinka_2", pos = {39.31, 4.90, -82.11}, lvid = 223607, gvid = 1111, use_ai_locations = false},	-- Боров
 		plastinka_3 = {sec = "plastinka_3", pos = {138.978, -4.821, 46.142}, lvid = 309357, gvid = 422, use_ai_locations = false},	-- Свалка логово Диггера
 		plastinka_4 = {
-			{sec = "plastinka_4", pos = {-53.14, 3.10, -69.68}, lvid = 404663, gvid = 3657, use_ai_locations = false},	-- МГ
-			{sec = "plastinka_4", pos = {-42.16, 2.30, -64.97}, lvid = 426764, gvid = 3655, use_ai_locations = false},	-- МГ
+			{sec = "plastinka_4", pos = {-53.14, 3.10, -69.68}, lvid = 404663, gvid = 3657, use_ai_locations = false},	-- МГ в здании СЛАВА КПСС на столе
+		--	{sec = "plastinka_4", pos = {-42.16, 2.30, -64.97}, lvid = 426764, gvid = 3655, use_ai_locations = false},	-- МГ в здании СЛАВА КПСС на полу
 		--	{sec = "plastinka_4", pos = {-133.01, 6.15, -196.95}, lvid = 106299, gvid = 629, use_ai_locations = false},	-- Агро
 		--	{sec = "plastinka_4", pos = {-249.63, -11.05, 300.36}, lvid = 85270, gvid = 1861, use_ai_locations = false},	-- Милитари
 		},
@@ -1228,9 +1228,9 @@ script_spawn_registry = {
 			{sec = "plastinka_7", pos = {-180.339, 1.672, 555.837}, lvid = 196934, gvid = 2950, use_ai_locations = false}, -- Лощина у Кульгавого
 		--	{sec = "plastinka_7", pos = {-157.43, 2.60, -46.50}, lvid = 238687, gvid = 3836, use_ai_locations = false},	-- МГ
 		--	{sec = "plastinka_7", pos = {-53.96, 7.90, -74.94}, lvid = 402255, gvid = 3680, use_ai_locations = false},	-- МГ
-			{sec = "plastinka_7", pos = {-192.35, -15.10, 381.20}, lvid = 133794, gvid = 1923, use_ai_locations = false},	-- Милитари
+		--	{sec = "plastinka_7", pos = {-192.35, -15.10, 381.20}, lvid = 133794, gvid = 1923, use_ai_locations = false},	-- Милитари
 		},
-		plastinka_8= {sec = "plastinka_8", pos = {-77.854, 1.561, -258.186}, lvid = 302653, gvid = 3048, use_ai_locations = false}, -- Лощина у Захарыча
+		plastinka_8 = {sec = "plastinka_8", pos = {-77.854, 1.561, -258.186}, lvid = 302653, gvid = 3048, use_ai_locations = false}, -- Лощина у Захарыча
 		plastinka_9 = {sec = "plastinka_9", pos = {143.41, 5.70, -34.69}, lvid = 242296, gvid = 2312, use_ai_locations = false},	-- Припять д/сад
 	},
 	ammo_box = {
