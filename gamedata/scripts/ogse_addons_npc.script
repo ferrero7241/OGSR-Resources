@@ -75,10 +75,19 @@ local function process(npc)
 	npc:iterate_inventory( function(_, obj)
 		if not alife():object(obj:id()) then return end
 		--
+		--Сюда почему-то периодически попадают объекты, находящиеся в процессе удаления. Никакие проверки типа getDestroy() в движке не помогают, поэтому такую конструкцию написал:
+		local sect
+		local res, err = pcall(function() sect = obj:section(); end)
+		if not res then
+			log3("!![%s] Destroyed object found!", script_name())
+			return
+		end
+		ASSERT(sect, "")
+		--
 		if obj:is_weapon_magazined() then --Заносим в таблицу все стволы в инвентаре НПС
-			wpn_table[obj] = obj:section()
+			wpn_table[obj] = sect
 		else
-			local addon_type = ogse_addons.get_addon_type(obj:section())
+			local addon_type = ogse_addons.get_addon_type(sect)
 			if addon_type ~= 0 then --Заносим в таблицу все аддоны в инвентаре НПС
 				addon_table[obj:id()] = addon_type
 			end
