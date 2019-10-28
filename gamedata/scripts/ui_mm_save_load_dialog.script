@@ -331,7 +331,7 @@ function save_load_dialog:OnButton_save_clicked()
 	local main_frame = self:GetFrameWindow("main_frame")	
 
 	local edit_box = self:GetEditBox("edit_filename")
-	self.new_save = edit_box:GetText():clear():gsub( '[%(%)]*', "" ):trim() --Вырезаем неподдерживаемые FS символы и пробелы по краям.
+	self.new_save = dsh.safe_file_name(edit_box:GetText())
 	if self.new_save:len() == 0 then
 		self.msgbox_id = 0
 		self.message_box:Init("message_box_empty_file_name")		

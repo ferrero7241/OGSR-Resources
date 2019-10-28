@@ -232,14 +232,13 @@ local function game_seconds()
 	if not StartTime then getStartTime() end
 	return game.get_game_time():diffSec(StartTime)
 end
-local function game_days()
+function game_days()
 	return math.floor(game_seconds() / 86400)
 end
 
 local autosave_t
 function autosave( text )
-	text = text:clear():gsub( '[%(%)]*', "" ):trim() --Вырезаем неподдерживаемые FS символы и пробелы по краям.
-	text = "День " .. game_days() .. ". " .. text
+	text = "День " .. game_days() .. ". " .. dsh.safe_file_name(text)
 	if text:len() > 60 then
 		text = text:sub( 1, 58 ) .. "..."
 	end
