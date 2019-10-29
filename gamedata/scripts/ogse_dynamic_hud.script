@@ -125,14 +125,14 @@ function check_my_suit_hud()
 			suithudtype = "hud_gaz_" .. suit_condition
 			wotsuittype = "hud_gaz"
 		end			
-		if string.find(suithudname, "monolit_exoskeleton") then
+		if string.find(suithudname, "monolit_exoskeleton") or string.find(suithudname, "exo2") then
 			suithudtype = "hud_exo_" .. suit_condition
 			wotsuittype = "hud_exo"
 		end
-		if string.find(suithudname, "killer_outfit") then
+		--[=[if string.find(suithudname, "killer_outfit") or string.find(suithudname, "outfit_killer_m1") then
 			suithudtype = "hud_kill_" .. suit_condition
 			wotsuittype = "hud_kill"
-		end			
+		end--]=]
 	else
 		if blurs_enable then
 			set_blurs(false)

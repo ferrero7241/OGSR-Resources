@@ -90,7 +90,7 @@ function have_gasmask() --проверка, имеет ли костюм вст�
 	if not armor then return false end
 
 	local armorname = armor:section()
-	if 	string.find(armorname, "monolit_exoskeleton") or
+	if 	string.find(armorname, "monolit_exoskeleton") or string.find(armorname, "exo2") or
 		string.find(armorname, "military_outfit") or
 		string.find(armorname, "svoboda_heavy_outfit") or
 		string.find(armorname, "scientific_outfit") or
@@ -98,8 +98,9 @@ function have_gasmask() --проверка, имеет ли костюм вст�
 		string.find(armorname, "protection_outfit") or
 		string.find(armorname, "specops_outfit") or
 		string.find(armorname, "outfit_specnaz") or
-		string.find(armorname, "outfit_dolg") or
-		string.find(armorname, "killer_outfit") then
+		string.find(armorname, "outfit_dolg")
+		--or string.find(armorname, "killer_outfit") or string.find(armorname, "outfit_killer_m1")
+	then
 		return true
 	end
 end
