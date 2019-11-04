@@ -317,7 +317,7 @@ function safe_file_name( fname ) --Вырезаем неподдерживаемые FS символы и пробел
 end
 
 function on_level_changer_action( obj, wnd )
-  ogse.save_var( script_name()..".last_lc_id", obj:id(), "float" )
+  ogse.save_var( script_name()..".last_lc_id", obj:id(), "u16" )
   wait_condition(
 	function() return not wnd:IsShown() end,
 	function() ogse.delete_var( script_name()..".last_lc_id" ) end,
