@@ -39,8 +39,10 @@ function on_take(obj, sobj)
 		db.actor:give_info_portion ("mil_max_flash_get")
 		return true
 	elseif sect == "af_muten" then
-		db.actor.radiation = 0.7
-		db.actor:give_info_portion("dead_stalker_question_of_immortality_get_muten")
+		if not db.actor:has_info("dead_stalker_question_of_immortality_get_muten") then
+			db.actor.radiation = 0.7
+			db.actor:give_info_portion("dead_stalker_question_of_immortality_get_muten")
+		end
 		if not db.actor:has_info("dead_stalker_question_of_immortality_delete_muten_trash") then
 			question_of_immortality_fisrt_part_delete_muten_trash()
 		end
