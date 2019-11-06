@@ -1222,7 +1222,7 @@ function bar_arena_teleport( actor, npc)
     in_object  = inv_box_1
 		actor:inventory_for_each(transfer_object_item) ]]
 		
-	ogse.transfer_items_to_box(story_ids.bar_arena_inventory_box_2, true, items_no_transfer, nil)
+	ogse.transfer_items_to_box(story_ids.bar_arena_inventory_box_2, false, items_no_transfer, nil)
 
 	local spawn_items = {}	
 
@@ -1314,7 +1314,7 @@ function bar_arena_teleport_2( actor, npc)
 										if not items_no_transfer[item:section()] then ogse.remove_item_from_inventory(item, npc) end
 									end)
 		-- переносим к нему его барахло
-		ogse.transfer_items_from_box(story_ids.bar_arena_inventory_box_2, true, nil, nil)
+		ogse.transfer_items_from_box(story_ids.bar_arena_inventory_box_2)
 end
 
 function barman_give_extra_task (actor, npc)
@@ -3765,7 +3765,7 @@ end
 
 
 function dar_kulgband_informer_weapons_back()
-ogse.transfer_items_from_box(story_ids.kulgband_informer_seif, false, nil, nil)
+ogse.transfer_items_from_box(story_ids.kulgband_informer_seif)
 end
 
 

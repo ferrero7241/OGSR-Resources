@@ -1502,7 +1502,7 @@ function transfer_items_to_box(box_sid, remove_quest_items, exclude_sections, ex
 	end
 end
 
-function transfer_items_from_box(box_sid, remove_quest_items, exclude_sections, exclude_clsids)
+function transfer_items_from_box(box_sid)
 	local box = level_object_by_sid(box_sid)
 	if not box then return end
 

@@ -1180,7 +1180,7 @@ function CArenaext:start_stake()
 	-- отнимем у ГГ всё, кроме самого необходимого, дабы он не вмешивался в ход боя
 --	put_items_to_box_exept(box, self.keep_items)
 
-	ogse.transfer_items_to_box(story_ids.bar_arena_inventory_box_2, true, self.keep_items, item_clsids_no_transfer)
+	ogse.transfer_items_to_box(story_ids.bar_arena_inventory_box_2, false, self.keep_items, item_clsids_no_transfer)
 
 	-- ГГ временно пополняет ряды торговцев
 	db.actor:set_character_community("trader",0,0)
