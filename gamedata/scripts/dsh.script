@@ -313,7 +313,11 @@ end
 
 -------------------------------------------------------------
 function safe_file_name( fname ) --Вырезаем неподдерживаемые FS символы и пробелы по краям.
-  return fname:clear():gsub( '[%(%)]*', "" ):trim()
+  fname = fname:clear():gsub( '[%(%)]*', "" ):trim()
+  if fname:len() > 60 then
+    fname = fname:sub( 1, 58 ) .. "..."
+  end
+  return fname
 end
 
 function on_level_changer_action( obj, wnd )

@@ -238,11 +238,7 @@ end
 
 local autosave_t
 function autosave( text )
-	text = "Δενό " .. game_days() .. ". " .. dsh.safe_file_name(text)
-	if text:len() > 60 then
-		text = text:sub( 1, 58 ) .. "..."
-	end
-	cmd( "save " .. text )
+	cmd( "save " .. dsh.safe_file_name( string.format( "Δενό %d. %s", game_days(), text ) ) )
 end
 --------------------------------------------------------------------------
 
