@@ -49,28 +49,24 @@ function actor_proxy:id()
 	return self.actor_id
 end
 
-function actor_proxy:has_info( name )
+function actor_proxy:has_info( ... )
 	self:init()
 
-	has_alife_info(name)
+	return has_alife_info( ... )
 end
 
-function actor_proxy:dont_has_info( name )
-	self:init()
-
-	if self.online then
-		return not has_alife_info( name )
-	else
-		return not has_alife_info( self.actor_id, name )
-	end
+function actor_proxy:dont_has_info( ... )
+	return not self:has_info( ... )
 end
 
 -- рождение актёра в онлайн
 function actor_proxy:net_spawn( obj )
-	self:init()
+  self:init()
 
-	self.online = true
-	self.actor  = obj
+  self.actor    = obj
+  self.actor_id = obj:id()
+  self.alife    = alife()
+  self.online   = true
 end
 
 -- уход актёра из онлайна
