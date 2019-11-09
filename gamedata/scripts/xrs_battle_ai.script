@@ -355,6 +355,10 @@ end
 
 
 function get_best_weapon( npc )
+  local wm = rx_wmgr.get_wm( npc )
+  return wm and wm:get_weapon() or npc:best_weapon()
+
+--[=[
   local sl = npc:active_slot()
   if sl ~= NO_ACTIVE_SLOT and npc:item_in_slot( sl ) then
     return npc:item_in_slot( sl )
@@ -362,6 +366,7 @@ function get_best_weapon( npc )
     local wm = rx_wmgr and rx_wmgr.get_wm( npc )
     return ( wm and wm:get_weapon() ) or npc:best_weapon()
   end
+--]=]
 end
 
 
