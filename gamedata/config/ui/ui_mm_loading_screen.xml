@@ -1,8 +1,8 @@
 <w>
 	<!-- Фон экрана загрузки, может состоять из множества элементов-->
 	<background width="1024" height="768">
-        <auto_static width="1024" height="768">
-            <texture x="0" y="0" width="1024" height="768">ui\ui_load</texture>
+        <auto_static x="0" y="0" width="1024" height="768" stretch="1">
+            <texture>ui\ui_load</texture>
         </auto_static>
 	</background>
 
