@@ -15,14 +15,14 @@
 	<!-- Новые режимы: mode="from_center" - от центра к краям, mode="horz" - слева направо, mode="back" - справа налево -->
 	<!-- Так же есть и вертикальные режимы. Для лоадскрина они конечно не пригодятся, но для информации напишу здесь, есть mode="vert", mode="down", mode="vert_from_center" -->
 	<!-- По умолчанию ЗП-стайл прогрессбар рисуется ПОД фоном (background). Чтобы рисовать прогрессбар НАД background - надо сделать under_background="0" -->
-    <loading_progress x="378" y="729" width="506" height="34" min="0" max="100" pos="0" inertion="5.0" mode="horz" under_background="0">
+    <loading_progress x="0" y="0" width="0" height="0" min="0" max="100" pos="0" inertion="5.0" mode="horz" under_background="0">
 		<!--Текстура фона прогрессбара-->
         <!--background>
             <texture x="400" y="800" width="506" height="4">ui\ui_load_new</texture>
         </background-->
 		<!--Непосредственно текстура прогрессбара-->
         <progress>
-            <texture x="0" y="771" width="268" height="34">ui\ui_load</texture>
+            <texture x="0" y="0" width="0" height="0">ui\ui_load</texture>
         </progress>
 		<!-- С помощью этих опций можно подкрасить текстуру прогрессбара разными цветами, когда прогресс находится в начале, в середине, и соотв. в конце -->
         <!--min_color r="30" g="88" b="126"/>
