@@ -427,9 +427,9 @@ function vis_int()
 		--local valid = level.vertex_position(lvid):distance_to(pos)<=0.7
 		local valid = level.valid_vertex_id( level.vertex_id( pos ) )
  		local fps_check = ogse_benchmark.get_fps()
-		local PosText = string.format("pos: %1.3f,%1.3f,%1.3f\\n",pos.x,pos.y,pos.z)..	-- позиция ГГ (x,y,z)
-						string.format("cam_pos: %1.3f,%1.3f,%1.3f\\n",campos.x,campos.y,campos.z)..	-- позиция камеры (x,y,z)
-						string.format("dir: %1.3f,%1.3f,%1.3f\\n",dir.x,dir.y,dir.z)..	-- поворот ГГ вокруг осей (x,y,z) (гонит)
+		local PosText = string.format("pos: %f,%f,%f\\n",pos.x,pos.y,pos.z)..	-- позиция ГГ (x,y,z)
+						string.format("cam_pos: %f,%f,%f\\n",campos.x,campos.y,campos.z)..	-- позиция камеры (x,y,z)
+						string.format("dir: %f,%f,%f\\n",dir.x,dir.y,dir.z)..	-- поворот ГГ вокруг осей (x,y,z) (гонит)
 		                string.format("lvid: %d\\n",lvid)..								-- левел вертекс
 						string.format("gvid: %d\\n",gvid)..								-- гейм вертекс
 						string.format("valid: %s\\n",tostring(valid))..					-- наличие AI-сетки в данной координате
@@ -490,19 +490,19 @@ function vis_int()
 			aCommun = GetString("trader")
 		end
 		if aHealth == true then
-			str = string.format(" %1.3f",db.actor.health)
+			str = string.format(" %f",db.actor.health)
 			ActText = ActText.. GetString("sdata_actor_health").. tostring(str).."("..math.ceil(tonumber(str)*100).."%)\\n"
 		end
 		if aPower == true then
-			str=string.format(" %1.3f",db.actor.power)
+			str=string.format(" %f",db.actor.power)
 			ActText = ActText.. GetString("sdata_actor_power").. tostring(str).." ("..math.ceil(tonumber(str)*100).."%)\\n"
 		end
 		if aRadiation == true then
-			str = string.format(" %1.3f",db.actor.radiation)
+			str = string.format(" %f",db.actor.radiation)
 			ActText = ActText.. GetString("sdata_actor_radiation").. tostring(str).." ("..math.ceil(tonumber(str)*100).."%)\\n"
 		end
 		if aSatiety == true then
-			str = string.format(" %1.3f",db.actor.satiety)
+			str = string.format(" %f",db.actor.satiety)
 			ActText = ActText.. GetString("sdata_actor_satiety").. tostring(str).." ("..math.ceil(tonumber(str)*100).."%)\\n"
 		end
 		if aDrinky==true then
@@ -515,7 +515,7 @@ function vis_int()
 			ActText = ActText.. string.format(GetString("sdata_actor_money").." %d\\n",db.actor:money())
 		end
 		if aPsyHealth==true then
-			str = string.format(" %1.3f",db.actor.psy_health)
+			str = string.format(" %f",db.actor.psy_health)
 			ActText = ActText.. GetString("sdata_actor_psy_health").. tostring(str).." ("..math.ceil(tonumber(str)*100).."%)\\n"
 		end
 		if aMorale == true then
