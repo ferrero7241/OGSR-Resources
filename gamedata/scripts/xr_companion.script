@@ -253,7 +253,7 @@ local weapons_list = {
 ["wpn_pkm"]					= 41,
 ["wpn_pkm_digger"]			= 41,
 ["wpn_m_134"]				= 41,
-["wpn_dshkm"]				= 42,
+["wpn_dshkm"]				= 41,
 --Тяжелое
 ["wpn_rpg7"]				= 50,
 --Огнемет
