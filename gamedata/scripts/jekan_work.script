@@ -13,6 +13,10 @@ function attach(sm)
 	--
 	sm:subscribe({signal = "on_first_update", fun = this.check_subscribe_bind_avail_six_anom_house_items})
 	sm:subscribe({signal = "on_info", fun = this.info_check_subscribe_bind_avail_six_anom_house_items})
+	-- KRodin: ниже костыль от очень редкого бага с квестом, пусть будет.
+	if not has_alife_info("klondaik_flashes_collected") then
+		sm:subscribe({signal = "on_update", fun = function() this.check_klondaik_flashes(); sm:reschedule(math.random(3000, 5000)) end, queued = true})
+	end
 end
 
 local spawn_db = ogse_spawn_db.script_spawn_registry.jekan_quests
@@ -4920,6 +4924,8 @@ function give_filin_flash(first_speaker, second_speaker)
 end
 
 function check_klondaik_flashes()
+	if has_alife_info("klondaik_flashes_collected") then return end
+
 	if db.actor then 
 		local flash_1 = db.actor:object("klondaik_flash_1")
 		local flash_2 = db.actor:object("klondaik_flash_2")
