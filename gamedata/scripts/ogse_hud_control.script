@@ -39,11 +39,15 @@ end
 
 local show_indicators = true --нужно для правильного убирания худа при прицеливании.
 local aiming_complete = false --нужно для правильной работы сигналов on/off_sniper_mode
+local indicators_shown = false --на случай, чтобы не было проблем, если вдруг показ худа выключит игрок (num+ / num-)
 
 function on_update()
 	if db.actor:zoom_mode() and actor_keeps_wpn_with_optical_sight() then --Если актор смотрит в оптику
 		if show_indicators then
-			level.hide_indicators() --убираем худ
+			indicators_shown = level.game_indicators_shown()
+			if indicators_shown then
+				level.hide_indicators() --убираем худ
+			end
 			show_indicators = false
 		end
 		local act_it = db.actor:active_item()
@@ -68,7 +72,9 @@ function on_update()
 			ogse_signals.get_mgr():call("off_sniper_mode") --Делаем что-то по окончанию прицеливания
 			aiming_complete = false
 		end
-		level.show_indicators() --покажем худ
+		if indicators_shown then
+			level.show_indicators() --покажем худ
+		end
 		show_indicators = true
 	end
 end
