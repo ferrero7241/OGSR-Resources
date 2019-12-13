@@ -126,7 +126,7 @@
 
 <!-- gazmask_hud -->
 <hud_gazmask x="0" y="0" width="1024" height="768" stretch="1" priority="-90">
-    <texture>hud\gazmask</texture>
+	<texture>hud\merc1</texture>
 </hud_gazmask>
 
 <!-- gazmask_hud -->
