@@ -302,106 +302,12 @@ function start_new_zagadka_timer()
 	ogse.start_timer("zag",400)
 end
 
-function spawn_hunter_shron_1()
-	local data = spawn_db.hunter_shron_1
-	dsh_rukzak.create_rukzak_by_section( data.sec, vector():set(unpack(data.pos)), data.lvid, data.gvid )
+for i = 1, 20 do
+	this["spawn_hunter_shron_"..i] = function()
+		local data = spawn_db["hunter_shron_"..i]
+		dsh_rukzak.create_rukzak_by_section(data.sec, vector():set(unpack(data.pos)), data.lvid, data.gvid, "crlc_mdl", "Тайник Захарыча")
+	end
 end
-
-function spawn_hunter_shron_2()
-	local data = spawn_db.hunter_shron_2
-	dsh_rukzak.create_rukzak_by_section( data.sec, vector():set(unpack(data.pos)), data.lvid, data.gvid )
-end
-
-function spawn_hunter_shron_3()
-	local data = spawn_db.hunter_shron_3
-	dsh_rukzak.create_rukzak_by_section( data.sec, vector():set(unpack(data.pos)), data.lvid, data.gvid )
-end
-
-function spawn_hunter_shron_4()
-	local data = spawn_db.hunter_shron_4
-	dsh_rukzak.create_rukzak_by_section( data.sec, vector():set(unpack(data.pos)), data.lvid, data.gvid )
-end
-
-function spawn_hunter_shron_5()
-	local data = spawn_db.hunter_shron_5
-	dsh_rukzak.create_rukzak_by_section( data.sec, vector():set(unpack(data.pos)), data.lvid, data.gvid )
-end
-
-function spawn_hunter_shron_6()
-	local data = spawn_db.hunter_shron_6
-	dsh_rukzak.create_rukzak_by_section( data.sec, vector():set(unpack(data.pos)), data.lvid, data.gvid )
-end
-
-function spawn_hunter_shron_7()
-	local data = spawn_db.hunter_shron_7
-	dsh_rukzak.create_rukzak_by_section( data.sec, vector():set(unpack(data.pos)), data.lvid, data.gvid )
-end
-
-function spawn_hunter_shron_8()
-	local data = spawn_db.hunter_shron_8
-	dsh_rukzak.create_rukzak_by_section( data.sec, vector():set(unpack(data.pos)), data.lvid, data.gvid )
-end
-
-function spawn_hunter_shron_9()
-	local data = spawn_db.hunter_shron_9
-	dsh_rukzak.create_rukzak_by_section( data.sec, vector():set(unpack(data.pos)), data.lvid, data.gvid )
-end
-
-function spawn_hunter_shron_10()
-	local data = spawn_db.hunter_shron_10
-	dsh_rukzak.create_rukzak_by_section( data.sec, vector():set(unpack(data.pos)), data.lvid, data.gvid )
-end
-
-function spawn_hunter_shron_11()
-	local data = spawn_db.hunter_shron_11
-	dsh_rukzak.create_rukzak_by_section( data.sec, vector():set(unpack(data.pos)), data.lvid, data.gvid )
-end
-
-function spawn_hunter_shron_12()
-	local data = spawn_db.hunter_shron_12
-	dsh_rukzak.create_rukzak_by_section( data.sec, vector():set(unpack(data.pos)), data.lvid, data.gvid )
-end
-
-function spawn_hunter_shron_13()
-	local data = spawn_db.hunter_shron_13
-	dsh_rukzak.create_rukzak_by_section( data.sec, vector():set(unpack(data.pos)), data.lvid, data.gvid )
-end
-
-function spawn_hunter_shron_14()
-	local data = spawn_db.hunter_shron_14
-	dsh_rukzak.create_rukzak_by_section( data.sec, vector():set(unpack(data.pos)), data.lvid, data.gvid )
-end
-
-function spawn_hunter_shron_15()
-	local data = spawn_db.hunter_shron_15
-	dsh_rukzak.create_rukzak_by_section( data.sec, vector():set(unpack(data.pos)), data.lvid, data.gvid )
-end
-
-function spawn_hunter_shron_16()
-	local data = spawn_db.hunter_shron_16
-	dsh_rukzak.create_rukzak_by_section( data.sec, vector():set(unpack(data.pos)), data.lvid, data.gvid )
-end
-
-function spawn_hunter_shron_17()
-	local data = spawn_db.hunter_shron_17
-	dsh_rukzak.create_rukzak_by_section( data.sec, vector():set(unpack(data.pos)), data.lvid, data.gvid )
-end
-
-function spawn_hunter_shron_18()
-	local data = spawn_db.hunter_shron_18
-	dsh_rukzak.create_rukzak_by_section( data.sec, vector():set(unpack(data.pos)), data.lvid, data.gvid )
-end
-
-function spawn_hunter_shron_19()
-	local data = spawn_db.hunter_shron_19
-	dsh_rukzak.create_rukzak_by_section( data.sec, vector():set(unpack(data.pos)), data.lvid, data.gvid )
-end
-
-function spawn_hunter_shron_20()
-	local data = spawn_db.hunter_shron_20
-	dsh_rukzak.create_rukzak_by_section( data.sec, vector():set(unpack(data.pos)), data.lvid, data.gvid )
-end
-
 ----------------------------------------------------------------------------------------------------
 
 function set_mark_smert_zone()
@@ -610,7 +516,7 @@ end
 ]]
 function spawn_bloha_shron()
 	local data = spawn_db.bloha_shron
-	dsh_rukzak.create_rukzak_by_section( data.sec, vector():set(unpack(data.pos)), data.lvid, data.gvid )
+	dsh_rukzak.create_rukzak_by_section( data.sec, vector():set(unpack(data.pos)), data.lvid, data.gvid, "crlc_mdl", game.translate_string("cheb_2_5_btn_7") )
 end
 
 function have_prof_zapiska(stalker, player)
