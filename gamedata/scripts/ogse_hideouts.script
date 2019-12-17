@@ -106,7 +106,7 @@ end
 --Выброс начинается - ставим метки на укрытия. Выброс закончился - снимаем метки.
 function on_info(npc, info)
 	if info == "pre_blowout" or info == "net_signal" then
-		for _, id in pairs(restr_list_on_curr_level) do
+		for _, id in pairs(restrictor_list) do
 			local sobj = alife():object(id)
 			local ini = sobj:spawn_ini()
 			if ini and ini:section_exist( "sr_mapspot" ) then
