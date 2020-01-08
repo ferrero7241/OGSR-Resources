@@ -211,7 +211,7 @@ end
 --Выдача тайника
 function CTreasure:give_treasure(k)
 	local v = self.treasure_info[k]
-	log3("~~[CTreasure:give_treasure] treasure_info of [%s] is %s", k, v)
+	--log3("~~[CTreasure:give_treasure] treasure_info of [%s] is %s", k, v)
 	local sobj = alife():story_object(v.target)
 	ASSERT(sobj, "!!Can't find treasure_box with story_id: [%s]", v.target)
 	local text = opt.need_text == 0
