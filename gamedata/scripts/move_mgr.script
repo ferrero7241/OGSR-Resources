@@ -280,7 +280,7 @@ local function remove_anomalies_on_path( npc, ppname )
     local nearest_anoms = ogse_anomaly.get_all_nearest_anomalies_by_point_in_radius( pp:point(i), npc:radius() )
     for id, _ in pairs( nearest_anoms ) do
       local sobj = alife():object(id)
-      if not ogse_anomaly.is_exclusion_anomaly(sobj) --[=[and not string.find(sobj:section_name(), "handmade_")--]=] then --Всё таки аномалии, поставленные руками, тоже надо удалять, иначе получим вылет из за недоступности вертекса.
+      if not ogse_anomaly.is_not_anomaly(sobj) and not ogse_anomaly.is_exclusion_anomaly(sobj) --[=[and not string.find(sobj:section_name(), "handmade_")--]=] then --Всё таки аномалии, поставленные руками, тоже надо удалять, иначе получим вылет из за недоступности вертекса.
         log3( "~~[%s]: removing anomaly [%s] on point [%s] for [%s]", script_name(), sobj:name(), ppname, npc:name() )
         ogse_anomaly.set_anomaly_mode(id, "anom_off")
         alife():release(sobj)
