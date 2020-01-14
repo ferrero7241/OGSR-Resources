@@ -52,7 +52,6 @@ addons = {
 	"dsh_rukzak",
 	"dsh_particles",
 	"dsh_monster_attack",
-	"dsh_ogse_relations",
 	"dsh_deadmans_table_proxy",
 	"dsh_respawn",
 	"dsh_enemies",
