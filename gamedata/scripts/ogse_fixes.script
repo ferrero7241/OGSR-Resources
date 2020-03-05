@@ -1,6 +1,5 @@
 -- -*- mode: lua; coding: windows-1251-dos -*-
 
-
 function attach(sm)
 	sm:subscribe({ signal = "on_spawn", fun = this.on_spawn })
 	sm:subscribe({ signal = "on_first_update", fun = this.on_first_update })
@@ -9,28 +8,17 @@ end
 function on_spawn()
 	del_buggy_objects()
 	del_buggy_mapspots()
-	del_all_trunks() --Убрать с НИ.
-	fix_dsh_rukzak_storage() --Убрать с НИ.
 
 	lc_question_add() --С НИ перенести на событие начала игры и всё, больше никогда не вызывать.
-	fix_gar_boars_territory2_logic() --тоже самое.
-	--fix_yan_st_stalker3_kamp_1() --тоже самое
-	fix_mg_smarts() --тоже самое
+	fix_gar_boars_territory2_logic()
+	fix_mg_smarts()
 	--
 	fix_bandit_trader()
-	--
-	fix_wpn_flame_in_rukzak()
-	--
-	fix_prizrak_trup()
-	--
-	fix_fourth_neutral_trup()
 	--
 	-- KRodin: выяснилось, что отключение вызова этого кода чинит очень странную ситуацию:
 	-- Удивительно, видимо телепорт_обджект для объекта в онлайне (либо просто рядом с актором) вызывает его повторный нет_спавн что - ли?
 	-- Действительно, так и есть. В движке проблему костылём заткнули, но раскомментировать всё равно не буду, мало ли что.
 	--fix_yantar_guider()
-	--
-	fix_deadcity_trups()
 	--
 	fix_esc_semenov()
 	--
@@ -45,11 +33,7 @@ function on_spawn()
 end
 
 function on_first_update()
-	aem_fix() --Удалить по окончании игры! С НИ ЭТО НЕ НУЖНО!
-	--
 	fix_mg_respawners() --Снести с НИ
-	--
-	fix_crazy_respawn()
 	--
 	fix_monsters_spawn()
 end
@@ -68,6 +52,7 @@ function fix_esc_semenov()
   --
   ogse.save_var("fix_esc_semenov", true)
 end
+
 
 function fix_bandit_trader() --Телепорт торгаша бандитов на место.
   if ogse.var_exists("fix_bandit_trader") then return end
@@ -100,88 +85,6 @@ function fix_yantar_guider()
 end
 
 
-function fix_wpn_flame_in_rukzak() --KRodin: Фикс моей невнимательности
-	if ogse.var_exists("fix_wpn_flame_in_rukzak") then return end
-	--
-	for _, k in ipairs( ogse_unist.get_all_names() ) do
-		local id = string.match( k, "^dsh_rukzak%.([^.]+)%.sections$" )
-		if id then
-			id = tonumber( id )
-			local items = dsh_rukzak.load_rukzak( id )
-			local fixed = false
-			for i=1, #items do
-				local item = items[i]
-				if item.section == "wpn_flame" then
-					local str = item.info:sub(2)
-					item.info = "0"..str
-					--
-					fixed = true
-				end
-			end
-			if fixed then
-				dsh_rukzak.save_rukzak( id, items )
-			end
-		end
-	end
-	--
-	ogse.save_var("fix_wpn_flame_in_rukzak", true)
-end
-
-
---KRodin: поправил пропажу Призрака. Пропажа трупов правится в другом месте, и требует НИ.
---Поэтому будем извращаться, чтоб сохранить совместимость сейвов.
-function fix_prizrak_trup()
-	local lost_sobj = alife():story_object( story_ids.yan_ghost )
-	if not lost_sobj and not has_alife_info("yan_has_ghost_pda") then --Трупа нет и его ещё не обыскали
-		local sobj = alife():create("stalker", vector():set(-100.799301147461, 5.60592746734619, -23.0884437561035), 717, 1583)
-		--
-		local pk = get_netpk(sobj)
-		ASSERT( pk:isOk(), "can't read netpacket of %s", sobj:name() )
-		local data = pk:get()
-		data.health = 0
-		data.upd.health = 0
-		data.visual_name = "actors\\neytral\\stalker_prizrak"
-		local custom_data_string = "[logic] \nactive = nil \n[known_info] \nyan_has_ghost_pda \n[smart_terrains] \nnone = true"
-		data.custom_data:setString(custom_data_string)
-		pk:set(data)
-		--
-		alife():assign_story_id(sobj.id, story_ids.yan_ghost)
-		--
-		ogse.spawn_item_in_inv("wpn_val", sobj) 
-		ogse.spawn_item_in_inv("ammo_9x39_ap", sobj) 
-		ogse.spawn_item_in_inv("lab_x16_documents", sobj) 
-		ogse.spawn_item_in_inv("outfit_stalker_m1", sobj) 
-		--
-		log3("--[%s] prizrak trup fixed!", script_name())
-	end
-end
-
-
-function fix_crazy_respawn() --KRodin: Ещё один фикс моей невнимательности.
-  if ogse.var_exists("fix_crazy_respawn") then return end
-  --
-  dsh_respawn.iterate_respawners( function( respawner )
-    if respawner.item_spawn and #respawner.spawned_obj > 0 then
-      local ids = {}
-      for _, id in ipairs( respawner.spawned_obj ) do
-        table.insert( ids, id )
-      end
-      for _, id in ipairs( ids ) do
-        respawner:remove_spawned( id )
-        local sobj = alife():object( id )
-        if sobj then
-          log3("~~[%s] removed object [%s] from respawner [%s]", script_name(), sobj:name(), respawner.name)
-          alife():release(sobj, true) --Удаляем все лишние предметы, что наплодил респавнер.
-        end
-      end
-      dsh_respawn.spawn(respawner.name) --спавним нормальное кол-во предметов.
-    end
-  end )
-  --
-  ogse.save_var("fix_crazy_respawn", true)
-end
-
-
 function fix_monsters_spawn()
   if ogse.var_exists("fix_monsters_spawn") then return end
   --
@@ -190,83 +93,6 @@ function fix_monsters_spawn()
   ogse.save_var("fix_monsters_spawn", true)
 end
 
-
-function fix_fourth_neutral_trup()
-	local lost_sobj = alife():story_object( story_ids.fourth_neutral )
-	if not lost_sobj and not has_alife_info("boltun_nayden") then --Трупа нет и его ещё не обыскали
-		local sobj = alife():create("stalker", vector():set(-219.779998779297, 8.10000038146973, -337.399993896484), 158437, 3065)
-		--
-		local pk = get_netpk(sobj)
-		ASSERT( pk:isOk(), "can't read netpacket of %s", sobj:name() )
-		local data = pk:get()
-		data.health = 0
-		data.upd.health = 0
-		data.visual_name = "actors\\soldier\\soldier_spetsnaz"
-		local custom_data_string = "[spawner] \ncond = {+hunter_about_boltun} \n[known_info] \nboltun_nayden \n[smart_terrains] \nnone = true"
-		data.custom_data:setString(custom_data_string)
-		pk:set(data)
-		--
-		alife():assign_story_id(sobj.id, story_ids.fourth_neutral)
-		--
-		ogse.spawn_item_in_inv("klondaik_flash_4", sobj) 
-		--
-		log3("--[%s] fourth_neutral trup fixed!", script_name())
-	end
-end
-
-
-function fix_deadcity_trups()
-  if ogse.var_exists("fix_deadcity_trups") or not has_alife_info("master_quest_start") then return end
-  --
-  local t = {
-    ["master_quest_info_9"] = { pos = { -30.502738952637,11.227934837341,26.018726348877 }, lv = 446837, gv = 3792, name = "deadcity_dead_ecolog_9" },
-    ["master_quest_info_8"] = { pos = { -105.9154510498,15.611465454102,-23.27180480957 }, lv = 338013, gv = 3819, name = "deadcity_dead_ecolog_8" },
-    ["master_quest_info_7"] = { pos = { 37.58712387085,6.2540092468262,-110.84191894531 }, lv = 542530, gv = 3753, name = "deadcity_dead_ecolog_7" },
-    ["master_quest_info_6"] = { pos = { -92.041038513184,15.766061782837,-110.32796478271 }, lv = 340334, gv = 3819, name = "deadcity_dead_ecolog_6" },
-    ["master_quest_info_5"] = { pos = { -5.8504018783569,-1.6546441316605,44.151031494141 }, lv = 486756, gv = 3776, name = "deadcity_dead_ecolog_5" },
-    ["master_quest_info_4"] = { pos = { 51.409843444824,15.624316215515,94.350875854492 }, lv = 558042, gv = 3622, name = "deadcity_dead_ecolog_4" },
-    ["master_quest_info_3"] = { pos = { -191.00122070313,11.670829772949,462.79840087891 }, lv = 184347, gv = 3348, name = "deadcity_dead_ecolog_3" },
-    ["master_quest_info_2"] = { pos = { -155.09509277344,4.150454044342,-93.189254760742 }, lv = 241999, gv = 3826, name = "deadcity_dead_ecolog_2" },
-    ["master_quest_info_1"] = { pos = { -179.67881774902,5.5502276420593,-222.21566772461 }, lv = 201198, gv = 3594, name = "deadcity_dead_ecolog_1" }
-  }
-  local i = 1
-  for info, trup in pairs(t) do
-	if not has_alife_info(info) then
-	  if not alife():object(trup.name) then
-		local sobj = alife():create("stalker", vector():set(unpack(trup.pos)), trup.lv, trup.gv)
-		--
-		local pk = get_netpk(sobj)
-		ASSERT( pk:isOk(), "can't read netpacket of %s", sobj:name() )
-		local data = pk:get()
-		data.health = 0
-		data.upd.health = 0
-		--data.visual_name = "actors\\soldier\\soldier_spetsnaz"
-		local custom_data_string = "[spawner] \ncond = {+master_quest_start} \n[known_info] \n"..info.." \n[smart_terrains] \nnone = true"
-		data.custom_data:setString(custom_data_string)
-		pk:set(data)
-		--
-		--alife():assign_story_id(sobj.id, 30000)
-		log3("--[%s] [%s] trup fixed!", script_name(), trup.name)
-	    --level.map_add_object_spot_ser(sobj.id, "red_location", script_name()..": NEW"..sobj:name()) --DEBUG
-      else
-	    --level.map_add_object_spot_ser(alife():object(trup.name).id, "red_location", script_name()..": "..alife():object(trup.name):name()) --DEBUG
-	  end
-	end
-  end
-  --
-  ogse.save_var("fix_deadcity_trups", true)
-end
-
-
-function fix_yan_st_stalker3_kamp_1()
-  if ogse.var_exists("fix_yan_st_stalker3_kamp_1") then return end
-  local p = patrol( "yan_st_stalker3_kamp_1" )
-  dsh.create_campfire(
-    p:point( 0 ), p:level_vertex_id( 0 ), p:game_vertex_id( 0 ),
-    "objects\\koster_palki_nastil", 0.7
-  )
-  ogse.save_var("fix_yan_st_stalker3_kamp_1", true)
-end
 
 function fix_mg_respawners()
 	if has_alife_info("master_quest_soup_ready") then
@@ -282,6 +108,7 @@ function fix_mg_respawners()
 	end
 end
 
+
 function fix_mg_smarts()
 	if has_alife_info("master_quest_soup_ready") and not ogse.var_exists("fix_mg_smarts") then
 		for i=1, 6 do
@@ -290,38 +117,6 @@ function fix_mg_smarts()
 		end
 		ogse.save_var("fix_mg_smarts", true)
 	end
-end
-
-function fix_dsh_rukzak_storage( ver )
-  if ogse.var_exists("fix_dsh_rukzak_storage") then return end
-  for _, k in ipairs( ogse_unist.get_all_names() ) do
-    local id = string.match( k, "^dsh_rukzak%.([^.]+)%.sections$" )
-    if id then
-      id = tonumber( id )
-      local items = dsh_rukzak.load_rukzak( id )
-      log3(
-        "[%s]: change storage type of dsh_rukzak: %s",
-        script_name(), id
-      )
-      dsh_rukzak.save_rukzak( id, items )
-    end
-  end
-  ogse.save_var("fix_dsh_rukzak_storage", true)
-end
-
-function del_all_trunks()
-	if ogse.var_exists("TRUNK_FIX") then return end
-	local t = {}
-	for id, sobj in alife():objects() do
-		if sobj:section_name() == "trunk_box" then
-			log3( "~~[%s]: Found trunk [%s], removing...", script_name(), sobj:name() )
-			table.insert( t, sobj )
-		end
-	end
-	for _, sobj in ipairs( t ) do
-		alife():release( sobj )
-	end
-	ogse.save_var("TRUNK_FIX", true)
 end
 
 
@@ -335,6 +130,7 @@ function fix_gar_boars_territory2_logic() --Исправление кривой 
 	ogse.save_var("gar_boars_territory2_fix", true)
 end
 
+
 function lc_question_add() --Переход "Припять - ЧАЭС" задаёт вопрос о смене уровня.
 	local sobj = alife():object("exit_to_stancia_01")
 	if sobj then
@@ -343,28 +139,6 @@ function lc_question_add() --Переход "Припять - ЧАЭС" зада
 			lc.silent_mode = 0
 			log3( "~~[%s]: fixed ['exit_to_stancia_01']...", script_name() )
 		end
-	end
-end
-
-
-function aem_fix()
-	if not ogse.var_exists("AEM_FIX") then
-		for k, v in pairs( db.storage[db.actor:id()].pstor ) do
-			if string.find(k, "aem") then
-				if k == "aem_id" then
-					local sobj = alife():object(v)
-					if sobj then
-						log3( "~~[%s]: found [%s], removing...", script_name(), sobj:name() )
-						alife():release(sobj, true)
-					end
-				end
-				if db.storage[db.actor:id()].pstor[k] then
-					log3("~~[%s]: REMOVING FROM PSTOR: [%s]", script_name(), k)
-					db.storage[db.actor:id()].pstor[k] = nil
-				end
-			end
-		end
-		ogse.save_var("AEM_FIX", true)
 	end
 end
 
@@ -409,6 +183,7 @@ function del_buggy_objects() --Удаление из игры глючных о�
 		end
 	end
 end
+
 
 function del_buggy_mapspots() --Удаление глючных меток с карты.
 	--if has_alife_info("agr_find_gunslinger_cache_final")
