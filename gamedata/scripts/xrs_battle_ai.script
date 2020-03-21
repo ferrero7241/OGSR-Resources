@@ -155,6 +155,7 @@ local forbidden_gulags = {
    [ "val_watchtower4" ] = true,
    [ "val_watchtower5" ] = true,
    [ "val_lager_bandits" ] = true,
+   [ "bar_freedom_attack" ] = true, -- с этими тоже какие-то проблемы...
 }
 
 local forbidden_by_lname = {
