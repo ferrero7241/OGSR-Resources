@@ -942,7 +942,7 @@ function action_altcombat:_execute()
     assist_point = randomize_position( npc )
   end
 
-  if assist_point then
+  if assist_point and level.valid_vertex_id( assist_point ) then
     if
       npc:level_vertex_id() == assist_point
       or npc:position():distance_to( level.vertex_position( assist_point ) ) <= 1.0
@@ -960,7 +960,7 @@ function action_altcombat:_execute()
       elseif hit_timeout[ npc:id() ] then
         hit_timeout[ npc:id() ] = nil
         utils.send_to_nearest_accessible_vertex( npc, assist_point )
-      else
+      elseif assist_point ~= 0 then
         utils.send_to_nearest_accessible_vertex( npc, assist_point )
       end
     end
