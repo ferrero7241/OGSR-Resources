@@ -69,7 +69,8 @@ function evaluator_wound:evaluate()
 	local npc = self.object
 	if self.a.wounded_set ~= true then return false end
 	if not self.a.regen then
-		self.a.regen = npc:character_community()=="zombied" or npc:character_community()=="monolith"
+		--KRodin: выключаю, чтобы скриптовая боевка отключалась если враг ранен и работала исправленная движковая схема добивания раненых.
+		--self.a.regen = npc:character_community()=="zombied" or npc:character_community()=="monolith"
 	end
   
 	local sobj = alife():object(npc:id())
@@ -730,21 +731,7 @@ end
 
 
 function is_wounded(npc)
-
---  if npc and db.storage[npc:id()] and db.storage[npc:id()].wounded ~= nil then 
---'   if npc:object("medkit") ~= nil and
---'      db.storage[npc:id()].wounded.wound_manager.can_use_medkit == true
---'   then
---'     return false
---'   end
-	-- log1("!!TEST "..npc:name().." WOUND "..tostring(db.storage[npc:id()].wounded.wound_manager.state))
---    return tostring(db.storage[npc:id()].wounded.wound_manager.state) ~= "nil"
---  end
-	if not (npc:is_stalker() or npc:is_monster()) then
-		return false
-	end
-
-	return tostring(xr_logic.pstor_retrieve(npc, "wounded_state")) ~= "nil"
+	return ( npc:is_stalker() and npc:alive() and npc:wounded() )
 end
 
 function hit_callback(npc_id)
