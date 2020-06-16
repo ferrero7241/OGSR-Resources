@@ -60,7 +60,11 @@ function get_sound( theme, tt, npc, path )
 		get_sound( theme, tt, npc, path.types[ theme ] )
 	else -- чтение настроек темы
 		local st = path.max_ids[ npc:id() ]
-		ASSERT( st, "path.max_ids not found: %s", npc:name() )
+		if not st then
+			sound_theme.load_sound_from_ltx( npc, theme, path )
+			st = path.max_ids[ npc:id() ]
+		end
+		ASSERT( st, "[%s]: path.max_ids not found: [%s], theme: [%s]", script_name(), npc:name(), theme )
 		if not st.loaded then
 			if st.into_load then
 				st.into_max = load_theme_sounds( npc, st.into_load, path.into_id )
@@ -448,7 +452,7 @@ function get_safe_sound_object( path )
   return sound_object_by_path[ path ]
 end
 
--- KRodin: TODO: может здесь и очищать таблицу? Надо подумать, насколько это нужно. Быть может, имеет смысл это делать при уходе с уровня? Пока просто добавил лога.
+
 function stop_all_sound_object()
 	local size = 0
 	for _, snd in pairs(sound_object_by_path) do
@@ -457,5 +461,6 @@ function stop_all_sound_object()
 		end
 		size = size + 1
 	end
+	sound_object_by_path = {}
 	log3("~~[%s] size of table sound_object_by_path: [%s]", script_name(), size)
 end
