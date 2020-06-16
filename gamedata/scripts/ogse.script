@@ -1570,7 +1570,7 @@ function on_spawn()
       --[["g_god", "g_unlimitedammo",]] "g_zones_dbg", "g_vertex_dbg", "g_crosshair_dbg",
       "hud_draw",
       "hud_adjust_mode", "show_wnd_rect", "show_wnd_rect_all",
-      "demo_record", "jump_to_level", "time_factor"
+      "demo_record", "jump_to_level", "time_factor", "set_weather"
     }) do
       get_console():disable_command( k )
     end
