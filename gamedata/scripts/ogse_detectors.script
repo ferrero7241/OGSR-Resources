@@ -315,7 +315,7 @@ local function update_geiger_sound()
 		end
 		local tg = time_global()
 		if last_click == 0 then
-			geiger_snd = xr_sound.get_safe_sound_object("detectors\\geiger_"..math.random(rnd_val))
+			geiger_snd = sound_object("detectors\\geiger_"..math.random(rnd_val))
 			if geiger_snd then
 				geiger_snd:play_no_feedback(db.actor, sound_object.s2d, 0, vector(), 9.0)
 				last_click = tg
@@ -327,7 +327,7 @@ local function update_geiger_sound()
 				timeout = miminal_click_period
 			end			
 			if tg > (last_click+timeout) then
-				geiger_snd = xr_sound.get_safe_sound_object("detectors\\geiger_"..math.random(rnd_val))
+				geiger_snd = sound_object("detectors\\geiger_"..math.random(rnd_val))
 				if geiger_snd then
 					geiger_snd:play_no_feedback(db.actor, sound_object.s2d, 0, vector(), 9.0)
 					last_click = tg

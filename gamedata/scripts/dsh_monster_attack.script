@@ -277,7 +277,7 @@ function controller_psy_attack( obj )
 					local sobj = alife():create(hard_phantom_types[math.random(#hard_phantom_types)], obj:position(), npc:level_vertex_id() , npc:game_vertex_id() )
 					binder.phantom_spawned_id = sobj.id
 
-					local snd_obj = xr_sound.get_safe_sound_object("soundtrack\\controller\\"..math.random(25))
+					local snd_obj = sound_object("soundtrack\\controller\\"..math.random(25))
 					if snd_obj then
 						snd_obj:play_at_pos(npc, vector():set(0,0,0), 0, sound_object.s2d)
 					end
