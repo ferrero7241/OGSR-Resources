@@ -21,6 +21,7 @@ local function only_1_mode()                    return get_current_renderer() ==
 local function only_2a_and_more_mode()          return get_current_renderer() >= 1 end
 local function only_2_and_more_mode()           return get_current_renderer() >= 2 end
 local function only_25_and_more_mode()          return get_current_renderer() >= 3 end
+local function only_3_mode()                    return get_current_renderer() == 4 end
 local function only_3_and_more_mode()           return get_current_renderer() >= 4 end
 local function only_3_and_more_mode_invisible() return not only_3_and_more_mode()  end
 local function only_4_and_more_mode()           return get_current_renderer() >= 5 end
@@ -31,8 +32,8 @@ local adv_vid_opt_params = {
 	{ "texture_lod",           "track", 1, hint_colors.yellow, "video_settings_name_7" , "video_settings_desc_7"  },
 	{ "aniso",                 "track", 0, hint_colors.yellow, "video_settings_name_8" , "video_settings_desc_8"  },
 	--
-	{ "msaa",                  "list",  1, hint_colors.red   , "", ""                                            , only_3_and_more_mode  },
-	{ "fxaa",                  "check", 0, hint_colors.green , "", ""                                            , only_2a_and_more_mode },
+	{ "aa",                    "list",  0, hint_colors.green , "video_settings_name_19", "video_settings_desc_19", only_2a_and_more_mode },
+	{ "msaa",                  "list",  1, hint_colors.red   , "", ""                                            , only_3_mode  }, --мсаа норм работает только на р3, пока.
 	{ "ssample",               "track", 0, hint_colors.green , "", ""                                            , only_1_mode  },
 	--
 	{ "detail_density",        "track", 0, hint_colors.red   , "video_settings_name_4" , "video_settings_desc_4"  },
@@ -49,7 +50,7 @@ local adv_vid_opt_params = {
 	{ "r2_detail_bump",        "check", 0, hint_colors.yellow, "video_settings_name_44", "video_settings_desc_44", only_2_and_more_mode },
 	{ "r2_steep_parallax",     "check", 0, hint_colors.red   , "video_settings_name_39", "video_settings_desc_39", only_25_and_more_mode },
 	{ "r2_sun_quality",        "list",  0, hint_colors.red   , "", ""                                            , only_25_and_more_mode },
-	{ "sun_shafts",            "list",  0, hint_colors.red   , "video_settings_name_29", "video_settings_desc_29", only_25_and_more_mode },
+	{ "sun_shafts",            "list",  0, hint_colors.red   , "video_settings_name_29", "video_settings_desc_29", only_2a_and_more_mode },
 	{ "ssao_mode",             "list",  1, hint_colors.yellow, "video_settings_name_38", "video_settings_desc_38", only_25_and_more_mode },
 	{ "ssao",                  "list",  1, hint_colors.yellow, "video_settings_name_37", "video_settings_desc_37", only_25_and_more_mode },
 	{ "soft_water",            "check", 0, hint_colors.green , "video_settings_name_31", "video_settings_desc_31", only_25_and_more_mode },
@@ -76,6 +77,7 @@ local adv_vid_opt_params = {
 	{ "r2_tonemap_middlegray", "track", 0, hint_colors.green , "video_settings_name_26", "video_settings_desc_26", only_2_and_more_mode  },
 	{ "r2_rain_drops",         "check", 0, hint_colors.green , "video_settings_name_47", "video_settings_desc_47", only_2a_and_more_mode },
 	{ "r2_actor_shadow",       "check", 0, hint_colors.green , "video_settings_name_56", "",                       only_2a_and_more_mode },
+	{ "r_sslr_enable",         "check", 1, hint_colors.yellow, "", "",                                             only_4_and_more_mode },
 }
 
 local control_init_funs = {
