@@ -1,5 +1,10 @@
 -- -*- mode: lua; coding: windows-1251-dos -*-
 
+-- минимальная и максимальная амплитуда раскачки ходьбы
+local BOBBING_MIN = 1.5
+local BOBBING_MAX = 6
+
+
 function attach( sm )
   sm:subscribe({ signal = "on_spawn", fun = this.on_spawn })
   sm:subscribe({ signal = "update_artefacts_on_belt", fun = this.update_artefacts_on_belt })
@@ -20,6 +25,10 @@ local def_jump_power = get_float( "actor_condition", "jump_power" )
 local jump_speed = get_float( "actor", "jump_speed" )
 local run_coef = get_float("actor", "run_coef")
 local run_back_coef = get_float("actor", "run_back_coef")
+
+local limp_amp = get_float( "bobbing_effector", "limp_amplitude" )
+local run_amp  = get_float( "bobbing_effector", "run_amplitude"  )
+local walk_amp = get_float( "bobbing_effector", "walk_amplitude" )
 
 local cam_inert, cur_cam_inert
 function on_spawn()
@@ -151,6 +160,25 @@ function update_artefacts_on_belt( dt )
     end
   end
   aobj.jump_power = cur_jump_power
+
+
+  if new_cam_inert == cur_cam_inert then
+    return
+  end
+
+  local bobbing_eff = level.get_effector_bobbing()
+  if bobbing_eff and inert_enabled then
+    if new_cam_inert > 0 then
+      local k = BOBBING_MIN + new_cam_inert * ( BOBBING_MAX - BOBBING_MIN )
+      bobbing_eff.limp_amplitude = limp_amp * k
+      bobbing_eff.run_amplitude  = run_amp  * k
+      bobbing_eff.walk_amplitude = walk_amp * k
+    else
+      bobbing_eff.limp_amplitude = limp_amp
+      bobbing_eff.run_amplitude  = run_amp
+      bobbing_eff.walk_amplitude = walk_amp
+    end
+  end
 
   if new_cam_inert > 0 then
 	local min_cam_inert = math.max( 0.3, cam_inert + 0.1 )
