@@ -31,7 +31,7 @@ function generic_object_binder:reinit()
 
 	-- У торговца нет поддержки перемещения
 	if self.object:clsid() ~= clsid.script_trader then
-		self.object:set_patrol_extrapolate_callback(generic_object_binder.extrapolate_callback, self)
+		self.object:set_patrol_extrapolate_callback(self.extrapolate_callback, self)
 	end
 
 	db.storage[self.object:id()] = {}
