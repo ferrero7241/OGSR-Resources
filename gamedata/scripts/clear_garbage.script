@@ -105,6 +105,7 @@ local musor_sections = { --Секции всякого мусора, котор�
 	["gl_fake_missile_ammo_vog-25p"] = true,
 	["gl_fake_missile_ammo_m209"] = true,
 	["gl_fake_missile_ammo_m208a"] = true,
+	["m_phantom"] = true,
 }
 
 function remove_guns()
