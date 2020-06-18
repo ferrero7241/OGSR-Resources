@@ -291,11 +291,11 @@ local function remove_anomalies_on_path( npc, ppname )
   pp_anoms[ ppname ] = true
 end
 
-function validate_accessibility( npc, ppname )
+local function validate_accessibility( npc, ppname )
 	remove_anomalies_on_path( npc, ppname )
 
 	if pp_validated[ppname] ~= nil then
-		return pp_validated[ppname], ppname
+		return pp_validated[ppname]
 	end
 
 	pp_validated[ppname] = false
@@ -305,19 +305,19 @@ function validate_accessibility( npc, ppname )
 			--log3("~~[%s] verifying point [%s] on path [%s] VTX [%s] for [%s]", script_name(), i, ppname, pp:level_vertex_id(i), npc:name())
 			if not npc:accessible(pp:level_vertex_id(i)) then
 				--log3("!![%s] verifying point [%s] on path [%s] VTX [%s] for [%s] not accessible!", script_name(), i, ppname, pp:level_vertex_id(i), npc:name())
-				return pp_validated[ ppname ], ppname
+				return pp_validated[ ppname ]
 			end
 
 			if pp:level_vertex_id( i ) > level.vertex_count() then
 				log3( "!![%s]: wrong point [%s] on path [%s]: level_vertex_id = %s", script_name(), i, ppname, pp:level_vertex_id( i ) )
-				return pp_validated[ ppname ], ppname
+				return pp_validated[ ppname ]
 			end
 
 			pp_validated[ ppname ] = true
 		end
 	end
 
-	return pp_validated[ ppname ], ppname
+	return pp_validated[ ppname ]
 end
 
 
