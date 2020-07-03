@@ -117,10 +117,7 @@ end
 --' Функция спавнит необходимое число предметов
 function create_items(obj, section, number, rnd)
     --log3("create_items %s of %s", tostring(number), tostring(section))
-	local position = vector():set(0,0,0)
-	position.x = obj:position().x + math.random(-30,30)/100
-	position.z = obj:position().z + math.random(-30,30)/100
-	position.y = obj:position().y + math.random(30,50)/100
+	local position = obj:center()
 
     if ammo_sections[section] then
 		if math.random() <= rnd	then
@@ -181,12 +178,6 @@ end
 
 function create_obligatory_items(obj, item , count)
 	for i = 1,count do
---[=[
-		local position = vector():set(0,0,0)
-		position.x = obj:position().x + math.random(-30,30)/100
-		position.z = obj:position().z + math.random(-30,30)/100
-		position.y = obj:position().y + math.random(30,50)/100
---]=]
 		local position = obj:center()
 		local sitem = alife():create(item,	
 				position,
