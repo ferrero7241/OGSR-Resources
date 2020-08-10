@@ -689,6 +689,8 @@ end
 function fake_weapon_manager:enable()
 end
 
+local fake_wm = fake_weapon_manager()
+
 function get_wm(obj)
 	if wm_modes.enabled_ext and obj:alive() then
 		local id = obj:id()
@@ -699,7 +701,7 @@ function get_wm(obj)
 		end
 		return st.wm
 	else
-		return fake_weapon_manager()
+		return fake_wm
 	end
 end
 
