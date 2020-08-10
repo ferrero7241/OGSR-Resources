@@ -942,7 +942,6 @@ end
 
 
 class "detach_addon_ctrl" (CUIScriptWnd)
-
 function detach_addon_ctrl:__init() super()
 	self.xml = CScriptXmlInit()
 	self.xml:ParseFile("ui_ogse_addon_control.xml")
@@ -992,6 +991,7 @@ function detach_addon_ctrl:__init() super()
 	--log1("--detach_addon_ctrl:__init")
 end
 function detach_addon_ctrl:__finalize()
+	self:DetachFromParent() --Это важно!
 	--log1("~~detach_addon_ctrl:__finalize")
 end
 
@@ -1016,9 +1016,13 @@ function detach_addon_ctrl:Update()
 end
 
 -- Открытие/закрытие инвентаря
-local detach_grip_ctrl_wnd = detach_addon_ctrl()
+local detach_grip_ctrl_wnd
 function on_inventory_open()
-	level.main_input_receiver():AttachChild(detach_grip_ctrl_wnd)
+	if not detach_grip_ctrl_wnd then
+		detach_grip_ctrl_wnd = detach_addon_ctrl()
+		level.get_inventory_wnd():AttachChild(detach_grip_ctrl_wnd)
+	end
+
 	-- перенесено из модуля фейковых предметов
 	--log1("ogse_addons: on_inventory_open")
 	-- конвертируем все предметы в их фейковые эквиваленты
@@ -1039,7 +1043,6 @@ function on_inventory_open()
 end
 
 function on_inventory_hide()
-	detach_grip_ctrl_wnd:DetachFromParent()
 	-- перенесено из модуля фейковых предметов
 	--log1("ogse_addons: on_inventory_hide")
 	-- конвертируем все фейки обратно в реальные предметы

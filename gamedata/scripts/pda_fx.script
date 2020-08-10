@@ -8,9 +8,7 @@
 --/ ћодуль нерабочести PDA в выброс /--
 
 function attach(sm)
-	sm:subscribe({signal = "on_spawn", fun = this.on_spawn})
 	sm:subscribe({signal = "on_pda_open", fun = this.on_pda_open})
-	sm:subscribe({signal = "on_pda_hide", fun = this.on_pda_hide})
 	sm:subscribe({signal = "on_info", fun = this.on_pda_info})
 end
 
@@ -22,28 +20,18 @@ function pda_control:__init() super()
 	self.bgnd = xml:InitStatic("background_fault", self) 
 	self:Show( has_alife_info("no_net_signal") )
 end
-function pda_control:AttachToPDA(pda_window)
-	self.pda = pda_window
-	pda_window:AttachChild(self)
+function pda_control:__finalize()
+	self:DetachFromParent() --Ёто важно!
+	--log1("~~pda_control:__finalize")
 end
 
 
 local pda_rec_wnd
 
-function on_spawn()
-	pda_rec_wnd = this.pda_control()
-end
-
 function on_pda_open()
-	if not pda_rec_wnd.pda then
-		pda_rec_wnd:AttachToPDA(level.main_input_receiver())
-	end
-end
-
-function on_pda_hide()
-	if pda_rec_wnd.pda then
-		pda_rec_wnd.pda:DetachChild(pda_rec_wnd)
-		pda_rec_wnd.pda = nil
+	if not pda_rec_wnd then
+		pda_rec_wnd = pda_control()
+		level.get_pda_wnd():AttachChild(pda_rec_wnd)
 	end
 end
 

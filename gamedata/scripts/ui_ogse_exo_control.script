@@ -14,11 +14,9 @@ function attach(sm)
 	sm:subscribe({ signal = "on_item_to_ruck",	fun = this.chek_button_accessibility })
 	sm:subscribe({ signal = "on_item_to_slot",	fun = this.chek_button_accessibility })
 	sm:subscribe({ signal = "on_inventory_open", fun = this.on_show })
-	sm:subscribe({ signal = "on_inventory_hide", fun = this.on_inventory_hide })
 	sm:subscribe({ signal = "on_use",			fun = this.use_exo })
 end
 
-local rec_wnd
 local exo_condition
 local outfit_condition
 
@@ -50,7 +48,7 @@ function use_exo(use_object)
 	end
 end
 
-function detach_exo()
+local function detach_exo()
 	local outfit_item = db.actor:item_in_slot(6)
 	if outfit_item and alife():object(outfit_item:id()) then
 		local outfit_sec = outfit_item:section()
@@ -88,46 +86,37 @@ function save()
 end
 
 function load()
-	rec_wnd = exo_control() -- создаём один раз
-	--
 	exo_condition		= ogse.load_var_safe(script_name()..".exo_cond") or 1.0
 	outfit_condition	= ogse.load_var_safe(script_name()..".outfit_cond") or 1.0
 end
 
-class "exo_control" (CUIScriptWnd)
 
+class "exo_control" (CUIScriptWnd)
 function exo_control:__init() super()
 	local xml = CScriptXmlInit()
 	xml:ParseFile("ui_ogse_exo_control.xml")
     self:Init(895, 264,32,32) -- само скриптовое окно размещаем там, где должна быть кнопка
 	self.btn = xml:Init3tButton("ui_ogse_exo_control", self) -- кнопка, ради которой всё и делается
 	self:Register(self.btn,"btn_exo_control")
-	self:AddCallback("btn_exo_control", ui_events.BUTTON_CLICKED, self.btn_action, self)
+	self:AddCallback("btn_exo_control", ui_events.BUTTON_CLICKED, detach_exo)
 	self:Show(true) -- без этого не увидим
 end
-function exo_control:AttachToInventory(inventory_window)
-	self.inv = inventory_window
-	inventory_window:AttachChild(self)
+function exo_control:__finalize()
+	self:DetachFromParent() --Это важно!
+	--log1("~~exo_control:__finalize")
 end
 
-function exo_control:btn_action()
-	detach_exo()
-end
 
+local rec_wnd
 function on_show()
-	if not rec_wnd.inv then
-		rec_wnd:AttachToInventory(level.main_input_receiver())
+	if not rec_wnd then
+		rec_wnd = exo_control() -- создаём один раз
+		level.get_inventory_wnd():AttachChild(rec_wnd)
 	end
 	--
 	chek_button_accessibility()
 end
 
-function on_inventory_hide()
-	if rec_wnd.inv then
-		rec_wnd.inv:DetachChild(rec_wnd)
-		rec_wnd.inv = nil
-	end
-end
 
 function can_detach_exo(outfit_sec)
 	local can_be_detached = true
@@ -138,6 +127,8 @@ function can_detach_exo(outfit_sec)
 end
 
 function chek_button_accessibility()
+	if not level.get_inventory_wnd():IsShown() then return end
+
 	local outfit_item = db.actor:item_in_slot(6)
 	local enabled = 
 		outfit_item and alife():object(outfit_item:id()) and
