@@ -36,6 +36,8 @@ function on_pda_open()
 end
 
 function on_pda_info(npc, info_id)
+	if not pda_rec_wnd then return end
+
 	if info_id == "no_net_signal" then
 		pda_rec_wnd:Show(true)
 	elseif info_id == "net_signal" then
