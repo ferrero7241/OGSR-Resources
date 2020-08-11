@@ -140,12 +140,16 @@ function quick_timer:aux_cond()
       self:taction()            -- выполняем действие по таймауту
       self:stop()               -- останавливаем проверки
     else                        -- засыпаем до срабатывания
-      self.sm:reschedule( self.termination_time - time_global() )
+      self:reschedule( self.termination_time - time_global() )
     end
   elseif self:condition() then  -- если сработало условие
     self:action()               -- выполняем действие по условия
     self:stop()
   end
+end
+
+function quick_timer:reschedule( ... )
+  self.sm:reschedule( ... )
 end
 
 -- условие-заглушка на случай использования только с таймаутом

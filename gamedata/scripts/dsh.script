@@ -43,7 +43,7 @@ function condition_timer:action()
   self.fun2()
 end
 function condition_timer:update()
-  if self.fun3 then self.fun3() end
+  if self.fun3 then self.fun3( self ) end
 end
 
 function wait_condition( ... )
@@ -78,6 +78,25 @@ function exec_on_update( ... )
   --
   tmout:start()
   return tmout
+end
+-------------------------------------------------------------
+
+-------------------------------------------------------------
+function exec_periodic( freq, f, ... )
+  local args = { ... }
+  local t = wait_condition(
+    function() return false end,
+    function() end,
+    function( timer )
+      if freq then timer:reschedule( freq ) end
+      f( timer, unpack( args ) )
+    end
+  )
+
+  local d = debug.getinfo(2)
+  t.script_name = d.short_src:gsub('^.-([^\\]+)%.[^.]+$', '%1') .. "." .. d.linedefined
+
+  return t
 end
 -------------------------------------------------------------
 
